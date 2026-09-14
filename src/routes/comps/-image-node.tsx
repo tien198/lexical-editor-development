@@ -90,7 +90,7 @@ export class ImageNode extends DecoratorNode<ReactElement> {
 
   createDOM(): HTMLElement {
     const element = document.createElement('div')
-    element.className = 'editor-image-block'
+    element.className = 'my-6'
     return element
   }
 

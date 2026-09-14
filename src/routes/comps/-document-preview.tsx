@@ -20,8 +20,8 @@ export function DocumentPreview({
         if (!open) onClose()
       }}
     >
-      <DialogContent className="gap-0 overflow-hidden p-0 sm:max-w-4xl">
-        <DialogHeader className="border-b px-6 py-4">
+      <DialogContent>
+        <DialogHeader>
           <DialogTitle>Reader preview</DialogTitle>
           <DialogDescription>
             Your article as a standalone web page.
@@ -31,7 +31,7 @@ export function DocumentPreview({
           title="Article preview"
           sandbox=""
           srcDoc={html}
-          className="h-[75dvh] w-full border-0 bg-white"
+          className="h-[60dvh] w-full"
         />
       </DialogContent>
     </Dialog>

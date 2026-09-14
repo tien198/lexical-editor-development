@@ -30,45 +30,40 @@ function Home() {
     <div className="min-h-screen bg-muted/35">
       <a
         href="#workspace"
-        className="sr-only fixed top-2 left-2 z-50 rounded-lg bg-background p-3 focus:not-sr-only"
+        className="sr-only fixed top-2 left-2 z-50 bg-background p-3 focus:not-sr-only"
       >
         Skip to editor
       </a>
       <header className="border-b bg-background">
-        <div className="mx-auto flex h-18 max-w-7xl items-center justify-between px-5 sm:px-8">
+        <div className="flex w-full flex-wrap items-center justify-between gap-4 p-6">
           <a
             href="/"
             aria-label="Draft home"
-            className="flex items-center gap-2.5"
+            className="flex items-center gap-2"
           >
-            <span className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-              <Feather className="size-4" />
-            </span>
+            <Feather className="size-5 text-primary" />
             <span className="text-xl font-semibold tracking-tight">
               draft<span className="text-primary">.</span>
             </span>
-            <span className="ml-4 hidden border-l pl-5 text-xs text-muted-foreground sm:inline">
+            <span className="ml-4 hidden text-xs text-muted-foreground sm:inline">
               A little space for big ideas
             </span>
           </a>
           <span className="flex items-center gap-2 text-xs text-muted-foreground">
-            <PenLine className="size-3.5" />
+            <PenLine className="size-4" />
             <span>Writing workspace</span>
           </span>
         </div>
       </header>
-      <main
-        id="workspace"
-        className="mx-auto max-w-7xl px-5 pt-10 pb-16 sm:px-8 sm:pt-12"
-      >
-        <div className="mb-9">
-          <p className="mb-2 text-[10px] font-semibold tracking-[0.2em] text-primary uppercase">
+      <main id="workspace" className="w-full space-y-6 p-6">
+        <div className="space-y-2">
+          <p className="text-[10px] font-semibold tracking-[0.2em] text-primary uppercase">
             From first thought to final draft
           </p>
           <h1 className="font-serif text-3xl tracking-tight sm:text-4xl">
             Make room for good ideas.
           </h1>
-          <p className="mt-3 text-sm text-muted-foreground">
+          <p className="text-sm text-muted-foreground">
             Write something meaningful. Give it the structure to be discovered.
           </p>
         </div>
@@ -78,7 +73,7 @@ function Home() {
           </Suspense>
         </ClientOnly>
       </main>
-      <footer className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-2 border-t px-5 py-6 text-[11px] text-muted-foreground sm:px-8">
+      <footer className="flex w-full flex-wrap items-center justify-between gap-2 border-t p-6 text-[11px] text-muted-foreground">
         <span>Made for a more thoughtful web.</span>
         <span>
           Your draft stays in this browser. Export when you are ready.

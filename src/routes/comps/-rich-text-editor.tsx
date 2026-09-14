@@ -22,8 +22,10 @@ import {
 } from './-editor-config'
 import { EditorToolbar } from './-editor-toolbar'
 import { DocumentPlugin } from './-document-plugin'
+import { EDITOR_TYPOGRAPHY } from './-editor-typography'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
+import { CardContent, CardHeader } from '@/components/ui/card'
 
 // Code blocks are not registered; inline code and all other supported shortcuts work.
 const TRANSFORMERS = [
@@ -56,10 +58,10 @@ export const RichTextEditor = memo(function RichTextEditor({
       }}
     >
       <EditorToolbar />
-      <div className="relative px-6 pt-10 pb-12 sm:px-12 lg:px-16">
+      <CardHeader>
         <Label
           htmlFor="article-title"
-          className="mb-4 text-[10px] font-semibold tracking-[0.18em] text-muted-foreground uppercase"
+          className="text-[10px] font-semibold tracking-[0.18em] text-muted-foreground uppercase"
         >
           Your story starts here
         </Label>
@@ -69,17 +71,19 @@ export const RichTextEditor = memo(function RichTextEditor({
           value={settings.title}
           placeholder="Untitled document"
           rows={1}
+          className={`${EDITOR_TYPOGRAPHY.title} md:text-[2.65rem]`}
           onChange={(event) =>
             onTitleChange(event.target.value.replace(/\n/g, ' '))
           }
-          className="article-title mb-7 min-h-0 resize-none rounded-none border-0 bg-transparent p-0 shadow-none ring-0! md:text-[2.65rem]"
         />
+      </CardHeader>
+      <CardContent>
         <div className="relative">
           <RichTextPlugin
             contentEditable={
               <ContentEditable
                 aria-label="Article body"
-                className="editor-content min-h-72 outline-none"
+                className={`${EDITOR_TYPOGRAPHY.content} min-h-72 break-words focus-visible:outline-ring`}
               />
             }
             placeholder={
@@ -90,7 +94,7 @@ export const RichTextEditor = memo(function RichTextEditor({
             ErrorBoundary={LexicalErrorBoundary}
           />
         </div>
-      </div>
+      </CardContent>
       <HistoryPlugin />
       <ListPlugin />
       <LinkPlugin validateUrl={isLinkUrl} />

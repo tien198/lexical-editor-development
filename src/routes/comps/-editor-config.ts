@@ -9,6 +9,7 @@ import { ListItemNode, ListNode } from '@lexical/list'
 import { LinkNode } from '@lexical/link'
 import { STARTER_BLOCKS } from './-editor-data'
 import { ImageNode } from './-image-node'
+import { EDITOR_TYPOGRAPHY } from './-editor-typography'
 
 export const EDITOR_NODES = [
   HeadingNode,
@@ -19,33 +20,7 @@ export const EDITOR_NODES = [
   ImageNode,
 ]
 
-export const EDITOR_THEME = {
-  paragraph: 'editor-paragraph',
-  heading: {
-    h1: 'editor-h1',
-    h2: 'editor-h2',
-    h3: 'editor-h3',
-    h4: 'editor-h3',
-    h5: 'editor-h3',
-    h6: 'editor-h3',
-  },
-  quote: 'editor-quote',
-  link: 'editor-link',
-  list: {
-    ul: 'editor-ul',
-    ol: 'editor-ol',
-    listitem: 'editor-listitem',
-    nested: { listitem: 'editor-nested-listitem' },
-  },
-  text: {
-    bold: 'font-bold',
-    italic: 'italic',
-    underline: 'underline',
-    strikethrough: 'line-through',
-    underlineStrikethrough: 'editor-underline-strike',
-    code: 'editor-inline-code',
-  },
-}
+export const EDITOR_THEME = EDITOR_TYPOGRAPHY
 
 export function $createStarterDocument() {
   const root = $getRoot()

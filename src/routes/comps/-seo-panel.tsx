@@ -1,7 +1,14 @@
 import { Globe2, Search, SlidersHorizontal } from 'lucide-react'
 import type { DocumentSettings, DocumentSnapshot } from './-editor-data'
 import { isWebUrl, slugify } from './-editor-data'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
@@ -23,15 +30,17 @@ export function SeoPanel({
       ? settings.canonicalUrl.trim()
       : `example.com / ${slugify(settings.title)}`
   return (
-    <aside aria-label="Document settings" className="space-y-5">
-      <Card className="shadow-none">
+    <aside aria-label="Document settings" className="min-w-0 space-y-6">
+      <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-sm">
-            <SlidersHorizontal className="size-4 text-muted-foreground" />{' '}
-            Document settings
+          <CardTitle>
+            <span className="flex items-center gap-2">
+              <SlidersHorizontal className="size-4 text-muted-foreground" />{' '}
+              Document settings
+            </span>
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-5">
+        <CardContent className="space-y-4">
           <div className="grid gap-2">
             <Label htmlFor="focus-keyword">Focus phrase</Label>
             <Input
@@ -42,14 +51,14 @@ export function SeoPanel({
                 onChange({ ...settings, keyword: event.target.value })
               }
             />
-            <p className="text-[11px] leading-relaxed text-muted-foreground">
+            <p className="text-sm text-muted-foreground">
               The topic you want this article to be found for.
             </p>
           </div>
           <div className="grid gap-2">
             <div className="flex items-center justify-between">
               <Label htmlFor="meta-description">Search description</Label>
-              <span className="text-[10px] tabular-nums text-muted-foreground">
+              <span className="text-sm text-muted-foreground">
                 {settings.description.length}/160
               </span>
             </div>
@@ -57,16 +66,12 @@ export function SeoPanel({
               id="meta-description"
               rows={5}
               aria-describedby="description-help"
-              className="resize-y text-xs leading-relaxed"
               value={settings.description}
               onChange={(event) =>
                 onChange({ ...settings, description: event.target.value })
               }
             />
-            <p
-              id="description-help"
-              className="text-[11px] text-muted-foreground"
-            >
+            <p id="description-help" className="text-sm text-muted-foreground">
               A short invitation to read your story.
             </p>
           </div>
@@ -90,7 +95,7 @@ export function SeoPanel({
             />
             <p
               id="canonical-help"
-              className={`text-[11px] leading-relaxed ${canonicalValid ? 'text-muted-foreground' : 'text-destructive'}`}
+              className={`text-sm ${canonicalValid ? 'text-muted-foreground' : 'text-destructive'}`}
             >
               {canonicalValid
                 ? 'The final public URL, included in your HTML export.'
@@ -99,35 +104,35 @@ export function SeoPanel({
           </div>
         </CardContent>
       </Card>
-      <Card className="shadow-none">
+      <Card>
         <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-sm">
-            <Search className="size-4 text-muted-foreground" /> Search preview
+          <CardTitle>
+            <span className="flex items-center gap-2">
+              <Search className="size-4 text-muted-foreground" /> Search preview
+            </span>
           </CardTitle>
         </CardHeader>
-        <CardContent>
-          <div className="mb-3 flex items-center gap-2">
-            <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-muted">
-              <Globe2 className="size-3.5 text-muted-foreground" />
-            </span>
+        <CardContent className="space-y-2">
+          <div className="flex items-center gap-2">
+            <Globe2 className="size-4 shrink-0 text-muted-foreground" />
             <div className="min-w-0">
-              <p className="text-[11px] font-medium">Your website</p>
-              <p className="truncate text-[10px] text-muted-foreground">
-                {previewUrl}
-              </p>
+              <p className="font-medium">Your website</p>
+              <p className="truncate text-muted-foreground">{previewUrl}</p>
             </div>
           </div>
-          <p className="mb-1.5 line-clamp-2 text-base leading-snug text-primary">
+          <p className="line-clamp-2 text-base leading-snug text-primary">
             {settings.title || 'Untitled document'}
           </p>
-          <p className="line-clamp-3 text-xs leading-relaxed text-muted-foreground">
+          <CardDescription className="line-clamp-3">
             {settings.description ||
               'Add a search description to give readers a reason to click.'}
-          </p>
-          <p className="mt-4 border-t pt-3 text-[10px] text-muted-foreground">
-            An illustration. Search engines may display different text.
-          </p>
+          </CardDescription>
         </CardContent>
+        <CardFooter>
+          <CardDescription>
+            An illustration. Search engines may display different text.
+          </CardDescription>
+        </CardFooter>
       </Card>
       <SeoChecklist settings={settings} snapshot={snapshot} />
     </aside>

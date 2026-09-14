@@ -1,6 +1,16 @@
 import { Check, Circle, ListChecks } from 'lucide-react'
 import type { DocumentSettings, DocumentSnapshot } from './-editor-data'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import { Progress } from '@/components/ui/progress'
 
 export function SeoChecklist({
   settings,
@@ -41,38 +51,37 @@ export function SeoChecklist({
   ]
   const passed = checks.filter((check) => check.pass).length
   return (
-    <Card className="shadow-none">
-      <CardHeader className="flex-row items-center justify-between">
-        <CardTitle className="flex items-center gap-2 text-sm">
-          <ListChecks className="size-4 text-muted-foreground" /> Writing checks
+    <Card>
+      <CardHeader>
+        <CardTitle>
+          <span className="flex items-center gap-2">
+            <ListChecks className="size-4 text-muted-foreground" /> Writing
+            checks
+          </span>
         </CardTitle>
-        <span className="text-xs text-muted-foreground">
-          {passed}/{checks.length}
-        </span>
+        <CardAction>
+          <Badge variant="secondary">
+            {passed}/{checks.length}
+          </Badge>
+        </CardAction>
       </CardHeader>
       <CardContent className="space-y-4">
-        <div className="flex gap-1" aria-hidden="true">
-          {checks.map((check) => (
-            <span
-              key={check.label}
-              className={`h-1 flex-1 rounded-full ${check.pass ? 'bg-primary/75' : 'bg-muted'}`}
-            />
-          ))}
-        </div>
+        <Progress
+          value={passed}
+          max={checks.length}
+          aria-label="Writing checks passed"
+        />
         <ul className="space-y-3">
           {checks.map((check) => (
-            <li
-              key={check.label}
-              className="flex items-start gap-2 text-xs leading-relaxed"
-            >
+            <li key={check.label} className="flex items-start gap-2">
               {check.pass ? (
                 <Check
-                  className="mt-0.5 size-3.5 shrink-0 text-primary"
+                  className="mt-0.5 size-4 shrink-0 text-primary"
                   aria-label="Passed"
                 />
               ) : (
                 <Circle
-                  className="mt-0.5 size-3.5 shrink-0 text-muted-foreground"
+                  className="mt-0.5 size-4 shrink-0 text-muted-foreground"
                   aria-label="To improve"
                 />
               )}
@@ -86,11 +95,13 @@ export function SeoChecklist({
             </li>
           ))}
         </ul>
-        <p className="border-t pt-3 text-[11px] leading-relaxed text-muted-foreground">
+      </CardContent>
+      <CardFooter>
+        <CardDescription>
           Helpful editorial guidelines, not a search ranking score. Write for
           your readers first.
-        </p>
-      </CardContent>
+        </CardDescription>
+      </CardFooter>
     </Card>
   )
 }

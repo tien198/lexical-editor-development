@@ -17,6 +17,9 @@ import { slugify } from './-editor-data'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { TooltipProvider } from '@/components/ui/tooltip'
+import { Alert, AlertDescription } from '@/components/ui/alert'
+import { Card, CardFooter } from '@/components/ui/card'
+import { Kbd } from '@/components/ui/kbd'
 
 export default function EditorWorkspace() {
   const {
@@ -54,31 +57,23 @@ export default function EditorWorkspace() {
 
   return (
     <TooltipProvider delay={350}>
-      <div className="mb-5 flex flex-wrap items-center justify-between gap-4">
+      <div className="flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <span className="flex size-9 items-center justify-center rounded-lg border bg-card">
-            <FileText className="size-4 text-muted-foreground" />
-          </span>
+          <FileText className="size-4 text-muted-foreground" />
           <div>
-            <p className="text-sm font-medium">
-              Your document{' '}
-              <Badge
-                variant="secondary"
-                className="ml-2 align-middle text-[10px] font-normal"
-              >
-                Draft
-              </Badge>
+            <p className="flex items-center gap-2 text-sm font-medium">
+              Your document <Badge variant="secondary">Draft</Badge>
             </p>
             <p
               role="status"
-              className="mt-1 flex items-center gap-1.5 text-[11px] text-muted-foreground"
+              className="mt-1 flex items-center gap-2 text-sm text-muted-foreground"
             >
               {status === 'Saving…' ? (
-                <LoaderCircle className="size-3 animate-spin" />
+                <LoaderCircle className="size-4 animate-spin motion-reduce:animate-none" />
               ) : status === 'Saved on this device' ? (
-                <Check className="size-3" />
+                <Check className="size-4" />
               ) : (
-                <HardDrive className="size-3" />
+                <HardDrive className="size-4" />
               )}
               {status}
             </p>
@@ -87,66 +82,54 @@ export default function EditorWorkspace() {
         <div className="flex items-center gap-2">
           <Button
             variant="outline"
-            size="lg"
             disabled={!snapshot}
             onClick={() => setPreview(true)}
           >
             <Eye /> Preview
           </Button>
-          <Button size="lg" disabled={!snapshot} onClick={exportHtml}>
+          <Button disabled={!snapshot} onClick={exportHtml}>
             <Download /> Export HTML
           </Button>
         </div>
       </div>
       {error && (
-        <p
-          role="alert"
-          className="mb-4 rounded-lg border border-destructive/30 bg-destructive/5 p-3 text-sm text-destructive"
-        >
-          {error}
-        </p>
+        <Alert variant="destructive">
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
       )}
       {notice && (
-        <p role="status" className="mb-4 text-sm text-muted-foreground">
-          {notice}
-        </p>
+        <Alert role="status">
+          <AlertDescription>{notice}</AlertDescription>
+        </Alert>
       )}
-      <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_310px]">
-        <div className="min-w-0">
-          <section
-            aria-label="Article editor"
-            className="overflow-hidden rounded-xl border bg-card shadow-xs"
-          >
+      <div className="grid items-start gap-6 lg:grid-cols-3">
+        <div className="min-w-0 space-y-6 lg:col-span-2">
+          <Card role="region" aria-label="Article editor">
             <RichTextEditor
               initialState={initialState}
               settings={settings}
               onTitleChange={changeTitle}
               onChange={setSnapshot}
             />
-            <footer className="flex flex-wrap items-center justify-between gap-3 border-t px-6 py-3 text-[11px] text-muted-foreground">
+            <CardFooter className="flex-wrap justify-between gap-3">
               <span>
-                {words.toLocaleString()} words{' '}
-                <span className="mx-2 opacity-40">/</span>{' '}
+                {words.toLocaleString()} words /{' '}
                 {snapshot?.text.length.toLocaleString() ?? 0} characters
               </span>
-              <span className="flex items-center gap-1.5">
-                <Clock3 className="size-3" />
+              <span className="flex items-center gap-2">
+                <Clock3 className="size-4" />
                 {words ? Math.ceil(words / 200) : 0} min read
               </span>
-            </footer>
-          </section>
-          <p className="mt-4 text-center text-[11px] leading-relaxed text-muted-foreground">
-            A little shortcut: type{' '}
-            <kbd className="rounded border bg-card px-1">##</kbd> then space for
-            a heading, or <kbd className="rounded border bg-card px-1">-</kbd>{' '}
-            then space for a list.
+            </CardFooter>
+          </Card>
+          <p className="text-sm text-muted-foreground">
+            A little shortcut: type <Kbd>##</Kbd> then space for a heading, or{' '}
+            <Kbd>-</Kbd> then space for a list.
           </p>
           {snapshot && snapshot.headings.length > 0 && (
-            <section aria-label="Document outline" className="mt-8 px-2">
-              <h2 className="mb-3 text-[10px] font-semibold tracking-widest text-muted-foreground uppercase">
-                In this document
-              </h2>
-              <ol className="space-y-2 border-l pl-4 text-xs text-muted-foreground">
+            <section aria-label="Document outline" className="space-y-2">
+              <h2 className="text-sm font-medium">In this document</h2>
+              <ol className="list-inside list-decimal space-y-2 text-sm text-muted-foreground">
                 {snapshot.headings.map((heading) => (
                   <li
                     key={heading.key}

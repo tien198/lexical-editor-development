@@ -16,7 +16,7 @@ import type { ImagePayload } from './-editor-data'
 import { $isImageNode } from './-image-node'
 import { ImageDialog } from './-image-dialog'
 import { Button } from '@/components/ui/button'
-import { cn } from '@/lib/utils'
+import { Card, CardContent, CardFooter } from '@/components/ui/card'
 
 export function EditorImage({
   nodeKey,
@@ -53,67 +53,68 @@ export function EditorImage({
   }, [editor, nodeKey, selected])
 
   return (
-    <figure
-      className={cn(
-        'group/image relative overflow-hidden rounded-xl border bg-muted/30',
-        selected && 'ring-2 ring-primary',
-      )}
-    >
-      <Button
-        type="button"
-        variant="ghost"
-        className="h-auto w-full rounded-none p-0 hover:bg-transparent"
-        aria-label={`Select image: ${image.alt || 'Image without alt text'}`}
-        aria-pressed={selected}
-        onClick={() => {
-          clearSelection()
-          setSelected(!selected)
-        }}
-      >
-        {failedSrc === image.src || !image.src ? (
-          <span className="flex min-h-40 items-center justify-center gap-2 p-6 text-muted-foreground">
-            <ImageOff /> Image unavailable — edit the URL
-          </span>
-        ) : (
-          <img
-            src={image.src}
-            alt={image.alt}
-            loading="lazy"
-            decoding="async"
-            className="max-h-96 w-full object-contain"
-            onError={() => setFailedSrc(image.src)}
-          />
+    <figure>
+      <Card>
+        <CardContent>
+          <Button
+            type="button"
+            variant={selected ? 'secondary' : 'ghost'}
+            className="h-auto w-full"
+            aria-label={`Select image: ${image.alt || 'Image without alt text'}`}
+            aria-pressed={selected}
+            onClick={() => {
+              clearSelection()
+              setSelected(!selected)
+            }}
+          >
+            {failedSrc === image.src || !image.src ? (
+              <span className="flex min-h-40 flex-wrap items-center justify-center gap-2 whitespace-normal">
+                <ImageOff /> Image unavailable — edit the URL
+              </span>
+            ) : (
+              <img
+                src={image.src}
+                alt={image.alt}
+                loading="lazy"
+                decoding="async"
+                className="max-h-96 w-full object-contain"
+                onError={() => setFailedSrc(image.src)}
+              />
+            )}
+          </Button>
+        </CardContent>
+        {image.caption && (
+          <CardContent>
+            <figcaption className="text-sm text-muted-foreground">
+              {image.caption}
+            </figcaption>
+          </CardContent>
         )}
-      </Button>
-      <div className="absolute top-2 right-2 flex gap-1 rounded-lg border bg-background p-1 shadow-sm">
-        <Button
-          type="button"
-          size="icon-sm"
-          variant="ghost"
-          aria-label="Edit image"
-          onClick={() => setEditing(true)}
-        >
-          <Pencil />
-        </Button>
-        <Button
-          type="button"
-          size="icon-sm"
-          variant="ghost"
-          aria-label="Delete image"
-          onClick={() =>
-            editor.update(() => {
-              $getNodeByKey(nodeKey)?.remove()
-            })
-          }
-        >
-          <Trash2 />
-        </Button>
-      </div>
-      {image.caption && (
-        <figcaption className="px-4 py-3 text-center text-sm text-muted-foreground">
-          {image.caption}
-        </figcaption>
-      )}
+        <CardFooter className="gap-2">
+          <Button
+            type="button"
+            size="icon-sm"
+            variant="ghost"
+            aria-label="Edit image"
+            onClick={() => setEditing(true)}
+          >
+            <Pencil />
+          </Button>
+          <Button
+            type="button"
+            size="icon-sm"
+            variant="ghost"
+            aria-label="Delete image"
+            onClick={() =>
+              editor.update(() => {
+                $getNodeByKey(nodeKey)?.remove()
+              })
+            }
+          >
+            <Trash2 />
+          </Button>
+        </CardFooter>
+      </Card>
       {editing && (
         <ImageDialog
           initial={image}

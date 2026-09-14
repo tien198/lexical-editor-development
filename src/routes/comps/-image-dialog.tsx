@@ -35,7 +35,7 @@ export function ImageDialog({
         if (!open) onClose()
       }}
     >
-      <DialogContent className="sm:max-w-md">
+      <DialogContent>
         <DialogHeader>
           <DialogTitle>{initial ? 'Edit image' : 'Add an image'}</DialogTitle>
           <DialogDescription>

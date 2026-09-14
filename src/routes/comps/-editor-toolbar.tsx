@@ -38,6 +38,7 @@ import { LinkDialog } from './-link-dialog'
 import { $createImageNode } from './-image-node'
 import { NativeSelect, NativeSelectOption } from '@/components/ui/native-select'
 import { Separator } from '@/components/ui/separator'
+import { CardHeader } from '@/components/ui/card'
 
 export function EditorToolbar() {
   const { editor, format, canUndo, canRedo } = useToolbar()
@@ -57,10 +58,10 @@ export function EditorToolbar() {
 
   return (
     <>
-      <div
+      <CardHeader
         role="group"
         aria-label="Text formatting"
-        className="flex flex-wrap items-center gap-1 border-b bg-card px-3 py-3 sm:px-5"
+        className="flex flex-wrap items-center gap-1"
       >
         <ToolbarButton
           label="Undo"
@@ -76,7 +77,9 @@ export function EditorToolbar() {
         >
           <Redo2 />
         </ToolbarButton>
-        <Separator orientation="vertical" className="mx-2 h-5!" />
+        <div className="mx-2 h-5">
+          <Separator orientation="vertical" />
+        </div>
         <NativeSelect
           aria-label="Block style"
           value={
@@ -109,7 +112,9 @@ export function EditorToolbar() {
           <NativeSelectOption value="h3">Heading 3</NativeSelectOption>
           <NativeSelectOption value="quote">Quote</NativeSelectOption>
         </NativeSelect>
-        <Separator orientation="vertical" className="mx-2 h-5!" />
+        <div className="mx-2 h-5">
+          <Separator orientation="vertical" />
+        </div>
         <ToolbarButton
           label="Bold"
           active={format.bold}
@@ -142,7 +147,9 @@ export function EditorToolbar() {
         >
           <Strikethrough />
         </ToolbarButton>
-        <Separator orientation="vertical" className="mx-2 h-5!" />
+        <div className="mx-2 h-5">
+          <Separator orientation="vertical" />
+        </div>
         <ToolbarButton
           label="Bullet list"
           active={format.block === 'bullet'}
@@ -171,7 +178,9 @@ export function EditorToolbar() {
         >
           <ListOrdered />
         </ToolbarButton>
-        <Separator orientation="vertical" className="mx-2 h-5!" />
+        <div className="mx-2 h-5">
+          <Separator orientation="vertical" />
+        </div>
         <ToolbarButton
           label={format.link ? 'Edit link' : 'Add link (select text first)'}
           active={!!format.link}
@@ -192,7 +201,7 @@ export function EditorToolbar() {
         >
           <ImagePlus />
         </ToolbarButton>
-      </div>
+      </CardHeader>
       {dialog === 'image' && (
         <ImageDialog
           onClose={() => setDialog(null)}
