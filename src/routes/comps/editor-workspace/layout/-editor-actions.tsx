@@ -1,14 +1,14 @@
-import { Eye, ExternalLink, ChevronDown, MoreVertical } from 'lucide-react'
+import { Eye, EyeOff, ExternalLink, ChevronDown, MoreVertical } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 export function EditorActions({
   hasSnapshot,
-  onPreview,
-  onExport,
+  preview,
+  onTogglePreview,
 }: {
   hasSnapshot: boolean
-  onPreview: () => void
-  onExport: () => void
+  preview: boolean
+  onTogglePreview: () => void
 }) {
   return (
     <div
@@ -19,11 +19,13 @@ export function EditorActions({
       <Button
         variant="outline"
         size="icon"
-        className="w-[34px] px-0 bg-transparent text-muted-foreground hover:text-foreground"
+        className={`w-[34px] px-0 bg-transparent hover:text-foreground ${
+          preview ? 'text-foreground bg-accent' : 'text-muted-foreground'
+        }`}
         disabled={!hasSnapshot}
-        onClick={onPreview}
+        onClick={onTogglePreview}
       >
-        <Eye className="size-4" />
+        {preview ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
       </Button>
 
       <Button

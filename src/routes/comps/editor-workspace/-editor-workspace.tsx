@@ -1,54 +1,21 @@
 import { useState } from 'react'
-import { ChevronDown, Clock3, Plus } from 'lucide-react'
+import { Clock3 } from 'lucide-react'
 import { useDraft } from './document/-use-draft'
 import { RichTextEditor } from './lexical/-rich-text-editor'
 import { SeoPanel } from './seo/-seo-panel'
-import { DocumentPreview } from './document/-document-preview'
 import { buildHtmlDocument } from './document/-document-export'
 import { slugify } from './core/-editor-data'
 import { StatusBar } from './layout/-status-bar'
 import { EditorActions } from './layout/-editor-actions'
-import { Button } from '@/components/ui/button'
+import { RelationshipField } from './layout/-relationship-field'
+import { PostMetadata } from './layout/-post-metadata'
+import { ImageUpload } from '#/components/image-upload'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Kbd } from '@/components/ui/kbd'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-
-/** Relationship fields reproduce the admin layout without a collection API. */
-function RelationshipField({ label }: { label: string }) {
-  return (
-    <div className={'grid gap-[8px]'}>
-      <span id={`label-${label.replaceAll(' ', '-').toLowerCase()}`}>
-        {label}
-      </span>
-      <div
-        className={
-          'flex h-[40px] min-w-0 rounded-[3px] border border-input bg-[#222] [&_button:last-child]:w-[40px] [&_button:last-child]:border-l [&_button:last-child]:border-input [&_button]:h-[38px] [&_button]:rounded-none [&_button]:opacity-100 [&_svg]:w-[13px]'
-        }
-        role="group"
-        aria-labelledby={`label-${label.replaceAll(' ', '-').toLowerCase()}`}
-      >
-        <Button
-          variant="ghost"
-          className={'flex flex-1 min-w-0 justify-between px-[14px]'}
-          disabled
-        >
-          Select a value <ChevronDown />
-        </Button>
-        <Button
-          variant="ghost"
-          size="icon"
-          aria-label={`Add ${label.toLowerCase()}`}
-          disabled
-        >
-          <Plus />
-        </Button>
-      </div>
-    </div>
-  )
-}
 
 export default function EditorWorkspace() {
   const {
@@ -90,8 +57,8 @@ export default function EditorWorkspace() {
         <StatusBar />
         <EditorActions
           hasSnapshot={!!snapshot}
-          onPreview={() => setPreview(true)}
-          onExport={exportHtml}
+          preview={preview}
+          onTogglePreview={() => setPreview((prev) => !prev)}
         />
       </div>
       {(error || notice) && (
@@ -114,7 +81,9 @@ export default function EditorWorkspace() {
       )}
       <div
         className={
-          'grid min-h-[calc(100dvh-179px)] grid-cols-[minmax(0,2fr)_minmax(280px,1fr)] max-[1023px]:grid-cols-[minmax(0,1fr)_280px] max-[699px]:flex max-[699px]:flex-col'
+          preview && snapshot
+            ? 'grid min-h-[calc(100dvh-179px)] grid-cols-[minmax(30%,1fr)_auto]'
+            : 'grid min-h-[calc(100dvh-179px)] grid-cols-[minmax(0,2fr)_minmax(280px,1fr)] max-[1023px]:grid-cols-[minmax(0,1fr)_280px] max-[699px]:flex max-[699px]:flex-col'
         }
       >
         <div className={'min-w-0'}>
@@ -151,31 +120,7 @@ export default function EditorWorkspace() {
               keepMounted
               className="px-[var(--admin-gutter)] pb-[40px] pt-[22px] text-[13px] max-[699px]:pb-[28px] [&_[data-slot=card]]:overflow-visible [&_[data-slot=card]]:rounded-none [&_[data-slot=card]]:border-b [&_[data-slot=card]]:border-border [&_[data-slot=card]]:pb-[26px] [&_[data-slot=card]]:shadow-none [&_[data-slot=card]]:[--card-spacing:0px] [&_[data-slot=card-content]]:rounded-none [&_[data-slot=card-content]_.text-sm]:text-[13px] [&_[data-slot=card-description]]:text-[13px] [&_[data-slot=card-footer]]:rounded-none [&_[data-slot=card-footer]]:bg-transparent [&_[data-slot=card-footer]]:pt-[12px] [&_[data-slot=card-header]]:rounded-none [&_[data-slot=card-title]]:text-[14px]"
             >
-              <div className="grid gap-[8px] mb-[26px]">
-                <span id="hero-image-label">Hero Image</span>
-                <div
-                  className={
-                    'flex min-h-[62px] flex-wrap items-center gap-[10px] border border-dotted border-[#666] px-[18px] py-[16px] max-[699px]:gap-[8px] max-[699px]:px-[12px] [&_button:disabled]:opacity-100 [&_button]:h-[24px] [&_button]:bg-[#363636] [&_button]:px-[9px]'
-                  }
-                  role="group"
-                  aria-labelledby="hero-image-label"
-                >
-                  <Button variant="secondary" size="xs" disabled>
-                    Create New
-                  </Button>
-                  <span className="text-muted-foreground">or</span>
-                  <Button variant="secondary" size="xs" disabled>
-                    Choose from existing
-                  </Button>
-                  <span
-                    className={
-                      'ml-auto text-muted-foreground max-[1023px]:ml-0 max-[1023px]:w-full'
-                    }
-                  >
-                    or drag and drop a file
-                  </span>
-                </div>
-              </div>
+              <ImageUpload />
               <section aria-label="Article editor">
                 <RichTextEditor
                   initialState={initialState}
@@ -248,42 +193,12 @@ export default function EditorWorkspace() {
             </TabsContent>
           </Tabs>
         </div>
-        <aside
-          aria-label="Post metadata"
-          className={
-            'flex flex-col gap-[22px] border-l border-border pb-[40px] pl-[40px] pr-[var(--admin-gutter)] pt-[30px] max-[1399px]:pl-[28px] max-[699px]:border-l-0 max-[699px]:border-t max-[699px]:px-[var(--admin-gutter)] max-[699px]:py-[24px]'
-          }
-        >
-          <div className={'grid gap-[8px]'}>
-            <Label htmlFor="published-at">Published At</Label>
-            <Input id="published-at" type="datetime-local" />
-          </div>
-          <RelationshipField label="Authors" />
-          <div className={'grid gap-[8px]'}>
-            <Label htmlFor="post-slug">Slug</Label>
-            <div
-              className={
-                'relative [&_[data-slot=input]]:bg-[#2c2c2c] [&_[data-slot=input]]:pr-[52px] [&_[data-slot=input]]:text-[#aaa] [&_[data-slot=input]]:text-ellipsis'
-              }
-            >
-              <Input id="post-slug" value={slugify(settings.title)} readOnly />
-              <span
-                className={
-                  'absolute right-[12px] top-[12px] text-[12px] text-muted-foreground'
-                }
-              >
-                Auto
-              </span>
-            </div>
-          </div>
-        </aside>
-      </div>
-      {preview && snapshot && (
-        <DocumentPreview
-          html={buildHtmlDocument(settings, snapshot.html)}
-          onClose={() => setPreview(false)}
+        <PostMetadata 
+          settings={settings}
+          preview={preview}
+          snapshot={snapshot}
         />
-      )}
+      </div>
     </TooltipProvider>
   )
 }
