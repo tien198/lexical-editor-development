@@ -1,0 +1,131 @@
+.payloadAdmin {
+  --admin-nav-width: 272px;
+  --admin-gutter: 60px;
+  min-height: 100dvh;
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, sans-serif;
+  font-size: 13px;
+}
+
+.payloadAdmin [data-slot='button'] {
+  font-size: 13px;
+  font-weight: 400;
+  border-radius: 3px;
+}
+
+.payloadAdmin [data-slot='label'] {
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.payloadAdmin [data-slot='input'],
+.payloadAdmin [data-slot='textarea'] {
+  background: #222;
+  border-color: var(--input);
+  border-radius: 3px;
+  font-size: 13px;
+}
+
+.payloadAdmin [data-slot='input'] {
+  height: 40px;
+  padding-inline: 14px;
+}
+
+.adminMain {
+  margin-left: var(--admin-nav-width);
+  min-width: 0;
+}
+
+.adminHeader {
+  padding: 0 var(--admin-gutter);
+  border-bottom: 1px solid var(--border);
+}
+
+.adminTopbar {
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.adminAvatar {
+  width: 25px;
+  height: 25px;
+  padding: 3px;
+  border-radius: 50%;
+  background: #bdbdbd;
+  color: #fff;
+  fill: #fff;
+}
+
+.adminDocumentHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 67px;
+  padding-bottom: 15px;
+}
+
+.adminDocumentHeading h1 {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.adminDocumentViews {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.adminDocumentViews button {
+  height: 34px;
+  padding-inline: 14px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.adminDocumentViews button:disabled {
+  opacity: 1;
+}
+
+.adminOpenMenu {
+  display: none;
+}
+
+.navCollapsed .adminMain {
+  margin-left: 0;
+}
+
+.navCollapsed .adminOpenMenu {
+  display: inline-flex;
+}
+
+@media (max-width: 1399px) {
+  .payloadAdmin {
+    --admin-nav-width: 230px;
+    --admin-gutter: 32px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .payloadAdmin {
+    --admin-gutter: 24px;
+  }
+  .adminMain {
+    margin-left: 0;
+  }
+  .adminOpenMenu {
+    display: inline-flex;
+  }
+}
+
+@media (max-width: 699px) {
+  .payloadAdmin {
+    --admin-gutter: 20px;
+  }
+  .adminDocumentViews {
+    gap: 2px;
+  }
+}

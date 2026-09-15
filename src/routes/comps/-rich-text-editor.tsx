@@ -1,3 +1,4 @@
+import styles from './-rich-text-editor.module.css'
 import { memo } from 'react'
 import { LexicalComposer } from '@lexical/react/LexicalComposer'
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin'
@@ -13,7 +14,7 @@ import {
   TEXT_MATCH_TRANSFORMERS,
 } from '@lexical/markdown'
 import type { EditorState } from 'lexical'
-import type { DocumentSettings, DocumentSnapshot } from './-editor-data'
+import type { DocumentSnapshot } from './-editor-data'
 import { isLinkUrl } from './-editor-data'
 import {
   $createStarterDocument,
@@ -23,9 +24,6 @@ import {
 import { EditorToolbar } from './-editor-toolbar'
 import { DocumentPlugin } from './-document-plugin'
 import { EDITOR_TYPOGRAPHY } from './-editor-typography'
-import { Textarea } from '@/components/ui/textarea'
-import { Label } from '@/components/ui/label'
-import { CardContent, CardHeader } from '@/components/ui/card'
 
 // Code blocks are not registered; inline code and all other supported shortcuts work.
 const TRANSFORMERS = [
@@ -36,13 +34,9 @@ const TRANSFORMERS = [
 
 export const RichTextEditor = memo(function RichTextEditor({
   initialState,
-  settings,
-  onTitleChange,
   onChange,
 }: {
   initialState: EditorState | null
-  settings: DocumentSettings
-  onTitleChange: (title: string) => void
   onChange: (snapshot: DocumentSnapshot) => void
 }) {
   return (
@@ -58,26 +52,7 @@ export const RichTextEditor = memo(function RichTextEditor({
       }}
     >
       <EditorToolbar />
-      <CardHeader>
-        <Label
-          htmlFor="article-title"
-          className="text-[10px] font-semibold tracking-[0.18em] text-muted-foreground uppercase"
-        >
-          Your story starts here
-        </Label>
-        <Textarea
-          id="article-title"
-          aria-label="Article title"
-          value={settings.title}
-          placeholder="Untitled document"
-          rows={1}
-          className={`${EDITOR_TYPOGRAPHY.title} md:text-[2.65rem]`}
-          onChange={(event) =>
-            onTitleChange(event.target.value.replace(/\n/g, ' '))
-          }
-        />
-      </CardHeader>
-      <CardContent>
+      <div className={styles.postEditorContent}>
         <div className="relative">
           <RichTextPlugin
             contentEditable={
@@ -94,7 +69,7 @@ export const RichTextEditor = memo(function RichTextEditor({
             ErrorBoundary={LexicalErrorBoundary}
           />
         </div>
-      </CardContent>
+      </div>
       <HistoryPlugin />
       <ListPlugin />
       <LinkPlugin validateUrl={isLinkUrl} />

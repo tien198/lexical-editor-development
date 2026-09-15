@@ -1,0 +1,17 @@
+.postEditorContent {
+  margin-top: 24px;
+  border-left: 1px solid var(--border);
+  padding: 0 18px 16px 38px;
+}
+
+.postEditorContent [contenteditable] {
+  min-height: 290px;
+  outline-offset: 8px;
+}
+
+@media (max-width: 699px) {
+  .postEditorContent {
+    padding-left: 18px;
+    padding-right: 0;
+  }
+}

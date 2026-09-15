@@ -1,7 +1,11 @@
-import { lazy, Suspense } from 'react'
+import styles from './index.module.css'
+import { lazy, Suspense, useState } from 'react'
 import { ClientOnly, createFileRoute } from '@tanstack/react-router'
-import { Feather, PenLine } from 'lucide-react'
+import { Menu, UserRound } from 'lucide-react'
+import { Breadcrumb } from './comps/-breadcrumb'
+import { NavSidebar } from './comps/-nav-sidebar'
 import { EditorFallback } from './comps/-editor-fallback'
+import { Button } from '@/components/ui/button'
 
 const EditorWorkspace = lazy(() => import('./comps/-editor-workspace'))
 
@@ -26,59 +30,76 @@ export const Route = createFileRoute('/')({
 })
 
 function Home() {
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [menuCollapsed, setMenuCollapsed] = useState(false)
+
   return (
-    <div className="min-h-screen bg-muted/35">
+    <div
+      className={`${styles.payloadAdmin} ${menuCollapsed ? styles.navCollapsed : ''}`}
+    >
       <a
         href="#workspace"
         className="sr-only fixed top-2 left-2 z-50 bg-background p-3 focus:not-sr-only"
       >
         Skip to editor
       </a>
-      <header className="border-b bg-background">
-        <div className="flex w-full flex-wrap items-center justify-between gap-4 p-6">
-          <a
-            href="/"
-            aria-label="Draft home"
-            className="flex items-center gap-2"
-          >
-            <Feather className="size-5 text-primary" />
-            <span className="text-xl font-semibold tracking-tight">
-              draft<span className="text-primary">.</span>
-            </span>
-            <span className="ml-4 hidden text-xs text-muted-foreground sm:inline">
-              A little space for big ideas
-            </span>
-          </a>
-          <span className="flex items-center gap-2 text-xs text-muted-foreground">
-            <PenLine className="size-4" />
-            <span>Writing workspace</span>
-          </span>
-        </div>
-      </header>
-      <main id="workspace" className="w-full space-y-6 p-6">
-        <div className="space-y-2">
-          <p className="text-[10px] font-semibold tracking-[0.2em] text-primary uppercase">
-            From first thought to final draft
-          </p>
-          <h1 className="font-serif text-3xl tracking-tight sm:text-4xl">
-            Make room for good ideas.
-          </h1>
-          <p className="text-sm text-muted-foreground">
-            Write something meaningful. Give it the structure to be discovered.
-          </p>
-        </div>
-        <ClientOnly fallback={<EditorFallback />}>
-          <Suspense fallback={<EditorFallback />}>
-            <EditorWorkspace />
-          </Suspense>
-        </ClientOnly>
-      </main>
-      <footer className="flex w-full flex-wrap items-center justify-between gap-2 border-t p-6 text-[11px] text-muted-foreground">
-        <span>Made for a more thoughtful web.</span>
-        <span>
-          Your draft stays in this browser. Export when you are ready.
-        </span>
-      </footer>
+      <NavSidebar
+        open={menuOpen}
+        collapsed={menuCollapsed}
+        onClose={() => setMenuOpen(false)}
+        onCollapse={() => {
+          setMenuCollapsed(true)
+          setMenuOpen(false)
+        }}
+      />
+      <div className={styles.adminMain}>
+        <header className={styles.adminHeader}>
+          <div className={styles.adminTopbar}>
+            <div className="flex min-w-0 items-center gap-4">
+              <Button
+                variant="outline"
+                size="icon-sm"
+                className={styles.adminOpenMenu}
+                aria-label="Open menu"
+                aria-controls="admin-navigation"
+                aria-expanded={menuOpen}
+                onClick={() => {
+                  setMenuCollapsed(false)
+                  setMenuOpen(true)
+                }}
+              >
+                <Menu />
+              </Button>
+              <Breadcrumb />
+            </div>
+            <UserRound className={styles.adminAvatar} aria-label="Account" />
+          </div>
+          <div className={styles.adminDocumentHeading}>
+            <h1>5</h1>
+            <nav
+              className={styles.adminDocumentViews}
+              aria-label="Document views"
+            >
+              <Button variant="secondary" aria-current="page">
+                Edit
+              </Button>
+              <Button variant="ghost" disabled>
+                Versions
+              </Button>
+              <Button variant="ghost" disabled>
+                API
+              </Button>
+            </nav>
+          </div>
+        </header>
+        <main id="workspace">
+          <ClientOnly fallback={<EditorFallback />}>
+            <Suspense fallback={<EditorFallback />}>
+              <EditorWorkspace />
+            </Suspense>
+          </ClientOnly>
+        </main>
+      </div>
     </div>
   )
 }
