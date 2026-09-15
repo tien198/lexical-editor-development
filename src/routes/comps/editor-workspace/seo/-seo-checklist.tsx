@@ -1,5 +1,5 @@
 import { Check, Circle, ListChecks } from 'lucide-react'
-import type { DocumentSettings, DocumentSnapshot } from './-editor-data'
+import type { DocumentSettings, DocumentSnapshot } from '../core/-editor-data'
 import {
   Card,
   CardAction,

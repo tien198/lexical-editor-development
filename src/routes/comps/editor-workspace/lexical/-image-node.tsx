@@ -8,8 +8,8 @@ import type {
   Spread,
 } from 'lexical'
 import type { ReactElement } from 'react'
-import type { ImagePayload } from './-editor-data'
-import { isWebUrl } from './-editor-data'
+import type { ImagePayload } from '../core/-editor-data'
+import { isWebUrl } from '../core/-editor-data'
 import { EditorImage } from './-editor-image'
 
 export type SerializedImageNode = Spread<ImagePayload, SerializedLexicalNode>

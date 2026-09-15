@@ -12,7 +12,7 @@ import {
 } from 'lexical'
 import type { NodeKey } from 'lexical'
 import { ImageOff, Pencil, Trash2 } from 'lucide-react'
-import type { ImagePayload } from './-editor-data'
+import type { ImagePayload } from '../core/-editor-data'
 import { $isImageNode } from './-image-node'
 import { ImageDialog } from './-image-dialog'
 import { Button } from '@/components/ui/button'

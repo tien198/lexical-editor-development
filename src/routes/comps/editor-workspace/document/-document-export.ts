@@ -1,5 +1,5 @@
-import type { DocumentSettings } from './-editor-data'
-import { isLinkUrl, isWebUrl } from './-editor-data'
+import type { DocumentSettings } from '../core/-editor-data'
+import { isLinkUrl, isWebUrl } from '../core/-editor-data'
 
 function escapeHtml(value: string): string {
   return value.replace(

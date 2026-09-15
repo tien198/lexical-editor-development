@@ -4,9 +4,9 @@ import { $generateHtmlFromNodes } from '@lexical/html'
 import { $getRoot, $isElementNode } from 'lexical'
 import type { LexicalNode } from 'lexical'
 import { $isHeadingNode } from '@lexical/rich-text'
-import type { DocumentSnapshot } from './-editor-data'
+import type { DocumentSnapshot } from '../core/-editor-data'
 import { $isImageNode } from './-image-node'
-import { cleanEditorHtml } from './-document-export'
+import { cleanEditorHtml } from '../document/-document-export'
 
 export function DocumentPlugin({
   onChange,

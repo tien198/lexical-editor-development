@@ -1,6 +1,6 @@
 .payloadAdmin {
-  --admin-nav-width: 272px;
-  --admin-gutter: 60px;
+  --admin-nav-width: 230px;
+  --admin-gutter: 20px;
   min-height: 100dvh;
   font-family:
     -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
@@ -33,7 +33,7 @@
 }
 
 .adminMain {
-  margin-left: var(--admin-nav-width);
+  margin-left: 0;
   min-width: 0;
 }
 
@@ -76,7 +76,7 @@
 .adminDocumentViews {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 2px;
 }
 
 .adminDocumentViews button {
@@ -91,7 +91,7 @@
 }
 
 .adminOpenMenu {
-  display: none;
+  display: inline-flex;
 }
 
 .navCollapsed .adminMain {
@@ -102,30 +102,30 @@
   display: inline-flex;
 }
 
-@media (max-width: 1399px) {
-  .payloadAdmin {
-    --admin-nav-width: 230px;
-    --admin-gutter: 32px;
-  }
-}
-
-@media (max-width: 1023px) {
+@media (min-width: 700px) {
   .payloadAdmin {
     --admin-gutter: 24px;
   }
-  .adminMain {
-    margin-left: 0;
-  }
-  .adminOpenMenu {
-    display: inline-flex;
+  .adminDocumentViews {
+    gap: 12px;
   }
 }
 
-@media (max-width: 699px) {
+@media (min-width: 1024px) {
   .payloadAdmin {
-    --admin-gutter: 20px;
+    --admin-gutter: 32px;
   }
-  .adminDocumentViews {
-    gap: 2px;
+  .adminMain {
+    margin-left: var(--admin-nav-width);
+  }
+  .adminOpenMenu {
+    display: none;
+  }
+}
+
+@media (min-width: 1400px) {
+  .payloadAdmin {
+    --admin-nav-width: 272px;
+    --admin-gutter: 60px;
   }
 }

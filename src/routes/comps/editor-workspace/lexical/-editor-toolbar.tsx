@@ -1,4 +1,3 @@
-import styles from './-editor-toolbar.module.css'
 import { useRef, useState } from 'react'
 import {
   $createParagraphNode,
@@ -62,7 +61,7 @@ export function EditorToolbar() {
       <CardHeader
         role="group"
         aria-label="Text formatting"
-        className={`${styles.postEditorToolbar} flex flex-wrap items-center gap-1`}
+        className="flex min-h-[43px] flex-wrap items-center gap-1 rounded-none border border-[#3c3c3c] px-[8px] py-[5px] [&_[data-slot=button][aria-pressed=true]]:bg-[#383838] [&_[data-slot=button][aria-pressed=true]]:text-white [&_[data-slot=button]]:size-[30px] [&_[data-slot=button]]:text-[#c4c4c4] [&_[data-slot=native-select]]:border-0 [&_[data-slot=native-select]]:bg-transparent [&_[data-slot=native-select]]:text-[13px]"
       >
         <ToolbarButton
           label="Undo"

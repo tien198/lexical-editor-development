@@ -1,5 +1,5 @@
-import { DEFAULT_SETTINGS, STARTER_BLOCKS } from './-editor-data'
-import { EDITOR_TYPOGRAPHY } from './-editor-typography'
+import { DEFAULT_SETTINGS, STARTER_BLOCKS } from '../core/-editor-data'
+import { EDITOR_TYPOGRAPHY } from '../core/-editor-typography'
 import {
   Card,
   CardContent,

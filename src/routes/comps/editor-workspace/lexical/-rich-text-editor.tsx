@@ -1,4 +1,3 @@
-import styles from './-rich-text-editor.module.css'
 import { memo } from 'react'
 import { LexicalComposer } from '@lexical/react/LexicalComposer'
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin'
@@ -14,16 +13,16 @@ import {
   TEXT_MATCH_TRANSFORMERS,
 } from '@lexical/markdown'
 import type { EditorState } from 'lexical'
-import type { DocumentSnapshot } from './-editor-data'
-import { isLinkUrl } from './-editor-data'
+import type { DocumentSnapshot } from '../core/-editor-data'
+import { isLinkUrl } from '../core/-editor-data'
 import {
   $createStarterDocument,
   EDITOR_NODES,
   EDITOR_THEME,
-} from './-editor-config'
+} from '../core/-editor-config'
 import { EditorToolbar } from './-editor-toolbar'
 import { DocumentPlugin } from './-document-plugin'
-import { EDITOR_TYPOGRAPHY } from './-editor-typography'
+import { EDITOR_TYPOGRAPHY } from '../core/-editor-typography'
 
 // Code blocks are not registered; inline code and all other supported shortcuts work.
 const TRANSFORMERS = [
@@ -52,7 +51,7 @@ export const RichTextEditor = memo(function RichTextEditor({
       }}
     >
       <EditorToolbar />
-      <div className={styles.postEditorContent}>
+      <div className="mt-[24px] border-l border-border pb-[16px] pl-[38px] pr-[18px] max-[699px]:pl-[18px] max-[699px]:pr-0 [&_[contenteditable]]:min-h-[290px] [&_[contenteditable]]:outline-offset-[8px]">
         <div className="relative">
           <RichTextPlugin
             contentEditable={

@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { createEditor } from 'lexical'
 import type { EditorState } from 'lexical'
-import { EDITOR_NODES } from './-editor-config'
-import { DEFAULT_SETTINGS } from './-editor-data'
-import type { DocumentSettings, DocumentSnapshot } from './-editor-data'
+import { EDITOR_NODES } from '../core/-editor-config'
+import { DEFAULT_SETTINGS } from '../core/-editor-data'
+import type { DocumentSettings, DocumentSnapshot } from '../core/-editor-data'
 
 const STORAGE_KEY = 'draft-editor:v1'
 

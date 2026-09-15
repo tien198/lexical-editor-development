@@ -1,6 +1,6 @@
 import { useId, useState } from 'react'
-import type { ImagePayload } from './-editor-data'
-import { isWebUrl } from './-editor-data'
+import type { ImagePayload } from '../core/-editor-data'
+import { isWebUrl } from '../core/-editor-data'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,

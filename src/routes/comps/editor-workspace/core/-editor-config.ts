@@ -8,7 +8,7 @@ import {
 import { ListItemNode, ListNode } from '@lexical/list'
 import { LinkNode } from '@lexical/link'
 import { STARTER_BLOCKS } from './-editor-data'
-import { ImageNode } from './-image-node'
+import { ImageNode } from '../lexical/-image-node'
 import { EDITOR_TYPOGRAPHY } from './-editor-typography'
 
 export const EDITOR_NODES = [

@@ -2,12 +2,14 @@ import styles from './index.module.css'
 import { lazy, Suspense, useState } from 'react'
 import { ClientOnly, createFileRoute } from '@tanstack/react-router'
 import { Menu, UserRound } from 'lucide-react'
-import { Breadcrumb } from './comps/-breadcrumb'
-import { NavSidebar } from './comps/-nav-sidebar'
-import { EditorFallback } from './comps/-editor-fallback'
+import { Breadcrumb } from './comps/editor-workspace/layout/-breadcrumb'
+import { NavSidebar } from './comps/editor-workspace/layout/-nav-sidebar'
+import { EditorFallback } from './comps/editor-workspace/layout/-editor-fallback'
 import { Button } from '@/components/ui/button'
 
-const EditorWorkspace = lazy(() => import('./comps/-editor-workspace'))
+const EditorWorkspace = lazy(
+  () => import('./comps/editor-workspace/-editor-workspace'),
+)
 
 const description =
   'A thoughtful space to write for the web. Create rich-text articles with accessible images, search previews, local drafts, and semantic HTML export.'

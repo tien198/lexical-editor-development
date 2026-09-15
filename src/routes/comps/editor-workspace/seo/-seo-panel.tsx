@@ -1,6 +1,6 @@
 import { Globe2, Search, SlidersHorizontal } from 'lucide-react'
-import type { DocumentSettings, DocumentSnapshot } from './-editor-data'
-import { isWebUrl, slugify } from './-editor-data'
+import type { DocumentSettings, DocumentSnapshot } from '../core/-editor-data'
+import { isWebUrl, slugify } from '../core/-editor-data'
 import {
   Card,
   CardContent,

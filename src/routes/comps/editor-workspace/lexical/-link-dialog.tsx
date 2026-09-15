@@ -1,5 +1,5 @@
 import { useId, useState } from 'react'
-import { isLinkUrl } from './-editor-data'
+import { isLinkUrl } from '../core/-editor-data'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
