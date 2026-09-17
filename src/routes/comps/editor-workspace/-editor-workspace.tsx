@@ -3,8 +3,6 @@ import { Clock3 } from 'lucide-react'
 import { useDraft } from './document/-use-draft'
 import { RichTextEditor } from './lexical/-rich-text-editor'
 import { SeoPanel } from './seo/-seo-panel'
-import { buildHtmlDocument } from './document/-document-export'
-import { slugify } from './core/-editor-data'
 import { StatusBar } from './layout/-status-bar'
 import { EditorActions } from './layout/-editor-actions'
 import { RelationshipField } from './layout/-relationship-field'
@@ -18,34 +16,10 @@ import { Kbd } from '@/components/ui/kbd'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
 export default function EditorWorkspace() {
-  const {
-    settings,
-    setSettings,
-    snapshot,
-    setSnapshot,
-    initialState,
-    status,
-    error,
-  } = useDraft()
+  const { settings, setSettings, snapshot, setSnapshot, initialState, error } =
+    useDraft()
   const [preview, setPreview] = useState(false)
-  const [notice, setNotice] = useState('')
   const words = snapshot?.words ?? 0
-
-  function exportHtml() {
-    if (!snapshot) return
-    const html = buildHtmlDocument(settings, snapshot.html)
-    const url = URL.createObjectURL(
-      new Blob([html], { type: 'text/html;charset=utf-8' }),
-    )
-    const anchor = document.createElement('a')
-    anchor.href = url
-    anchor.download = `${slugify(settings.title)}.html`
-    document.body.append(anchor)
-    anchor.click()
-    anchor.remove()
-    window.setTimeout(() => URL.revokeObjectURL(url), 1000)
-    setNotice('HTML exported with your article and search metadata.')
-  }
 
   return (
     <TooltipProvider delay={350}>
@@ -61,22 +35,13 @@ export default function EditorWorkspace() {
           onTogglePreview={() => setPreview((prev) => !prev)}
         />
       </div>
-      {(error || notice) && (
-        <div
-          className={
-            'grid gap-[8px] border-b border-border px-[var(--admin-gutter)] py-[16px]'
-          }
-        >
-          {error && (
+      {error && (
+        <div className="absolute top-0 right-0 left-0 z-50 p-4">
+          <div className="mx-auto max-w-2xl">
             <Alert variant="destructive">
               <AlertDescription>{error}</AlertDescription>
             </Alert>
-          )}
-          {notice && (
-            <Alert role="status">
-              <AlertDescription>{notice}</AlertDescription>
-            </Alert>
-          )}
+          </div>
         </div>
       )}
       <div
@@ -193,7 +158,7 @@ export default function EditorWorkspace() {
             </TabsContent>
           </Tabs>
         </div>
-        <PostMetadata 
+        <PostMetadata
           settings={settings}
           preview={preview}
           snapshot={snapshot}

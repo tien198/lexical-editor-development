@@ -20,7 +20,10 @@ import {
   EDITOR_NODES,
   EDITOR_THEME,
 } from '../core/-editor-config'
-import { EditorToolbar } from './-editor-toolbar'
+import { EditorToolbar } from '@/features/toolbars/fixed/client'
+import { InlineToolbar } from '@/features/toolbars/inline/client'
+import { SlashMenu } from '@/lexical/plugins/SlashMenu'
+import { BlockHandlesPlugin } from '@/lexical/plugins/handles/BlockHandlesPlugin'
 import { DocumentPlugin } from './-document-plugin'
 import { EDITOR_TYPOGRAPHY } from '../core/-editor-typography'
 
@@ -51,6 +54,7 @@ export const RichTextEditor = memo(function RichTextEditor({
       }}
     >
       <EditorToolbar />
+      <InlineToolbar />
       <div className="mt-[24px] border-l border-border pb-[16px] pl-[38px] pr-[18px] max-[699px]:pl-[18px] max-[699px]:pr-0 [&_[contenteditable]]:min-h-[290px] [&_[contenteditable]]:outline-offset-[8px]">
         <div className="relative">
           <RichTextPlugin
@@ -74,6 +78,8 @@ export const RichTextEditor = memo(function RichTextEditor({
       <LinkPlugin validateUrl={isLinkUrl} />
       <MarkdownShortcutPlugin transformers={TRANSFORMERS} />
       <DocumentPlugin onChange={onChange} />
+      <SlashMenu />
+      <BlockHandlesPlugin />
     </LexicalComposer>
   )
 })

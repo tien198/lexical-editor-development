@@ -1,6 +1,5 @@
-import { useState, useRef, useEffect } from 'react'
-import { X, ExternalLink } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { useState, useRef } from 'react'
+import { ExternalLink } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { NativeSelect, NativeSelectOption } from '@/components/ui/native-select'
 
@@ -42,13 +41,10 @@ export function DocumentPreview({
     setTimeout(() => URL.revokeObjectURL(url), 1000)
   }
 
-  const isPercentWidth = typeof width === 'string' && width.includes('%')
   const isPercentHeight = typeof height === 'string' && height.includes('%')
 
   return (
     <div className="flex flex-col gap-4 h-full min-h-[calc(100dvh-179px)]">
-      
-
       <div className="flex flex-col flex-1 border rounded-md overflow-hidden bg-[#111]">
         {/* Toolbar */}
         <div className="flex items-center justify-center gap-4 bg-[#111] text-white p-2 text-xs border-b border-[#333]">

@@ -1,4 +1,10 @@
-import { Eye, EyeOff, ExternalLink, ChevronDown, MoreVertical } from 'lucide-react'
+import {
+  Eye,
+  EyeOff,
+  ExternalLink,
+  ChevronDown,
+  MoreVertical,
+} from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 export function EditorActions({
@@ -49,10 +55,7 @@ export function EditorActions({
           Publish changes
         </Button>
         <div className="w-[1px] h-[34px] bg-background/20 z-10" />
-        <Button
-          size="icon"
-          className="w-[34px] px-0 rounded-l-none"
-        >
+        <Button size="icon" className="w-[34px] px-0 rounded-l-none">
           <ChevronDown className="size-4" />
         </Button>
       </div>
@@ -67,4 +70,3 @@ export function EditorActions({
     </div>
   )
 }
-

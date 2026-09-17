@@ -31,11 +31,11 @@ import {
   Underline,
   Undo2,
 } from 'lucide-react'
-import { useToolbar } from './-use-toolbar'
-import { ToolbarButton } from './-toolbar-button'
-import { ImageDialog } from './-image-dialog'
-import { LinkDialog } from './-link-dialog'
-import { $createImageNode } from './-image-node'
+import { useToolbar } from '@/routes/comps/editor-workspace/lexical/-use-toolbar'
+import { ToolbarButton } from '@/routes/comps/editor-workspace/lexical/-toolbar-button'
+import { ImageDialog } from '@/routes/comps/editor-workspace/lexical/-image-dialog'
+import { LinkDialog } from '@/routes/comps/editor-workspace/lexical/-link-dialog'
+import { $createImageNode } from '@/routes/comps/editor-workspace/lexical/-image-node'
 import { NativeSelect, NativeSelectOption } from '@/components/ui/native-select'
 import { Separator } from '@/components/ui/separator'
 import { CardHeader } from '@/components/ui/card'
