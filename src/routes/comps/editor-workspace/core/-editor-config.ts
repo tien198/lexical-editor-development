@@ -11,6 +11,8 @@ import { STARTER_BLOCKS } from './-editor-data'
 import { ImageNode } from '../lexical/-image-node'
 import { EDITOR_TYPOGRAPHY } from './-editor-typography'
 
+import { BlockNode } from '../lexical/-block-node'
+
 export const EDITOR_NODES = [
   HeadingNode,
   QuoteNode,
@@ -18,6 +20,7 @@ export const EDITOR_NODES = [
   ListItemNode,
   LinkNode,
   ImageNode,
+  BlockNode,
 ]
 
 export const EDITOR_THEME = EDITOR_TYPOGRAPHY

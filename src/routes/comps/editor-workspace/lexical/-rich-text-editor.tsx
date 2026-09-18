@@ -23,7 +23,8 @@ import {
 import { EditorToolbar } from '@/features/toolbars/fixed/client'
 import { InlineToolbar } from '@/features/toolbars/inline/client'
 import { SlashMenu } from '@/lexical/plugins/SlashMenu'
-import { BlockHandlesPlugin } from '@/lexical/plugins/handles/BlockHandlesPlugin'
+import { AddBlockHandlePlugin } from '@/lexical/plugins/handles/AddBlockHandlePlugin'
+import { DraggableBlockPlugin } from '@/lexical/plugins/handles/DraggableBlockPlugin'
 import { DocumentPlugin } from './-document-plugin'
 import { EDITOR_TYPOGRAPHY } from '../core/-editor-typography'
 
@@ -79,7 +80,8 @@ export const RichTextEditor = memo(function RichTextEditor({
       <MarkdownShortcutPlugin transformers={TRANSFORMERS} />
       <DocumentPlugin onChange={onChange} />
       <SlashMenu />
-      <BlockHandlesPlugin />
+      <AddBlockHandlePlugin />
+      <DraggableBlockPlugin />
     </LexicalComposer>
   )
 })

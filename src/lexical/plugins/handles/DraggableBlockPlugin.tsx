@@ -1,18 +1,20 @@
 import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
-import { Plus, GripVertical } from 'lucide-react'
-import { $getNearestNodeFromDOMNode, $getNodeByKey, $createParagraphNode } from 'lexical'
+import { GripVertical } from 'lucide-react'
+import { $getNearestNodeFromDOMNode } from 'lexical'
 
 const DRAG_DATA_FORMAT = 'application/x-lexical-drag-block'
 
-export function BlockHandlesPlugin() {
+export function DraggableBlockPlugin() {
   const [editor] = useLexicalComposerContext()
   const [position, setPosition] = useState({ top: 0, left: 0, show: false })
   const blockRef = useRef<HTMLElement | null>(null)
   const isDraggingRef = useRef(false)
   const targetLineRef = useRef<HTMLDivElement>(null)
-  const dropTargetRef = useRef<{ elem: HTMLElement; isBelow: boolean } | null>(null)
+  const dropTargetRef = useRef<{ elem: HTMLElement; isBelow: boolean } | null>(
+    null,
+  )
 
   useEffect(() => {
     const onMouseMove = (e: MouseEvent) => {
@@ -22,8 +24,7 @@ export function BlockHandlesPlugin() {
       if (!rootElement) return
 
       const rect = rootElement.getBoundingClientRect()
-      
-      // Check if mouse is within editor vertical bounds, and horizontally from gutter to right edge
+
       if (
         e.clientY >= rect.top &&
         e.clientY <= rect.bottom &&
@@ -33,16 +34,19 @@ export function BlockHandlesPlugin() {
         let closestNode: HTMLElement | null = null
         let minDistance = Infinity
 
-        for (let i = 0; i < rootElement.children.length; i++) {
-          const child = rootElement.children[i] as HTMLElement
+        for (const _child of Array.from(rootElement.children)) {
+          const child = _child as HTMLElement
           const childRect = child.getBoundingClientRect()
-          if (e.clientY >= childRect.top - 5 && e.clientY <= childRect.bottom + 5) {
+          if (
+            e.clientY >= childRect.top - 5 &&
+            e.clientY <= childRect.bottom + 5
+          ) {
             closestNode = child
             break
           }
           const distance = Math.min(
             Math.abs(e.clientY - childRect.top),
-            Math.abs(e.clientY - childRect.bottom)
+            Math.abs(e.clientY - childRect.bottom),
           )
           if (distance < minDistance) {
             minDistance = distance
@@ -61,7 +65,7 @@ export function BlockHandlesPlugin() {
           const nodeRect = closestNode.getBoundingClientRect()
           setPosition({
             top: nodeRect.top + window.scrollY,
-            left: rect.left + window.scrollX - 44, // offset to the left
+            left: rect.left + window.scrollX - 20, // offset slightly less since it's the right-most element now
             show: true,
           })
           blockRef.current = closestNode
@@ -69,7 +73,7 @@ export function BlockHandlesPlugin() {
         }
       }
 
-      const handleEl = document.getElementById('block-handles')
+      const handleEl = document.getElementById('draggable-block-handle')
       if (handleEl && handleEl.contains(e.target as Node)) return
 
       setPosition((prev) => ({ ...prev, show: false }))
@@ -93,16 +97,19 @@ export function BlockHandlesPlugin() {
       let closestNode: HTMLElement | null = null
       let minDistance = Infinity
 
-      for (let i = 0; i < rootElement.children.length; i++) {
-        const child = rootElement.children[i] as HTMLElement
+      for (const _child of Array.from(rootElement.children)) {
+        const child = _child as HTMLElement
         const childRect = child.getBoundingClientRect()
-        if (e.clientY >= childRect.top - 5 && e.clientY <= childRect.bottom + 5) {
+        if (
+          e.clientY >= childRect.top - 5 &&
+          e.clientY <= childRect.bottom + 5
+        ) {
           closestNode = child
           break
         }
         const distance = Math.min(
           Math.abs(e.clientY - childRect.top),
-          Math.abs(e.clientY - childRect.bottom)
+          Math.abs(e.clientY - childRect.bottom),
         )
         if (distance < minDistance) {
           minDistance = distance
@@ -127,14 +134,14 @@ export function BlockHandlesPlugin() {
     const onDrop = (e: DragEvent) => {
       if (!isDraggingRef.current) return false
       e.preventDefault()
-      
+
       const dragData = e.dataTransfer?.getData(DRAG_DATA_FORMAT)
       if (!dragData) return false
 
       editor.update(() => {
-        const draggedNode = $getNodeByKey(dragData)
+        const draggedNode = $getNearestNodeFromDOMNode(blockRef.current!)
         if (!draggedNode) return
-        
+
         if (dropTargetRef.current) {
           const targetNode = $getNearestNodeFromDOMNode(dropTargetRef.current.elem)
           if (targetNode && targetNode !== draggedNode) {
@@ -177,7 +184,6 @@ export function BlockHandlesPlugin() {
     isDraggingRef.current = true
     e.dataTransfer.setData(DRAG_DATA_FORMAT, nodeKey)
     e.dataTransfer.setDragImage(blockRef.current, 0, 0)
-    // We don't need to hide immediately, but just keep it as is
   }
 
   const onDragEnd = () => {
@@ -188,34 +194,13 @@ export function BlockHandlesPlugin() {
     setPosition((prev) => ({ ...prev, show: false }))
   }
 
-  const handleAddClick = () => {
-    editor.update(() => {
-      if (blockRef.current) {
-        const node = $getNearestNodeFromDOMNode(blockRef.current)
-        if (node) {
-          const newParagraph = $createParagraphNode()
-          node.insertAfter(newParagraph)
-          newParagraph.select()
-        }
-      }
-    })
-  }
-
   return createPortal(
     <>
       <div
-        id="block-handles"
-        className={`absolute z-50 flex items-center gap-1 opacity-50 hover:opacity-100 transition-opacity ${position.show && !isDraggingRef.current ? '' : 'hidden'}`}
+        id="draggable-block-handle"
+        className={`absolute z-50 flex items-center gap-1 transition-opacity ${position.show && !isDraggingRef.current ? 'opacity-50 hover:opacity-100' : 'opacity-0'}`}
         style={{ top: position.top, left: position.left, height: '24px' }}
       >
-        <button
-          type="button"
-          className="flex h-6 w-6 items-center justify-center rounded text-muted-foreground hover:bg-muted hover:text-foreground"
-          aria-label="Add block"
-          onClick={handleAddClick}
-        >
-          <Plus size={16} />
-        </button>
         <div
           draggable
           onDragStart={onDragStart}

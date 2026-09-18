@@ -12,8 +12,14 @@ import {
   INSERT_ORDERED_LIST_COMMAND,
   INSERT_UNORDERED_LIST_COMMAND,
 } from '@lexical/list'
-import { $getSelection, $isRangeSelection, $createParagraphNode } from 'lexical'
+import {
+  $getSelection,
+  $isRangeSelection,
+  $createParagraphNode,
+  $insertNodes,
+} from 'lexical'
 import type { TextNode } from 'lexical'
+import { $createBlockNode } from '@/routes/comps/editor-workspace/lexical/-block-node'
 
 class SlashMenuOption extends MenuOption {
   title: string
@@ -89,6 +95,25 @@ export function SlashMenu() {
     new SlashMenuOption('Numbered List', 'NL', {
       onSelect: () => {
         editor.dispatchCommand(INSERT_ORDERED_LIST_COMMAND, undefined)
+      },
+    }),
+    new SlashMenuOption('Banner Block', 'BN', {
+      onSelect: () => {
+        editor.update(() => {
+          const bannerNode = $createBlockNode({
+            blockType: 'banner',
+            blockData: {},
+          })
+          $insertNodes([bannerNode])
+        })
+      },
+    }),
+    new SlashMenuOption('Call To Action', 'CTA', {
+      onSelect: () => {
+        editor.update(() => {
+          const ctaNode = $createBlockNode({ blockType: 'cta', blockData: {} })
+          $insertNodes([ctaNode])
+        })
       },
     }),
   ]
