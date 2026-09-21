@@ -143,7 +143,9 @@ export function DraggableBlockPlugin() {
         if (!draggedNode) return
 
         if (dropTargetRef.current) {
-          const targetNode = $getNearestNodeFromDOMNode(dropTargetRef.current.elem)
+          const targetNode = $getNearestNodeFromDOMNode(
+            dropTargetRef.current.elem,
+          )
           if (targetNode && targetNode !== draggedNode) {
             if (dropTargetRef.current.isBelow) {
               targetNode.insertAfter(draggedNode)
@@ -171,7 +173,7 @@ export function DraggableBlockPlugin() {
   }, [editor])
 
   const onDragStart = (e: React.DragEvent<HTMLDivElement>) => {
-    if (!e.dataTransfer || !blockRef.current) return
+    if (!blockRef.current) return
     let nodeKey = ''
     editor.update(() => {
       if (blockRef.current) {

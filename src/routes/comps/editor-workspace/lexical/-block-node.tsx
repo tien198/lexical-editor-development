@@ -52,7 +52,7 @@ export class BlockNode extends DecoratorNode<ReactElement> {
 
   createDOM(): HTMLElement {
     const element = document.createElement('div')
-    element.className = 'custom-block-wrapper my-6'
+    element.className = 'custom-block-wrapper mt-6 first:mt-0'
     return element
   }
 

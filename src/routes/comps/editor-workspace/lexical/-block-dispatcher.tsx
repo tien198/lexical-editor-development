@@ -1,12 +1,6 @@
+import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { useLexicalNodeSelection } from '@lexical/react/useLexicalNodeSelection'
-import { BannerBlock } from '../blocks/BannerBlock'
-import { CTABlock } from '../blocks/CTABlock'
-import type React from 'react'
-
-const BLOCK_MAP: Record<string, React.FC<any> | undefined> = {
-  banner: BannerBlock,
-  cta: CTABlock,
-}
+import { BLOCK_REGISTRY } from '../blocks/registry'
 
 export function BlockDispatcher({
   nodeKey,
@@ -17,16 +11,19 @@ export function BlockDispatcher({
   type: string
   data: any
 }) {
+  const [editor] = useLexicalComposerContext()
   const [isSelected, setSelected, clearSelection] =
     useLexicalNodeSelection(nodeKey)
 
-  const Component = BLOCK_MAP[type]
-  if (!Component)
+  const config = BLOCK_REGISTRY[type]
+  if (!config)
     return (
       <div className="p-4 border border-red-500 bg-red-50 text-red-700">
         Unknown block type: {type}
       </div>
     )
+
+  const { Component } = config
 
   return (
     <div
@@ -36,7 +33,7 @@ export function BlockDispatcher({
         setSelected(true)
       }}
     >
-      <Component data={data} nodeKey={nodeKey} />
+      <Component data={data} nodeKey={nodeKey} editor={editor} />
     </div>
   )
 }

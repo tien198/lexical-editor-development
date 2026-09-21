@@ -56,7 +56,7 @@ export const RichTextEditor = memo(function RichTextEditor({
     >
       <EditorToolbar />
       <InlineToolbar />
-      <div className="mt-[24px] border-l border-border pb-[16px] pl-[38px] pr-[18px] max-[699px]:pl-[18px] max-[699px]:pr-0 [&_[contenteditable]]:min-h-[290px] [&_[contenteditable]]:outline-offset-[8px]">
+      <div className="mt-[24px] border-l border-border pb-[16px] pl-[38px] pr-[18px] max-[699px]:pl-[18px] max-[699px]:pr-0 [&_[contenteditable='true']]:min-h-[290px] [&_[contenteditable='true']]:outline-offset-[8px]">
         <div className="relative">
           <RichTextPlugin
             contentEditable={

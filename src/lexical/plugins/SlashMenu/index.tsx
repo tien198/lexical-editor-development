@@ -20,6 +20,7 @@ import {
 } from 'lexical'
 import type { TextNode } from 'lexical'
 import { $createBlockNode } from '@/routes/comps/editor-workspace/lexical/-block-node'
+import { BLOCK_REGISTRY } from '@/routes/comps/editor-workspace/blocks/registry'
 
 class SlashMenuOption extends MenuOption {
   title: string
@@ -102,7 +103,7 @@ export function SlashMenu() {
         editor.update(() => {
           const bannerNode = $createBlockNode({
             blockType: 'banner',
-            blockData: {},
+            blockData: BLOCK_REGISTRY['banner'].defaultData,
           })
           $insertNodes([bannerNode])
         })
@@ -111,7 +112,10 @@ export function SlashMenu() {
     new SlashMenuOption('Call To Action', 'CTA', {
       onSelect: () => {
         editor.update(() => {
-          const ctaNode = $createBlockNode({ blockType: 'cta', blockData: {} })
+          const ctaNode = $createBlockNode({
+            blockType: 'cta',
+            blockData: BLOCK_REGISTRY['cta'].defaultData,
+          })
           $insertNodes([ctaNode])
         })
       },
