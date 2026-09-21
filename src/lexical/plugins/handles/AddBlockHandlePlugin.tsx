@@ -51,7 +51,8 @@ export function AddBlockHandlePlugin() {
             closestNode.tagName.match(/^H[1-6]$/) ||
             closestNode.tagName === 'BLOCKQUOTE' ||
             closestNode.tagName === 'UL' ||
-            closestNode.tagName === 'OL')
+            closestNode.tagName === 'OL' ||
+            closestNode.classList.contains('custom-block-wrapper'))
         ) {
           const nodeRect = closestNode.getBoundingClientRect()
           setPosition({

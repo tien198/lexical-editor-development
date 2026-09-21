@@ -103,7 +103,7 @@ export function SlashMenu() {
         editor.update(() => {
           const bannerNode = $createBlockNode({
             blockType: 'banner',
-            blockData: BLOCK_REGISTRY['banner'].defaultData,
+            blockData: BLOCK_REGISTRY['banner']!.defaultData,
           })
           $insertNodes([bannerNode])
         })
@@ -114,9 +114,20 @@ export function SlashMenu() {
         editor.update(() => {
           const ctaNode = $createBlockNode({
             blockType: 'cta',
-            blockData: BLOCK_REGISTRY['cta'].defaultData,
+            blockData: BLOCK_REGISTRY['cta']!.defaultData,
           })
           $insertNodes([ctaNode])
+        })
+      },
+    }),
+    new SlashMenuOption('Image Upload', 'IMG', {
+      onSelect: () => {
+        editor.update(() => {
+          const imageNode = $createBlockNode({
+            blockType: 'image-upload',
+            blockData: BLOCK_REGISTRY['image-upload']!.defaultData,
+          })
+          $insertNodes([imageNode])
         })
       },
     }),

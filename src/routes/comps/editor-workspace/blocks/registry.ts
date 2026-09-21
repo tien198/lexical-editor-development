@@ -2,6 +2,7 @@ import type React from 'react'
 import type { LexicalEditor } from 'lexical'
 import { BannerBlock } from './BannerBlock'
 import { CTABlock } from './CTABlock'
+import { ImageUploadBlock } from './ImageUploadBlock'
 
 export type BlockComponentProps<T = any> = {
   data: T
@@ -29,5 +30,13 @@ export const BLOCK_REGISTRY: Record<string, BlockConfig | undefined> = {
     type: 'cta',
     Component: CTABlock,
     defaultData: { title: 'Call to Action', buttonText: 'Click Me' },
+  },
+  'image-upload': {
+    type: 'image-upload',
+    Component: ImageUploadBlock,
+    defaultData: {
+      value: null,
+      label: 'Image',
+    },
   },
 }
