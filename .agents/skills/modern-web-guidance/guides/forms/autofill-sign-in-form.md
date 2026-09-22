@@ -115,8 +115,19 @@ Built-in browser password generators mean users and developers don't need to wor
 MANDATORY: Add the `required` attribute to both email and password fields. Modern browsers automatically prompt and set focus for missing data.
 
 ```html
+<<<<<<< HEAD
 <input type="email" id="email" name="email" autocomplete="username" required>
 <input type="password" id="password" name="password" autocomplete="current-password" required>
+=======
+<input type="email" id="email" name="email" autocomplete="username" required />
+<input
+  type="password"
+  id="password"
+  name="password"
+  autocomplete="current-password"
+  required
+/>
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```
 
 ### Allow password pasting

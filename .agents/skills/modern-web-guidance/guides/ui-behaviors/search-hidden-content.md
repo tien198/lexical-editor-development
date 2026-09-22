@@ -75,8 +75,17 @@ When handling custom mutually exclusive regions controlled by external buttons, 
 ```html
 <div class="custom-accordion">
   <div class="controls">
+<<<<<<< HEAD
     <button aria-expanded="true" aria-controls="panel-1" id="btn-1">Section 1</button>
     <button aria-expanded="false" aria-controls="panel-2" id="btn-2">Section 2</button>
+=======
+    <button aria-expanded="true" aria-controls="panel-1" id="btn-1">
+      Section 1
+    </button>
+    <button aria-expanded="false" aria-controls="panel-2" id="btn-2">
+      Section 2
+    </button>
+>>>>>>> 4cfe05b (edit ImageUpload)
   </div>
 
   <div id="panel-1" class="panel">
@@ -90,12 +99,17 @@ When handling custom mutually exclusive regions controlled by external buttons, 
 ```
 
 ```javascript
+<<<<<<< HEAD
 const accordion = document.querySelector('.custom-accordion');
+=======
+const accordion = document.querySelector('.custom-accordion')
+>>>>>>> 4cfe05b (edit ImageUpload)
 
 accordion.addEventListener('beforematch', (e) => {
   // Hide all panels and synchronize button states before the browser reveals the matched panel
   accordion.querySelectorAll('.panel').forEach((panel) => {
     if (panel !== e.target) {
+<<<<<<< HEAD
       panel.hidden = 'until-found';
     }
   });
@@ -104,6 +118,19 @@ accordion.addEventListener('beforematch', (e) => {
     btn.setAttribute('aria-expanded', controls === e.target.id ? 'true' : 'false');
   });
 });
+=======
+      panel.hidden = 'until-found'
+    }
+  })
+  accordion.querySelectorAll('button').forEach((btn) => {
+    const controls = btn.getAttribute('aria-controls')
+    btn.setAttribute(
+      'aria-expanded',
+      controls === e.target.id ? 'true' : 'false',
+    )
+  })
+})
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```
 
 ## Best practices for `hidden="until-found"`
@@ -132,9 +159,15 @@ For standard UI elements like accordions or "Read more" sections, use JavaScript
 if (!('onbeforematch' in HTMLElement.prototype)) {
   // Expand all hidden content for unsupported browsers
   document.querySelectorAll('[hidden="until-found"]').forEach((el) => {
+<<<<<<< HEAD
     el.removeAttribute('hidden');
     // MANDATORY: also update any aria references to this element.
   });
+=======
+    el.removeAttribute('hidden')
+    // MANDATORY: also update any aria references to this element.
+  })
+>>>>>>> 4cfe05b (edit ImageUpload)
 }
 ```
 

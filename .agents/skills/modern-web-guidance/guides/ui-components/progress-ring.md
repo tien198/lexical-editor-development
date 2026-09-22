@@ -20,17 +20,32 @@ Use a wrapper to hold both the visual ring and the optional center content. The 
 
 ```html
 <div class="ring-wrapper">
+<<<<<<< HEAD
   <progress value="75" max="100" aria-label="Task progress" class="progress-ring"></progress>
   <!-- Optional: Content to display in the center -->
   <div class="ring-content">
     75%
   </div>
+=======
+  <progress
+    value="75"
+    max="100"
+    aria-label="Task progress"
+    class="progress-ring"
+  ></progress>
+  <!-- Optional: Content to display in the center -->
+  <div class="ring-content">75%</div>
+>>>>>>> 4cfe05b (edit ImageUpload)
 </div>
 ```
 
 ### 2. Styles
 
 #### Hiding Native UI
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4cfe05b (edit ImageUpload)
 To style the `<progress>` element as a progress ring, first hide the default browser styling for progress bars.
 
 ```css
@@ -97,11 +112,18 @@ You can also use a `radial-gradient` to make rounded end caps.
 
 #### Enable smooth transitions with `@property`
 
+<<<<<<< HEAD
 To animate the progress ring smoothly when the value changes, register `--value` as a numeric custom property. 
 
 Users with motion sensitivities may find the transition between values disorienting. Respect the `prefers-reduced-motion` media query by having a 0 second (immediate) duration by default, and setting a longer time for users with no preference.
 
 
+=======
+To animate the progress ring smoothly when the value changes, register `--value` as a numeric custom property.
+
+Users with motion sensitivities may find the transition between values disorienting. Respect the `prefers-reduced-motion` media query by having a 0 second (immediate) duration by default, and setting a longer time for users with no preference.
+
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```css
 @property --value {
   syntax: '<number>';
@@ -115,7 +137,10 @@ progress.progress-ring {
     transition-duration: 0.4s;
   }
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```
 
 ### 3. Progress Updates
@@ -128,7 +153,11 @@ You can use the CSS attribute selector to automatically update the ring's appear
 
 ```css
 /* Change the fill color to green when the progress reaches 100% */
+<<<<<<< HEAD
 progress.progress-ring[value="100"] {
+=======
+progress.progress-ring[value='100'] {
+>>>>>>> 4cfe05b (edit ImageUpload)
   --fill-color: #10b981;
 }
 ```
@@ -167,6 +196,7 @@ attr() is not natively supported by any major browser yet.
 For browsers that don't support the `attr()` CSS function for any property, use a `MutationObserver` to automatically sync the `value` attribute to the `--value` custom property.
 
 ```js
+<<<<<<< HEAD
 if (!CSS.supports("width: attr(value type(<number>))")) {
   const observer = new MutationObserver(() => {
     progress.style.setProperty("--value", progress.getAttribute("value"));
@@ -177,3 +207,15 @@ if (!CSS.supports("width: attr(value type(<number>))")) {
   });
 }
 ```
+=======
+if (!CSS.supports('width: attr(value type(<number>))')) {
+  const observer = new MutationObserver(() => {
+    progress.style.setProperty('--value', progress.getAttribute('value'))
+  })
+  observer.observe(progress, {
+    attributes: true,
+    attributeFilter: ['value'],
+  })
+}
+```
+>>>>>>> 4cfe05b (edit ImageUpload)

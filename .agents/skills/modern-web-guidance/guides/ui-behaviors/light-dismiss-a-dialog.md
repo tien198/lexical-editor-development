@@ -16,6 +16,10 @@ To enable light-dismiss:
 - `none`: Only developer mechanisms can close the dialog.
 
 ### Styling the Backdrop
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4cfe05b (edit ImageUpload)
 When a dialog is opened as a modal using `showModal()`, the browser generates a `::backdrop` pseudo-element. This backdrop covers the entire viewport and sits directly behind the dialog.
 
 ```css
@@ -38,7 +42,13 @@ dialog::backdrop {
   </form>
 </dialog>
 
+<<<<<<< HEAD
 <button onclick="document.getElementById('myDialog').showModal()">Open Dialog</button>
+=======
+<button onclick="document.getElementById('myDialog').showModal()">
+  Open Dialog
+</button>
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```
 
 ## Constraints & Accessibility
@@ -47,7 +57,11 @@ dialog::backdrop {
 - **MANDATORY**: Always open modal dialogs with `showModal()`. This ensures the dialog is in the top layer, focus is trapped, and the `Esc` key is handled.
 - **DO**: Use `aria-labelledby` or `aria-label` to provide an accessible name for the dialog.
 - **DO NOT**: Use `closedby` for non-modal dialogs (opened with `show()`), as they do not have a backdrop and won't trigger light-dismiss.
+<<<<<<< HEAD
 - **DO NOT**: Use the `click` event for critical logic that should happen *before* closing; instead, listen for the `close` or `cancel` events.
+=======
+- **DO NOT**: Use the `click` event for critical logic that should happen _before_ closing; instead, listen for the `close` or `cancel` events.
+>>>>>>> 4cfe05b (edit ImageUpload)
 
 ## Fallback strategies
 
@@ -58,23 +72,37 @@ Unsupported in: Safari.
 **MANDATORY**: For browsers that do not yet support `closedby`, you **must** implement a fallback for light-dismiss by checking if a click occurred outside the dialog content's boundaries using the following script:
 
 ```javascript
+<<<<<<< HEAD
 const dialog = document.querySelector('dialog');
+=======
+const dialog = document.querySelector('dialog')
+>>>>>>> 4cfe05b (edit ImageUpload)
 
 // Fallback for browsers without closedby support
 if (!('closedBy' in HTMLDialogElement.prototype)) {
   dialog.addEventListener('click', (event) => {
     // 1. When clicking the backdrop, the event target is the dialog element itself.
     // Ignore clicks where the target is a child element inside the dialog.
+<<<<<<< HEAD
     if (event.target !== dialog) return;
 
     // 2. Check if the click coordinates fall within the dialog's content box.
     // This distinguishes between a click on the backdrop vs a click on the dialog's background/padding.
     const rect = dialog.getBoundingClientRect();
     const isDialogContent = (
+=======
+    if (event.target !== dialog) return
+
+    // 2. Check if the click coordinates fall within the dialog's content box.
+    // This distinguishes between a click on the backdrop vs a click on the dialog's background/padding.
+    const rect = dialog.getBoundingClientRect()
+    const isDialogContent =
+>>>>>>> 4cfe05b (edit ImageUpload)
       rect.top <= event.clientY &&
       event.clientY <= rect.top + rect.height &&
       rect.left <= event.clientX &&
       event.clientX <= rect.left + rect.width
+<<<<<<< HEAD
     );
 
     if (isDialogContent) return;
@@ -82,5 +110,13 @@ if (!('closedBy' in HTMLDialogElement.prototype)) {
     // 3. Since the click was outside the content area (on the backdrop), manually close the dialog.
     dialog.close();
   });
+=======
+
+    if (isDialogContent) return
+
+    // 3. Since the click was outside the content area (on the backdrop), manually close the dialog.
+    dialog.close()
+  })
+>>>>>>> 4cfe05b (edit ImageUpload)
 }
 ```

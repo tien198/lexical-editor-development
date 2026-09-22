@@ -6,16 +6,28 @@ The CSS `@function` at-rule allows you to encapsulate this logic into reusable, 
 
 ## The `@function` Syntax
 
+<<<<<<< HEAD
 A custom function is defined using the `@function` rule followed by a dashed name and a list of parameters. The function returns a value using the `result` property. 
 
 ```css
 @function --my-function(--input1 <length>, --input2: default-value) returns <length> {
+=======
+A custom function is defined using the `@function` rule followed by a dashed name and a list of parameters. The function returns a value using the `result` property.
+
+```css
+@function --my-function(--input1 <length>, --input2: default-value) returns
+  <length> {
+>>>>>>> 4cfe05b (edit ImageUpload)
   /* Logic goes here */
   result: var(--input1);
 }
 ```
 
 ### Key Concepts
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4cfe05b (edit ImageUpload)
 - **Parameters:** Must start with a double dash (`--`).
 - **Defaults:** You can provide default values using a colon (`:`).
 - **Result:** The `result` property determines the value the function returns. The last `result` declared in the function body wins.
@@ -25,11 +37,29 @@ A custom function is defined using the `@function` rule followed by a dashed nam
 ## Practical Examples
 
 ### 1. Design System Tokens (Gradients)
+<<<<<<< HEAD
 Ensure consistent color gradients across your app by encapsulating gradient logic. The `--angle` provides a default value to provide consistency that can be overridden.
 
 ```css
 @function --fancy-gradient(--start-color <color>, --end-color <color>, --angle: 98deg) returns <image>{
   result: linear-gradient(in oklab var(--angle), var(--start-color), var(--end-color) );
+=======
+
+Ensure consistent color gradients across your app by encapsulating gradient logic. The `--angle` provides a default value to provide consistency that can be overridden.
+
+```css
+@function --fancy-gradient(
+    --start-color <color>,
+    --end-color <color>,
+    --angle: 98deg
+  )
+  returns <image> {
+  result: linear-gradient(
+    in oklab var(--angle),
+    var(--start-color),
+    var(--end-color)
+  );
+>>>>>>> 4cfe05b (edit ImageUpload)
 }
 
 .card {
@@ -38,10 +68,18 @@ Ensure consistent color gradients across your app by encapsulating gradient logi
 ```
 
 ### 2. Conditional Layout Logic
+<<<<<<< HEAD
 You can use `@media` or other queries directly inside a function to return different values based on the environment. When using conditional logic in a function, note that the `@function` does not "return" at the first value of `result`, but rather follows the CSS cascade, and resolves to the last value that matches based on the screen size, container size, or other query.
 
 ```css
 @function --grid-template(--count <number>){
+=======
+
+You can use `@media` or other queries directly inside a function to return different values based on the environment. When using conditional logic in a function, note that the `@function` does not "return" at the first value of `result`, but rather follows the CSS cascade, and resolves to the last value that matches based on the screen size, container size, or other query.
+
+```css
+@function --grid-template(--count <number>) {
+>>>>>>> 4cfe05b (edit ImageUpload)
   /* MANDATORY: Put default value first. */
   result: 1fr; /* Default: stack */
   @media (min-width: 800px) {
@@ -56,11 +94,19 @@ main {
 ```
 
 ## Best Practices
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4cfe05b (edit ImageUpload)
 - **Use Dashed Names:** Always prefix your function names and parameters with `--`.
 - **Provide Defaults:** Make your functions more robust by providing sensible default values.
 - **Keep it Simple:** Use functions for logic that is actually repeated or complex. Don't over-engineer simple property-value pairs.
 - **Use Types:** Ensure your parameters and return values are the expected types.
+<<<<<<< HEAD
 - **Consider Precompiled Alternatives:** For functions that do not depend on user input, media queries or other client-side variation, consider using a CSS precompiler to avoid doing unnecessary work on the client. 
+=======
+- **Consider Precompiled Alternatives:** For functions that do not depend on user input, media queries or other client-side variation, consider using a CSS precompiler to avoid doing unnecessary work on the client.
+>>>>>>> 4cfe05b (edit ImageUpload)
 
 ### Fallback strategies
 

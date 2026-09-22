@@ -9,13 +9,20 @@ An interest relationship is created by setting the `interestfor` attribute on a 
 ```html
 <!-- MANDATORY: interest relationships must be established with the `interestfor` attribute on a button or a link -->
 <button interestfor="interestingElement" data-effect="A">Some effect</button>
+<<<<<<< HEAD
 <button interestfor="interestingElement" data-effect="B">Some other effect</button>
+=======
+<button interestfor="interestingElement" data-effect="B">
+  Some other effect
+</button>
+>>>>>>> 4cfe05b (edit ImageUpload)
 <div id="interestingElement">Something interesting</div>
 ```
 
 For the sake of this use case, we can leverage the `interest` and `loseinterest` events to preview various effects for an interest target. Both of these events are `InterestEvent`s which has a `source` property which is the source of the interest (i.e. the element with the `interestfor` attribute).
 
 ```javascript
+<<<<<<< HEAD
 interestingElement.addEventListener("interest", event => {
   // Apply the preview based on `event.source`
   event.target.dataset.preview = event.source.dataset.effect;
@@ -25,6 +32,17 @@ interestingElement.addEventListener("loseinterest", event => {
   // Unapply the preview
   delete event.target.dataset.preview;
 });
+=======
+interestingElement.addEventListener('interest', (event) => {
+  // Apply the preview based on `event.source`
+  event.target.dataset.preview = event.source.dataset.effect
+})
+
+interestingElement.addEventListener('loseinterest', (event) => {
+  // Unapply the preview
+  delete event.target.dataset.preview
+})
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```
 
 > [!NOTE]
@@ -34,8 +52,15 @@ Active interest sources and targets can be selected with CSS using the `:interes
 
 ```css
 /* Styles to apply when the effect is being previewed */
+<<<<<<< HEAD
 :interest-source {}
 :interest-target {}
+=======
+:interest-source {
+}
+:interest-target {
+}
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```
 
 The start and end delay for an interest invoker (i.e. the element with the `interestfor` attribute) can be set with the `interest-delay-start` and `interest-delay-end` CSS properties or the shorthand `interest-delay` property.
@@ -57,9 +82,15 @@ Interest invokers must be conditionally polyfilled using the `interestfor` polyf
 
 ```html
 <script type="module">
+<<<<<<< HEAD
   if(!HTMLButtonElement.prototype.hasOwnProperty("interestForElement")){
     // CDN link only used for example, prefer bundling.
     await import("https://unpkg.com/interestfor@latest");
+=======
+  if (!HTMLButtonElement.prototype.hasOwnProperty('interestForElement')) {
+    // CDN link only used for example, prefer bundling.
+    await import('https://unpkg.com/interestfor@latest')
+>>>>>>> 4cfe05b (edit ImageUpload)
   }
 </script>
 ```
@@ -68,8 +99,15 @@ When using the polyfill the CSS API changes slightly for the `:interest-source` 
 
 ```css
 /* Styles to apply when the effect is being previewed */
+<<<<<<< HEAD
 :is(:interest-source, .interest-source) {}
 :is(:interest-target, .interest-target) {}
+=======
+:is(:interest-source, .interest-source) {
+}
+:is(:interest-target, .interest-target) {
+}
+>>>>>>> 4cfe05b (edit ImageUpload)
 
 /* Adjust the start and end delay for interest invokers */
 [interestfor] {
@@ -78,4 +116,8 @@ When using the polyfill the CSS API changes slightly for the `:interest-source` 
   --interest-delay-end: 0.1s;
   interest-delay-end: var(--interest-delay-end);
 }
+<<<<<<< HEAD
 ```
+=======
+```
+>>>>>>> 4cfe05b (edit ImageUpload)

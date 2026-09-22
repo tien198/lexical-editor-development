@@ -10,8 +10,13 @@ Outlined below are the most important guidelines for building successful address
 
 Make the most of the elements and attributes built for creating forms:
 
+<<<<<<< HEAD
 -   `<form>`, `<input>`, `<label>`, and `<button>`
 -   `type`, `autocomplete`, and `inputmode`
+=======
+- `<form>`, `<input>`, `<label>`, and `<button>`
+- `type`, `autocomplete`, and `inputmode`
+>>>>>>> 4cfe05b (edit ImageUpload)
 
 These enable built-in browser functionality, improve accessibility, and add meaning to markup.
 
@@ -27,8 +32,13 @@ Always use `type="email"` for email addresses and `type="tel"` for phone numbers
 
 ```html
 <!-- type="email"/"tel" gives mobile users the right keyboard and enables built-in validation -->
+<<<<<<< HEAD
 <input type="email" id="email" name="email" autocomplete="email" required>
 <input type="tel" id="phone" name="phone" autocomplete="tel">
+=======
+<input type="email" id="email" name="email" autocomplete="email" required />
+<input type="tel" id="phone" name="phone" autocomplete="tel" />
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```
 
 Every `<input>`, `<select>`, and `<textarea>` element SHOULD have an appropriate `autocomplete` attribute, to improve accessibility and help users avoid re-entering data.
@@ -53,7 +63,16 @@ Use a single `<textarea>` element for the street address if possible.
 
 ```html
 <!-- textarea handles multi-line international address formats that split inputs can't accommodate -->
+<<<<<<< HEAD
 <textarea id="address" name="address" autocomplete="street-address" required></textarea>
+=======
+<textarea
+  id="address"
+  name="address"
+  autocomplete="street-address"
+  required
+></textarea>
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```
 
 This is the most flexible option for a variety of local and international address formats.
@@ -63,7 +82,17 @@ This is the most flexible option for a variety of local and international addres
 Add the `required` attribute to mandatory fields.
 
 ```html
+<<<<<<< HEAD
 <input type="text" id="city" name="city" autocomplete="address-level2" required>
+=======
+<input
+  type="text"
+  id="city"
+  name="city"
+  autocomplete="address-level2"
+  required
+/>
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```
 
 ### Fallback strategies

@@ -9,12 +9,21 @@ To move an element while preserving its state, use the `moveBefore()` API. This 
 Use `moveBefore()` exactly as you would use `insertBefore()`. It requires two arguments: the node to move, and a reference node to insert before (or `null` to append to the end of the new parent).
 
 ```javascript
+<<<<<<< HEAD
 const newParent = document.getElementById('new-parent');
 const elementWithState = document.getElementById('iframe-or-focused-input');
 
 // MANDATORY: Use moveBefore to preserve state. 
 // Passing null as the second argument appends the element to the end of newParent.
 newParent.moveBefore(elementWithState, null);
+=======
+const newParent = document.getElementById('new-parent')
+const elementWithState = document.getElementById('iframe-or-focused-input')
+
+// MANDATORY: Use moveBefore to preserve state.
+// Passing null as the second argument appends the element to the end of newParent.
+newParent.moveBefore(elementWithState, null)
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```
 
 ### Moving custom elements (Web Components)
@@ -28,7 +37,11 @@ class MyCustomElement extends HTMLElement {
   connectedCallback() {
     // Runs on initial insertion.
   }
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> 4cfe05b (edit ImageUpload)
   connectedMoveCallback() {
     // Runs when the element is moved via moveBefore().
     // Use this to update state that depends on the new DOM location.
@@ -42,6 +55,7 @@ moveBefore() has limited availability.
 Supported by: Chrome 133 (Feb 2025), Edge 133 (Feb 2025), and Firefox 144 (Oct 2025).
 Unsupported in: Safari.
 
+<<<<<<< HEAD
 Since `moveBefore()` is a progressive enhancement, you MUST use feature detection before calling it, falling back to traditional `insertBefore()` or `appendChild()` operations for older browsers. 
 
 ```javascript
@@ -57,3 +71,20 @@ if ('moveBefore' in Element.prototype) {
   targetParent.insertBefore(nodeToMove, null);
 }
 ```
+=======
+Since `moveBefore()` is a progressive enhancement, you MUST use feature detection before calling it, falling back to traditional `insertBefore()` or `appendChild()` operations for older browsers.
+
+```javascript
+const targetParent = document.getElementById('target-container')
+const nodeToMove = document.getElementById('moving-element')
+
+// Check if moveBefore is supported on the Element prototype
+if ('moveBefore' in Element.prototype) {
+  targetParent.moveBefore(nodeToMove, null)
+} else {
+  // Fallback: traditional move.
+  // Note: This WILL reset <iframe>, animation, and focus state in unsupported browsers.
+  targetParent.insertBefore(nodeToMove, null)
+}
+```
+>>>>>>> 4cfe05b (edit ImageUpload)

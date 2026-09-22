@@ -60,6 +60,10 @@ Supported by: Chrome 133 (Feb 2025) and Edge 133 (Feb 2025).
 Unsupported in: Firefox and Safari.
 
 ### Basic Fallback
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4cfe05b (edit ImageUpload)
 If `container-scroll-state-queries` is not supported, the floating element will remain invisible because of the default `visibility: hidden`. To ensure functionality, you can choose to make the element always visible in unsupported browsers.
 
 ```css
@@ -75,7 +79,11 @@ If `container-scroll-state-queries` is not supported, the floating element will 
     visibility: hidden;
     opacity: 0;
   }
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> 4cfe05b (edit ImageUpload)
   @container scroll-state(scrollable: top) {
     .back-to-top {
       visibility: visible;
@@ -87,6 +95,10 @@ If `container-scroll-state-queries` is not supported, the floating element will 
 ```
 
 ### Advanced Fallback (Intersection Observer)
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4cfe05b (edit ImageUpload)
 If dynamic visibility is required, use an `IntersectionObserver` to toggle a class when a sentinel element at the top of the scroller goes out of view.
 
 ```html
@@ -111,6 +123,7 @@ If dynamic visibility is required, use an `IntersectionObserver` to toggle a cla
 
 ```javascript
 if (!CSS.supports('container-type', 'scroll-state')) {
+<<<<<<< HEAD
   const sentinel = document.querySelector('.scroll-sentinel');
   const scroller = document.querySelector('.scroller');
 
@@ -126,5 +139,25 @@ if (!CSS.supports('container-type', 'scroll-state')) {
   }, { root: scroller });
 
   observer.observe(sentinel);
+=======
+  const sentinel = document.querySelector('.scroll-sentinel')
+  const scroller = document.querySelector('.scroller')
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        // If the sentinel is NOT intersecting, it means the user has scrolled down
+        if (!entry.isIntersecting) {
+          scroller.classList.add('scrolled')
+        } else {
+          scroller.classList.remove('scrolled')
+        }
+      })
+    },
+    { root: scroller },
+  )
+
+  observer.observe(sentinel)
+>>>>>>> 4cfe05b (edit ImageUpload)
 }
 ```

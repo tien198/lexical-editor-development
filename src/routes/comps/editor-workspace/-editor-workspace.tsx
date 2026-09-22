@@ -19,6 +19,9 @@ export default function EditorWorkspace() {
   const { settings, setSettings, snapshot, setSnapshot, initialState, error } =
     useDraft()
   const [preview, setPreview] = useState(false)
+  const heroImage = settings.heroImage ?? null
+  const setHeroImage = (url: string | null) =>
+    setSettings((prev) => ({ ...prev, heroImage: url }))
   const words = snapshot?.words ?? 0
 
   return (
@@ -85,7 +88,7 @@ export default function EditorWorkspace() {
               keepMounted
               className="px-[var(--admin-gutter)] pb-[40px] pt-[22px] text-[13px] max-[699px]:pb-[28px] [&_[data-slot=card]]:overflow-visible [&_[data-slot=card]]:rounded-none [&_[data-slot=card]]:border-b [&_[data-slot=card]]:border-border [&_[data-slot=card]]:pb-[26px] [&_[data-slot=card]]:shadow-none [&_[data-slot=card]]:[--card-spacing:0px] [&_[data-slot=card-content]]:rounded-none [&_[data-slot=card-content]_.text-sm]:text-[13px] [&_[data-slot=card-description]]:text-[13px] [&_[data-slot=card-footer]]:rounded-none [&_[data-slot=card-footer]]:bg-transparent [&_[data-slot=card-footer]]:pt-[12px] [&_[data-slot=card-header]]:rounded-none [&_[data-slot=card-title]]:text-[14px]"
             >
-              <ImageUpload />
+              <ImageUpload value={heroImage} onChange={setHeroImage} />
               <section aria-label="Article editor">
                 <RichTextEditor
                   initialState={initialState}

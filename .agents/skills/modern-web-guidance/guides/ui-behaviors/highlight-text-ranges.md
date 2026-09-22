@@ -7,6 +7,7 @@ The CSS Custom Highlight API lets you style arbitrary text ranges on a page with
 To highlight text ranges, you must collect the target text nodes, create `Range` and `Highlight` objects, register them in the `HighlightRegistry`, and then style them with the `::highlight()` pseudo-element.
 
 #### 1. Collect text nodes and create ranges
+<<<<<<< HEAD
 Use a `TreeWalker` to collect all text nodes in the target element, then create `Range` objects pointing at the character offsets you want to highlight.
 
 ```javascript
@@ -25,11 +26,33 @@ while (currentNode) {
 const range = new Range();
 range.setStart(textNode, matchStartIndex);
 range.setEnd(textNode, matchEndIndex);
+=======
+
+Use a `TreeWalker` to collect all text nodes in the target element, then create `Range` objects pointing at the character offsets you want to highlight.
+
+```javascript
+const article = document.querySelector('article')
+
+// MANDATORY: Use TreeWalker to collect text nodes — do not manipulate innerHTML.
+const treeWalker = document.createTreeWalker(article, NodeFilter.SHOW_TEXT)
+const allTextNodes = []
+let currentNode = treeWalker.nextNode()
+while (currentNode) {
+  allTextNodes.push(currentNode)
+  currentNode = treeWalker.nextNode()
+}
+
+// MANDATORY: Set range start/end on text nodes, not element nodes.
+const range = new Range()
+range.setStart(textNode, matchStartIndex)
+range.setEnd(textNode, matchEndIndex)
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```
 
 Cache the text-node list and only rebuild it when the DOM content actually changes, since walking the tree is expensive.
 
 #### 2. Create a Highlight from the ranges
+<<<<<<< HEAD
 Group one or more `Range` objects into a `Highlight`. Multiple ranges that share the same style belong in a single highlight.
 
 ```javascript
@@ -37,19 +60,37 @@ const searchHighlight = new Highlight(...matchingRanges);
 ```
 
 #### 3. Register the highlight in the registry
+=======
+
+Group one or more `Range` objects into a `Highlight`. Multiple ranges that share the same style belong in a single highlight.
+
+```javascript
+const searchHighlight = new Highlight(...matchingRanges)
+```
+
+#### 3. Register the highlight in the registry
+
+>>>>>>> 4cfe05b (edit ImageUpload)
 Register each `Highlight` under a custom name using `CSS.highlights`, which is a `Map`-like `HighlightRegistry`.
 
 ```javascript
 // MANDATORY: Clear previous highlights before registering new ones
 // to avoid stale ranges persisting on the page.
+<<<<<<< HEAD
 CSS.highlights.clear();
 
 CSS.highlights.set("search-results", searchHighlight);
+=======
+CSS.highlights.clear()
+
+CSS.highlights.set('search-results', searchHighlight)
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```
 
 When multiple highlights overlap, use the `priority` property to control stacking order. Higher priority highlights paint on top.
 
 ```javascript
+<<<<<<< HEAD
 const primary = new Highlight(...primaryRanges);
 primary.priority = 1;
 
@@ -61,6 +102,20 @@ CSS.highlights.set("secondary", secondary);
 ```
 
 #### 4. Style with `::highlight()`
+=======
+const primary = new Highlight(...primaryRanges)
+primary.priority = 1
+
+const secondary = new Highlight(...secondaryRanges)
+secondary.priority = 0 // painted first (behind primary)
+
+CSS.highlights.set('primary', primary)
+CSS.highlights.set('secondary', secondary)
+```
+
+#### 4. Style with `::highlight()`
+
+>>>>>>> 4cfe05b (edit ImageUpload)
 Use the `::highlight()` pseudo-element in CSS to style each registered highlight by name.
 
 ```css
@@ -102,6 +157,7 @@ If the highlight is critical for the user experience, fall back to wrapping matc
 ```javascript
 if (!CSS.highlights) {
   // Walk text nodes and wrap matches in <mark>, preserving structure.
+<<<<<<< HEAD
   const walker = document.createTreeWalker(article, NodeFilter.SHOW_TEXT);
   const nodes = [];
   for (let n = walker.nextNode(); n; n = walker.nextNode()) nodes.push(n);
@@ -125,6 +181,31 @@ if (!CSS.highlights) {
     }
     frag.append(text.slice(last));
     textNode.replaceWith(frag);
+=======
+  const walker = document.createTreeWalker(article, NodeFilter.SHOW_TEXT)
+  const nodes = []
+  for (let n = walker.nextNode(); n; n = walker.nextNode()) nodes.push(n)
+
+  const term = searchTerm.toLowerCase()
+  for (const textNode of nodes) {
+    const text = textNode.textContent
+    let pos = text.toLowerCase().indexOf(term)
+    if (pos === -1) continue
+
+    const frag = document.createDocumentFragment()
+    let last = 0
+    while (pos !== -1) {
+      frag.append(text.slice(last, pos))
+      const mark = document.createElement('mark')
+      // textContent assignment avoids HTML injection.
+      mark.textContent = text.slice(pos, pos + term.length)
+      frag.append(mark)
+      last = pos + term.length
+      pos = text.toLowerCase().indexOf(term, last)
+    }
+    frag.append(text.slice(last))
+    textNode.replaceWith(frag)
+>>>>>>> 4cfe05b (edit ImageUpload)
   }
 }
 ```

@@ -53,7 +53,11 @@ If the experiment requires a variant stylesheet, use `blocking="render"` on the 
     rel="stylesheet"
     href="https://cdn.example.com/experiment-variant-b.css"
     blocking="render"
+<<<<<<< HEAD
   >
+=======
+  />
+>>>>>>> 4cfe05b (edit ImageUpload)
 </head>
 ```
 
@@ -70,12 +74,22 @@ If the experiment logic is lightweight enough to inline, use an inline module sc
   -->
   <script type="module" blocking="render">
     // Fetch the experiment configuration from your testing platform.
+<<<<<<< HEAD
     const config = await fetch('/api/experiment?id=homepage-cta')
       .then(res => res.json());
 
     // Apply the variant by setting a data attribute on <html>.
     // CSS rules keyed to this attribute will style the variant.
     document.documentElement.dataset.variant = config.variant;
+=======
+    const config = await fetch('/api/experiment?id=homepage-cta').then((res) =>
+      res.json(),
+    )
+
+    // Apply the variant by setting a data attribute on <html>.
+    // CSS rules keyed to this attribute will style the variant.
+    document.documentElement.dataset.variant = config.variant
+>>>>>>> 4cfe05b (edit ImageUpload)
   </script>
 
   <style>
@@ -85,7 +99,11 @@ If the experiment logic is lightweight enough to inline, use an inline module sc
     }
 
     /* Variant B styles, activated by the data attribute */
+<<<<<<< HEAD
     [data-variant="b"] .cta-button {
+=======
+    [data-variant='b'] .cta-button {
+>>>>>>> 4cfe05b (edit ImageUpload)
       background-color: green;
     }
   </style>
@@ -129,15 +147,24 @@ DO: Use a lightweight anti-flicker snippet as a fallback only when `blocking="re
     // that do not support blocking="render".
     if (!Object.hasOwn(HTMLScriptElement.prototype, 'blocking')) {
       // Hide the page until the experiment script runs.
+<<<<<<< HEAD
       document.documentElement.classList.add('ab-loading');
+=======
+      document.documentElement.classList.add('ab-loading')
+>>>>>>> 4cfe05b (edit ImageUpload)
 
       // DO: Set a timeout to reveal the page if the experiment
       // script takes too long. This prevents an indefinitely
       // blank page on slow connections. Adjust the timeout
       // to match your experiment SDK's expected load time.
       setTimeout(() => {
+<<<<<<< HEAD
         document.documentElement.classList.remove('ab-loading');
       }, 4000);
+=======
+        document.documentElement.classList.remove('ab-loading')
+      }, 4000)
+>>>>>>> 4cfe05b (edit ImageUpload)
     }
   </script>
 
@@ -157,7 +184,11 @@ DO: Use a lightweight anti-flicker snippet as a fallback only when `blocking="re
 // DO: In your experiment SDK's initialization callback,
 // remove the fallback class to reveal the page.
 function onExperimentReady() {
+<<<<<<< HEAD
   document.documentElement.classList.remove('ab-loading');
+=======
+  document.documentElement.classList.remove('ab-loading')
+>>>>>>> 4cfe05b (edit ImageUpload)
 }
 ```
 

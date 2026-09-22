@@ -12,7 +12,11 @@ The optimal way to provide real-time analytics updates, while still minimizing b
 
 3. **Reset the event queue when the timeout expires:** If a new analytics event occurs after the scheduled beacon has successfully sent (i.e. the `fetchLater()` result's `activated` value is `true`), reset the event queue.
 
+<<<<<<< HEAD
 3. **Let the browser handle the rest:** If the user navigates away or closes the tab before the `activateAfter` timeout expires, the browser will still reliably send the payload from your most recent `fetchLater()` call.
+=======
+4. **Let the browser handle the rest:** If the user navigates away or closes the tab before the `activateAfter` timeout expires, the browser will still reliably send the payload from your most recent `fetchLater()` call.
+>>>>>>> 4cfe05b (edit ImageUpload)
 
 ## Example code
 
@@ -20,6 +24,7 @@ This code tracks all `load` and `click` events on a page, and batches together a
 
 ```javascript
 // Replace with your analytics endpoint.
+<<<<<<< HEAD
 const ANALYTICS_ENDPOINT = '/path/to/analytics/endpoint';
 
 // Replace with a time window of your choice. All analytics events that
@@ -33,11 +38,27 @@ const MAX_QUEUE_SIZE = 100;
 const eventQueue = [];
 let fetchLaterResult;
 let fetchLaterController;
+=======
+const ANALYTICS_ENDPOINT = '/path/to/analytics/endpoint'
+
+// Replace with a time window of your choice. All analytics events that
+// occur within this time window will be batched together.
+const BATCH_WINDOW = 10 * 1000
+
+// The maximum number of events to batch. Pick a number that is unlikely
+// to overflow the fetchLater() quota for the page.
+const MAX_QUEUE_SIZE = 100
+
+const eventQueue = []
+let fetchLaterResult
+let fetchLaterController
+>>>>>>> 4cfe05b (edit ImageUpload)
 
 function trackEvent(eventData) {
   // If the previously queued beacon has already been sent, or if the
   // max queue size has been met, reset the queue.
   if (fetchLaterResult?.activated || eventQueue.length > MAX_QUEUE_SIZE) {
+<<<<<<< HEAD
     fetchLaterController = null;
     fetchLaterResult = null;
     eventQueue.length = 0;
@@ -50,17 +71,39 @@ function trackEvent(eventData) {
     fetchLaterController.abort();
   }
   fetchLaterController = new AbortController();
+=======
+    fetchLaterController = null
+    fetchLaterResult = null
+    eventQueue.length = 0
+  }
+
+  eventQueue.push(eventData)
+
+  // Abort any pending beacons before creating a new one.
+  if (fetchLaterController) {
+    fetchLaterController.abort()
+  }
+  fetchLaterController = new AbortController()
+>>>>>>> 4cfe05b (edit ImageUpload)
 
   // Schedule a fetch for the events to be sent when the batch window expires.
   // IMPORTANT: wrap the call in a try/catch to handle quota errors.
   try {
     fetchLaterResult = fetchLater(ANALYTICS_ENDPOINT, {
       method: 'POST',
+<<<<<<< HEAD
       headers: {'content-type': 'application/json'},
       body: JSON.stringify(eventQueue),
       signal: fetchLaterController.signal,
       activateAfter: BATCH_WINDOW,
     });
+=======
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(eventQueue),
+      signal: fetchLaterController.signal,
+      activateAfter: BATCH_WINDOW,
+    })
+>>>>>>> 4cfe05b (edit ImageUpload)
   } catch (error) {
     // Handle errors as needed.
   }
@@ -68,6 +111,7 @@ function trackEvent(eventData) {
 
 // Track page loads.
 window.addEventListener('load', () => {
+<<<<<<< HEAD
   trackEvent({type: 'page_load'});
 });
 
@@ -75,6 +119,15 @@ window.addEventListener('load', () => {
 window.addEventListener('click', (event) => {
   trackEvent({type: 'click', target: serializeElement(event.target)});
 });
+=======
+  trackEvent({ type: 'page_load' })
+})
+
+// Track click events.
+window.addEventListener('click', (event) => {
+  trackEvent({ type: 'click', target: serializeElement(event.target) })
+})
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```
 
 ## Best Practices
@@ -102,8 +155,13 @@ The only notable behavior difference with this polyfill is instead of sending th
 
 ```js
 globalThis.fetchLater ??= function fetchLater(url, init = {}) {
+<<<<<<< HEAD
   let timeoutHandle;
   let activated = false;
+=======
+  let timeoutHandle
+  let activated = false
+>>>>>>> 4cfe05b (edit ImageUpload)
 
   function sendNow() {
     if (!(init.signal && init.signal.aborted)) {
@@ -115,6 +173,7 @@ globalThis.fetchLater ??= function fetchLater(url, init = {}) {
         init.method !== 'POST' ||
         init.headers
       ) {
+<<<<<<< HEAD
         fetch(url, Object.assign({}, init, {keepalive: true}));
         activated = true;
       } else {
@@ -127,28 +186,62 @@ globalThis.fetchLater ??= function fetchLater(url, init = {}) {
   function destroy() {
     document.removeEventListener('visibilitychange', sendNow);
     clearTimeout(timeoutHandle);
+=======
+        fetch(url, Object.assign({}, init, { keepalive: true }))
+        activated = true
+      } else {
+        activated = navigator.sendBeacon(url, init.body)
+      }
+    }
+    destroy()
+  }
+
+  function destroy() {
+    document.removeEventListener('visibilitychange', sendNow)
+    clearTimeout(timeoutHandle)
+>>>>>>> 4cfe05b (edit ImageUpload)
   }
 
   if (document.visibilityState === 'hidden') {
     // If the beacon was created while the page is already hidden, send data
     // ASAP but wait until the next microtask to allow all sync code to run.
+<<<<<<< HEAD
     queueMicrotask(sendNow);
   } else {
     document.addEventListener('visibilitychange', sendNow);
 
     if (typeof init.activateAfter === 'number' && init.activateAfter >= 0) {
       timeoutHandle = setTimeout(sendNow, init.activateAfter);
+=======
+    queueMicrotask(sendNow)
+  } else {
+    document.addEventListener('visibilitychange', sendNow)
+
+    if (typeof init.activateAfter === 'number' && init.activateAfter >= 0) {
+      timeoutHandle = setTimeout(sendNow, init.activateAfter)
+>>>>>>> 4cfe05b (edit ImageUpload)
     }
   }
 
   if (init.signal) {
+<<<<<<< HEAD
     init.signal.addEventListener('abort', destroy);
+=======
+    init.signal.addEventListener('abort', destroy)
+>>>>>>> 4cfe05b (edit ImageUpload)
   }
 
   return {
     get activated() {
+<<<<<<< HEAD
       return activated;
     },
   };
 };
+=======
+      return activated
+    },
+  }
+}
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```

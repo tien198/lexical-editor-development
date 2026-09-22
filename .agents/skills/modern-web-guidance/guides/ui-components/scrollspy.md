@@ -3,6 +3,10 @@
 A scrollspy navigation is a common UI pattern that automatically highlights the navigation link corresponding to the section of the page currently in the viewport. This provides users with a clear sense of where they are in a long document as they scroll.
 
 This pattern is common in two scenarios:
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4cfe05b (edit ImageUpload)
 - **Single-page websites**: Where the primary site navigation links to different sections of a single page rather than separate URLs.
 - **Long-form content**: Where a table of contents or sidebar navigation tracks the user's progress through an article, guide, or documentation.
 
@@ -20,7 +24,10 @@ Traditionally, the scrollspy pattern required JavaScript and the `IntersectionOb
 This example highlights the active link in a fixed navigation menu as the user scrolls through sections.
 
 ```css
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4cfe05b (edit ImageUpload)
 /* MANDATORY: The container of markers must have scroll-target-group: auto */
 nav {
   /* Enables automatic tracking of fragment links */
@@ -59,6 +66,7 @@ nav a:target-current {
 <script type="module">
   if (CSS.supports('scroll-target-group: auto')) {
     const syncAriaCurrent = () => {
+<<<<<<< HEAD
       const currentLink = document.querySelector('nav a:target-current');
       document.querySelectorAll('nav a').forEach(link => {
         link.setAttribute('aria-current', link === currentLink ? 'true' : 'false');
@@ -68,6 +76,20 @@ nav a:target-current {
     syncAriaCurrent();
     // Update the aria after scroll ends
     document.addEventListener('scrollend', syncAriaCurrent);
+=======
+      const currentLink = document.querySelector('nav a:target-current')
+      document.querySelectorAll('nav a').forEach((link) => {
+        link.setAttribute(
+          'aria-current',
+          link === currentLink ? 'true' : 'false',
+        )
+      })
+    }
+    // Update the aria on initial page load. Ensure the DOM content is loaded, either by using `<script type="module">` or an event listener for `DOMContentLoaded`.
+    syncAriaCurrent()
+    // Update the aria after scroll ends
+    document.addEventListener('scrollend', syncAriaCurrent)
+>>>>>>> 4cfe05b (edit ImageUpload)
   }
 </script>
 ```
@@ -91,6 +113,7 @@ For browsers that do not support `scroll-target-group`, you should use a fallbac
 ```html
 <script>
   // Feature detection for scroll-target-group
+<<<<<<< HEAD
   const supportsScrollTargetGroup = CSS.supports('scroll-target-group: auto');
 
   if (!supportsScrollTargetGroup) {
@@ -112,6 +135,32 @@ For browsers that do not support `scroll-target-group`, you should use a fallbac
     }, { rootMargin: '-50% 0px -50% 0px', threshold: 0 });
 
     sections.forEach(section => observer.observe(section));
+=======
+  const supportsScrollTargetGroup = CSS.supports('scroll-target-group: auto')
+
+  if (!supportsScrollTargetGroup) {
+    const navLinks = document.querySelectorAll('nav a')
+    const sections = document.querySelectorAll('main section')
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id')
+            navLinks.forEach((link) => {
+              const isActive = link.getAttribute('href') === `#${id}`
+              // Use the escaped colon class for consistent styling
+              link.classList.toggle('\:target-current', isActive)
+              link.setAttribute('aria-current', isActive)
+            })
+          }
+        })
+      },
+      { rootMargin: '-50% 0px -50% 0px', threshold: 0 },
+    )
+
+    sections.forEach((section) => observer.observe(section))
+>>>>>>> 4cfe05b (edit ImageUpload)
   }
 </script>
 

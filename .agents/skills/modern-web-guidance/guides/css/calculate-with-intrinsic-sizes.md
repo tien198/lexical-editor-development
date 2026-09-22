@@ -17,16 +17,28 @@
 .element {
   /* MANDATORY: Always provide a fallback for browsers that do not support calc-size() */
   inline-size: min-content;
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> 4cfe05b (edit ImageUpload)
   /* DO: Use calc-size to modify an intrinsic basis with a calculation or function */
   inline-size: calc-size(min-content, size + 2rem);
 }
 ```
 
 ### Valid Basis Arguments (`<calc-size-basis>`)
+<<<<<<< HEAD
 The first argument defines the "base" size for the calculation.
 
 **Standard Keywords:**
+=======
+
+The first argument defines the "base" size for the calculation.
+
+**Standard Keywords:**
+
+>>>>>>> 4cfe05b (edit ImageUpload)
 - `auto`: The default sizing for the element.
 - `min-content`: The smallest size the element can take without overflowing.
 - `max-content`: The size the element takes to fit all content on one line.
@@ -34,6 +46,10 @@ The first argument defines the "base" size for the calculation.
 - `content`: Only valid when `calc-size()` is used within the `flex-basis` property.
 
 **Special Arguments:**
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4cfe05b (edit ImageUpload)
 - `any`: A generic basis used when the specific intrinsic type is unknown or when nesting calculations.
 - Nested `calc-size()`: Allows for multi-step or conditional calculations.
 - `<calc-sum>`: A specific length, percentage, or mathematical expression (e.g., `100px` or `20%`). When a fixed value is used as the basis, the **`size` keyword is still available** (but only within the second argument) and represents the resolved value of that basis.
@@ -41,7 +57,13 @@ The first argument defines the "base" size for the calculation.
 **MANDATORY**: The `size` keyword is **not valid** within the first argument (`<calc-size-basis>`) itself. It is a local variable that only exists to refer back to the basis from within the second argument (`<calc-sum>`).
 
 ### Valid Calculation Arguments (`<calc-sum>`)
+<<<<<<< HEAD
 The second argument is the mathematical expression.
+=======
+
+The second argument is the mathematical expression.
+
+>>>>>>> 4cfe05b (edit ImageUpload)
 - It typically uses the `size` keyword to refer to the value of the basis.
 - While the `size` keyword is technically optional, omitting it means the calculation will resolve to a fixed value, ignoring the basis entirely.
 - It can include standard math operators (`+`, `-`, `*`, `/`).
@@ -51,9 +73,17 @@ The second argument is the mathematical expression.
 ## Use Cases
 
 ### Animating to and from Intrinsic Sizes
+<<<<<<< HEAD
 By default, browsers cannot interpolate between a length (e.g., `0px`) and an intrinsic keyword (e.g., `auto`). Wrapping the keyword in `calc-size()` makes it an interpolatable value.
 
 #### Choosing the Right Tool for Animations
+=======
+
+By default, browsers cannot interpolate between a length (e.g., `0px`) and an intrinsic keyword (e.g., `auto`). Wrapping the keyword in `calc-size()` makes it an interpolatable value.
+
+#### Choosing the Right Tool for Animations
+
+>>>>>>> 4cfe05b (edit ImageUpload)
 - **MANDATORY: Use `interpolate-size: allow-keywords`**: For simple animations to or from intrinsic sizes (e.g., `height: 0` to `height: auto`) without any mathematical modifications. This is the required approach for simple keyword interpolation and should ideally be applied globally via `:root`.
 
   ```css
@@ -99,12 +129,22 @@ By default, browsers cannot interpolate between a length (e.g., `0px`) and an in
 **MANDATORY**: Interpolation between two intrinsic sizing keywords is not possible directly. One end of the transition must be a length or a percentage.
 
 #### Respecting User Motion Preferences
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4cfe05b (edit ImageUpload)
 Animations that change the size of large layout areas can be particularly disruptive for users with vestibular disorders. **MANDATORY**: Always respect user motion preferences by using the `prefers-reduced-motion` media query to simplify or minimize non-essential animations. Common strategies include disabling motion entirely, reducing duration, or replacing layout shifts with subtle opacity transitions.
 
 ```css
 .accordion-content {
   opacity: 0;
+<<<<<<< HEAD
   transition: block-size 0.3s ease, opacity 0.3s ease;
+=======
+  transition:
+    block-size 0.3s ease,
+    opacity 0.3s ease;
+>>>>>>> 4cfe05b (edit ImageUpload)
 }
 
 .accordion-content.open {
@@ -128,8 +168,13 @@ Animations that change the size of large layout areas can be particularly disrup
 }
 ```
 
+<<<<<<< HEAD
 
 ### Applying Constraints to Intrinsic Sizes
+=======
+### Applying Constraints to Intrinsic Sizes
+
+>>>>>>> 4cfe05b (edit ImageUpload)
 You can use `calc-size()` with any CSS math function—such as `min()`, `max()`, `clamp()`, or `round()`—to ensure an element's intrinsic size remains within design boundaries.
 
 ```css
@@ -142,13 +187,24 @@ You can use `calc-size()` with any CSS math function—such as `min()`, `max()`,
     1. Enforcing boundaries using CSS math functions (min, clamp, etc.)
     2. Modifying the intrinsic size with fixed or relative offsets
   */
+<<<<<<< HEAD
   inline-size: calc-size(fit-content, min(size + var(--extra-space), var(--max-allowed)));
+=======
+  inline-size: calc-size(
+    fit-content,
+    min(size + var(--extra-space), var(--max-allowed))
+  );
+>>>>>>> 4cfe05b (edit ImageUpload)
 }
 ```
 
 ## Critical Considerations
 
+<<<<<<< HEAD
 - **Percentage Pitfalls**: Percentages inside the `<calc-sum>` are resolved against the **container's size**, not the `size` keyword. For example, `calc-size(auto, size + 10%)` adds 10% of the *parent's* width to the element's `auto` width, which may lead to unexpected results or overflows.
+=======
+- **Percentage Pitfalls**: Percentages inside the `<calc-sum>` are resolved against the **container's size**, not the `size` keyword. For example, `calc-size(auto, size + 10%)` adds 10% of the _parent's_ width to the element's `auto` width, which may lead to unexpected results or overflows.
+>>>>>>> 4cfe05b (edit ImageUpload)
 - **Calculations requirement**: **MANDATORY**: Use `interpolate-size: allow-keywords` instead of `calc-size()` for simple animations (e.g., `0` to `auto`). `calc-size()` should only be used when the layout requires dynamic mathematical adjustments to the intrinsic base.
 - **Performance Note**: Animating box model properties like `inline-size` or `block-size` triggers layout recalculations, which can be expensive. Use `calc-size()` animations primarily for layout-critical elements where non-layout alternatives are insufficient.
 
@@ -167,14 +223,23 @@ Unsupported in: Firefox and Safari.
 ```css
 .element {
   /* Fallback for browsers that don't support calc-size() */
+<<<<<<< HEAD
   inline-size: fit-content; 
+=======
+  inline-size: fit-content;
+>>>>>>> 4cfe05b (edit ImageUpload)
   /* Modern browsers will override the fallback */
   inline-size: calc-size(fit-content, size + 2rem);
 }
 ```
 
 ### Animation and Transition Fallbacks
+<<<<<<< HEAD
 In browsers without support for `calc-size()` or `interpolate-size`, transitions involving intrinsic sizing keywords will fail to interpolate. 
+=======
+
+In browsers without support for `calc-size()` or `interpolate-size`, transitions involving intrinsic sizing keywords will fail to interpolate.
+>>>>>>> 4cfe05b (edit ImageUpload)
 
 - **Graceful Degradation**: The default fallback is an "instant jump" between states (e.g., from `0` to `auto`). This is often acceptable as the layout remains functional.
 - **Enhanced Experience**: Use `@supports` to apply complex layout logic or additional styling that only makes sense when smooth intrinsic animations are possible.

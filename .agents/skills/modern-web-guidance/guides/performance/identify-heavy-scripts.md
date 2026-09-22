@@ -17,6 +17,7 @@ The `long-animation-frame` entry contains a `scripts` property which is an array
 ```javascript
 // Accumulate all script entries across the page lifecycle so no
 // data is lost between observer callbacks.
+<<<<<<< HEAD
 const allScripts = [];
 
 const observer = new PerformanceObserver(list => {
@@ -52,6 +53,49 @@ const observer = new PerformanceObserver(list => {
 // Use buffered: true to capture any long frames that occurred before
 // this observer was registered.
 observer.observe({type: 'long-animation-frame', buffered: true});
+=======
+const allScripts = []
+
+const observer = new PerformanceObserver((list) => {
+  // Collect all script entries across frames to find the biggest offenders.
+  allScripts.push(...list.getEntries().flatMap((entry) => entry.scripts))
+
+  // Group by sourceURL so you can identify which scripts contribute
+  // the most total time, even if each individual invocation is short.
+  const scriptSource = [
+    ...new Set(allScripts.map((script) => script.sourceURL)),
+  ]
+  const scriptsBySource = scriptSource.map((sourceURL) => [
+    sourceURL,
+    allScripts.filter((script) => script.sourceURL === sourceURL),
+  ])
+  const processedScripts = scriptsBySource.map(([sourceURL, scripts]) => ({
+    sourceURL,
+    count: scripts.length,
+    totalDuration: scripts.reduce(
+      (subtotal, script) => subtotal + script.duration,
+      0,
+    ),
+  }))
+
+  // Only include scripts above a certain threshold to reduce noise.
+  const heavyScripts = processedScripts.filter((script) => {
+    return script.totalDuration > 100
+  })
+
+  // Sort by total duration so the worst offenders appear first,
+  // making it easier to prioritize optimization efforts.
+  heavyScripts.sort((a, b) => b.totalDuration - a.totalDuration)
+
+  // Log to the console for local debugging. In production, replace
+  // this with a call to send the data to your analytics service.
+  console.table(heavyScripts)
+})
+
+// Use buffered: true to capture any long frames that occurred before
+// this observer was registered.
+observer.observe({ type: 'long-animation-frame', buffered: true })
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```
 
 ## Best Practices

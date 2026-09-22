@@ -10,7 +10,10 @@ This guide implements a spinner by:
 
 See `progress-ring` (via `npx -y modern-web-guidance@latest retrieve "progress-ring"`) for handling determinate tasks with a known duration.
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4cfe05b (edit ImageUpload)
 ## Implementation
 
 ### 1. Markup
@@ -24,6 +27,10 @@ Use the native `<progress>` element as both the semantic source of truth and the
 ### 2. Styles
 
 #### Hiding Native UI
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4cfe05b (edit ImageUpload)
 To style the `<progress>` element as a spinner, first hide the default browser styling for indeterminate progress bars.
 
 ```css
@@ -47,24 +54,44 @@ progress.loading-spinner:indeterminate::slider-fill {
 ```
 
 #### Spinner Ring and Trail
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4cfe05b (edit ImageUpload)
 The spinner uses a `conic-gradient` to create a visual trail.
 
 ```css
 @property --arc-start {
+<<<<<<< HEAD
   syntax: "<angle>";
+=======
+  syntax: '<angle>';
+>>>>>>> 4cfe05b (edit ImageUpload)
   inherits: false;
   initial-value: 0deg;
 }
 @property --arc-end {
+<<<<<<< HEAD
   syntax: "<angle>";
+=======
+  syntax: '<angle>';
+>>>>>>> 4cfe05b (edit ImageUpload)
   inherits: false;
   initial-value: 0deg;
 }
 /* Use a custom property to conditionally include the dash animation */
 @property --progress-dash-animation {
+<<<<<<< HEAD
   syntax: "*";
   inherits: false;
   initial-value: , progress-dash 3s ease-in-out infinite;
+=======
+  syntax: '*';
+  inherits: false;
+  initial-value:
+    ,
+    progress-dash 3s ease-in-out infinite;
+>>>>>>> 4cfe05b (edit ImageUpload)
 }
 
 progress.loading-spinner:indeterminate {
@@ -101,9 +128,14 @@ progress.loading-spinner:indeterminate {
   /* ... fallback for background-clip: border-area ... */
 
   /* The dash animation is only included if @property is supported */
+<<<<<<< HEAD
   animation:
     progress-spin var(--_used-spinner-duration) linear infinite
     var(--progress-dash-animation, );
+=======
+  animation: progress-spin var(--_used-spinner-duration) linear infinite
+    var(--progress-dash-animation,);
+>>>>>>> 4cfe05b (edit ImageUpload)
 
   @keyframes progress-spin {
     to {
@@ -166,4 +198,8 @@ For browsers that don't yet support `background-clip: border-area`, fall back to
   );
   border: 0;
 }
+<<<<<<< HEAD
 ```
+=======
+```
+>>>>>>> 4cfe05b (edit ImageUpload)

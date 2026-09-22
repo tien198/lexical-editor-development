@@ -36,7 +36,11 @@ MANDATORY: Rely on standard HTML5 attributes for email fields. The error message
       autocomplete="email"
       aria-describedby="email-hint"
       aria-errormessage="email-error"
+<<<<<<< HEAD
     >
+=======
+    />
+>>>>>>> 4cfe05b (edit ImageUpload)
     <div id="email-error" class="error-msg">
       <span aria-hidden="true">❌</span> Please enter a valid email address.
     </div>
@@ -105,15 +109,24 @@ MANDATORY: Define the complexity rule using a Regex Lookahead pattern in the `pa
       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}"
       minlength="8"
       aria-describedby="password-rules"
+<<<<<<< HEAD
     >
+=======
+    />
+>>>>>>> 4cfe05b (edit ImageUpload)
   </div>
 </form>
 ```
 
 ```css
 /* DO: State the default styling as neutral */
+<<<<<<< HEAD
 .rules-list { 
   color: #5f6368; 
+=======
+.rules-list {
+  color: #5f6368;
+>>>>>>> 4cfe05b (edit ImageUpload)
   margin-bottom: 0.5rem;
 }
 
@@ -168,6 +181,7 @@ Use a reusable utility that tracks interaction state using a `WeakMap`. This avo
 
 ```javascript
 const UserInvalidFallback = (() => {
+<<<<<<< HEAD
   const dirtyState = new WeakMap();
 
   const updateState = (input) => {
@@ -232,21 +246,103 @@ const UserInvalidFallback = (() => {
 // Initialize for a specific form
 const form = document.querySelector('#demo-form');
 UserInvalidFallback.init(form);
+=======
+  const dirtyState = new WeakMap()
+
+  const updateState = (input) => {
+    const isValid = input.checkValidity()
+
+    // Update both visual and ARIA state
+    input.classList.toggle('user-invalid-fallback', !isValid)
+    input.classList.toggle('user-valid-fallback', isValid)
+
+    if (!isValid) {
+      input.setAttribute('aria-invalid', 'true')
+    } else {
+      input.removeAttribute('aria-invalid')
+    }
+  }
+
+  const handleEvent = (event) => {
+    const input = event.target
+
+    if (event.type === 'reset') {
+      const controls = input.elements || []
+      for (const control of controls) {
+        dirtyState.delete(control)
+        control.classList.remove('user-invalid-fallback')
+        control.classList.remove('user-valid-fallback')
+        control.removeAttribute('aria-invalid')
+      }
+      return
+    }
+
+    if (!input.checkValidity) return
+
+    if (event.type === 'input' || event.type === 'change') {
+      const state = dirtyState.get(input) || {
+        hasInteracted: false,
+        hasBlurred: false,
+      }
+      state.hasInteracted = true
+      dirtyState.set(input, state)
+      if (state.hasBlurred) {
+        updateState(input)
+      }
+    } else if (event.type === 'blur') {
+      const state = dirtyState.get(input) || {
+        hasInteracted: false,
+        hasBlurred: false,
+      }
+      state.hasBlurred = true
+      dirtyState.set(input, state)
+      if (state.hasInteracted) {
+        updateState(input)
+      }
+    }
+  }
+
+  const init = (root = document) => {
+    if (CSS.supports('selector(:user-invalid)')) return
+
+    root.addEventListener('blur', handleEvent, true) // Capture phase
+    root.addEventListener('input', handleEvent)
+    root.addEventListener('change', handleEvent)
+    root.addEventListener('reset', handleEvent, true) // Capture resets
+  }
+
+  return { init }
+})()
+
+// Initialize for a specific form
+const form = document.querySelector('#demo-form')
+UserInvalidFallback.init(form)
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```
 
 ## Other Considerations
 
 1.  **Accessibility**:
+<<<<<<< HEAD
     *   MANDATORY: Use `aria-describedby` to link the rules list to the input.
     *   DO NOT: Hide rules lists entirely until the input is valid; users need to know what to type!
 2.  **Pattern Attribute Limits**: MANDATORY: The `pattern` attribute performs a full match (implied `^...$`). Ensure your password regex accounts for the entire string.
 3.  **Validation Strictness**: DO note that the browser's default `type="email"` validation is quite permissive (e.g., `user@localserver` might pass). If you need stricter validation, you may need to use a more robust validation library or a custom validation function alongside `type="email"`.
 4.  **Focus Management**: MANDATORY: If a user submits the form with an invalid field, the browser will automatically focus the first invalid field. Your `:user-invalid` styles will apply immediately because a submission attempt counts as an interaction.
 5. **Consistent ARIA Experience**: Native `:user-invalid` does not automatically sync with ARIA attributes. Add the following JavaScript to keep `aria-invalid` in sync with the visual state:
+=======
+    - MANDATORY: Use `aria-describedby` to link the rules list to the input.
+    - DO NOT: Hide rules lists entirely until the input is valid; users need to know what to type!
+2.  **Pattern Attribute Limits**: MANDATORY: The `pattern` attribute performs a full match (implied `^...$`). Ensure your password regex accounts for the entire string.
+3.  **Validation Strictness**: DO note that the browser's default `type="email"` validation is quite permissive (e.g., `user@localserver` might pass). If you need stricter validation, you may need to use a more robust validation library or a custom validation function alongside `type="email"`.
+4.  **Focus Management**: MANDATORY: If a user submits the form with an invalid field, the browser will automatically focus the first invalid field. Your `:user-invalid` styles will apply immediately because a submission attempt counts as an interaction.
+5.  **Consistent ARIA Experience**: Native `:user-invalid` does not automatically sync with ARIA attributes. Add the following JavaScript to keep `aria-invalid` in sync with the visual state:
+>>>>>>> 4cfe05b (edit ImageUpload)
 
 ```javascript
 // Sync aria-invalid with the CSS :user-invalid state
 const syncAria = (el) => {
+<<<<<<< HEAD
   el.setAttribute?.('aria-invalid', el.matches(':user-invalid') ? 'true' : 'false');
 };
 
@@ -255,4 +351,17 @@ document.addEventListener('blur', (e) => syncAria(e.target), true);
 document.addEventListener('input', (e) => {
   if (e.target.hasAttribute('aria-invalid')) syncAria(e.target);
 });
+=======
+  el.setAttribute?.(
+    'aria-invalid',
+    el.matches(':user-invalid') ? 'true' : 'false',
+  )
+}
+
+// Update on blur (to show error) and input (to clear it)
+document.addEventListener('blur', (e) => syncAria(e.target), true)
+document.addEventListener('input', (e) => {
+  if (e.target.hasAttribute('aria-invalid')) syncAria(e.target)
+})
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```

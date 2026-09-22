@@ -17,7 +17,11 @@ To use container query units, you must first define a containment context on a p
   /* Define the container type. Use 'inline-size' for width-based scaling. */
   /* You can also use 'size' for both width and height, but it requires explicit sizing. */
   container-type: inline-size;
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> 4cfe05b (edit ImageUpload)
   /* Optional: Name the container for specific targeting */
   container-name: fluid-card;
 }
@@ -27,8 +31,13 @@ To use container query units, you must first define a containment context on a p
 
 Use container query units (`cqi`, `cqb`, etc.) to set sizes relative to the container's dimensions.
 
+<<<<<<< HEAD
 *   `cqi`: 1% of the container's inline size (width in horizontal writing modes).
 *   `cqb`: 1% of the container's block size (height in horizontal writing modes).
+=======
+- `cqi`: 1% of the container's inline size (width in horizontal writing modes).
+- `cqb`: 1% of the container's block size (height in horizontal writing modes).
+>>>>>>> 4cfe05b (edit ImageUpload)
 
 **Note**: Container units can be used directly on any property without needing an `@container` query rule. They automatically resolve based on the nearest ancestor with a defined `container-type`.
 

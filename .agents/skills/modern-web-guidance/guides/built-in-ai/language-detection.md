@@ -26,18 +26,30 @@ Check model availability before attempting to instantiate the detector or trigge
 
 ```javascript
 // Check if the model is available or downloadable
+<<<<<<< HEAD
 const availability = await LanguageDetector.availability();
+=======
+const availability = await LanguageDetector.availability()
+>>>>>>> 4cfe05b (edit ImageUpload)
 
 if (availability !== 'unavailable') {
   button.addEventListener('click', async () => {
     const detector = await LanguageDetector.create({
       monitor(m) {
         m.addEventListener('downloadprogress', (e) => {
+<<<<<<< HEAD
           console.log(`Downloaded ${e.loaded * 100}%`);
         });
       },
     });
   });
+=======
+          console.log(`Downloaded ${e.loaded * 100}%`)
+        })
+      },
+    })
+  })
+>>>>>>> 4cfe05b (edit ImageUpload)
 }
 ```
 
@@ -46,13 +58,22 @@ if (availability !== 'unavailable') {
 The API returns a ranked list of potential languages with a confidence score between `0.0` and `1.0`.
 
 ```javascript
+<<<<<<< HEAD
 const someUserText = 'Hallo und herzlich willkommen!';
 const results = await detector.detect(someUserText);
+=======
+const someUserText = 'Hallo und herzlich willkommen!'
+const results = await detector.detect(someUserText)
+>>>>>>> 4cfe05b (edit ImageUpload)
 
 for (const result of results) {
   // result.detectedLanguage (e.g., 'de')
   // result.confidence (e.g., 0.999)
+<<<<<<< HEAD
   console.log(result.detectedLanguage, result.confidence);
+=======
+  console.log(result.detectedLanguage, result.confidence)
+>>>>>>> 4cfe05b (edit ImageUpload)
 }
 ```
 
@@ -87,5 +108,9 @@ if ('LanguageDetector' in self) {
 ```
 
 If the `LanguageDetector` API is unsupported or availability checks return `'unavailable'`, you must gracefully fall back:
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4cfe05b (edit ImageUpload)
 1. **Remote API Fallback**: Redirect the detection request to a server endpoint or a cloud API (such as the Vertex AI Gemini API) to identify the language.
 2. **Graceful Degradation**: Disable language detection elements/buttons and inform the user that client-side detection is currently unsupported in this browser, preventing any unhandled exceptions or crashes.

@@ -37,4 +37,8 @@ If you also want “light dismiss” behavior, then you must set `closedby` to `
 Supported by: Chrome 134 (Mar 2025), Edge 134 (Mar 2025), and Firefox 141 (Jul 2025).
 Unsupported in: Safari.
 
+<<<<<<< HEAD
 `<dialog>` elements opened in a modal state can already be dismissed with <kbd>Esc</kbd>, so there is no fallback necessary. There is no good way to implement close requests from mobile back button/gestures, so it is simpler to embrace this feature as a progressive enhancement, especially given that there are other inclusive means to dismiss the modal dialog. Similarly, light dismiss behavior for a `<dialog>` element using `closedby="any"` can be considered a progressive enhancement.
+=======
+`<dialog>` elements opened in a modal state can already be dismissed with <kbd>Esc</kbd>, so there is no fallback necessary. There is no good way to implement close requests from mobile back button/gestures, so it is simpler to embrace this feature as a progressive enhancement, especially given that there are other inclusive means to dismiss the modal dialog. Similarly, light dismiss behavior for a `<dialog>` element using `closedby="any"` can be considered a progressive enhancement.
+>>>>>>> 4cfe05b (edit ImageUpload)

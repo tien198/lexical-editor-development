@@ -24,6 +24,10 @@ A skill to search for specific web development use cases and retrieve their corr
 ## When to use
 
 Must use this skill:
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4cfe05b (edit ImageUpload)
 - At the **start** of implementing any web feature.
 - Before creating a new component, to check if a standardized pattern already exists.
 - To avoid implementing ad-hoc solutions or loading large dependencies unnecessarily.
@@ -39,13 +43,21 @@ npx -y modern-web-guidance@latest search "<query>" --skill-version 2026_09_04-7d
 ```
 
 **Example Output**:
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```json
 [
   {
     "id": "optimize-image-priority",
     "description": "Optimize the loading priority of Largest Contentful Paint (LCP) candidate images.",
     "category": "performance",
+<<<<<<< HEAD
     "featuresUsed": [ "Fetch priority" ],
+=======
+    "featuresUsed": ["Fetch priority"],
+>>>>>>> 4cfe05b (edit ImageUpload)
     "tokenCount": 985,
     "similarity": 0.7289
   },
@@ -53,7 +65,11 @@ npx -y modern-web-guidance@latest search "<query>" --skill-version 2026_09_04-7d
     "id": "defer-rendering-heavy-content",
     "description": "Reduce rendering times in content-heavy web pages by deferring rendering for offscreen content.",
     "category": "performance",
+<<<<<<< HEAD
     "featuresUsed": [ "content-visibility", "hidden=\"until-found\"" ],
+=======
+    "featuresUsed": ["content-visibility", "hidden=\"until-found\""],
+>>>>>>> 4cfe05b (edit ImageUpload)
     "tokenCount": 1250,
     "similarity": 0.6961
   }
@@ -61,6 +77,10 @@ npx -y modern-web-guidance@latest search "<query>" --skill-version 2026_09_04-7d
 ```
 
 > **Note**: If search results are vague, return no matches, or show low similarity scores, run the `list` command to browse all guides:
+<<<<<<< HEAD
+=======
+>
+>>>>>>> 4cfe05b (edit ImageUpload)
 > ```sh
 > npx -y modern-web-guidance@latest list
 > ```
@@ -85,6 +105,10 @@ If the output is truncated, you must repeat the command but redirect to a file a
 ### Step 3. Verify Guidance Compliance
 
 When generating or modifying code, cross-check the implementation against the retrieved guide before concluding:
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4cfe05b (edit ImageUpload)
 - **Applicable Guidance & Fallbacks**: Ensure the relevant modern patterns and necessary fallback strategies from the guide are correctly applied, without forcing unrequested features.
 - **Task Fulfillment**: Confirm that the implementation fully satisfies the user's request.
 
@@ -106,15 +130,24 @@ When generating or modifying code, cross-check the implementation against the re
 
 ## Interpreting Browser Support & Fallbacks
 
+<<<<<<< HEAD
 * **Default Behavior**: All guides assume **Baseline Widely available** features are safe to use without fallbacks. For features that are not Baseline widely available, you **MUST** follow the fallback recommendations in the guide, unless the user has specified a custom browser support policy.
 * **Custom Policies**: If the user has already defined explicit browser support requirements, use the browser compatibility data in the guide to determine if a fallback can be safely ignored.
+=======
+- **Default Behavior**: All guides assume **Baseline Widely available** features are safe to use without fallbacks. For features that are not Baseline widely available, you **MUST** follow the fallback recommendations in the guide, unless the user has specified a custom browser support policy.
+- **Custom Policies**: If the user has already defined explicit browser support requirements, use the browser compatibility data in the guide to determine if a fallback can be safely ignored.
+>>>>>>> 4cfe05b (edit ImageUpload)
   - For Baseline YYYY targets, a feature satisfies this target if its "Baseline since" date is <= YYYY.
   - **Policy Examples**:
     - _"Do not implement feature fallbacks."_ (for exploratory prototypes of the cutting-edge web)
     - _"Safari 17.4+"_ (for internal tools targeting macOS or Tauri-based desktop apps)
     - _"Never recommend or implement polyfills; if a Baseline Newly Available feature is required for core functionality, provide a lightweight custom fallback or redesign the approach."_ (to minimize bundle size and avoid technical debt)
     - _"Assume a modern execution environment where Baseline Newly Available features can be used natively, provided they are strictly feature-detected and degrade gracefully."_ (for progressive enhancement strategies)
+<<<<<<< HEAD
 * **Reactive Policy Discovery**: Watch for environmental cues to suggest documenting a policy in CLAUDE.md or AGENTS.md. Suggest this if the developer:
+=======
+- **Reactive Policy Discovery**: Watch for environmental cues to suggest documenting a policy in CLAUDE.md or AGENTS.md. Suggest this if the developer:
+>>>>>>> 4cfe05b (edit ImageUpload)
   - Mentions building for a restricted runtime (e.g., Electron or Tauri).
   - Explicitly excludes specific targets (e.g., "we don't support Desktop Chrome").
   - Expresses hesitation about polyfill complexity, bundle size, or performance cost.

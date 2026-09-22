@@ -16,6 +16,7 @@ To stabilize reactive state using Temporal:
 
 ```javascript
 // ❌ BAD: Mutating legacy Date breaks reactivity
+<<<<<<< HEAD
 let dateState = { deadline: new Date() };
 
 function extendDeadlineBad() {
@@ -39,6 +40,31 @@ function extendDeadlineGood() {
 
   // Frameworks will detect the reference change and re-render the UI
   updateState(temporalState);
+=======
+let dateState = { deadline: new Date() }
+
+function extendDeadlineBad() {
+  // Mutates the object in place. Reference remains the same!
+  dateState.deadline.setHours(dateState.deadline.getHours() + 1)
+
+  // Frameworks will skip re-rendering because
+  // prevState === nextState (same memory reference)
+  updateState(dateState)
+}
+
+// ✅ GOOD: Temporal ensures immutability and reliable reactivity
+let temporalState = { deadline: Temporal.Now.plainDateTimeISO() }
+
+function extendDeadlineGood() {
+  // Returns a new object with a new reference.
+  const newDeadline = temporalState.deadline.add({ hours: 1 })
+
+  // Create a new state object with the new Temporal reference
+  temporalState = { deadline: newDeadline }
+
+  // Frameworks will detect the reference change and re-render the UI
+  updateState(temporalState)
+>>>>>>> 4cfe05b (edit ImageUpload)
 }
 ```
 
@@ -69,4 +95,8 @@ Since the `Temporal` API is a newer feature and may not be supported in all brow
     }
   }
 </script>
+<<<<<<< HEAD
 ```
+=======
+```
+>>>>>>> 4cfe05b (edit ImageUpload)

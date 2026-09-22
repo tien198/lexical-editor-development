@@ -1,5 +1,10 @@
 # Custom Button Actions
+<<<<<<< HEAD
 The Invoker Commands API allows buttons to trigger actions on target elements declaratively using HTML attributes. 
+=======
+
+The Invoker Commands API allows buttons to trigger actions on target elements declaratively using HTML attributes.
+>>>>>>> 4cfe05b (edit ImageUpload)
 This approach reduces the need for manual event listeners and decouples the UI from implementation details.
 For custom, application-specific actions, you can define your own command names. Custom commands must be prefixed with a double dash (`--`) to avoid collisions with future built-in browser commands.
 
@@ -14,6 +19,7 @@ For custom, application-specific actions, you can define your own command names.
 
 ```html
 <!-- The target element that will respond to custom commands -->
+<<<<<<< HEAD
 <div id="action-target" class="target">
   Action Target
 </div>
@@ -65,16 +71,73 @@ const commandRegistry = {
       action(target, source);
     }
   });
+=======
+<div id="action-target" class="target">Action Target</div>
+
+<!-- Buttons declaratively linked to the target element -->
+<!-- Each button sends a unique custom command starting with '--' -->
+<button commandfor="action-target" command="--spin">Spin</button>
+
+<button commandfor="action-target" command="--grow">Grow</button>
+
+<button commandfor="action-target" command="--reset">Reset All</button>
+
+<script>
+  // 1. **Optional:** Define a registry of requested actions for cleaner logic
+  const commandRegistry = {
+    '--spin': (target, source) => {
+      const isSpun = target.classList.toggle('is-spun')
+      // Set ARIA states, as custom commands have no inherent semantics.
+      source?.setAttribute('aria-pressed', isSpun)
+    },
+    '--grow': (target, source) => {
+      const isGrown = target.classList.toggle('is-grown')
+      source?.setAttribute('aria-pressed', isGrown)
+    },
+    '--reset': (target) => {
+      target.classList.remove('is-spun', 'is-grown')
+      // Reset all associated buttons' ARIA states
+      document
+        .querySelectorAll(`button[commandfor="${target.id}"]`)
+        .forEach((btn) => {
+          btn.setAttribute('aria-pressed', 'false')
+        })
+    },
+  }
+
+  // 2. **Mandatory:** Listen for the 'command' event directly on the target element
+  // (This is necessary because the native 'command' event does not bubble)
+  document
+    .getElementById('action-target')
+    .addEventListener('command', (event) => {
+      const command = event.command
+      const target = event.target
+      const source = event.source // event.source refers to the triggering button
+      const action = commandRegistry[command]
+
+      if (action) {
+        action(target, source)
+      }
+    })
+>>>>>>> 4cfe05b (edit ImageUpload)
 </script>
 ```
 
 ## Key constraints
 
+<<<<<<< HEAD
 *   **Prefix custom commands**: MANDATORY: All custom command names must start with `--` (e.g., `command="--my-action"`).
 *   **Targeting**: The `commandfor` attribute must match the `id` of an element in the same document tree.
 *   **No bubbling**: The `command` event does not bubble. If there multiple possible targets, add `{ capture: true }` to the event handler and listen on an ancestor.
 *   **Shadow roots**: If the target may be in a shadow root, use `event.composedPath()[0]` instead of `event.target`.
 *   **Accessibility**: Custom commands have no inherent semantics, and you must explicitly apply any states.
+=======
+- **Prefix custom commands**: MANDATORY: All custom command names must start with `--` (e.g., `command="--my-action"`).
+- **Targeting**: The `commandfor` attribute must match the `id` of an element in the same document tree.
+- **No bubbling**: The `command` event does not bubble. If there multiple possible targets, add `{ capture: true }` to the event handler and listen on an ancestor.
+- **Shadow roots**: If the target may be in a shadow root, use `event.composedPath()[0]` instead of `event.target`.
+- **Accessibility**: Custom commands have no inherent semantics, and you must explicitly apply any states.
+>>>>>>> 4cfe05b (edit ImageUpload)
 
 ## Fallback strategies
 
@@ -93,6 +156,7 @@ For the best performance, you should only load the polyfill if the browser doesn
 
 ```javascript
 // 1. Conditionally load the polyfill
+<<<<<<< HEAD
 const hasNativeSupport = 'commandForElement' in HTMLButtonElement.prototype;
 
 if (!hasNativeSupport) {
@@ -119,6 +183,36 @@ document.getElementById('action-target').addEventListener('command', (event) => 
     source?.setAttribute('aria-pressed', isSpun);
   }
 });
+=======
+const hasNativeSupport = 'commandForElement' in HTMLButtonElement.prototype
+
+if (!hasNativeSupport) {
+  // Wrap in an async IIFE to avoid top-level await issues in older browsers
+  ;(async () => {
+    try {
+      await import('https://esm.run/invokers-polyfill')
+    } catch (err) {
+      console.error('Error loading fallback:', err)
+    }
+  })()
+}
+
+// 2. Manually manage ARIA states in your listener
+document
+  .getElementById('action-target')
+  .addEventListener('command', (event) => {
+    const command = event.command
+    const target = event.target
+    const source = event.source // The button that triggered the command
+
+    if (command === '--spin') {
+      const isSpun = target.classList.toggle('is-spun')
+
+      // Polyfill tip: Manually update ARIA to match the new state
+      source?.setAttribute('aria-pressed', isSpun)
+    }
+  })
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```
 
 ### Manual fallback (Traditional pattern)
@@ -131,20 +225,31 @@ const commandRegistry = {
   '--spin': (target) => target.classList.toggle('is-spun'),
   '--grow': (target) => target.classList.toggle('is-grown'),
   '--reset': (target) => target.classList.remove('is-spun', 'is-grown'),
+<<<<<<< HEAD
 };
+=======
+}
+>>>>>>> 4cfe05b (edit ImageUpload)
 
 // 2. If CommandEvent doesn't exist, we assume no native support and provide the fallback
 if (!globalThis.CommandEvent) {
   globalThis.CommandEvent = class CommandEvent extends Event {
     constructor(type, { source, command, ...options } = {}) {
+<<<<<<< HEAD
       super(type, options);
       this.source = source;
       this.command = command;
+=======
+      super(type, options)
+      this.source = source
+      this.command = command
+>>>>>>> 4cfe05b (edit ImageUpload)
     }
   }
 }
 
 // 3. The fallback: Dispatch events manually if native support is missing
+<<<<<<< HEAD
   document.addEventListener('click', (event) => {
     const button = event.composedPath().find((el) => el.matches?.("button[commandfor]"));
     if (!button) return;
@@ -170,4 +275,37 @@ document.getElementById('action-target').addEventListener('command', (event) => 
     action(target);
   }
  });
+=======
+document.addEventListener('click', (event) => {
+  const button = event
+    .composedPath()
+    .find((el) => el.matches?.('button[commandfor]'))
+  if (!button) return
+
+  const target = document.getElementById(button.getAttribute('commandfor'))
+  const command = button.getAttribute('command')
+
+  if (target && command) {
+    target.dispatchEvent(
+      new CommandEvent('command', {
+        command,
+        source: button,
+      }),
+    )
+  }
+})
+
+// 4. **Mandatory:** Register the unified listener directly on the target element
+document
+  .getElementById('action-target')
+  .addEventListener('command', (event) => {
+    const command = event.command
+    const target = event.target
+    const action = commandRegistry[command]
+
+    if (action) {
+      action(target)
+    }
+  })
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```

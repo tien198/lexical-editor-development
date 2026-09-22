@@ -5,20 +5,35 @@ When building complex web applications, tasks have different levels of urgency. 
 ### Scheduling tasks by priority
 
 Use `scheduler.postTask()` to schedule tasks with one of three priorities:
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4cfe05b (edit ImageUpload)
 - `user-blocking`: Tasks that block user interaction (e.g., input handling, critical rendering).
 - `user-visible`: Tasks visible to the user but not blocking (default).
 - `background`: Tasks that are not time-critical (e.g., analytics, prefetching).
 
 ```javascript
 // Schedule a high-priority task that blocks user interaction
+<<<<<<< HEAD
 scheduler.postTask(() => {
   // DO: Handle critical updates that impact user interaction
   handleCriticalUpdate();
 }, { priority: 'user-blocking' });
+=======
+scheduler.postTask(
+  () => {
+    // DO: Handle critical updates that impact user interaction
+    handleCriticalUpdate()
+  },
+  { priority: 'user-blocking' },
+)
+>>>>>>> 4cfe05b (edit ImageUpload)
 
 // Schedule a default priority task
 scheduler.postTask(() => {
   // DO: Render non-critical content that is visible to the user
+<<<<<<< HEAD
   renderSecondaryContent();
 }); // Defaults to 'user-visible'
 
@@ -27,6 +42,19 @@ scheduler.postTask(() => {
   // DO: Perform heavy background work that is not time-critical
   sendAnalytics();
 }, { priority: 'background' });
+=======
+  renderSecondaryContent()
+}) // Defaults to 'user-visible'
+
+// Schedule a low-priority background task
+scheduler.postTask(
+  () => {
+    // DO: Perform heavy background work that is not time-critical
+    sendAnalytics()
+  },
+  { priority: 'background' },
+)
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```
 
 ### Fallback strategies
@@ -41,6 +69,7 @@ To support browsers that do not have the Prioritized Task Scheduling API, you mu
 // Feature detect the scheduler API
 if (!('scheduler' in window && 'postTask' in window.scheduler)) {
   // DO: Conditionally load the polyfill for browsers that need it
+<<<<<<< HEAD
   const script = document.createElement('script');
   script.src = 'https://unpkg.com/scheduler-polyfill';
   script.onload = () => {
@@ -50,12 +79,32 @@ if (!('scheduler' in window && 'postTask' in window.scheduler)) {
   document.head.appendChild(script);
 } else {
   runScheduledTasks();
+=======
+  const script = document.createElement('script')
+  script.src = 'https://unpkg.com/scheduler-polyfill'
+  script.onload = () => {
+    // Polyfill is loaded and ready to use
+    runScheduledTasks()
+  }
+  document.head.appendChild(script)
+} else {
+  runScheduledTasks()
+>>>>>>> 4cfe05b (edit ImageUpload)
 }
 
 function runScheduledTasks() {
   // Now safe to use scheduler.postTask in all browsers
+<<<<<<< HEAD
   scheduler.postTask(() => {
     console.log('Task with priority support');
   }, { priority: 'background' });
+=======
+  scheduler.postTask(
+    () => {
+      console.log('Task with priority support')
+    },
+    { priority: 'background' },
+  )
+>>>>>>> 4cfe05b (edit ImageUpload)
 }
 ```

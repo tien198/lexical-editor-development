@@ -69,6 +69,7 @@ For browsers that do not yet support the API, use a JavaScript fallback. Note th
 /**
  * Progressive Enhancement Fallback
  */
+<<<<<<< HEAD
 document.addEventListener("DOMContentLoaded", () => {
   // Check for native CSS support
   if (!CSS.supports("scroll-initial-target", "nearest")) {
@@ -80,4 +81,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 });
+=======
+document.addEventListener('DOMContentLoaded', () => {
+  // Check for native CSS support
+  if (!CSS.supports('scroll-initial-target', 'nearest')) {
+    const targetContent = document.querySelector('.main-content.target')
+    if (targetContent) {
+      // Use behavior: "instant" to mimic the native CSS behavior
+      // 'block: start' should match your CSS 'scroll-snap-align' (or expected top position)
+      targetContent.scrollIntoView({ behavior: 'instant', block: 'start' })
+    }
+  }
+})
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```

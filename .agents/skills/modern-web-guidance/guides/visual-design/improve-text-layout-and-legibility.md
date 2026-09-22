@@ -8,11 +8,16 @@ The `text-wrap: pretty` CSS property allows you to improve the typographic quali
 
 ## Implementation
 
+<<<<<<< HEAD
 ### 1. **Identify text elements**: 
+=======
+### 1. **Identify text elements**:
+>>>>>>> 4cfe05b (edit ImageUpload)
 
 For `text-wrap: balance`, select short text blocks like headings and table headers. Avoid elements that have visible boxes such as borders or backgrounds, as this can create unexpected visually empty areas in the layout.
 
 For `text-wrap: pretty`, select elements potentially containing long runs of text where orphaned words (runts) or poor line breaks are most noticeable. This includes the following elements:
+<<<<<<< HEAD
   - `<p>`
   - `<blockquote>`
   - `<li>`
@@ -28,12 +33,39 @@ For `text-wrap: pretty`, select elements potentially containing long runs of tex
 | **Perf Cost** | **High**: Binary search algorithm | **Medium**: Look-back algorithm | **Low**: Standard greedy algorithm |
 
 ### 2. **Apply the chosen wrapping**: 
+=======
+
+- `<p>`
+- `<blockquote>`
+- `<li>`
+- Any other element potentially containing long runs of text.
+
+#### Choosing the Right Wrapping Method
+
+| Criteria             | `text-wrap: balance`               | `text-wrap: pretty`             | `text-wrap: wrap` (Default)        |
+| :------------------- | :--------------------------------- | :------------------------------ | :--------------------------------- |
+| **Best For**         | Short blocks (Headings, Titles)    | Long blocks (Paragraphs, Lists) | Performance-critical content       |
+| **Visual Goal**      | Symmetrical line lengths           | Avoiding orphans ("runts")      | Fast, standard wrapping            |
+| **Line Constraints** | Up to 6–10 lines (algorithm limit) | Best for 3 to many lines        | No limit                           |
+| **Perf Cost**        | **High**: Binary search algorithm  | **Medium**: Look-back algorithm | **Low**: Standard greedy algorithm |
+
+### 2. **Apply the chosen wrapping**:
+>>>>>>> 4cfe05b (edit ImageUpload)
 
 Apply `text-wrap: balance` specifically to short, multi-line elements such as headings (`h1`-`h6`), subheadings, or pullquotes.
 
 ```css
 /* Target specific heading elements for balanced wrapping */
+<<<<<<< HEAD
 h1, h2, h3, h4, h5, h6 {
+=======
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+>>>>>>> 4cfe05b (edit ImageUpload)
   /* Enables balanced line-breaking logic */
   text-wrap: balance;
 }
@@ -43,7 +75,14 @@ Use `text-wrap: pretty` to enable an optimized algorithm that evaluates the last
 
 ```css
 /* Apply to multi-line text blocks to prevent orphaned words */
+<<<<<<< HEAD
 p, blockquote, li, .pretty-text {
+=======
+p,
+blockquote,
+li,
+.pretty-text {
+>>>>>>> 4cfe05b (edit ImageUpload)
   /* Enables pretty line-breaking logic for body copy */
   text-wrap: pretty;
 }
@@ -53,6 +92,7 @@ p, blockquote, li, .pretty-text {
 
 #### text-wrap: balance
 
+<<<<<<< HEAD
 *   **Line Limit:** Browsers impose a limit on the number of lines they will attempt to balance to maintain performance (typically **6 lines** in Chromium and **10 lines** in Firefox). If the text exceeds this limit, the browser reverts to standard `wrap` behavior. Avoid using `text-wrap: balance` on text blocks that are likely to exceed these limits.
 *   **Targeted Application:** DO NOT apply `text-wrap: balance` globally (e.g., `* { text-wrap: balance; }`). The iterative "binary search" algorithm used by browsers is computationally expensive. Limit its use to specific, short text elements.
 *   **Interaction with Width:** `text-wrap: balance` does not change the container's width (`inline-size`). It only affects how text wraps *within* that width. This can leave empty space at the end of the container, which may affect layouts relying on full-width text blocks.
@@ -62,6 +102,17 @@ p, blockquote, li, .pretty-text {
 *   **Performance vs. Quality**: MANDATORY: `text-wrap: pretty` is more computationally expensive than the default `wrap` (greedy) algorithm because it evaluates multiple lines (typically the last four) to optimize the break points. Avoid applying it globally to every element if your page has an extreme amount of text content.
 *   **Best for multi-line text**: The benefits of `pretty` are most apparent in paragraphs of three or more lines. It has little to no effect on short, single-line text.
 *   **Browser-specific behavior**: Be aware that implementation details vary. Chromium-based browsers typically focus on the last four lines, while other engines may evaluate the entire paragraph.
+=======
+- **Line Limit:** Browsers impose a limit on the number of lines they will attempt to balance to maintain performance (typically **6 lines** in Chromium and **10 lines** in Firefox). If the text exceeds this limit, the browser reverts to standard `wrap` behavior. Avoid using `text-wrap: balance` on text blocks that are likely to exceed these limits.
+- **Targeted Application:** DO NOT apply `text-wrap: balance` globally (e.g., `* { text-wrap: balance; }`). The iterative "binary search" algorithm used by browsers is computationally expensive. Limit its use to specific, short text elements.
+- **Interaction with Width:** `text-wrap: balance` does not change the container's width (`inline-size`). It only affects how text wraps _within_ that width. This can leave empty space at the end of the container, which may affect layouts relying on full-width text blocks.
+
+#### text-wrap: pretty
+
+- **Performance vs. Quality**: MANDATORY: `text-wrap: pretty` is more computationally expensive than the default `wrap` (greedy) algorithm because it evaluates multiple lines (typically the last four) to optimize the break points. Avoid applying it globally to every element if your page has an extreme amount of text content.
+- **Best for multi-line text**: The benefits of `pretty` are most apparent in paragraphs of three or more lines. It has little to no effect on short, single-line text.
+- **Browser-specific behavior**: Be aware that implementation details vary. Chromium-based browsers typically focus on the last four lines, while other engines may evaluate the entire paragraph.
+>>>>>>> 4cfe05b (edit ImageUpload)
 
 ### Fallback strategies
 
@@ -74,4 +125,8 @@ Unsupported in: Firefox.
 
 In browsers that do not support `text-wrap: balance` or `text-wrap: pretty`, the property is ignored, and the text will wrap using the default `wrap` behavior. This is a progressive enhancement that gracefully degrades to standard typography. This ensures that your content remains perfectly readable across all browsers while providing a superior experience to those that support it.
 
+<<<<<<< HEAD
 For critical layouts where refined text layout is a requirement, use a JavaScript library, but be aware that this may be slow and cause performance issues.
+=======
+For critical layouts where refined text layout is a requirement, use a JavaScript library, but be aware that this may be slow and cause performance issues.
+>>>>>>> 4cfe05b (edit ImageUpload)

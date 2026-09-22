@@ -40,6 +40,7 @@ function readDraft(): {
         description: value.settings.description,
         canonicalUrl: value.settings.canonicalUrl,
         keyword: value.settings.keyword,
+        heroImage: value.settings.heroImage ?? null,
       },
       editorState,
       error: '',

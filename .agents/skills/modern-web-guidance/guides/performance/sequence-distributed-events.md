@@ -1,6 +1,10 @@
 # Sequencing Distributed Events
 
+<<<<<<< HEAD
 High-frequency tracing and event logging in distributed systems require precise timestamps to ensure correct causal ordering. Standard JavaScript `Date.now()` provides millisecond resolution, which can lead to timestamp collisions when multiple events occur within the same millisecond. 
+=======
+High-frequency tracing and event logging in distributed systems require precise timestamps to ensure correct causal ordering. Standard JavaScript `Date.now()` provides millisecond resolution, which can lead to timestamp collisions when multiple events occur within the same millisecond.
+>>>>>>> 4cfe05b (edit ImageUpload)
 
 The `Temporal` API, specifically `Temporal.Instant`, provides nanosecond-resolution timestamps, enabling precise sequencing of events without collisions.
 
@@ -21,19 +25,31 @@ function recordEvent(eventType, nodeId) {
   return {
     nodeId,
     eventType,
+<<<<<<< HEAD
     timestamp: Temporal.Now.instant() // Nanosecond resolution
   };
+=======
+    timestamp: Temporal.Now.instant(), // Nanosecond resolution
+  }
+>>>>>>> 4cfe05b (edit ImageUpload)
 }
 
 // 2. Sort events chronologically
 function sequenceEvents(events) {
   // Always use Temporal.Instant.compare for sorting instants
+<<<<<<< HEAD
   return [...events].sort((a, b) => Temporal.Instant.compare(a.timestamp, b.timestamp));
+=======
+  return [...events].sort((a, b) =>
+    Temporal.Instant.compare(a.timestamp, b.timestamp),
+  )
+>>>>>>> 4cfe05b (edit ImageUpload)
 }
 
 // 3. Calculate delays between events
 function analyzeTelemetry(sortedEvents) {
   for (let i = 1; i < sortedEvents.length; i++) {
+<<<<<<< HEAD
     const prev = sortedEvents[i - 1];
     const curr = sortedEvents[i];
     
@@ -42,6 +58,18 @@ function analyzeTelemetry(sortedEvents) {
     const nsDiff = duration.total('nanoseconds');
     
     console.log(`Delay between Event ${prev.eventType} and Event ${curr.eventType}: ${nsDiff}ns`);
+=======
+    const prev = sortedEvents[i - 1]
+    const curr = sortedEvents[i]
+
+    // Calculate difference in nanoseconds
+    const duration = curr.timestamp.since(prev.timestamp)
+    const nsDiff = duration.total('nanoseconds')
+
+    console.log(
+      `Delay between Event ${prev.eventType} and Event ${curr.eventType}: ${nsDiff}ns`,
+    )
+>>>>>>> 4cfe05b (edit ImageUpload)
   }
 }
 ```
@@ -62,6 +90,7 @@ Unsupported in: Safari.
 For environments without native support, use a standards-compliant polyfill such as `@js-temporal/polyfill`. Load it conditionally to avoid bloating the payload for modern clients. Note that `@js-temporal/polyfill` does not automatically install a global `Temporal` object, so you must explicitly assign it if you need it globally.
 
 ```javascript
+<<<<<<< HEAD
 (async () => {
   // Check for native support
   if (typeof Temporal === 'undefined') {
@@ -73,4 +102,17 @@ For environments without native support, use a standards-compliant polyfill such
   
   // Proceed with application logic
 })();
+=======
+;(async () => {
+  // Check for native support
+  if (typeof Temporal === 'undefined') {
+    // Dynamically load polyfill using an ESM-compatible CDN
+    const module = await import('https://esm.sh/@js-temporal/polyfill')
+    // The polyfill does not auto-install globally, so we must assign it
+    globalThis.Temporal = module.Temporal
+  }
+
+  // Proceed with application logic
+})()
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```

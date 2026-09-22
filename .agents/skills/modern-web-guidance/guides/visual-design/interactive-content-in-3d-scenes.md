@@ -5,6 +5,10 @@ The HTML-in-Canvas API allows rendering real DOM directly inside a canvas elemen
 ## How to implement
 
 ### WebGL and WebGPU
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4cfe05b (edit ImageUpload)
 When using WebGL or WebGPU, follow these steps:
 
 1. Check if HTML-in-Canvas is supported in the browser:
@@ -29,6 +33,7 @@ if ('requestPaint' in HTMLCanvasElement.prototype) {
 
 ```js
 const observer = new ResizeObserver(([entry]) => {
+<<<<<<< HEAD
   const dpc = entry.devicePixelContentBoxSize;
   canvas.width = dpc
     ? dpc[0].inlineSize
@@ -45,6 +50,24 @@ const options = supportsDevicePixelContentBox
   ? { box: "device-pixel-content-box" }
   : {};
 observer.observe(canvas, options);
+=======
+  const dpc = entry.devicePixelContentBoxSize
+  canvas.width = dpc
+    ? dpc[0].inlineSize
+    : Math.round(entry.contentRect.width * window.devicePixelRatio)
+  canvas.height = dpc
+    ? dpc[0].blockSize
+    : Math.round(entry.contentRect.height * window.devicePixelRatio)
+})
+
+const supportsDevicePixelContentBox =
+  typeof ResizeObserverEntry !== 'undefined' &&
+  'devicePixelContentBoxSize' in ResizeObserverEntry.prototype
+const options = supportsDevicePixelContentBox
+  ? { box: 'device-pixel-content-box' }
+  : {}
+observer.observe(canvas, options)
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```
 
 4. Render the HTML content to the canvas inside a `canvas.onpaint` event handler:
@@ -55,12 +78,21 @@ observer.observe(canvas, options);
 canvas.onpaint = () => {
   if (gl.texElementImage2D) {
     try {
+<<<<<<< HEAD
       gl.texElementImage2D(gl.TEXTURE_2D, gl.RGBA8, uiElement);
     } catch (err) {
       console.error('texElementImage2D copy failed:', err);
     }
   }
 };
+=======
+      gl.texElementImage2D(gl.TEXTURE_2D, gl.RGBA8, uiElement)
+    } catch (err) {
+      console.error('texElementImage2D copy failed:', err)
+    }
+  }
+}
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```
 
 - In WebGPU context, use the `copyElementImageToTexture` method:
@@ -69,11 +101,16 @@ canvas.onpaint = () => {
 canvas.onpaint = () => {
   if (root.device.queue.copyElementImageToTexture) {
     try {
+<<<<<<< HEAD
       const sourceDict = { source: valueElement };
+=======
+      const sourceDict = { source: valueElement }
+>>>>>>> 4cfe05b (edit ImageUpload)
       const destDict = {
         destination: { texture: targetTexture },
         width: 512,
         height: 128,
+<<<<<<< HEAD
       };
       root.device.queue.copyElementImageToTexture(sourceDict, destDict);
     } catch (err) {
@@ -81,6 +118,15 @@ canvas.onpaint = () => {
     }
   }
 };
+=======
+      }
+      root.device.queue.copyElementImageToTexture(sourceDict, destDict)
+    } catch (err) {
+      console.error('copyElementImageToTexture copy failed:', err)
+    }
+  }
+}
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```
 
 When using a `requestAnimationFrame` loop to render the scene, call `canvas.requestPaint()` within the loop to ensure that the HTML content is rendered to the canvas. Make sure you only re-render the canvas if there has been an update to the descendant HTML elements:
@@ -88,16 +134,27 @@ When using a `requestAnimationFrame` loop to render the scene, call `canvas.requ
 ```js
 function render() {
   // Request to update the canvas
+<<<<<<< HEAD
   canvas.requestPaint();
   requestAnimationFrame(render);
 }
 requestAnimationFrame(render);
+=======
+  canvas.requestPaint()
+  requestAnimationFrame(render)
+}
+requestAnimationFrame(render)
+>>>>>>> 4cfe05b (edit ImageUpload)
 
 canvas.onpaint = (event) => {
   if (event.changedElements && event.changedElements.length > 0) {
     // Update the texture with texElementImage2D, and update the CSS transform as shown in step 6
   }
+<<<<<<< HEAD
 };
+=======
+}
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```
 
 6. Update the CSS transform.
@@ -113,6 +170,7 @@ The browser needs to map from the 3D coordinate space into the CSS coordinate sp
 ```js
 if (canvas.getElementTransform) {
   // 1. Convert WebGL MVP Matrix to DOM Matrix
+<<<<<<< HEAD
   const mvpDOM = new DOMMatrix(Array.from(htmlElementMVP));
 
   // 2. Normalize the HTML element (Canvas Grid pixels -> WebGL Model Space)
@@ -120,31 +178,57 @@ if (canvas.getElementTransform) {
   const dprY = canvas.height / canvas.clientHeight;
   const gridWidth = targetHTMLElement.offsetWidth * dprX;
   const gridHeight = targetHTMLElement.offsetHeight * dprY;
+=======
+  const mvpDOM = new DOMMatrix(Array.from(htmlElementMVP))
+
+  // 2. Normalize the HTML element (Canvas Grid pixels -> WebGL Model Space)
+  const dprX = canvas.width / canvas.clientWidth
+  const dprY = canvas.height / canvas.clientHeight
+  const gridWidth = targetHTMLElement.offsetWidth * dprX
+  const gridHeight = targetHTMLElement.offsetHeight * dprY
+>>>>>>> 4cfe05b (edit ImageUpload)
 
   const toGLModel = new DOMMatrix()
     // Scale pixels to 1 unit, flip Y (as in CSS it points down, and in WebGL it points up)
     .scale(1 / gridWidth, -1 / gridHeight, 1 / gridHeight)
     // Center the origin: (0,0) becomes (-width/2, -height/2) before scaling
+<<<<<<< HEAD
     .translate(-gridWidth / 2, -gridHeight / 2);
+=======
+    .translate(-gridWidth / 2, -gridHeight / 2)
+>>>>>>> 4cfe05b (edit ImageUpload)
 
   // 3. Map to the canvas viewport
   const clipToCanvasViewport = new DOMMatrix()
     // Move center (0,0) to center of canvas
     .translate(canvas.width / 2, canvas.height / 2)
     // Scale normalized clip (-1..1) to viewport size
+<<<<<<< HEAD
     .scale(canvas.width / 2, -canvas.height / 2, canvas.height / 2);
+=======
+    .scale(canvas.width / 2, -canvas.height / 2, canvas.height / 2)
+>>>>>>> 4cfe05b (edit ImageUpload)
 
   // 4. Multiply: (Clip -> Pixels) * (MVP) * (pixels -> unit square)
   const screenSpaceTransform = clipToCanvasViewport
     .multiply(mvpDOM)
+<<<<<<< HEAD
     .multiply(toGLModel);
+=======
+    .multiply(toGLModel)
+>>>>>>> 4cfe05b (edit ImageUpload)
 
   // 5. Apply to the transform
   const computedTransform = canvas.getElementTransform(
     targetHTMLElement,
     screenSpaceTransform,
+<<<<<<< HEAD
   );
   targetHTMLElement.style.transform = computedTransform.toString();
+=======
+  )
+  targetHTMLElement.style.transform = computedTransform.toString()
+>>>>>>> 4cfe05b (edit ImageUpload)
 }
 ```
 
@@ -156,9 +240,15 @@ if (transform.is2D) {
   // affecting Chrome versions under 149 where `transform.is2D`
   // is incorrectly true for a 3D DOMMatrix. The assignment
   // below re-initializes the DOMMatrix which corrects is2D to be false.
+<<<<<<< HEAD
   transform = DOMMatrix.fromFloat64Array(transform.toFloat64Array());
 }
 targetHTMLElement.style.transform = computedTransform.toString();
+=======
+  transform = DOMMatrix.fromFloat64Array(transform.toFloat64Array())
+}
+targetHTMLElement.style.transform = computedTransform.toString()
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```
 
 ### Three.js
@@ -176,10 +266,18 @@ if ('requestPaint' in HTMLCanvasElement.prototype) {
 2. Create a custom geometry and material for the HTML content.
 
 3. Pass the DOM element into THREE.HTMLTexture:
+<<<<<<< HEAD
 ```js
   material.map = new THREE.HTMLTexture(element);
   mesh = new THREE.Mesh( geometry, material );
   scene.add( mesh );
+=======
+
+```js
+material.map = new THREE.HTMLTexture(element)
+mesh = new THREE.Mesh(geometry, material)
+scene.add(mesh)
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```
 
 ## Example code
@@ -195,6 +293,7 @@ if ('requestPaint' in HTMLCanvasElement.prototype) {
 </canvas>
 
 <script>
+<<<<<<< HEAD
   const canvas = document.getElementById("canvas");
   const gl = canvas.getContext("webgl");
   const uiElement = document.getElementById("ui-element");
@@ -202,14 +301,29 @@ if ('requestPaint' in HTMLCanvasElement.prototype) {
   // Setup WebGL texture...
   const texture = gl.createTexture();
   gl.bindTexture(gl.TEXTURE_2D, texture);
+=======
+  const canvas = document.getElementById('canvas')
+  const gl = canvas.getContext('webgl')
+  const uiElement = document.getElementById('ui-element')
+
+  // Setup WebGL texture...
+  const texture = gl.createTexture()
+  gl.bindTexture(gl.TEXTURE_2D, texture)
+>>>>>>> 4cfe05b (edit ImageUpload)
 
   canvas.onpaint = () => {
     // 1. Update texture with HTML content
     if (gl.texElementImage2D) {
       try {
+<<<<<<< HEAD
         gl.texElementImage2D(gl.TEXTURE_2D, gl.RGBA8, uiElement);
       } catch (err) {
         console.error('texElementImage2D copy failed:', err);
+=======
+        gl.texElementImage2D(gl.TEXTURE_2D, gl.RGBA8, uiElement)
+      } catch (err) {
+        console.error('texElementImage2D copy failed:', err)
+>>>>>>> 4cfe05b (edit ImageUpload)
       }
     }
 
@@ -217,6 +331,7 @@ if ('requestPaint' in HTMLCanvasElement.prototype) {
 
     // 2. Sync DOM position with 3D scene
     if (canvas.getElementTransform) {
+<<<<<<< HEAD
       const mvpDOM = new DOMMatrix(Array.from(htmlElementMVP));
 
       // Recalculate the DPR compensation mapping
@@ -236,14 +351,42 @@ if ('requestPaint' in HTMLCanvasElement.prototype) {
       const screenSpaceTransform = clipToCanvasViewport
         .multiply(mvpDOM)
         .multiply(cssToUnitSpace);
+=======
+      const mvpDOM = new DOMMatrix(Array.from(htmlElementMVP))
+
+      // Recalculate the DPR compensation mapping
+      const dprX = canvas.width / canvas.clientWidth
+      const dprY = canvas.height / canvas.clientHeight
+      const gridWidth = uiElement.offsetWidth * dprX
+      const gridHeight = uiElement.offsetHeight * dprY
+
+      const cssToUnitSpace = new DOMMatrix()
+        .scale(1 / gridWidth, -1 / gridHeight, 1 / gridHeight)
+        .translate(-gridWidth / 2, -gridHeight / 2)
+
+      const clipToCanvasViewport = new DOMMatrix()
+        .translate(canvas.width / 2, canvas.height / 2)
+        .scale(canvas.width / 2, -canvas.height / 2, canvas.height / 2)
+
+      const screenSpaceTransform = clipToCanvasViewport
+        .multiply(mvpDOM)
+        .multiply(cssToUnitSpace)
+>>>>>>> 4cfe05b (edit ImageUpload)
 
       const computedTransform = canvas.getElementTransform(
         uiElement,
         screenSpaceTransform,
+<<<<<<< HEAD
       );
       uiElement.style.transform = computedTransform.toString();
     }
   };
+=======
+      )
+      uiElement.style.transform = computedTransform.toString()
+    }
+  }
+>>>>>>> 4cfe05b (edit ImageUpload)
 </script>
 ```
 
@@ -257,9 +400,15 @@ if ('requestPaint' in HTMLCanvasElement.prototype) {
 </canvas>
 
 <script>
+<<<<<<< HEAD
   const canvas = document.getElementById("canvas");
   const context = canvas.getContext("webgpu");
   const uiElement = document.getElementById("ui-element");
+=======
+  const canvas = document.getElementById('canvas')
+  const context = canvas.getContext('webgpu')
+  const uiElement = document.getElementById('ui-element')
+>>>>>>> 4cfe05b (edit ImageUpload)
 
   // Setup WebGPU...
   // const device = ...
@@ -269,20 +418,32 @@ if ('requestPaint' in HTMLCanvasElement.prototype) {
     // 1. Copy HTML content to texture
     if (device.queue.copyElementImageToTexture) {
       try {
+<<<<<<< HEAD
         const sourceDict = { source: uiElement };
+=======
+        const sourceDict = { source: uiElement }
+>>>>>>> 4cfe05b (edit ImageUpload)
         const destDict = {
           destination: { texture: targetTexture },
           width: width,
           height: height,
+<<<<<<< HEAD
         };
         device.queue.copyElementImageToTexture(sourceDict, destDict);
       } catch (err) {
         console.error('copyElementImageToTexture copy failed:', err);
+=======
+        }
+        device.queue.copyElementImageToTexture(sourceDict, destDict)
+      } catch (err) {
+        console.error('copyElementImageToTexture copy failed:', err)
+>>>>>>> 4cfe05b (edit ImageUpload)
       }
     }
 
     // 2. Sync DOM position (same matrix math as WebGL)
     if (canvas.getElementTransform) {
+<<<<<<< HEAD
       const mvpDOM = new DOMMatrix(Array.from(htmlElementMVP));
 
       // Recalculate the DPR compensation mapping
@@ -302,14 +463,42 @@ if ('requestPaint' in HTMLCanvasElement.prototype) {
       const screenSpaceTransform = clipToCanvasViewport
         .multiply(mvpDOM)
         .multiply(cssToUnitSpace);
+=======
+      const mvpDOM = new DOMMatrix(Array.from(htmlElementMVP))
+
+      // Recalculate the DPR compensation mapping
+      const dprX = canvas.width / canvas.clientWidth
+      const dprY = canvas.height / canvas.clientHeight
+      const gridWidth = uiElement.offsetWidth * dprX
+      const gridHeight = uiElement.offsetHeight * dprY
+
+      const cssToUnitSpace = new DOMMatrix()
+        .scale(1 / gridWidth, -1 / gridHeight, 1 / gridHeight) // Retain Z scale
+        .translate(-gridWidth / 2, -gridHeight / 2)
+
+      const clipToCanvasViewport = new DOMMatrix()
+        .translate(canvas.width / 2, canvas.height / 2)
+        .scale(canvas.width / 2, -canvas.height / 2, canvas.height / 2) // Retain Z scale
+
+      const screenSpaceTransform = clipToCanvasViewport
+        .multiply(mvpDOM)
+        .multiply(cssToUnitSpace)
+>>>>>>> 4cfe05b (edit ImageUpload)
 
       const computedTransform = canvas.getElementTransform(
         uiElement,
         screenSpaceTransform,
+<<<<<<< HEAD
       );
       uiElement.style.transform = computedTransform.toString();
     }
   };
+=======
+      )
+      uiElement.style.transform = computedTransform.toString()
+    }
+  }
+>>>>>>> 4cfe05b (edit ImageUpload)
 </script>
 ```
 
@@ -324,6 +513,7 @@ if (!('requestPaint' in HTMLCanvasElement.prototype)) {
 }
 
 // 3. Initialize the source HTML DOM element
+<<<<<<< HEAD
 const element = document.createElement('div');
 element.innerHTML = '<h1>Hello World</h1>';
 
@@ -340,6 +530,27 @@ scene.add( mesh );
 // 6. Render Loop
 function animate() {
   renderer.render(scene, camera);
+=======
+const element = document.createElement('div')
+element.innerHTML = '<h1>Hello World</h1>'
+
+// 4. Create geometry and material
+const geometry = new RoundedBoxGeometry(100, 100, 100, 10, 10)
+const material = new THREE.MeshStandardMaterial({
+  roughness: 0,
+  metalness: 0.5,
+})
+
+// 5. Pass the DOM element into THREE.HTMLTexture
+material.map = new THREE.HTMLTexture(element)
+
+mesh = new THREE.Mesh(geometry, material)
+scene.add(mesh)
+
+// 6. Render Loop
+function animate() {
+  renderer.render(scene, camera)
+>>>>>>> 4cfe05b (edit ImageUpload)
 }
 ```
 

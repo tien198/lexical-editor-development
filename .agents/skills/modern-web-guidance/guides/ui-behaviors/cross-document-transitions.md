@@ -37,17 +37,34 @@ You can target the old and new states of the transition using pseudo-elements to
 }
 
 @keyframes slide-out {
+<<<<<<< HEAD
   to { transform: translateX(-20%); opacity: 0; }
 }
 
 @keyframes slide-in {
   from { transform: translateX(100%); }
+=======
+  to {
+    transform: translateX(-20%);
+    opacity: 0;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+  }
+>>>>>>> 4cfe05b (edit ImageUpload)
 }
 ```
 
 #### 3. Create Directional Transitions (Optional)
 
+<<<<<<< HEAD
 You may want different transition effects depending on the pages you are navigating between. For instance, when navigating from a home page to a contact page, you may want the effect of new content coming from the right. When navigating back to the home page, it wouldn't make sense to have the same effect. 
+=======
+You may want different transition effects depending on the pages you are navigating between. For instance, when navigating from a home page to a contact page, you may want the effect of new content coming from the right. When navigating back to the home page, it wouldn't make sense to have the same effect.
+>>>>>>> 4cfe05b (edit ImageUpload)
 
 If the page you are navigating to will always have the same transition type, regardless of how you get to the page, you can specify it with `types` in the `@view-transition` rule.
 
@@ -64,6 +81,7 @@ If the page you are navigating to will always have the same transition type, reg
 You can also conditionally specify transition types inside of an event listener for `pagereveal`.
 
 ```js
+<<<<<<< HEAD
 window.addEventListener("pagereveal", async (e) => {
   if (e.viewTransition && window.navigation?.activation) {
     // Use application-specific logic to compute a transition type
@@ -71,6 +89,18 @@ window.addEventListener("pagereveal", async (e) => {
     e.viewTransition.types.add(transitionType);
   }
 });
+=======
+window.addEventListener('pagereveal', async (e) => {
+  if (e.viewTransition && window.navigation?.activation) {
+    // Use application-specific logic to compute a transition type
+    const transitionType = yourTransitionTypeLogic(
+      navigation.activation.from,
+      navigation.activation.entry,
+    )
+    e.viewTransition.types.add(transitionType)
+  }
+})
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```
 
 Then, use the `:active-view-transition-type()` pseudo selector to apply the different animations for each type.
@@ -126,4 +156,8 @@ To check for support in JavaScript:
 if (window.navigation?.activation) {
   // Browser supports the Navigation API
 }
+<<<<<<< HEAD
 ```
+=======
+```
+>>>>>>> 4cfe05b (edit ImageUpload)

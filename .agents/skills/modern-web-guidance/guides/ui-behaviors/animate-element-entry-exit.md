@@ -9,7 +9,11 @@ In the past, CSS transitions could not animate elements when they were first add
 To animate an element when toggling its visibility via an attribute (e.g., `hidden` with `display: none`):
 
 1. **Define the visible state**: Set the final property values (e.g., `opacity: 1`) on the base class.
+<<<<<<< HEAD
 2. **Define the entry starting state**: Use `@starting-style` to specify the values to transition *from* when the element becomes visible.
+=======
+2. **Define the entry starting state**: Use `@starting-style` to specify the values to transition _from_ when the element becomes visible.
+>>>>>>> 4cfe05b (edit ImageUpload)
 3. **Enable discrete transitions**: Include `display` in the `transition` property and use `transition-behavior: allow-discrete`.
 4. **Define the exit state**: Set the target values in the `hidden` attribute.
 
@@ -70,6 +74,7 @@ For elements added via `appendChild()` or removed via `remove()`:
 
 ```javascript
 // Trigger exit transition
+<<<<<<< HEAD
 element.setAttribute('hidden', true);
 
 // 2. Wait for all active transitions/animations to finish,
@@ -85,6 +90,23 @@ if (animations.length > 0) {
 
 // 3. Finally remove the node from the DOM
 element.remove();
+=======
+element.setAttribute('hidden', true)
+
+// 2. Wait for all active transitions/animations to finish,
+//    with a failsafe timeout in case an animation never ends (e.g. for looping animations)
+const animations = element.getAnimations()
+if (animations.length > 0) {
+  await Promise.race([
+    // Promise.allSettled ensures we wait even if some animations fail
+    Promise.allSettled(animations.map((a) => a.finished)),
+    new Promise((r) => setTimeout(r, 2000)),
+  ])
+}
+
+// 3. Finally remove the node from the DOM
+element.remove()
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```
 
 ## Constraints & Accessibility
@@ -94,7 +116,11 @@ element.remove();
 - **MANDATORY**: Use `@starting-style` for entry animations. Browsers skip transitions on an element's first style update (initial render or `display: none` change) unless this is provided.
 - **DO**: Include `overlay` in the `transition` list if animating top-layer elements like `<dialog>` or `popover` to ensure they stay in the top layer during the exit animation.
 - **DO**: Respect user preferences for reduced motion using the `prefers-reduced-motion` media query.
+<<<<<<< HEAD
 - **DO NOT**: Rely on `@starting-style` for exit animations; it only defines the *starting* point for an entry transition. Exit animations are defined by the transition to the hidden state.
+=======
+- **DO NOT**: Rely on `@starting-style` for exit animations; it only defines the _starting_ point for an entry transition. Exit animations are defined by the transition to the hidden state.
+>>>>>>> 4cfe05b (edit ImageUpload)
 
 ## Fallback strategies
 
@@ -106,8 +132,12 @@ For browsers that do not support these features, elements will toggle `display: 
 ```javascript
 // Detect support for discrete transitions and starting-style
 const supportsModernTransitions =
+<<<<<<< HEAD
   window.CSS &&
   CSS.supports('transition-behavior', 'allow-discrete');
+=======
+  window.CSS && CSS.supports('transition-behavior', 'allow-discrete')
+>>>>>>> 4cfe05b (edit ImageUpload)
 
 if (!supportsModernTransitions) {
   // Implement manual JS-based fallback for entry/exit
@@ -118,6 +148,7 @@ if (!supportsModernTransitions) {
 
 ```javascript
 // To show:
+<<<<<<< HEAD
 el.style.display = '';
 requestAnimationFrame(() => {
   requestAnimationFrame(() => {
@@ -130,4 +161,22 @@ el.setAttribute('hidden', true);
 el.addEventListener('transitionend', () => {
   if (el.classList.contains('hidden')) el.style.display = 'none';
 }, { once: true });
+=======
+el.style.display = ''
+requestAnimationFrame(() => {
+  requestAnimationFrame(() => {
+    el.classList.remove('hidden')
+  })
+})
+
+// To hide:
+el.setAttribute('hidden', true)
+el.addEventListener(
+  'transitionend',
+  () => {
+    if (el.classList.contains('hidden')) el.style.display = 'none'
+  },
+  { once: true },
+)
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```

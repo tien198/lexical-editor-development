@@ -7,11 +7,16 @@ The `Temporal` API provides dedicated types for these partial concepts: `Tempora
 ## Implementation Examples
 
 ### Monthly Expirations (Credit Cards, Billing Cycles)
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4cfe05b (edit ImageUpload)
 Use `Temporal.PlainYearMonth` to represent a year and a month.
 
 ```javascript
 // Create a PlainYearMonth from values
 // Use explicit calendar to avoid mismatch issues in polyfill environments
+<<<<<<< HEAD
 const expiry = Temporal.PlainYearMonth.from({ year: 2027, month: 12, calendar: 'iso8601' });
 
 // Get the current year/month
@@ -27,15 +32,43 @@ if (duration.sign < 0) {
   console.log("Expires this month");
 } else {
   console.log(`Expires in ${duration.years} years and ${duration.months} months`);
+=======
+const expiry = Temporal.PlainYearMonth.from({
+  year: 2027,
+  month: 12,
+  calendar: 'iso8601',
+})
+
+// Get the current year/month
+const currentMonth = Temporal.Now.plainDateISO().toPlainYearMonth()
+
+// Calculate duration until expiry
+// largestUnit ensures the difference is expressed in years if applicable
+const duration = currentMonth.until(expiry, { largestUnit: 'years' })
+
+if (duration.sign < 0) {
+  console.log('Expired')
+} else if (duration.sign === 0) {
+  console.log('Expires this month')
+} else {
+  console.log(
+    `Expires in ${duration.years} years and ${duration.months} months`,
+  )
+>>>>>>> 4cfe05b (edit ImageUpload)
 }
 ```
 
 ### Annual Recurring Dates (Birthdays, Renewals)
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4cfe05b (edit ImageUpload)
 Use `Temporal.PlainMonthDay` to represent a month and a day without a year.
 
 ```javascript
 // Create a PlainMonthDay for an annual event
 // Include explicit calendar for polyfill safety
+<<<<<<< HEAD
 const birthday = Temporal.PlainMonthDay.from({ month: 10, day: 31, calendar: 'iso8601' });
 
 // Check if it matches today's date components
@@ -48,10 +81,30 @@ const birthdayThisYear = birthday.toPlainDate({ year: today.year });
 ```
 
 ### Wall-Clock Time (Alarms, Store Hours)
+=======
+const birthday = Temporal.PlainMonthDay.from({
+  month: 10,
+  day: 31,
+  calendar: 'iso8601',
+})
+
+// Check if it matches today's date components
+const today = Temporal.Now.plainDateISO()
+const isBirthdayToday = birthday.equals(today.toPlainMonthDay())
+
+// To perform arithmetic (like days until next occurrence), convert to a full PlainDate
+// by providing a specific year.
+const birthdayThisYear = birthday.toPlainDate({ year: today.year })
+```
+
+### Wall-Clock Time (Alarms, Store Hours)
+
+>>>>>>> 4cfe05b (edit ImageUpload)
 Use `Temporal.PlainTime` to represent a time of day without a date.
 
 ```javascript
 // Create a PlainTime from a string
+<<<<<<< HEAD
 const alarmTime = Temporal.PlainTime.from("08:00:00");
 
 // Add a duration to a PlainTime
@@ -59,6 +112,15 @@ const snoozedTime = alarmTime.add({ minutes: 10 });
 
 console.log(`Original alarm: ${alarmTime.toString()}`);
 console.log(`Snoozed alarm: ${snoozedTime.toString()}`);
+=======
+const alarmTime = Temporal.PlainTime.from('08:00:00')
+
+// Add a duration to a PlainTime
+const snoozedTime = alarmTime.add({ minutes: 10 })
+
+console.log(`Original alarm: ${alarmTime.toString()}`)
+console.log(`Snoozed alarm: ${snoozedTime.toString()}`)
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```
 
 ## Strategic Implementation & Best Practices
@@ -83,6 +145,7 @@ Note that the polyfill does not automatically assign the `Temporal` object to th
 
 ```javascript
 // Check if Temporal is supported natively
+<<<<<<< HEAD
 (async () => {
   if (typeof Temporal === 'undefined') {
     // Load the polyfill conditionally
@@ -93,4 +156,16 @@ Note that the polyfill does not automatically assign the `Temporal` object to th
     initializeApp();
   }
 })();
+=======
+;(async () => {
+  if (typeof Temporal === 'undefined') {
+    // Load the polyfill conditionally
+    const module = await import('https://esm.sh/@js-temporal/polyfill')
+    globalThis.Temporal = module.Temporal
+    // Extend Date.prototype if needed
+    Date.prototype.toTemporalInstant = module.toTemporalInstant
+    initializeApp()
+  }
+})()
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```

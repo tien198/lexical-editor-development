@@ -80,11 +80,21 @@ If dynamically growing fields are absolutely required for older browsers, you mu
 ```javascript
 // Only attach the fallback event listeners if field-sizing is unsupported
 if (!CSS.supports('field-sizing', 'content')) {
+<<<<<<< HEAD
   document.querySelectorAll('.growable-textarea > textarea').forEach(textarea => {
     textarea.addEventListener('input', () => {
       textarea.parentNode.dataset.replicatedValue = textarea.value;
     });
   });
+=======
+  document
+    .querySelectorAll('.growable-textarea > textarea')
+    .forEach((textarea) => {
+      textarea.addEventListener('input', () => {
+        textarea.parentNode.dataset.replicatedValue = textarea.value
+      })
+    })
+>>>>>>> 4cfe05b (edit ImageUpload)
 }
 ```
 
@@ -107,7 +117,11 @@ if (!CSS.supports('field-sizing', 'content')) {
   /* The pseudo-element renders the copied text invisibly to stretch the grid */
   .growable-textarea::after {
     /* The space is necessary for trailing empty lines to be rendered */
+<<<<<<< HEAD
     content: attr(data-replicated-value) " ";
+=======
+    content: attr(data-replicated-value) ' ';
+>>>>>>> 4cfe05b (edit ImageUpload)
     white-space: pre-wrap;
     visibility: hidden;
   }
@@ -119,4 +133,8 @@ if (!CSS.supports('field-sizing', 'content')) {
 }
 ```
 
+<<<<<<< HEAD
 Given the complexity of duplicating styles and synchronizing state across DOM nodes for every form control, relying on the default fallback behavior of fixed inputs is the recommended approach for most applications unless dynamic sizing is critical to the user experience.
+=======
+Given the complexity of duplicating styles and synchronizing state across DOM nodes for every form control, relying on the default fallback behavior of fixed inputs is the recommended approach for most applications unless dynamic sizing is critical to the user experience.
+>>>>>>> 4cfe05b (edit ImageUpload)

@@ -12,8 +12,13 @@ Outlined below are the most important guidelines for building successful sign-up
 
 Make the most of the elements and attributes built for creating forms:
 
+<<<<<<< HEAD
 -   `<form>`, `<input>`, `<label>`, and `<button>`
 -   `type`, `autocomplete`, and `inputmode`
+=======
+- `<form>`, `<input>`, `<label>`, and `<button>`
+- `type`, `autocomplete`, and `inputmode`
+>>>>>>> 4cfe05b (edit ImageUpload)
 
 These enable built-in browser functionality, improve accessibility, and add meaning to markup.
 
@@ -100,7 +105,17 @@ MANDATORY: For a sign-up form, use `autocomplete="new-password"`.
 
 ```html
 <!-- new-password prevents password managers from auto-filling an existing password into this field -->
+<<<<<<< HEAD
 <input type="password" id="new-password" name="new-password" autocomplete="new-password" required>
+=======
+<input
+  type="password"
+  id="new-password"
+  name="new-password"
+  autocomplete="new-password"
+  required
+/>
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```
 
 ### Enable the browser to suggest a strong password

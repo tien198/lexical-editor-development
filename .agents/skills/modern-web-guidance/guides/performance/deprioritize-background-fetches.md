@@ -11,21 +11,34 @@ When a page performs multiple simultaneous network requests, they often compete 
 
 ```javascript
 // Use high priority (default) for critical UI updates
+<<<<<<< HEAD
 const criticalData = await fetch('/api/data');
+=======
+const criticalData = await fetch('/api/data')
+>>>>>>> 4cfe05b (edit ImageUpload)
 
 // Explicitly deprioritize background analytics
 fetch('/api/analytics', {
   method: 'POST',
   body: JSON.stringify(eventData),
   // Lower the priority to prevent network contention
+<<<<<<< HEAD
   priority: 'low'
 });
+=======
+  priority: 'low',
+})
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```
 
 ## Best practices
 
 - **DO** use `priority: 'low'` for analytics, beacons, or telemetry data that isn't required for the current view.
+<<<<<<< HEAD
 - **DO** use `priority: 'low'` for "prefetching" data that the user *might* need later, ensuring it doesn't slow down what they need *now*.
+=======
+- **DO** use `priority: 'low'` for "prefetching" data that the user _might_ need later, ensuring it doesn't slow down what they need _now_.
+>>>>>>> 4cfe05b (edit ImageUpload)
 - **DO NOT** use `priority: 'low'` for fetches that are critical to the user experience.
 - **DO NOT** use the deprecated `importance` key in the fetch options object. The correct key is `priority`.
 

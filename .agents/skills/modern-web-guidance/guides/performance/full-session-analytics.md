@@ -19,41 +19,71 @@ Older technique like creating an `<img>` pixel in an `unload` event listener are
 This code measures the session duration of a user's visit to a page using `fetchLater()` to queue a new beacon every 10 seconds with the updated session duration.
 
 ```javascript
+<<<<<<< HEAD
 const ANALYTICS_ENDPOINT = '/path/to/analytics/endpoint';
+=======
+const ANALYTICS_ENDPOINT = '/path/to/analytics/endpoint'
+>>>>>>> 4cfe05b (edit ImageUpload)
 
 const sessionData = {
   duration: 0,
   id: crypto.randomUUID(),
+<<<<<<< HEAD
 };
 
 let fetchLaterController = null;
+=======
+}
+
+let fetchLaterController = null
+>>>>>>> 4cfe05b (edit ImageUpload)
 
 function queueBeacon() {
   // Abort any pending beacons before creating a new one.
   if (fetchLaterController) {
+<<<<<<< HEAD
     fetchLaterController.abort();
   }
   fetchLaterController = new AbortController();
 
   // Update session duration to the current page time.
   sessionData.duration = performance.now();
+=======
+    fetchLaterController.abort()
+  }
+  fetchLaterController = new AbortController()
+
+  // Update session duration to the current page time.
+  sessionData.duration = performance.now()
+>>>>>>> 4cfe05b (edit ImageUpload)
 
   // Schedule a fetch for the data payload to be sent later.
   // IMPORTANT: wrap the call in a try/catch to handle quota errors.
   try {
     fetchLater(ANALYTICS_ENDPOINT, {
       method: 'POST',
+<<<<<<< HEAD
       headers: {'content-type': 'application/json'},
       body: JSON.stringify(sessionData),
       signal: fetchLaterController.signal,
     });
+=======
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(sessionData),
+      signal: fetchLaterController.signal,
+    })
+>>>>>>> 4cfe05b (edit ImageUpload)
   } catch (error) {
     // Handle errors as needed.
   }
 }
 
 // Update the session data and queue a new beacon every 10 seconds.
+<<<<<<< HEAD
 setInterval(queueBeacon, 10000);
+=======
+setInterval(queueBeacon, 10000)
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```
 
 ## Best Practices
@@ -83,8 +113,13 @@ The only notable behavior difference with this polyfill is that it uses `visibil
 
 ```js
 globalThis.fetchLater ??= function fetchLater(url, init = {}) {
+<<<<<<< HEAD
   let timeoutHandle;
   let activated = false;
+=======
+  let timeoutHandle
+  let activated = false
+>>>>>>> 4cfe05b (edit ImageUpload)
 
   function sendNow() {
     if (!(init.signal && init.signal.aborted)) {
@@ -96,6 +131,7 @@ globalThis.fetchLater ??= function fetchLater(url, init = {}) {
         init.method !== 'POST' ||
         init.headers
       ) {
+<<<<<<< HEAD
         fetch(url, Object.assign({}, init, {keepalive: true}));
         activated = true;
       } else {
@@ -108,28 +144,62 @@ globalThis.fetchLater ??= function fetchLater(url, init = {}) {
   function destroy() {
     document.removeEventListener('visibilitychange', sendNow);
     clearTimeout(timeoutHandle);
+=======
+        fetch(url, Object.assign({}, init, { keepalive: true }))
+        activated = true
+      } else {
+        activated = navigator.sendBeacon(url, init.body)
+      }
+    }
+    destroy()
+  }
+
+  function destroy() {
+    document.removeEventListener('visibilitychange', sendNow)
+    clearTimeout(timeoutHandle)
+>>>>>>> 4cfe05b (edit ImageUpload)
   }
 
   if (document.visibilityState === 'hidden') {
     // If the beacon was created while the page is already hidden, send data
     // ASAP but wait until the next microtask to allow all sync code to run.
+<<<<<<< HEAD
     queueMicrotask(sendNow);
   } else {
     document.addEventListener('visibilitychange', sendNow);
 
     if (typeof init.activateAfter === 'number' && init.activateAfter >= 0) {
       timeoutHandle = setTimeout(sendNow, init.activateAfter);
+=======
+    queueMicrotask(sendNow)
+  } else {
+    document.addEventListener('visibilitychange', sendNow)
+
+    if (typeof init.activateAfter === 'number' && init.activateAfter >= 0) {
+      timeoutHandle = setTimeout(sendNow, init.activateAfter)
+>>>>>>> 4cfe05b (edit ImageUpload)
     }
   }
 
   if (init.signal) {
+<<<<<<< HEAD
     init.signal.addEventListener('abort', destroy);
+=======
+    init.signal.addEventListener('abort', destroy)
+>>>>>>> 4cfe05b (edit ImageUpload)
   }
 
   return {
     get activated() {
+<<<<<<< HEAD
       return activated;
     },
   };
 };
+=======
+      return activated
+    },
+  }
+}
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```

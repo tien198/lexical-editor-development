@@ -14,7 +14,11 @@ When an element moves in or out of the top layer, it must transition the `overla
 
 ### 3. Entry Animations with `@starting-style`
 
+<<<<<<< HEAD
 Use the `@starting-style` at-rule to define the styles an element should transition *from* when it is first rendered or its `display` changes from `none`.
+=======
+Use the `@starting-style` at-rule to define the styles an element should transition _from_ when it is first rendered or its `display` changes from `none`.
+>>>>>>> 4cfe05b (edit ImageUpload)
 
 ### 4. Animating the Backdrop
 
@@ -117,7 +121,11 @@ For browsers that do not support these features, top-layer elements will appear 
 const supportsTopLayerAnimation =
   window.CSS &&
   CSS.supports('transition-behavior', 'allow-discrete') &&
+<<<<<<< HEAD
   CSS.supports('overlay', 'auto');
+=======
+  CSS.supports('overlay', 'auto')
+>>>>>>> 4cfe05b (edit ImageUpload)
 
 if (!supportsTopLayerAnimation) {
   // Manual JS fallback for entry/exit animations:
@@ -139,8 +147,13 @@ With a bundler or import map:
 
 ```js
 // MANDATORY: Feature detect 'popover' on HTMLElement.prototype.
+<<<<<<< HEAD
 if (!("popover" in HTMLElement.prototype)) {
   import("@oddbird/popover-polyfill");
+=======
+if (!('popover' in HTMLElement.prototype)) {
+  import('@oddbird/popover-polyfill')
+>>>>>>> 4cfe05b (edit ImageUpload)
 }
 ```
 
@@ -148,8 +161,13 @@ Without a bundler, import from a CDN inside a `<script type="module">`:
 
 ```html
 <script type="module">
+<<<<<<< HEAD
   if (!("popover" in HTMLElement.prototype)) {
     import("https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js");
+=======
+  if (!('popover' in HTMLElement.prototype)) {
+    import('https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js')
+>>>>>>> 4cfe05b (edit ImageUpload)
   }
 </script>
 ```

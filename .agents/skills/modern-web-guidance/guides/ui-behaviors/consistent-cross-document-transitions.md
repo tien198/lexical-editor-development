@@ -50,11 +50,19 @@ If a non-blocking script in the `<head>` must run before the transition animates
   <!--
     DO: Mark layout-critical scripts with blocking="render".
   -->
+<<<<<<< HEAD
   <script type=module blocking="render">
     // Example: apply a stored theme before the page renders,
     // so the transition snapshot reflects the correct theme.
     document.documentElement.dataset.theme =
       localStorage.getItem('theme') || 'light';
+=======
+  <script type="module" blocking="render">
+    // Example: apply a stored theme before the page renders,
+    // so the transition snapshot reflects the correct theme.
+    document.documentElement.dataset.theme =
+      localStorage.getItem('theme') || 'light'
+>>>>>>> 4cfe05b (edit ImageUpload)
   </script>
 </head>
 ```
@@ -73,7 +81,11 @@ Even when no individual elements have a `view-transition-name`, the default `roo
 
 ```html
 <head>
+<<<<<<< HEAD
   <link rel="stylesheet" href="/css/styles.css">
+=======
+  <link rel="stylesheet" href="/css/styles.css" />
+>>>>>>> 4cfe05b (edit ImageUpload)
 
   <!--
     DO: Block rendering until the main content area is parsed,
@@ -81,7 +93,11 @@ Even when no individual elements have a `view-transition-name`, the default `roo
     snapshot the page before visible content exists in the DOM,
     causing the cross-fade to reveal a blank or partial page.
   -->
+<<<<<<< HEAD
   <link rel="expect" href="#main-content" blocking="render">
+=======
+  <link rel="expect" href="#main-content" blocking="render" />
+>>>>>>> 4cfe05b (edit ImageUpload)
 </head>
 <body>
   <header>...</header>
@@ -100,7 +116,11 @@ When elements on both pages share a `view-transition-name`, the browser morphs t
 
 ```html
 <head>
+<<<<<<< HEAD
   <link rel="stylesheet" href="/css/styles.css">
+=======
+  <link rel="stylesheet" href="/css/styles.css" />
+>>>>>>> 4cfe05b (edit ImageUpload)
 
   <!--
     DO: Block rendering until the element participating in the
@@ -108,7 +128,11 @@ When elements on both pages share a `view-transition-name`, the browser morphs t
     may start the transition before #hero exists, causing the
     morph to degrade to a fade-out/fade-in.
   -->
+<<<<<<< HEAD
   <link rel="expect" href="#hero" blocking="render">
+=======
+  <link rel="expect" href="#hero" blocking="render" />
+>>>>>>> 4cfe05b (edit ImageUpload)
 
   <!--
     When multiple blocking="render" resources are present,
@@ -122,7 +146,15 @@ When elements on both pages share a `view-transition-name`, the browser morphs t
   <header>...</header>
   <section id="hero">
     <h1 style="view-transition-name: page-title">Product Name</h1>
+<<<<<<< HEAD
     <img style="view-transition-name: hero-image" src="/img/product.webp" alt="Product">
+=======
+    <img
+      style="view-transition-name: hero-image"
+      src="/img/product.webp"
+      alt="Product"
+    />
+>>>>>>> 4cfe05b (edit ImageUpload)
   </section>
 </body>
 ```
@@ -144,13 +176,21 @@ Different viewport sizes may show different amounts of content above the fold. U
     href="#hero"
     blocking="render"
     media="screen and (width <= 768px)"
+<<<<<<< HEAD
   >
+=======
+  />
+>>>>>>> 4cfe05b (edit ImageUpload)
   <link
     rel="expect"
     href="#sidebar"
     blocking="render"
     media="screen and (width > 768px)"
+<<<<<<< HEAD
   >
+=======
+  />
+>>>>>>> 4cfe05b (edit ImageUpload)
 </head>
 ```
 
@@ -176,29 +216,51 @@ If `view-transition-name` values are assigned statically in CSS, or if you are o
 ```javascript
 // transition-setup.js
 window.addEventListener('pagereveal', async (event) => {
+<<<<<<< HEAD
   if (!event.viewTransition) return;
 
   const from = navigation.activation?.from;
   if (!from) return;
 
   const fromUrl = new URL(from.url);
+=======
+  if (!event.viewTransition) return
+
+  const from = navigation.activation?.from
+  if (!from) return
+
+  const fromUrl = new URL(from.url)
+>>>>>>> 4cfe05b (edit ImageUpload)
 
   // DO: Assign view-transition-name based on navigation context.
   // This enables a morph animation from the product card on the
   // list page to the heading on the detail page.
   if (fromUrl.pathname === '/products/') {
+<<<<<<< HEAD
     const heading = document.querySelector('main h1');
     if (heading) {
       heading.style.viewTransitionName = 'product-title';
+=======
+    const heading = document.querySelector('main h1')
+    if (heading) {
+      heading.style.viewTransitionName = 'product-title'
+>>>>>>> 4cfe05b (edit ImageUpload)
     }
 
     // MANDATORY: Remove the temporary name after the transition
     // finishes. Stale names interfere with subsequent navigations
     // and prevent the page from entering the bfcache.
+<<<<<<< HEAD
     await event.viewTransition.finished;
     heading.style.viewTransitionName = '';
   }
 });
+=======
+    await event.viewTransition.finished
+    heading.style.viewTransitionName = ''
+  }
+})
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```
 
 ## Best Practices

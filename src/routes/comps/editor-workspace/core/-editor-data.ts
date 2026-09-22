@@ -5,6 +5,7 @@ export type DocumentSettings = {
   description: string
   canonicalUrl: string
   keyword: string
+  heroImage?: string | null
 }
 
 export type DocumentSnapshot = {
@@ -24,6 +25,7 @@ export const DEFAULT_SETTINGS: DocumentSettings = {
     'Good writing starts with a little space to think. Turn your next idea into a thoughtful article with clear headings, useful details, and a voice of your own.',
   canonicalUrl: '',
   keyword: 'writing',
+  heroImage: null,
 }
 
 // Shared by the server-rendered fallback and the initial Lexical document.

@@ -11,9 +11,13 @@ Popovers can be toggled open and closed using a single button.
 ```html
 <!-- MANDATORY: The commandfor attribute links the invoker to the ID of the target element so the browser knows what to control. -->
 <!-- MANDATORY: The command attribute specifies the action to perform. Use 'toggle-popover' to handle both open and close states automatically. -->
+<<<<<<< HEAD
 <button commandfor="my-popover" command="toggle-popover">
   Toggle Popover
 </button>
+=======
+<button commandfor="my-popover" command="toggle-popover">Toggle Popover</button>
+>>>>>>> 4cfe05b (edit ImageUpload)
 
 <!-- MANDATORY: The target element must have the popover attribute to be controlled as a popover. -->
 <div id="my-popover" popover>
@@ -54,9 +58,13 @@ Unlike popovers, modal dialogs typically use separate buttons for opening and cl
   <p>Are you sure you want to proceed?</p>
 
   <!-- MANDATORY: Use command="close" to dismiss the dialog safely. -->
+<<<<<<< HEAD
   <button commandfor="confirm-dialog" command="close">
     Cancel
   </button>
+=======
+  <button commandfor="confirm-dialog" command="close">Cancel</button>
+>>>>>>> 4cfe05b (edit ImageUpload)
 </dialog>
 ```
 
@@ -79,7 +87,11 @@ Install the polyfill via npm (`npm install invokers-polyfill`). This approach is
 // MANDATORY: Feature detect 'commandForElement' on HTMLButtonElement.prototype.
 // Conditionally load the invokers-polyfill only in browsers lacking native support.
 if (!('commandForElement' in HTMLButtonElement.prototype)) {
+<<<<<<< HEAD
   import('invokers-polyfill');
+=======
+  import('invokers-polyfill')
+>>>>>>> 4cfe05b (edit ImageUpload)
 }
 ```
 
@@ -91,7 +103,11 @@ For projects without a bundler, dynamically import the polyfill directly from a 
   // MANDATORY: Feature detect 'commandForElement' on HTMLButtonElement.prototype.
   // Conditionally load the invokers-polyfill from a CDN only in browsers lacking native support.
   if (!('commandForElement' in HTMLButtonElement.prototype)) {
+<<<<<<< HEAD
     import('https://esm.run/invokers-polyfill');
+=======
+    import('https://esm.run/invokers-polyfill')
+>>>>>>> 4cfe05b (edit ImageUpload)
   }
 </script>
 ```
@@ -114,6 +130,7 @@ For the best performance, you should only load the polyfill if the browser doesn
 
 ```javascript
 // 1. Conditionally load the polyfill
+<<<<<<< HEAD
 const hasNativeSupport = 'commandForElement' in HTMLButtonElement.prototype;
 
 if (!hasNativeSupport) {
@@ -140,6 +157,36 @@ document.getElementById('action-target').addEventListener('command', (event) => 
     source?.setAttribute('aria-pressed', isSpun);
   }
 });
+=======
+const hasNativeSupport = 'commandForElement' in HTMLButtonElement.prototype
+
+if (!hasNativeSupport) {
+  // Wrap in an async IIFE to avoid top-level await issues in older browsers
+  ;(async () => {
+    try {
+      await import('https://esm.run/invokers-polyfill')
+    } catch (err) {
+      console.error('Error loading fallback:', err)
+    }
+  })()
+}
+
+// 2. Manually manage ARIA states in your listener
+document
+  .getElementById('action-target')
+  .addEventListener('command', (event) => {
+    const command = event.command
+    const target = event.target
+    const source = event.source // The button that triggered the command
+
+    if (command === '--spin') {
+      const isSpun = target.classList.toggle('is-spun')
+
+      // Polyfill tip: Manually update ARIA to match the new state
+      source?.setAttribute('aria-pressed', isSpun)
+    }
+  })
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```
 
 ### Manual fallback (Traditional pattern)
@@ -152,20 +199,31 @@ const commandRegistry = {
   '--spin': (target) => target.classList.toggle('is-spun'),
   '--grow': (target) => target.classList.toggle('is-grown'),
   '--reset': (target) => target.classList.remove('is-spun', 'is-grown'),
+<<<<<<< HEAD
 };
+=======
+}
+>>>>>>> 4cfe05b (edit ImageUpload)
 
 // 2. If CommandEvent doesn't exist, we assume no native support and provide the fallback
 if (!globalThis.CommandEvent) {
   globalThis.CommandEvent = class CommandEvent extends Event {
     constructor(type, { source, command, ...options } = {}) {
+<<<<<<< HEAD
       super(type, options);
       this.source = source;
       this.command = command;
+=======
+      super(type, options)
+      this.source = source
+      this.command = command
+>>>>>>> 4cfe05b (edit ImageUpload)
     }
   }
 }
 
 // 3. The fallback: Dispatch events manually if native support is missing
+<<<<<<< HEAD
   document.addEventListener('click', (event) => {
     const button = event.composedPath().find((el) => el.matches?.("button[commandfor]"));
     if (!button) return;
@@ -191,6 +249,39 @@ document.getElementById('action-target').addEventListener('command', (event) => 
     action(target);
   }
  });
+=======
+document.addEventListener('click', (event) => {
+  const button = event
+    .composedPath()
+    .find((el) => el.matches?.('button[commandfor]'))
+  if (!button) return
+
+  const target = document.getElementById(button.getAttribute('commandfor'))
+  const command = button.getAttribute('command')
+
+  if (target && command) {
+    target.dispatchEvent(
+      new CommandEvent('command', {
+        command,
+        source: button,
+      }),
+    )
+  }
+})
+
+// 4. **Mandatory:** Register the unified listener directly on the target element
+document
+  .getElementById('action-target')
+  .addEventListener('command', (event) => {
+    const command = event.command
+    const target = event.target
+    const action = commandRegistry[command]
+
+    if (action) {
+      action(target)
+    }
+  })
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```
 
 ### Fallbacks & browser support for Popover
@@ -206,8 +297,13 @@ With a bundler or import map:
 
 ```js
 // MANDATORY: Feature detect 'popover' on HTMLElement.prototype.
+<<<<<<< HEAD
 if (!("popover" in HTMLElement.prototype)) {
   import("@oddbird/popover-polyfill");
+=======
+if (!('popover' in HTMLElement.prototype)) {
+  import('@oddbird/popover-polyfill')
+>>>>>>> 4cfe05b (edit ImageUpload)
 }
 ```
 
@@ -215,8 +311,13 @@ Without a bundler, import from a CDN inside a `<script type="module">`:
 
 ```html
 <script type="module">
+<<<<<<< HEAD
   if (!("popover" in HTMLElement.prototype)) {
     import("https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js");
+=======
+  if (!('popover' in HTMLElement.prototype)) {
+    import('https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js')
+>>>>>>> 4cfe05b (edit ImageUpload)
   }
 </script>
 ```

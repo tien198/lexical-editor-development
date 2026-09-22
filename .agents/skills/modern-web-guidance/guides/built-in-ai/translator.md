@@ -2,7 +2,10 @@
 
 The **Translator API** allows developers to perform client-side text translation using built-in AI models in Chrome and Edge. This approach eliminates the need for cloud-based translation services for ephemeral content, reducing costs and improving privacy by keeping data on the user's device.
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4cfe05b (edit ImageUpload)
 ## Prerequisites & Requirements
 
 ### API Surface & Global Scope
@@ -38,6 +41,10 @@ To run Gemini Nano and associated models, the system needs:
 **User Gesture Requirement:** When calling `availability(options)` returns `'downloadable'` or `'downloading'`, calling `Translator.create()` triggers the download of the language pack and **strictly requires a user gesture** (such as a button click) to prevent a `NotAllowedError`.
 
 `Translator.availability(options)` returns one of four string statuses:
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4cfe05b (edit ImageUpload)
 - `'available'`: The language pair model is already downloaded on the device and ready for immediate translation.
 - `'downloadable'`: The language pair is supported, but the model needs to be downloaded. A user gesture is required to initiate `Translator.create()`.
 - `'downloading'`: The language pack is currently in the process of downloading. Calling `Translator.create()` with a user gesture attaches to the download.
@@ -48,6 +55,7 @@ To run Gemini Nano and associated models, the system needs:
 const options = {
   sourceLanguage: 'es', // Example BCP 47 language code
   targetLanguage: 'fr', // Example BCP 47 language code
+<<<<<<< HEAD
 };
 
 // 1. Check availability for the language pair
@@ -71,6 +79,33 @@ if (availability === 'available') {
 } else if (availability === 'unavailable') {
   // Language pair or hardware unsupported; execute fallback
   console.warn('Translation model is unavailable on this device.');
+=======
+}
+
+// 1. Check availability for the language pair
+const availability = await Translator.availability(options)
+
+if (availability === 'available') {
+  // Model is ready immediately on device
+  const translator = await Translator.create(options)
+} else if (availability === 'downloadable' || availability === 'downloading') {
+  // User gesture is strictly required before create() triggers or attaches to download
+  document
+    .getElementById('start-translation-btn')
+    .addEventListener('click', async () => {
+      const translator = await Translator.create({
+        ...options,
+        monitor(m) {
+          m.addEventListener('downloadprogress', (e) => {
+            console.log(`Downloaded ${Math.round(e.loaded * 100)}%`)
+          })
+        },
+      })
+    })
+} else if (availability === 'unavailable') {
+  // Language pair or hardware unsupported; execute fallback
+  console.warn('Translation model is unavailable on this device.')
+>>>>>>> 4cfe05b (edit ImageUpload)
 }
 ```
 
@@ -87,6 +122,7 @@ const translator = await Translator.create({
   targetLanguage: 'fr',
   monitor(m) {
     m.addEventListener('downloadprogress', (e) => {
+<<<<<<< HEAD
       console.log(`Downloaded ${Math.round(e.loaded * 100)}%`);
     });
   },
@@ -96,15 +132,30 @@ const result = await translator.translate(
   'Where is the next bus stop, please?',
 );
 console.log(result);
+=======
+      console.log(`Downloaded ${Math.round(e.loaded * 100)}%`)
+    })
+  },
+})
+
+const result = await translator.translate('Where is the next bus stop, please?')
+console.log(result)
+>>>>>>> 4cfe05b (edit ImageUpload)
 // Output: "Où est le prochain arrêt de bus, s'il vous plaît ?"
 ```
 
 **Streaming Translation (for long text):**
 
 ```javascript
+<<<<<<< HEAD
 const stream = translator.translateStreaming(longText);
 for await (const chunk of stream) {
   console.log(chunk);
+=======
+const stream = translator.translateStreaming(longText)
+for await (const chunk of stream) {
+  console.log(chunk)
+>>>>>>> 4cfe05b (edit ImageUpload)
 }
 ```
 
@@ -179,9 +230,16 @@ if ('Translator' in self) {
 }
 ```
 
+<<<<<<< HEAD
 If the `Translator` API is unsupported or availability checks return `'unavailable'`, you must gracefully fall back. 
 
 Recommended options:
+=======
+If the `Translator` API is unsupported or availability checks return `'unavailable'`, you must gracefully fall back.
+
+Recommended options:
+
+>>>>>>> 4cfe05b (edit ImageUpload)
 1. **Remote API Fallback**: Redirect the translation request to a server endpoint or cloud remote API (such as the Vertex AI Gemini API) to deliver translation functionality.
 2. **Graceful Degradation**: Visually disable translation control elements or buttons while showing an end-user friendly note (e.g., `"Client-side translation is currently unsupported in this browser"`). Do not allow unhandled exceptions.
 3. **Polyfill Fallback**: You can use community-maintained polyfills like `built-in-ai-task-apis-polyfills` or `prompt-api-polyfill` to emulate the API surface using remote services.

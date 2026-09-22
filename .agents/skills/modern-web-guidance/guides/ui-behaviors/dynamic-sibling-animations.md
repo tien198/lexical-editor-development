@@ -12,6 +12,7 @@ Use the `sibling-index()` property on the `animation-delay` property so that the
   /* Define the animation first */
   animation: fade-in 0.4s;
   /* Set the `animation-delay` to a time multipled by the `sibling-index()` */
+<<<<<<< HEAD
   animation-delay: calc(sibling-index() * var(--stagger-time))
 }
 ```
@@ -20,6 +21,16 @@ Use the `sibling-index()` property on the `animation-delay` property so that the
 
 ```css
 @media (prefers-reduced-motion: reduce){
+=======
+  animation-delay: calc(sibling-index() * var(--stagger-time));
+}
+```
+
+**MANDATORY:** Respect user preferences by disabling the animation for users who prefer reduced motion.
+
+```css
+@media (prefers-reduced-motion: reduce) {
+>>>>>>> 4cfe05b (edit ImageUpload)
   /* Disable animation for users who prefer reduced motion. */
   #stagger-list > .item {
     animation: none;
@@ -37,9 +48,17 @@ Test for support for `sibling-index()` using CSS with `@supports (animation-dela
 To support stagger animations in older browsers, use JavaScript to add a `--sibling-index` custom property to each sibling element. MANDATORY: wrap this in a `CSS.supports('animation-delay: calc(sibling-index() * 0.1s)')` test to avoid running unneeded JavaScript.
 
 ```js
+<<<<<<< HEAD
 if(!CSS.supports('animation-delay: calc(sibling-index() * 0.1s)')){
   const staggerList = document.getElementById('stagger-list');
   [...staggerList.children].forEach((el, index)=>el.style.setProperty('--sibling-index', index + 1));
+=======
+if (!CSS.supports('animation-delay: calc(sibling-index() * 0.1s)')) {
+  const staggerList = document.getElementById('stagger-list')
+  ;[...staggerList.children].forEach((el, index) =>
+    el.style.setProperty('--sibling-index', index + 1),
+  )
+>>>>>>> 4cfe05b (edit ImageUpload)
 }
 ```
 

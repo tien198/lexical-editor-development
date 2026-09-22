@@ -10,19 +10,33 @@ Use `scheduler.yield()` inside async functions to break up work.
 async function processLargeArray(items) {
   // DO: Set a time-based deadline 50 milliseconds into the future. 50
   // milliseconds is the boundary for when a task becomes a long task.
+<<<<<<< HEAD
   let deadline = performance.now() + 50; // 50ms budget
 
   for (const item of items) {
     // Process the item
     processItem(item);
     
+=======
+  let deadline = performance.now() + 50 // 50ms budget
+
+  for (const item of items) {
+    // Process the item
+    processItem(item)
+
+>>>>>>> 4cfe05b (edit ImageUpload)
     // MANDATORY: Yield to the main thread periodically to keep the UI
     // responsive. This can be done by checking if the deadline set earlier
     // has been exceeded. When it has been, yield, then reset the deadline
     // another 50 milliseconds into the future.
     if (performance.now() >= deadline) {
+<<<<<<< HEAD
       await scheduler.yield();
       deadline = performance.now() + 50;
+=======
+      await scheduler.yield()
+      deadline = performance.now() + 50
+>>>>>>> 4cfe05b (edit ImageUpload)
     }
   }
 }
@@ -41,21 +55,38 @@ Some browsers may not support the `scheduler` API. You MUST implement a fallback
 ```javascript
 async function processLargeArrayWithFallback(items) {
   // DO: Set a time-based deadline 50 milliseconds into the future.
+<<<<<<< HEAD
   let deadline = performance.now() + 50;
 
   for (const item of items) {
     processItem(item);
     
+=======
+  let deadline = performance.now() + 50
+
+  for (const item of items) {
+    processItem(item)
+
+>>>>>>> 4cfe05b (edit ImageUpload)
     // MANDATORY: Yield to the main thread periodically to keep the UI responsive.
     if (performance.now() >= deadline) {
       // DO: Feature detect scheduler.yield
       if ('scheduler' in window && 'yield' in window.scheduler) {
+<<<<<<< HEAD
         await scheduler.yield();
       } else {
         // DO: Fallback to setTimeout for older browsers
         await new Promise(resolve => setTimeout(resolve, 0));
       }
       deadline = performance.now() + 50;
+=======
+        await scheduler.yield()
+      } else {
+        // DO: Fallback to setTimeout for older browsers
+        await new Promise((resolve) => setTimeout(resolve, 0))
+      }
+      deadline = performance.now() + 50
+>>>>>>> 4cfe05b (edit ImageUpload)
     }
   }
 }

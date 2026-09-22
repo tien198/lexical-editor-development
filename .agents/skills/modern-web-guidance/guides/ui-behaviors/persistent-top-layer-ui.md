@@ -9,12 +9,21 @@ To reparent top-layer elements without interrupting the user experience or closi
 `moveBefore()` takes two arguments: the node to move, and a reference node to insert before (or `null` to append to the end of the new parent).
 
 ```javascript
+<<<<<<< HEAD
 const newParent = document.getElementById('new-container');
 const dialogElement = document.getElementById('my-dialog');
 
 // MANDATORY: Use moveBefore to ensure the <dialog> or popover stays open.
 // Passing null appends it to the end of newParent.
 newParent.moveBefore(dialogElement, null);
+=======
+const newParent = document.getElementById('new-container')
+const dialogElement = document.getElementById('my-dialog')
+
+// MANDATORY: Use moveBefore to ensure the <dialog> or popover stays open.
+// Passing null appends it to the end of newParent.
+newParent.moveBefore(dialogElement, null)
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```
 
 ### Fallback strategies
@@ -28,6 +37,7 @@ Since `moveBefore()` is a progressive enhancement, you MUST use feature detectio
 **MANDATORY**: For `<dialog>` elements in unsupported browsers, the traditional move will close the dialog. If you need it to remain open, you must manually re-open it after the move.
 
 ```javascript
+<<<<<<< HEAD
 const targetParent = document.getElementById('target-container');
 const popoverOrDialog = document.getElementById('my-top-layer-element');
 
@@ -48,3 +58,27 @@ if ('moveBefore' in Element.prototype) {
   }
 }
 ```
+=======
+const targetParent = document.getElementById('target-container')
+const popoverOrDialog = document.getElementById('my-top-layer-element')
+
+// Check if moveBefore is supported
+if ('moveBefore' in Element.prototype) {
+  targetParent.moveBefore(popoverOrDialog, null)
+} else {
+  // Fallback: traditional move.
+  // Note: This WILL close <dialog>, popover, and fullscreen elements.
+  const wasOpen =
+    popoverOrDialog.hasAttribute('open') ||
+    popoverOrDialog.matches(':popover-open')
+  targetParent.insertBefore(popoverOrDialog, null)
+
+  // Manually restore state if possible
+  if (wasOpen && typeof popoverOrDialog.showModal === 'function') {
+    popoverOrDialog.showModal()
+  } else if (wasOpen && typeof popoverOrDialog.showPopover === 'function') {
+    popoverOrDialog.showPopover()
+  }
+}
+```
+>>>>>>> 4cfe05b (edit ImageUpload)

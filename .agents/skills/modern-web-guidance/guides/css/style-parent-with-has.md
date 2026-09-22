@@ -1,9 +1,17 @@
 # Style Parent with :has()
 
 ## The Problem
+<<<<<<< HEAD
 Often, an error state requires styling elements *outside* the input itself—for example, changing the color of a parent `fieldset` border, highlighting the `<label>`, or showing a global error icon in the card header. Historically, this required JavaScript to toggle classes on parent elements.
 
 ## The Solution
+=======
+
+Often, an error state requires styling elements _outside_ the input itself—for example, changing the color of a parent `fieldset` border, highlighting the `<label>`, or showing a global error icon in the card header. Historically, this required JavaScript to toggle classes on parent elements.
+
+## The Solution
+
+>>>>>>> 4cfe05b (edit ImageUpload)
 By combining `:has()` with `:user-invalid`, we can declaratively style any ancestor based on the validity state of a specific descendant. This keeps all presentation logic in CSS.
 
 ### Implementation Strategy
@@ -15,6 +23,10 @@ By combining `:has()` with `:user-invalid`, we can declaratively style any ances
 ## Implementation Guide
 
 ### 1. HTML Structure
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```html
 <form>
   <div class="card-section">
@@ -25,13 +37,21 @@ By combining `:has()` with `:user-invalid`, we can declaratively style any ances
 
     <div class="field">
       <label for="username">Username</label>
+<<<<<<< HEAD
       <input type="text" id="username" required>
+=======
+      <input type="text" id="username" required />
+>>>>>>> 4cfe05b (edit ImageUpload)
     </div>
   </div>
 </form>
 ```
 
 ### 2. CSS
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```css
 /* Default State */
 .card-section {
@@ -50,7 +70,11 @@ By combining `:has()` with `:user-invalid`, we can declaratively style any ances
 
 /* Change the icon too */
 .card-section:has(:user-invalid) .status-icon::after {
+<<<<<<< HEAD
   content: "⚠️";
+=======
+  content: '⚠️';
+>>>>>>> 4cfe05b (edit ImageUpload)
 }
 ```
 
@@ -60,6 +84,10 @@ Baseline status for :user-valid and :user-invalid: Widely available. It's been B
 Supported by: Chrome 119 (Oct 2023), Edge 119 (Nov 2023), Firefox 88 (Apr 2021), and Safari 16.5 (May 2023).
 
 ### CSS for Fallback
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4cfe05b (edit ImageUpload)
 We use a class `.has-error` on the parent to mimic the `:has()` behavior.
 
 ```css
@@ -80,6 +108,7 @@ Use a reusable utility that tracks interaction state using a `WeakMap`. This avo
 
 ```javascript
 const UserInvalidFallback = (() => {
+<<<<<<< HEAD
   const dirtyState = new WeakMap();
 
   const updateState = (input) => {
@@ -144,10 +173,83 @@ const UserInvalidFallback = (() => {
 // Initialize for a specific form
 const form = document.querySelector('#demo-form');
 UserInvalidFallback.init(form);
+=======
+  const dirtyState = new WeakMap()
+
+  const updateState = (input) => {
+    const isValid = input.checkValidity()
+
+    // Update both visual and ARIA state
+    input.classList.toggle('user-invalid-fallback', !isValid)
+    input.classList.toggle('user-valid-fallback', isValid)
+
+    if (!isValid) {
+      input.setAttribute('aria-invalid', 'true')
+    } else {
+      input.removeAttribute('aria-invalid')
+    }
+  }
+
+  const handleEvent = (event) => {
+    const input = event.target
+
+    if (event.type === 'reset') {
+      const controls = input.elements || []
+      for (const control of controls) {
+        dirtyState.delete(control)
+        control.classList.remove('user-invalid-fallback')
+        control.classList.remove('user-valid-fallback')
+        control.removeAttribute('aria-invalid')
+      }
+      return
+    }
+
+    if (!input.checkValidity) return
+
+    if (event.type === 'input' || event.type === 'change') {
+      const state = dirtyState.get(input) || {
+        hasInteracted: false,
+        hasBlurred: false,
+      }
+      state.hasInteracted = true
+      dirtyState.set(input, state)
+      if (state.hasBlurred) {
+        updateState(input)
+      }
+    } else if (event.type === 'blur') {
+      const state = dirtyState.get(input) || {
+        hasInteracted: false,
+        hasBlurred: false,
+      }
+      state.hasBlurred = true
+      dirtyState.set(input, state)
+      if (state.hasInteracted) {
+        updateState(input)
+      }
+    }
+  }
+
+  const init = (root = document) => {
+    if (CSS.supports('selector(:user-invalid)')) return
+
+    root.addEventListener('blur', handleEvent, true) // Capture phase
+    root.addEventListener('input', handleEvent)
+    root.addEventListener('change', handleEvent)
+    root.addEventListener('reset', handleEvent, true) // Capture resets
+  }
+
+  return { init }
+})()
+
+// Initialize for a specific form
+const form = document.querySelector('#demo-form')
+UserInvalidFallback.init(form)
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```
 
 ```js
 // 1. Initialize the generic fallback
+<<<<<<< HEAD
 const form = document.querySelector('#demo-form');
 UserInvalidFallback.init(form);
 
@@ -180,6 +282,44 @@ form.addEventListener('reset', () => {
     el.classList.remove('has-error-fallback');
   });
 });
+=======
+const form = document.querySelector('#demo-form')
+UserInvalidFallback.init(form)
+
+// 2. Add specialized "parent styling" logic (Separate from fallback)
+// Listen for changes to form validity after interaction
+form.addEventListener(
+  'blur',
+  (e) => {
+    if (!e.target.matches('input, select, textarea')) return
+
+    // Find the container we want to style (sync with CSS)
+    const container = e.target.closest('.card-section')
+    if (!container) return
+
+    // Check if ANY fallbacked input in this container is invalid
+    const hasError = container.querySelector('.user-invalid-fallback')
+    container.classList.toggle('has-error-fallback', !!hasError)
+  },
+  true,
+) // Capture phase to ensure we run after the fallback's blur listener
+
+// Also handle input events for immediate cleanup
+form.addEventListener('input', (e) => {
+  const container = e.target.closest('.card-section')
+  if (container) {
+    const hasError = container.querySelector('.user-invalid-fallback')
+    container.classList.toggle('has-error-fallback', !!hasError)
+  }
+})
+
+// Handle form resets
+form.addEventListener('reset', () => {
+  form.querySelectorAll('.has-error-fallback').forEach((el) => {
+    el.classList.remove('has-error-fallback')
+  })
+})
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```
 
 ## Other Considerations
@@ -189,6 +329,7 @@ form.addEventListener('reset', () => {
 ```javascript
 // Sync aria-invalid with the CSS :user-invalid state
 const syncAria = (el) => {
+<<<<<<< HEAD
   el.setAttribute?.('aria-invalid', el.matches(':user-invalid') ? 'true' : 'false');
 };
 
@@ -197,4 +338,17 @@ document.addEventListener('blur', (e) => syncAria(e.target), true);
 document.addEventListener('input', (e) => {
   if (e.target.hasAttribute('aria-invalid')) syncAria(e.target);
 });
+=======
+  el.setAttribute?.(
+    'aria-invalid',
+    el.matches(':user-invalid') ? 'true' : 'false',
+  )
+}
+
+// Update on blur (to show error) and input (to clear it)
+document.addEventListener('blur', (e) => syncAria(e.target), true)
+document.addEventListener('input', (e) => {
+  if (e.target.hasAttribute('aria-invalid')) syncAria(e.target)
+})
+>>>>>>> 4cfe05b (edit ImageUpload)
 ```

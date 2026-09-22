@@ -12,12 +12,20 @@ The **View Transitions API** allows you to specify element pairs that exist in d
 
 ### Step 1: Wrap State Changes in `startViewTransition`
 
+<<<<<<< HEAD
 For Single-Page Applications (SPAs) or simple state changes, wrap the logic that updates the DOM in `document.startViewTransition`. The browser captures a snapshot of the current state, runs the update, and then captures the new state. 
+=======
+For Single-Page Applications (SPAs) or simple state changes, wrap the logic that updates the DOM in `document.startViewTransition`. The browser captures a snapshot of the current state, runs the update, and then captures the new state.
+>>>>>>> 4cfe05b (edit ImageUpload)
 
 ```javascript
 function navigate(view) {
   // MANDATORY: Wrap the update in startViewTransition
+<<<<<<< HEAD
   document.startViewTransition(() => updateDOM(view));
+=======
+  document.startViewTransition(() => updateDOM(view))
+>>>>>>> 4cfe05b (edit ImageUpload)
 }
 ```
 
@@ -33,6 +41,7 @@ Because there are multiple items on the list view, you can not give the all of t
 
 ```css
 /* In the list view, give each */
+<<<<<<< HEAD
 #product-1 { view-transition-name: p1 }
 #product-2 { view-transition-name: p2 }
 #product-3 { view-transition-name: p3 }
@@ -42,15 +51,39 @@ Because there are multiple items on the list view, you can not give the all of t
 function updateDOM(clickedTransitionName){
   const hero = document.getElementById("hero");
   hero.style.viewTransitionName = clickedTransitionName;
+=======
+#product-1 {
+  view-transition-name: p1;
+}
+#product-2 {
+  view-transition-name: p2;
+}
+#product-3 {
+  view-transition-name: p3;
+}
+```
+
+```js
+function updateDOM(clickedTransitionName) {
+  const hero = document.getElementById('hero')
+  hero.style.viewTransitionName = clickedTransitionName
+>>>>>>> 4cfe05b (edit ImageUpload)
 }
 ```
 
 2. **Dynamic list item:** Assign the element on the detail page a `view-transition-name`, and apply that name to the item on the list page when it is selected. Remove the `view-transition-name` from the item on the list page when returning to the list page.
 
+<<<<<<< HEAD
 The `#hero` element on the detail page and the selected `.thumbnail` element on the list page share a `view-transition-name`. 
 
 ```css
 #hero{
+=======
+The `#hero` element on the detail page and the selected `.thumbnail` element on the list page share a `view-transition-name`.
+
+```css
+#hero {
+>>>>>>> 4cfe05b (edit ImageUpload)
   view-transition-name: hero;
 }
 .thumbnail.selected {
@@ -66,6 +99,7 @@ After navigating back to the list view, you must clean up the view transition cl
 
 ```javascript
 // Function called when a thumbnail is clicked
+<<<<<<< HEAD
 function goFromListToDetail(e){
   e.currentTarget.classList.add("selected");
   const hero = document.getElementById("hero");
@@ -86,11 +120,34 @@ function goFromListToDetail(e){
   transition.finished.finally(() => {
     document.getElementById("detail-heading")?.focus();
   });
+=======
+function goFromListToDetail(e) {
+  e.currentTarget.classList.add('selected')
+  const hero = document.getElementById('hero')
+  const bgColor = getComputedStyle(e.currentTarget).backgroundColor
+  hero.style.background = bgColor
+
+  // Trigger the transition, checking for support
+  if (!document.startViewTransition) {
+    document.body.classList.add('detail')
+    // MANDATORY Accessibility Routing: Route focus to the newly revealed heading to announce context and preserve logical tab flow
+    document.getElementById('detail-heading')?.focus()
+    return // MANDATORY: End function execution if view transitions are not supported.
+  }
+  const transition = document.startViewTransition(() => {
+    document.body.classList.add('detail')
+  })
+  // MANDATORY Accessibility Routing: Route focus after the view transition resolves
+  transition.finished.finally(() => {
+    document.getElementById('detail-heading')?.focus()
+  })
+>>>>>>> 4cfe05b (edit ImageUpload)
 }
 
 // Function called when navigating from detail back to list view
 function goFromDetailToList() {
   if (!document.startViewTransition) {
+<<<<<<< HEAD
     document.body.classList.remove("detail");
     document.getElementById("list-heading")?.focus();
     return;
@@ -109,12 +166,33 @@ function goFromDetailToList() {
       },
     );
   });
+=======
+    document.body.classList.remove('detail')
+    document.getElementById('list-heading')?.focus()
+    return
+  }
+  const transition = document.startViewTransition(() => {
+    document.body.classList.remove('detail')
+  })
+  // Clean up the list view and route focus
+  transition.finished.finally(() => {
+    // Route focus back to list view
+    document.getElementById('list-heading')?.focus()
+    // Remove selected classList to remove view-transition-names
+    document.querySelectorAll('.selected').forEach((element) => {
+      element.classList.remove('selected')
+    })
+  })
+>>>>>>> 4cfe05b (edit ImageUpload)
 }
 ```
 
 The method you choose will depend on the use case. The dynamic list item requires less repeated CSS, but more manual JavaScript cleanup.
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4cfe05b (edit ImageUpload)
 ### Step 3: Fix Aspect Ratio "Stretching"
 
 By default, the browser cross-fades the old and new snapshots within a group that stretches to fit both. If you are transitioning text, set the width of the text element to `fit-content` on both the old and new views, so that the transitioned element's aspect ratio is stable.
@@ -133,7 +211,11 @@ If you are transitioning elements that change aspect ratio, you may need to set 
 
 ```css
 ::view-transition-old(hero),
+<<<<<<< HEAD
 ::view-transition-new(hero){
+=======
+::view-transition-new(hero) {
+>>>>>>> 4cfe05b (edit ImageUpload)
   height: 100%;
 }
 ```
@@ -142,11 +224,19 @@ The pseudo-elements are snapshots of the live elements, so you can also use `obj
 
 ## Best Practices
 
+<<<<<<< HEAD
 -   **DO NOT** specify too many transitions. Only use shared elements for primary content that the user is actively tracking (e.g., hero images, headings).
 -   **DO** remove temporary `view-transition-name` values after the transition finishes to avoid side effects on future transitions.
 -   **DO NOT** transition elements with active animations. View transitions operate on snapshots, so any animations will appear to be paused during the view transition.
 -   **DO** respect user preferences for reduced motion using the `prefers-reduced-motion` media query.
 -   **MANDATORY Accessibility Routing**: View transitions morph page layouts dynamically but do not manage programmatic focus. If focus remains on an element that is hidden or removed during the transition, focus is abandoned, leaving keyboard and assistive technology users without context. Shift focus programmatically to an updated page heading or view container (using `tabindex="-1"`) immediately after the DOM updates or when the view transition's `finished` promise resolves.
+=======
+- **DO NOT** specify too many transitions. Only use shared elements for primary content that the user is actively tracking (e.g., hero images, headings).
+- **DO** remove temporary `view-transition-name` values after the transition finishes to avoid side effects on future transitions.
+- **DO NOT** transition elements with active animations. View transitions operate on snapshots, so any animations will appear to be paused during the view transition.
+- **DO** respect user preferences for reduced motion using the `prefers-reduced-motion` media query.
+- **MANDATORY Accessibility Routing**: View transitions morph page layouts dynamically but do not manage programmatic focus. If focus remains on an element that is hidden or removed during the transition, focus is abandoned, leaving keyboard and assistive technology users without context. Shift focus programmatically to an updated page heading or view container (using `tabindex="-1"`) immediately after the DOM updates or when the view transition's `finished` promise resolves.
+>>>>>>> 4cfe05b (edit ImageUpload)
 
 ```css
 @media (prefers-reduced-motion: reduce) {
@@ -166,12 +256,21 @@ Supported by: Chrome 111 (Mar 2023), Edge 111 (Mar 2023), Firefox 144 (Oct 2025)
 The View Transitions API is designed for progressive enhancement. Browsers that do not support it will simply execute the DOM update immediately without animation.
 
 ```javascript
+<<<<<<< HEAD
 function navigate(){
   if (!document.startViewTransition) {
     // Fallback: Just update the DOM
     updateDOM();
   } else {
     document.startViewTransition(() => updateDOM());
+=======
+function navigate() {
+  if (!document.startViewTransition) {
+    // Fallback: Just update the DOM
+    updateDOM()
+  } else {
+    document.startViewTransition(() => updateDOM())
+>>>>>>> 4cfe05b (edit ImageUpload)
   }
 }
 ```

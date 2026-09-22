@@ -38,7 +38,11 @@ Position the underline relative to the anchor using the inset properties and `an
 ul::before {
   /* DO NOT use position-area, which can not be transitioned. */
   /* Use calc() to offset the top slightly */
+<<<<<<< HEAD
   inset-block-start: calc(anchor(bottom) + .1lh);
+=======
+  inset-block-start: calc(anchor(bottom) + 0.1lh);
+>>>>>>> 4cfe05b (edit ImageUpload)
   inset-inline-start: anchor(left);
   inset-inline-end: anchor(right);
 }
@@ -49,7 +53,11 @@ Add a height and other visual styles.
 ```css
 ul::before {
   /* Apply your project's styles for the indicator */
+<<<<<<< HEAD
   block-size: .25lh;
+=======
+  block-size: 0.25lh;
+>>>>>>> 4cfe05b (edit ImageUpload)
   background: red;
 }
 ```
@@ -60,7 +68,11 @@ Finally, add a transition on the `inset` properties.
 ul::before {
   @media (prefers-reduced-motion: no-preference) {
     /* MANDATORY: The transition must be wrapped in a prefers-reduced-motion media query to respect user preferences. */
+<<<<<<< HEAD
     transition: inset .2s;
+=======
+    transition: inset 0.2s;
+>>>>>>> 4cfe05b (edit ImageUpload)
   }
 }
 ```
@@ -91,7 +103,14 @@ If anchor positioning is not supported in the browser, use a `border-bottom` to 
 ul li.active {
   @supports not (position-anchor: auto) {
     /* Choose a color appropriate to the app theme. */
+<<<<<<< HEAD
     border-bottom: .25lh var(--primary) solid;
   }
 }
 ```
+=======
+    border-bottom: 0.25lh var(--primary) solid;
+  }
+}
+```
+>>>>>>> 4cfe05b (edit ImageUpload)
