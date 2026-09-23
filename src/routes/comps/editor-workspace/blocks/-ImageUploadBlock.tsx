@@ -2,7 +2,7 @@ import type React from 'react'
 import { $getNodeByKey } from 'lexical'
 import { X } from 'lucide-react'
 import { $isBlockNode } from '../lexical/-block-node'
-import type { BlockComponentProps } from './registry'
+import type { BlockComponentProps } from './-registry'
 import { ImageUpload } from '@/components/image-upload'
 
 export type ImageUploadBlockData = {

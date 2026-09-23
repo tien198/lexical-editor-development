@@ -11,8 +11,8 @@ import {
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { $isBlockNode } from '../lexical/-block-node'
-import { useBlockField } from './use-block-field'
-import type { BlockComponentProps } from './registry'
+import { useBlockField } from './-use-block-field'
+import type { BlockComponentProps } from './-registry'
 
 export type BannerStyle = 'info' | 'warning' | 'success' | 'destructive' | 'tip'
 

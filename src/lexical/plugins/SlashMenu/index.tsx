@@ -20,7 +20,7 @@ import {
 } from 'lexical'
 import type { TextNode } from 'lexical'
 import { $createBlockNode } from '@/routes/comps/editor-workspace/lexical/-block-node'
-import { BLOCK_REGISTRY } from '@/routes/comps/editor-workspace/blocks/registry'
+import { BLOCK_REGISTRY } from '@/routes/comps/editor-workspace/blocks/-registry'
 
 class SlashMenuOption extends MenuOption {
   title: string

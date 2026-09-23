@@ -1,5 +1,5 @@
-import { useBlockField } from './use-block-field'
-import type { BlockComponentProps } from './registry'
+import { useBlockField } from './-use-block-field'
+import type { BlockComponentProps } from './-registry'
 
 export function CTABlock({ data, nodeKey, editor }: BlockComponentProps) {
   const title = useBlockField(editor, nodeKey, 'title', data.title || '')

@@ -1,8 +1,8 @@
 import type React from 'react'
 import type { LexicalEditor } from 'lexical'
-import { BannerBlock } from './BannerBlock'
-import { CTABlock } from './CTABlock'
-import { ImageUploadBlock } from './ImageUploadBlock'
+import { BannerBlock } from './-BannerBlock'
+import { CTABlock } from './-CTABlock'
+import { ImageUploadBlock } from './-ImageUploadBlock'
 
 export type BlockComponentProps<T = any> = {
   data: T

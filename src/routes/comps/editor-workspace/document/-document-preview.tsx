@@ -44,7 +44,7 @@ export function DocumentPreview({
   const isPercentHeight = typeof height === 'string' && height.includes('%')
 
   return (
-    <div className="flex flex-col gap-4 h-full min-h-[calc(100dvh-179px)]">
+    <div className="flex flex-col gap-4 sticky top-4 h-[calc(100dvh-179px)]">
       <div className="flex flex-col flex-1 border rounded-md overflow-hidden bg-[#111]">
         {/* Toolbar */}
         <div className="flex items-center justify-center gap-4 bg-[#111] text-white p-2 text-xs border-b border-[#333]">
