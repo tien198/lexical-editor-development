@@ -7,14 +7,10 @@ export const POSTS: Post[] = [
     title: 'Getting Started with Lexical',
     slug: 'getting-started-with-lexical',
     status: 'published',
-    meta: [
-      { title: 'Getting Started with Lexical' },
-      { name: 'description', content: 'Lexical is an extensible text editor framework that provides excellent reliability, accessibility, and performance.' },
-      { property: 'og:title', content: 'Getting Started with Lexical' },
-      { property: 'og:description', content: 'Lexical is an extensible text editor framework that provides excellent reliability, accessibility, and performance.' },
-      { property: 'og:type', content: 'article' },
-      { name: 'twitter:card', content: 'summary_large_image' },
-    ],
+    meta_title: 'Getting Started with Lexical',
+    meta_description:
+      'Lexical is an extensible text editor framework that provides excellent reliability, accessibility, and performance.',
+    meta_image_id: '101',
     heroImage: {
       id: 101,
       url: '/media/lexical-hero.jpg',
@@ -105,14 +101,9 @@ export const POSTS: Post[] = [
     title: 'Building Rich Text Editors',
     slug: 'building-rich-text-editors',
     status: 'published',
-    meta: [
-      { title: 'Building Rich Text Editors' },
-      { name: 'description', content: 'Rich text editors are one of the most complex UI components to build correctly.' },
-      { property: 'og:title', content: 'Building Rich Text Editors' },
-      { property: 'og:description', content: 'Rich text editors are one of the most complex UI components to build correctly.' },
-      { property: 'og:type', content: 'article' },
-      { name: 'twitter:card', content: 'summary_large_image' },
-    ],
+    meta_title: 'Building Rich Text Editors',
+    meta_description:
+      'Rich text editors are one of the most complex UI components to build correctly.',
     heroImage: null,
     authors: [{ id: 1, name: 'Admin', email: 'admin@example.com' }],
     categories: [{ id: 2, title: 'Engineering', slug: 'engineering' }],
@@ -156,14 +147,10 @@ export const POSTS: Post[] = [
     title: 'Content Management Best Practices',
     slug: 'content-management-best-practices',
     status: 'draft',
-    meta: [
-      { title: 'Content Management Best Practices' },
-      { name: 'description', content: 'A well-structured content model makes everything easier — from authoring to rendering to migration.' },
-      { property: 'og:title', content: 'Content Management Best Practices' },
-      { property: 'og:description', content: 'A well-structured content model makes everything easier — from authoring to rendering to migration.' },
-      { property: 'og:type', content: 'article' },
-      { name: 'twitter:card', content: 'summary_large_image' },
-    ],
+    meta_title: 'Content Management Best Practices',
+    meta_description:
+      'A well-structured content model makes everything easier — from authoring to rendering to migration.',
+    meta_image_id: '102',
     heroImage: {
       id: 102,
       url: '/media/cms-hero.jpg',

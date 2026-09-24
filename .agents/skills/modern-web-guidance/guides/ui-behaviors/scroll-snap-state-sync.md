@@ -5,16 +5,17 @@ Synchronizing UI state with a scrollable container's snap position traditionally
 ## Implementation
 
 ### 1. Configure Scroll Snap in CSS
+
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
-The container must have `scroll-snap-type` defined, and have children with `scroll-snap-align` for the browser to track snap targets. In a long article with a table of contents, you can use this to snap section headers to the top of the viewport.
+> > > > > > > 4cfe05b (edit ImageUpload)
+> > > > > > > The container must have `scroll-snap-type` defined, and have children with `scroll-snap-align` for the browser to track snap targets. In a long article with a table of contents, you can use this to snap section headers to the top of the viewport.
 
 ```css
 main {
 <<<<<<< HEAD
-    /* Enable scroll snapping on the container */  
+    /* Enable scroll snapping on the container */
 =======
   /* Enable scroll snapping on the container */
 >>>>>>> 4cfe05b (edit ImageUpload)
@@ -29,11 +30,12 @@ h2 {
 ```
 
 ### 2. Listen for Snap Changes
+
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
-Use the `scrollsnapchange` event on the scroll container to react when the user finishes scrolling and the browser snaps to a new element. In our TOC demo, we use this to highlight the active link in the sidebar.
+> > > > > > > 4cfe05b (edit ImageUpload)
+> > > > > > > Use the `scrollsnapchange` event on the scroll container to react when the user finishes scrolling and the browser snaps to a new element. In our TOC demo, we use this to highlight the active link in the sidebar.
 
 ```html
 <!-- MANDATORY: Wrap table of contents links inside a proper navigation landmark -->
@@ -59,7 +61,7 @@ main.addEventListener('scrollsnapchange', (event) => {
   // Use snapTargetBlock for vertical or snapTargetInline for horizontal
 <<<<<<< HEAD
   const snappedHeader = event.snapTargetBlock;
-  
+
   if (snappedHeader) {
     setSelectedParagraph(snappedHeader.id);
   }
@@ -67,13 +69,14 @@ main.addEventListener('scrollsnapchange', (event) => {
 ```
 
 =======
-  const snappedHeader = event.snapTargetBlock
+const snappedHeader = event.snapTargetBlock
 
-  if (snappedHeader) {
-    setSelectedParagraph(snappedHeader.id)
-  }
+if (snappedHeader) {
+setSelectedParagraph(snappedHeader.id)
+}
 })
-```
+
+````
 >>>>>>> 4cfe05b (edit ImageUpload)
 
 ## Accessibility
@@ -122,4 +125,4 @@ if (!('onscrollsnapchange' in HTMLElement.prototype)) {
   // Observe all snap targets (e.g., section headers)
   document.querySelectorAll('h2').forEach(header => observer.observe(header));
 }
-```
+````

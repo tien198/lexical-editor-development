@@ -220,11 +220,12 @@ When using scroll-driven animations, it's important to follow a few best practic
   - If the animation is only considered to be decorative, opt for Progressive Enhancement and **DO NOT** provide a fallback.
 - **DO** respect user preferences: Some users prefer to have less motion on the web. Use the `prefers-reduced-motion` media query to disable or reduce your animations for these users.
 - **DO** try to animate only performant CSS properties: For the smoothest animations, stick to animating properties that can be handled by the browser's compositor thread, such as `transform` and `opacity`. Animating other properties like `width` or `height` can lead to performance issues.
-<<<<<<< HEAD
-- **DO** use the correct declaration order: When using the `animation` shorthand property, declare `animation-timeline` and `animation-range` *after* it to prevent the shorthand from resetting the timeline.
-=======
+  <<<<<<< HEAD
 - **DO** use the correct declaration order: When using the `animation` shorthand property, declare `animation-timeline` and `animation-range` _after_ it to prevent the shorthand from resetting the timeline.
->>>>>>> 4cfe05b (edit ImageUpload)
+  \=======
+- **DO** use the correct declaration order: When using the `animation` shorthand property, declare `animation-timeline` and `animation-range` _after_ it to prevent the shorthand from resetting the timeline.
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 When using the `view-timeline` property to create a scroll-driven animation:
 
@@ -335,5 +336,7 @@ And the accompanying CSS:
 <<<<<<< HEAD
 This fallback provides a more accurate, scroll-driven animation for browsers that do not support the native CSS feature, ensuring a more consistent experience for all users. By using a series of thresholds for the `IntersectionObserver`, we can track the scroll position with more precision and create a smoother animation.
 =======
+
 This fallback provides a more accurate, scroll-driven animation for browsers that do not support the native CSS feature, ensuring a more consistent experience for all users. By using a series of thresholds for the `IntersectionObserver`, we can track the scroll position with more precision and create a smoother animation.
->>>>>>> 4cfe05b (edit ImageUpload)
+
+> > > > > > > 4cfe05b (edit ImageUpload)

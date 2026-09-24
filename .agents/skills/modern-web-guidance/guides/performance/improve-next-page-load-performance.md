@@ -1,10 +1,12 @@
 # Improve next page load performance
 
 <<<<<<< HEAD
-One of the most effective ways to improve page load performance for users navigating a site is to initiate loading the next page they're about to visit *before* they visit it. This can be done through a technique called speculative loading using the Speculation Rules API.
-=======
 One of the most effective ways to improve page load performance for users navigating a site is to initiate loading the next page they're about to visit _before_ they visit it. This can be done through a technique called speculative loading using the Speculation Rules API.
->>>>>>> 4cfe05b (edit ImageUpload)
+=======
+
+One of the most effective ways to improve page load performance for users navigating a site is to initiate loading the next page they're about to visit _before_ they visit it. This can be done through a technique called speculative loading using the Speculation Rules API.
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 ## How it works
 
@@ -53,20 +55,20 @@ A `tag` can also be used, either at a global level or on a per-rule basis. When 
 
 ```html
 <script type="speculationrules">
-  {
-    "tag": "all-links-speculations",
-<<<<<<< HEAD
-    "prerender": [{
-      "where": { "href_matches": "/*" }
-    }]
-=======
-    "prerender": [
-      {
+    {
+      "tag": "all-links-speculations",
+  <<<<<<< HEAD
+      "prerender": [{
         "where": { "href_matches": "/*" }
-      }
-    ]
->>>>>>> 4cfe05b (edit ImageUpload)
-  }
+      }]
+  =======
+      "prerender": [
+        {
+          "where": { "href_matches": "/*" }
+        }
+      ]
+  >>>>>>> 4cfe05b (edit ImageUpload)
+    }
 </script>
 ```
 
@@ -74,36 +76,36 @@ A `tag` can also be used, either at a global level or on a per-rule basis. When 
 
 ```html
 <script type="speculationrules">
-  {
-    "tag": "speculations-with-exclusions",
-<<<<<<< HEAD
-    "prerender": [{
-      "where": {
-        "and": [
-          { "href_matches": "/*" },
-          { "not": {"href_matches": "/wp-admin"}},
-          { "not": {"href_matches": "/*\\?*(^|&)add-to-cart=*"}},
-          { "not": {"selector_matches": ".do-not-prerender"}},
-          { "not": {"selector_matches": "[rel~=nofollow]"}}
-        ]
-      }
-    }]
-=======
-    "prerender": [
-      {
+    {
+      "tag": "speculations-with-exclusions",
+  <<<<<<< HEAD
+      "prerender": [{
         "where": {
           "and": [
             { "href_matches": "/*" },
-            { "not": { "href_matches": "/wp-admin" } },
-            { "not": { "href_matches": "/*\\?*(^|&)add-to-cart=*" } },
-            { "not": { "selector_matches": ".do-not-prerender" } },
-            { "not": { "selector_matches": "[rel~=nofollow]" } }
+            { "not": {"href_matches": "/wp-admin"}},
+            { "not": {"href_matches": "/*\\?*(^|&)add-to-cart=*"}},
+            { "not": {"selector_matches": ".do-not-prerender"}},
+            { "not": {"selector_matches": "[rel~=nofollow]"}}
           ]
         }
-      }
-    ]
->>>>>>> 4cfe05b (edit ImageUpload)
-  }
+      }]
+  =======
+      "prerender": [
+        {
+          "where": {
+            "and": [
+              { "href_matches": "/*" },
+              { "not": { "href_matches": "/wp-admin" } },
+              { "not": { "href_matches": "/*\\?*(^|&)add-to-cart=*" } },
+              { "not": { "selector_matches": ".do-not-prerender" } },
+              { "not": { "selector_matches": "[rel~=nofollow]" } }
+            ]
+          }
+        }
+      ]
+  >>>>>>> 4cfe05b (edit ImageUpload)
+    }
 </script>
 ```
 
@@ -113,35 +115,35 @@ This example shows a rule set that prefetches all links eagerly, and then goes f
 
 ```html
 <script type="speculationrules">
-  {
-<<<<<<< HEAD
-    "prefetch": [{
-      "tag": "prefetch-speculations",
-      "where": { "href_matches": "/*" },
-      "eagerness": "eager"
-    }],
-    "prerender": [{
-      "tag": "prerender-speculations",
-      "where": { "href_matches": "/*" },
-      "eagerness": "moderate"
-    }]
-=======
-    "prefetch": [
-      {
+    {
+  <<<<<<< HEAD
+      "prefetch": [{
         "tag": "prefetch-speculations",
         "where": { "href_matches": "/*" },
         "eagerness": "eager"
-      }
-    ],
-    "prerender": [
-      {
+      }],
+      "prerender": [{
         "tag": "prerender-speculations",
         "where": { "href_matches": "/*" },
         "eagerness": "moderate"
-      }
-    ]
->>>>>>> 4cfe05b (edit ImageUpload)
-  }
+      }]
+  =======
+      "prefetch": [
+        {
+          "tag": "prefetch-speculations",
+          "where": { "href_matches": "/*" },
+          "eagerness": "eager"
+        }
+      ],
+      "prerender": [
+        {
+          "tag": "prerender-speculations",
+          "where": { "href_matches": "/*" },
+          "eagerness": "moderate"
+        }
+      ]
+  >>>>>>> 4cfe05b (edit ImageUpload)
+    }
 </script>
 ```
 

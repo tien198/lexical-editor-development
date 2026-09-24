@@ -42,7 +42,8 @@ Even with `interestfor` handling the semantics above, your implementation MUST s
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 - **Dismissible:** Users must be able to dismiss the tooltip without moving pointer hover or keyboard focus (e.g., by pressing the `Escape` key). The native `popover` attribute manages this binding automatically.
 - **Hoverable:** The pointer must be able to move over the tooltip content itself without the tooltip disappearing. This allows users with magnification tools to read the tooltip text safely.
 - **Persistent:** The tooltip must remain visible until the hover or focus trigger is removed, the user explicitly dismisses it, or its content is no longer valid.
@@ -53,7 +54,7 @@ The tooltip can be positioned using anchor positioning. When the tooltip is open
 
 <<<<<<< HEAD
 
-```css
+````css
 /* MANDATORY: use explicit anchor names for compatibility with the polyfill */
 button[interestfor="tooltip-dom"] {
 =======
@@ -66,7 +67,7 @@ button[interestfor='tooltip-dom'] {
 #tooltip-dom {
   position-anchor: --tooltip-dom;
 }
-```
+````
 
 Also, the polyfill does not support `position-area` on popovers, so **MANDATORY:** DO position using `anchor()` functions, and **YOU MUST** include a `position-try` fallback (e.g. `flip-block` or `flip-inline`).
 
@@ -87,7 +88,9 @@ Also, the polyfill does not support `position-area` on popovers, so **MANDATORY:
 <<<<<<< HEAD
 
 =======
->>>>>>> 4cfe05b (edit ImageUpload)
+
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 ### Fallback strategies
 
 Interest invokers has limited availability.
@@ -98,16 +101,16 @@ Interest invokers must be conditionally polyfilled using the `interestfor` polyf
 
 ```html
 <script type="module">
-<<<<<<< HEAD
-  if(!HTMLButtonElement.prototype.hasOwnProperty("interestForElement")){
-    // CDN link only used for example, prefer bundling.
-    await import("https://unpkg.com/interestfor@latest");
-=======
-  if (!HTMLButtonElement.prototype.hasOwnProperty('interestForElement')) {
-    // CDN link only used for example, prefer bundling.
-    await import('https://unpkg.com/interestfor@latest')
->>>>>>> 4cfe05b (edit ImageUpload)
-  }
+  <<<<<<< HEAD
+    if(!HTMLButtonElement.prototype.hasOwnProperty("interestForElement")){
+      // CDN link only used for example, prefer bundling.
+      await import("https://unpkg.com/interestfor@latest");
+  =======
+    if (!HTMLButtonElement.prototype.hasOwnProperty('interestForElement')) {
+      // CDN link only used for example, prefer bundling.
+      await import('https://unpkg.com/interestfor@latest')
+  >>>>>>> 4cfe05b (edit ImageUpload)
+    }
 </script>
 ```
 
@@ -138,14 +141,14 @@ Without a bundler, import from a CDN inside a `<script type="module">`:
 
 ```html
 <script type="module">
-<<<<<<< HEAD
-  if (!("popover" in HTMLElement.prototype)) {
-    import("https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js");
-=======
-  if (!('popover' in HTMLElement.prototype)) {
-    import('https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js')
->>>>>>> 4cfe05b (edit ImageUpload)
-  }
+  <<<<<<< HEAD
+    if (!("popover" in HTMLElement.prototype)) {
+      import("https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js");
+  =======
+    if (!('popover' in HTMLElement.prototype)) {
+      import('https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js')
+  >>>>>>> 4cfe05b (edit ImageUpload)
+    }
 </script>
 ```
 
@@ -168,22 +171,24 @@ The `popover-polyfill` does not polyfill the hint behavior in browsers that supp
 Anchor positioning is not natively supported by any major browser yet.
 
 <<<<<<< HEAD
-**MANDATORY:** To support browsers without anchor positioning, you MUST use the `@oddbird/css-anchor-positioning` polyfill. It does not support implicit anchors, so you MUST add anchor names to the trigger. Additionally, `position-area` is not supported on popovers by the polyfill, so you MUST use `anchor()` on the desired insets. 
-=======
 **MANDATORY:** To support browsers without anchor positioning, you MUST use the `@oddbird/css-anchor-positioning` polyfill. It does not support implicit anchors, so you MUST add anchor names to the trigger. Additionally, `position-area` is not supported on popovers by the polyfill, so you MUST use `anchor()` on the desired insets.
->>>>>>> 4cfe05b (edit ImageUpload)
+=======
+
+**MANDATORY:** To support browsers without anchor positioning, you MUST use the `@oddbird/css-anchor-positioning` polyfill. It does not support implicit anchors, so you MUST add anchor names to the trigger. Additionally, `position-area` is not supported on popovers by the polyfill, so you MUST use `anchor()` on the desired insets.
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 ```html
 <!-- MANDATORY: Conditionally install the anchor positioning polyfill -->
 <script type="module">
-<<<<<<< HEAD
-  if (!("anchorName" in document.documentElement.style)) {
-    await import("https://unpkg.com/@oddbird/css-anchor-positioning");
-=======
-  if (!('anchorName' in document.documentElement.style)) {
-    await import('https://unpkg.com/@oddbird/css-anchor-positioning')
->>>>>>> 4cfe05b (edit ImageUpload)
-  }
+  <<<<<<< HEAD
+    if (!("anchorName" in document.documentElement.style)) {
+      await import("https://unpkg.com/@oddbird/css-anchor-positioning");
+  =======
+    if (!('anchorName' in document.documentElement.style)) {
+      await import('https://unpkg.com/@oddbird/css-anchor-positioning')
+  >>>>>>> 4cfe05b (edit ImageUpload)
+    }
 </script>
 ```
 
@@ -205,6 +210,9 @@ button[interestfor='tooltip-attrs'] {
 }
 <<<<<<< HEAD
 ```
+
 =======
+
 ```
 >>>>>>> 4cfe05b (edit ImageUpload)
+```

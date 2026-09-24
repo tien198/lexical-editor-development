@@ -9,13 +9,14 @@ The `Temporal` API provides a clean solution with `Temporal.PlainDate` and its `
 1. **MANDATORY:** **Parse the starting date**: Use `Temporal.PlainDate.from()` to create a date object.
 2. **MANDATORY:** **Add the duration**: Use the `.add()` method with a duration object (e.g., `{ months: 1 }`).
 3. **OPTIONAL:** **Specify overflow behavior**: Use the `overflow` option to control how invalid dates (like Feb 31) are handled.
-<<<<<<< HEAD
-    - `'constrain'` (default): Clamps to the last valid day of the month.
-    - `'reject'`: Throws a `RangeError`.
-=======
+   <<<<<<< HEAD
    - `'constrain'` (default): Clamps to the last valid day of the month.
    - `'reject'`: Throws a `RangeError`.
->>>>>>> 4cfe05b (edit ImageUpload)
+     \=======
+   - `'constrain'` (default): Clamps to the last valid day of the month.
+   - `'reject'`: Throws a `RangeError`.
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 ### Example: Subscription Billing Cycle
 
@@ -97,21 +98,24 @@ function initializeApp() {
   console.log(date.add({ months: 1 }).toString());
 }
 ```
+
 =======
 ;(async () => {
-  if (typeof Temporal === 'undefined') {
-    // Load the polyfill conditionally
-    const module = await import('https://esm.sh/@js-temporal/polyfill')
-    globalThis.Temporal = module.Temporal
-    // Extend Date.prototype if needed
-    Date.prototype.toTemporalInstant = module.toTemporalInstant
-    initializeApp()
-  }
+if (typeof Temporal === 'undefined') {
+// Load the polyfill conditionally
+const module = await import('https://esm.sh/@js-temporal/polyfill')
+globalThis.Temporal = module.Temporal
+// Extend Date.prototype if needed
+Date.prototype.toTemporalInstant = module.toTemporalInstant
+initializeApp()
+}
 })()
 
 function initializeApp() {
-  const date = Temporal.PlainDate.from('2024-01-31')
-  console.log(date.add({ months: 1 }).toString())
+const date = Temporal.PlainDate.from('2024-01-31')
+console.log(date.add({ months: 1 }).toString())
 }
+
 ```
 >>>>>>> 4cfe05b (edit ImageUpload)
+```

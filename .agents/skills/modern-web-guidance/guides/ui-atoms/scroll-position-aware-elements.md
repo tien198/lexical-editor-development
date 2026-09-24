@@ -60,11 +60,12 @@ Supported by: Chrome 133 (Feb 2025) and Edge 133 (Feb 2025).
 Unsupported in: Firefox and Safari.
 
 ### Basic Fallback
+
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
-If `container-scroll-state-queries` is not supported, the floating element will remain invisible because of the default `visibility: hidden`. To ensure functionality, you can choose to make the element always visible in unsupported browsers.
+> > > > > > > 4cfe05b (edit ImageUpload)
+> > > > > > > If `container-scroll-state-queries` is not supported, the floating element will remain invisible because of the default `visibility: hidden`. To ensure functionality, you can choose to make the element always visible in unsupported browsers.
 
 ```css
 /* Fallback for browsers that do not support the feature */
@@ -79,12 +80,12 @@ If `container-scroll-state-queries` is not supported, the floating element will 
     visibility: hidden;
     opacity: 0;
   }
-<<<<<<< HEAD
-  
-=======
-
->>>>>>> 4cfe05b (edit ImageUpload)
-  @container scroll-state(scrollable: top) {
+  <<<<<<<
+    HEAD
+    =======>>>>>>>4cfe05b
+    (edit ImageUpload)
+    @container
+    scroll-state(scrollable: top) {
     .back-to-top {
       visibility: visible;
       opacity: 1;
@@ -95,11 +96,12 @@ If `container-scroll-state-queries` is not supported, the floating element will 
 ```
 
 ### Advanced Fallback (Intersection Observer)
+
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
-If dynamic visibility is required, use an `IntersectionObserver` to toggle a class when a sentinel element at the top of the scroller goes out of view.
+> > > > > > > 4cfe05b (edit ImageUpload)
+> > > > > > > If dynamic visibility is required, use an `IntersectionObserver` to toggle a class when a sentinel element at the top of the scroller goes out of view.
 
 ```html
 <!-- Sentinel element placed at the top of the scroller -->

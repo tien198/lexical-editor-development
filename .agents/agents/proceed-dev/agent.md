@@ -1,6 +1,6 @@
 ---
-name: Tanstack Dev
-description: Executes technical implementation plans step-by-step with deep reasoning. Specializes in full-stack code changes across TanStack Start, React 19, server functions, and UI components.
+name: Professional_Dev
+description: Executes technical implementation plans step-by-step with deep reasoning
 model: 'Gemini 3.8 Flash (High)'
 reasoning_effort: high
 ---

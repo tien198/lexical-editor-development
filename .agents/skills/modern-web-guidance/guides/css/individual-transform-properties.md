@@ -10,17 +10,20 @@ Individual transform properties are always applied in a **fixed order**, regardl
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 1. `translate`
 2. `rotate`
 3. `scale`
 4. `transform` (applied last)
 
 <<<<<<< HEAD
-If you require a different order (e.g., scaling *before* rotating), you must continue using the `transform` property functions.
-=======
 If you require a different order (e.g., scaling _before_ rotating), you must continue using the `transform` property functions.
->>>>>>> 4cfe05b (edit ImageUpload)
+=======
+
+If you require a different order (e.g., scaling _before_ rotating), you must continue using the `transform` property functions.
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 Transform functions do not override the individual transform properties. In other words, `scale: 2; transform: scale(3);` will first scale by 2x, then again by 3x, for a total of 6x.
 
@@ -61,7 +64,7 @@ The primary benefit is the ability to define overlapping animations or transitio
   /* Define independent animations that don't overwrite each other */
   animation: float 3s infinite ease-in-out;
 <<<<<<< HEAD
-  
+
 =======
 
 >>>>>>> 4cfe05b (edit ImageUpload)

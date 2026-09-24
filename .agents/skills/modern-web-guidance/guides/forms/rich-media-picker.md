@@ -156,7 +156,7 @@ For browsers that do not yet support `appearance: base-select`, the `<select>` e
 
 <<<<<<< HEAD
 
-```javascript
+````javascript
 document.addEventListener("DOMContentLoaded", () => {
   // Check if browser supports base-select value
   if (!CSS.supports("appearance", "base-select")) {
@@ -172,4 +172,4 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 })
 >>>>>>> 4cfe05b (edit ImageUpload)
-```
+````

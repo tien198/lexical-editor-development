@@ -273,15 +273,17 @@ Supported by: Chrome 129 (Sep 2024), Edge 129 (Sep 2024), Firefox 119 (Oct 2023)
 
 Always install 'webauthn-polyfills' and import it in the context.
 <<<<<<< HEAD
-Consider as long as  `PublicKeyCredential` is supported, `PublicKeyCredential.parseCreationOptionsFromJSON` and `PublicKeyCredential.prototype.toJSON` are also supported. 
+Consider as long as `PublicKeyCredential` is supported, `PublicKeyCredential.parseCreationOptionsFromJSON` and `PublicKeyCredential.prototype.toJSON` are also supported.
 
-```js 
-import 'webauthn-polyfills';
-``` 
+```js
+import 'webauthn-polyfills'
+```
+
 =======
 Consider as long as `PublicKeyCredential` is supported, `PublicKeyCredential.parseCreationOptionsFromJSON` and `PublicKeyCredential.prototype.toJSON` are also supported.
 
 ```js
 import 'webauthn-polyfills'
 ```
->>>>>>> 4cfe05b (edit ImageUpload)
+
+> > > > > > > 4cfe05b (edit ImageUpload)

@@ -79,11 +79,12 @@ When using scroll-driven animations, it's important to follow a few best practic
   - If the animation is only considered to be decorative, opt for Progressive Enhancement and **DO NOT** provide a fallback.
 - **DO** respect user preferences: Some users prefer to have less motion on the web. Use the `prefers-reduced-motion` media query to disable or reduce your animations for these users.
 - **DO** try to animate only performant CSS properties: For the smoothest animations, stick to animating properties that can be handled by the browser's compositor thread, such as `transform` and `opacity`. Animating other properties like `width` or `height` can lead to performance issues.
-<<<<<<< HEAD
-- **DO** use the correct declaration order: When using the `animation` shorthand property, declare `animation-timeline` and `animation-range` *after* it to prevent the shorthand from resetting the timeline.
-=======
+  <<<<<<< HEAD
 - **DO** use the correct declaration order: When using the `animation` shorthand property, declare `animation-timeline` and `animation-range` _after_ it to prevent the shorthand from resetting the timeline.
->>>>>>> 4cfe05b (edit ImageUpload)
+  \=======
+- **DO** use the correct declaration order: When using the `animation` shorthand property, declare `animation-timeline` and `animation-range` _after_ it to prevent the shorthand from resetting the timeline.
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 When using the `scroll()` function to create a scroll-driven animation:
 

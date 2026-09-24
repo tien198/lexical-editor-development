@@ -95,14 +95,16 @@ For browsers that do not yet support `appearance: base-select`, the `<select>` e
 <<<<<<< HEAD
 
 ```javascript
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   // Check if browser supports base-select value
-  if (!CSS.supports("appearance", "base-select")) {
+  if (!CSS.supports('appearance', 'base-select')) {
     // Custom select overrides are not supported natively.
   }
-});
+})
 ```
+
 =======
+
 ```javascript
 document.addEventListener('DOMContentLoaded', () => {
   // Check if browser supports base-select value
@@ -111,4 +113,5 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 })
 ```
->>>>>>> 4cfe05b (edit ImageUpload)
+
+> > > > > > > 4cfe05b (edit ImageUpload)

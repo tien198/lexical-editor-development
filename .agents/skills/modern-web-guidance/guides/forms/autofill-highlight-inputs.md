@@ -10,7 +10,8 @@ When styling autofilled states, you must adhere to accessibility best practices:
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 - **Multiple State Indicators**: Do not rely on border color alone to indicate the autofilled state. Use multiple indicators such as border thickness and custom background shading to ensure the state is perceivable.
 - **Preserve Focus Indicators**: Never remove focus outlines (`outline: none`) without providing a clear, high-contrast replacement for keyboard users.
 

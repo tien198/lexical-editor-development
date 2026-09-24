@@ -131,10 +131,12 @@ The track configuration is gated behind an `.is-initialized` class on the list i
 The action color lives on the spacers (Step 2). The action **icon** lives on the list item itself, anchored to the row's left and right edges.
 
 <<<<<<< HEAD
-> **Note:** Throughout this guide, "left" refers to the *left side of the row* (which is revealed by swiping right), and "right" refers to the *right side of the row* (revealed by swiping left).
-=======
+
 > **Note:** Throughout this guide, "left" refers to the _left side of the row_ (which is revealed by swiping right), and "right" refers to the _right side of the row_ (revealed by swiping left).
->>>>>>> 4cfe05b (edit ImageUpload)
+> \=======
+> **Note:** Throughout this guide, "left" refers to the _left side of the row_ (which is revealed by swiping right), and "right" refers to the _right side of the row_ (revealed by swiping left).
+>
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 The placement, sizing, and motion below are a **starting suggestion**, not a requirement. Adjust the icon size, edge insets, threshold-pop scale, transition duration, and even the choice of pseudo-elements vs. real DOM nodes to match your design. The only mechanical requirement is that the icon sits behind the content (so the content can cover it pre-swipe) and inside the list item (so it doesn't scroll with the spacer). Everything else is taste.
 
@@ -536,15 +538,17 @@ if (ratio < commitThreshold) {
 }
 ```
 
-A note on naming: `removeItem` is named for the destructive case, but the function it runs (collapse the row's height, slide the content off-screen, then drop the node) is really a generic "this row is done, animate it away" routine. It works just as well for archive, mark-as-read, or snooze — the row goes away from *this* list either way. If your handlers don't actually remove anything (e.g., both move the item elsewhere), rename it to something neutral like `dismissItem` so the code reads correctly.
+A note on naming: `removeItem` is named for the destructive case, but the function it runs (collapse the row's height, slide the content off-screen, then drop the node) is really a generic "this row is done, animate it away" routine. It works just as well for archive, mark-as-read, or snooze — the row goes away from _this_ list either way. If your handlers don't actually remove anything (e.g., both move the item elsewhere), rename it to something neutral like `dismissItem` so the code reads correctly.
 =======
-  const handler = direction === 'left' ? archiveItem : removeItem
-  handler(item, content, direction, entry)
-  viewportObserver.unobserve(item)
-  observer.disconnect()
-  return
+
+const handler = direction === 'left' ? archiveItem : removeItem
+handler(item, content, direction, entry)
+viewportObserver.unobserve(item)
+observer.disconnect()
+return
 }
-```
+
+````
 
 A note on naming: `removeItem` is named for the destructive case, but the function it runs (collapse the row's height, slide the content off-screen, then drop the node) is really a generic "this row is done, animate it away" routine. It works just as well for archive, mark-as-read, or snooze — the row goes away from _this_ list either way. If your handlers don't actually remove anything (e.g., both move the item elsewhere), rename it to something neutral like `dismissItem` so the code reads correctly.
 >>>>>>> 4cfe05b (edit ImageUpload)
@@ -596,7 +600,7 @@ To make the two actions visually distinct, hoist a color and icon for each direc
   background-image: var(--right-action-icon);
 }
 >>>>>>> 4cfe05b (edit ImageUpload)
-```
+````
 
 With this setup, the spacers no longer need their own background-color (the track's gradient handles the reveal), so you can drop the `background-color` rule on `.SwipeableList-track::before, ::after` from Step 2 if you're using this dual-action variant.
 
@@ -604,11 +608,13 @@ With this setup, the spacers no longer need their own background-color (the trac
 
 - **DO** use `mandatory` snap, not `proximity`. With `proximity`, the row can rest partially scrolled, leaving the action background half-visible.
 - **DO** set `overscroll-behavior-x: none` on the track. Without it, an over-swipe can trigger the browser's back-navigation gesture on iOS/Android.
-<<<<<<< HEAD
-- **DO** commit at a threshold *before* the snap settles (e.g., `commitThreshold ≈ 0.2`) rather than waiting for the content to be fully off-screen. This lets the remove animation start during the gesture, which feels significantly more responsive than waiting for the snap to land.
-=======
+  <<<<<<< HEAD
 - **DO** commit at a threshold _before_ the snap settles (e.g., `commitThreshold ≈ 0.2`) rather than waiting for the content to be fully off-screen. This lets the remove animation start during the gesture, which feels significantly more responsive than waiting for the snap to land.
->>>>>>> 4cfe05b (edit ImageUpload)
+  \=======
+- **DO** commit at a threshold _before_ the snap settles (e.g., `commitThreshold ≈ 0.2`) rather than waiting for the content to be fully off-screen. This lets the remove animation start during the gesture, which feels significantly more responsive than waiting for the snap to land.
+
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 - **DO** drive per-item setup from an outer viewport `IntersectionObserver` rather than wiring every item up at page load. This avoids reading layout-dependent values (`clientWidth`, etc.) before items have been rendered, and keeps the active observer count proportional to what the user can actually see.
 - **DO** use a `MutationObserver` on the list when items are added dynamically (initial render after data loads, infinite scroll, server push). Without it, items appended after page load won't get wired up.
 - **DO NOT** rely on `pointerdown`/`pointermove`/`pointerup` to drive a manual transform. You'll lose momentum, snap-back, keyboard accessibility, and reduced-motion handling that the browser gives you for free.

@@ -8,7 +8,8 @@ Common issues include:
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 - **Misaligned Icons**: Text appears visually lower or higher than an adjacent icon even when using `align-items: center`.
 - **Inaccurate Padding**: A button with `padding: 12px` visually appears to have more space on top or bottom because of the font's internal leading.
 - **Flush Alignment**: You cannot align the top of a capital letter exactly with the top of a container or an adjacent image without using "magic number" negative margins.
@@ -53,12 +54,12 @@ When using Flexbox to align text and icons, the "ghost space" often makes the te
   display: inline-flex;
   align-items: center;
 <<<<<<< HEAD
-  gap: 8px; 
+  gap: 8px;
 =======
   gap: 8px;
 >>>>>>> 4cfe05b (edit ImageUpload)
 }
-/* 
+/*
   text-box does NOT inherit, and must be applied directly to the text element.
 */
 <<<<<<< HEAD
@@ -66,8 +67,8 @@ When using Flexbox to align text and icons, the "ghost space" often makes the te
 =======
 .button-text {
 >>>>>>> 4cfe05b (edit ImageUpload)
-  /* 
-    The flex container now centers against the 
+  /*
+    The flex container now centers against the
     visible letters, not the invisible font box.
   */
   text-box: trim-both cap alphabetic;

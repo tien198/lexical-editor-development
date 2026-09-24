@@ -13,14 +13,17 @@ By applying `content-visibility: auto` to self-contained layout regions (like co
 It is important to understand how `content-visibility: auto` benefits elements that are **already visible on the screen**:
 
 <<<<<<< HEAD
-*   For visible elements, the browser **does not** skip rendering.
-*   Instead, the performance benefit comes entirely from the **CSS containments** that the property automatically enforces (i.e., layout, style, and paint).
-*   This containment acts as a boundary. If a mutation occurs inside a container with containment applied, the browser knows that the changes cannot affect the geometry or styles of elements outside that container. The page reflow is isolated, preventing a global layout recalculation.
-=======
+
 - For visible elements, the browser **does not** skip rendering.
 - Instead, the performance benefit comes entirely from the **CSS containments** that the property automatically enforces (i.e., layout, style, and paint).
 - This containment acts as a boundary. If a mutation occurs inside a container with containment applied, the browser knows that the changes cannot affect the geometry or styles of elements outside that container. The page reflow is isolated, preventing a global layout recalculation.
->>>>>>> 4cfe05b (edit ImageUpload)
+  \=======
+
+* For visible elements, the browser **does not** skip rendering.
+* Instead, the performance benefit comes entirely from the **CSS containments** that the property automatically enforces (i.e., layout, style, and paint).
+* This containment acts as a boundary. If a mutation occurs inside a container with containment applied, the browser knows that the changes cannot affect the geometry or styles of elements outside that container. The page reflow is isolated, preventing a global layout recalculation.
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 ## Implementation
 
@@ -33,12 +36,12 @@ Apply `content-visibility: auto` to large, self-contained containers that repres
   /* Apply containment boundaries */
   content-visibility: auto;
 <<<<<<< HEAD
-  
+
 =======
 
 >>>>>>> 4cfe05b (edit ImageUpload)
   /* Mandatory: Provide a placeholder size to prevent layouts shifts.
-     For a vertical column, define a reasonable width and height. 
+     For a vertical column, define a reasonable width and height.
      - 'auto' is optional and enables the browser to remember the actual size
        once rendered. It must be paired with a <length> value to be used for
        the first render.
@@ -63,8 +66,8 @@ function moveItemToColumn(itemId, columnId) {
 <<<<<<< HEAD
   const item = document.getElementById(itemId);
   const column = document.getElementById(columnId);
-  
-  // The browser will only reflow this specific column, 
+
+  // The browser will only reflow this specific column,
   // not the entire board layout!
   column.appendChild(item);
 =======
@@ -85,13 +88,15 @@ Supported by: Chrome 108 (Nov 2022), Edge 108 (Dec 2022), Firefox 130 (Sep 2024)
 
 The property degrades gracefully. In unsupported browsers:
 <<<<<<< HEAD
-*   The property is ignored, and mutations will cause the standard global reflow.
-*   To achieve a similar isolation effect in older browsers, you can fall back to applying containment manually:
-=======
 
 - The property is ignored, and mutations will cause the standard global reflow.
 - To achieve a similar isolation effect in older browsers, you can fall back to applying containment manually:
->>>>>>> 4cfe05b (edit ImageUpload)
+  \=======
+
+* The property is ignored, and mutations will cause the standard global reflow.
+* To achieve a similar isolation effect in older browsers, you can fall back to applying containment manually:
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 ```css
 @supports not (content-visibility: auto) {

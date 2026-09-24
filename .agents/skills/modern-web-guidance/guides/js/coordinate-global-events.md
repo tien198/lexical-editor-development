@@ -74,18 +74,20 @@ console.log(`Tokyo time: ${tokyoTime.toString()}`)
 ## Strategic Implementation & Best Practices
 
 <<<<<<< HEAD
--   **DO** use `Temporal.ZonedDateTime` for events that are bound to a specific geographical location (like a meeting in a specific city).
--   **DO** use `disambiguation: 'reject'` if you need to detect and warn users about scheduling conflicts during DST transitions.
--   **DO** use `disambiguation: 'compatible'` (the default) when you want the system to automatically pick a sensible time when conflicts occur.
--   **DO NOT** use `Temporal.PlainDateTime` for global events, as it does not carry time zone information and cannot account for DST changes.
--   **DO** use `.withTimeZone()` to calculate the equivalent time in other locations without mutating the original object (Temporal objects are immutable).
-=======
+
 - **DO** use `Temporal.ZonedDateTime` for events that are bound to a specific geographical location (like a meeting in a specific city).
 - **DO** use `disambiguation: 'reject'` if you need to detect and warn users about scheduling conflicts during DST transitions.
 - **DO** use `disambiguation: 'compatible'` (the default) when you want the system to automatically pick a sensible time when conflicts occur.
 - **DO NOT** use `Temporal.PlainDateTime` for global events, as it does not carry time zone information and cannot account for DST changes.
 - **DO** use `.withTimeZone()` to calculate the equivalent time in other locations without mutating the original object (Temporal objects are immutable).
->>>>>>> 4cfe05b (edit ImageUpload)
+  \=======
+- **DO** use `Temporal.ZonedDateTime` for events that are bound to a specific geographical location (like a meeting in a specific city).
+- **DO** use `disambiguation: 'reject'` if you need to detect and warn users about scheduling conflicts during DST transitions.
+- **DO** use `disambiguation: 'compatible'` (the default) when you want the system to automatically pick a sensible time when conflicts occur.
+- **DO NOT** use `Temporal.PlainDateTime` for global events, as it does not carry time zone information and cannot account for DST changes.
+- **DO** use `.withTimeZone()` to calculate the equivalent time in other locations without mutating the original object (Temporal objects are immutable).
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 ### Fallback strategies
 
@@ -114,21 +116,24 @@ function initializeApp() {
   console.log("Temporal is ready:", typeof Temporal);
 }
 ```
+
 =======
 ;(async () => {
-  if (typeof Temporal === 'undefined') {
-    // Load the polyfill conditionally
-    const module = await import('https://esm.sh/@js-temporal/polyfill')
-    globalThis.Temporal = module.Temporal
-    // Extend Date.prototype if needed
-    Date.prototype.toTemporalInstant = module.toTemporalInstant
-    initializeApp()
-  }
+if (typeof Temporal === 'undefined') {
+// Load the polyfill conditionally
+const module = await import('https://esm.sh/@js-temporal/polyfill')
+globalThis.Temporal = module.Temporal
+// Extend Date.prototype if needed
+Date.prototype.toTemporalInstant = module.toTemporalInstant
+initializeApp()
+}
 })()
 
 function initializeApp() {
-  // Your app logic here
-  console.log('Temporal is ready:', typeof Temporal)
+// Your app logic here
+console.log('Temporal is ready:', typeof Temporal)
 }
+
 ```
 >>>>>>> 4cfe05b (edit ImageUpload)
+```

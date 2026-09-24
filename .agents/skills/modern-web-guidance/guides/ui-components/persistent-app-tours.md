@@ -5,10 +5,12 @@ Onboarding tours require overlays that persist while users interact with the hig
 ### Recommended Implementation
 
 #### HTML
+
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 ```html
 <div id="feature-target">Highlight this feature</div>
 
@@ -22,10 +24,12 @@ Onboarding tours require overlays that persist while users interact with the hig
 ```
 
 #### CSS
+
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 ```css
 #feature-target {
   anchor-name: --feature-target;
@@ -45,8 +49,10 @@ Onboarding tours require overlays that persist while users interact with the hig
 ```
 
 #### JavaScript
+
 <<<<<<< HEAD
-```javascript
+
+````javascript
 const tourStep = document.getElementById('tour-step');
 tourStep.showPopover();
 // MANDATORY: Programmatically route focus into the non-modal popover so keyboard/assistive technology users immediately perceive the new context
@@ -59,23 +65,26 @@ tourStep.showPopover()
 // MANDATORY: Programmatically route focus into the non-modal popover so keyboard/assistive technology users immediately perceive the new context
 tourStep.querySelector('button').focus()
 >>>>>>> 4cfe05b (edit ImageUpload)
-```
+````
 
 ### Implementation Guidelines
 
 <<<<<<< HEAD
-* **MANDATORY:** Use `popover="manual"` to prevent the tour step from closing accidentally during user interaction.
-* **MANDATORY:** Mark the container with `role="dialog"` and link its heading via `aria-labelledby`.
-* **MANDATORY:** Shift programmatic focus inside the popover immediately after opening to prevent focus abandonment.
-* **DO** use CSS Anchor Positioning to tether the tour step to the specific feature being explained.
-* **DO** provide an explicit "Close" or "Next" button within the popover that uses `popovertargetaction="hide"`.
-=======
+
 - **MANDATORY:** Use `popover="manual"` to prevent the tour step from closing accidentally during user interaction.
 - **MANDATORY:** Mark the container with `role="dialog"` and link its heading via `aria-labelledby`.
 - **MANDATORY:** Shift programmatic focus inside the popover immediately after opening to prevent focus abandonment.
 - **DO** use CSS Anchor Positioning to tether the tour step to the specific feature being explained.
 - **DO** provide an explicit "Close" or "Next" button within the popover that uses `popovertargetaction="hide"`.
->>>>>>> 4cfe05b (edit ImageUpload)
+  \=======
+
+* **MANDATORY:** Use `popover="manual"` to prevent the tour step from closing accidentally during user interaction.
+* **MANDATORY:** Mark the container with `role="dialog"` and link its heading via `aria-labelledby`.
+* **MANDATORY:** Shift programmatic focus inside the popover immediately after opening to prevent focus abandonment.
+* **DO** use CSS Anchor Positioning to tether the tour step to the specific feature being explained.
+* **DO** provide an explicit "Close" or "Next" button within the popover that uses `popovertargetaction="hide"`.
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 ### Fallback strategies
 
@@ -106,14 +115,14 @@ Without a bundler, import from a CDN inside a `<script type="module">`:
 
 ```html
 <script type="module">
-<<<<<<< HEAD
-  if (!("popover" in HTMLElement.prototype)) {
-    import("https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js");
-=======
-  if (!('popover' in HTMLElement.prototype)) {
-    import('https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js')
->>>>>>> 4cfe05b (edit ImageUpload)
-  }
+  <<<<<<< HEAD
+    if (!("popover" in HTMLElement.prototype)) {
+      import("https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js");
+  =======
+    if (!('popover' in HTMLElement.prototype)) {
+      import('https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js')
+  >>>>>>> 4cfe05b (edit ImageUpload)
+    }
 </script>
 ```
 
@@ -134,21 +143,22 @@ Anchor positioning is not natively supported by any major browser yet.
 To support browsers without anchor positioning, you can choose between using a polyfill or a pure CSS fallback.
 
 ##### Option 1: Polyfill Fallback
+
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
-The `@oddbird/css-anchor-positioning` polyfill can be used to emulate anchor positioning. It does not support implicit anchors, so you MUST add explicit anchor names to the trigger. Additionally, `position-area` is not supported on popovers by the polyfill, so you MUST use `anchor()` on the desired insets instead of `position-area`.
+> > > > > > > 4cfe05b (edit ImageUpload)
+> > > > > > > The `@oddbird/css-anchor-positioning` polyfill can be used to emulate anchor positioning. It does not support implicit anchors, so you MUST add explicit anchor names to the trigger. Additionally, `position-area` is not supported on popovers by the polyfill, so you MUST use `anchor()` on the desired insets instead of `position-area`.
 
 ```html
 <script type="module">
-  if (!CSS.supports('anchor-name: --foo')) {
-<<<<<<< HEAD
-    await import("https://unpkg.com/@oddbird/css-anchor-positioning");
-=======
-    await import('https://unpkg.com/@oddbird/css-anchor-positioning')
->>>>>>> 4cfe05b (edit ImageUpload)
-  }
+    if (!CSS.supports('anchor-name: --foo')) {
+  <<<<<<< HEAD
+      await import("https://unpkg.com/@oddbird/css-anchor-positioning");
+  =======
+      await import('https://unpkg.com/@oddbird/css-anchor-positioning')
+  >>>>>>> 4cfe05b (edit ImageUpload)
+    }
 </script>
 ```
 
@@ -161,11 +171,12 @@ The `@oddbird/css-anchor-positioning` polyfill can be used to emulate anchor pos
 ```
 
 ##### Option 2: Non-Polyfill CSS Fallback
+
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
-If you prefer not to use a polyfill, you can default the tooltip to a fixed position at the bottom of the viewport using `@supports not`.
+> > > > > > > 4cfe05b (edit ImageUpload)
+> > > > > > > If you prefer not to use a polyfill, you can default the tooltip to a fixed position at the bottom of the viewport using `@supports not`.
 
 ```css
 @supports not (anchor-name: --foo) {
@@ -181,6 +192,9 @@ If you prefer not to use a polyfill, you can default the tooltip to a fixed posi
 }
 <<<<<<< HEAD
 ```
+
 =======
+
 ```
 >>>>>>> 4cfe05b (edit ImageUpload)
+```

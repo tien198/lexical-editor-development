@@ -11,7 +11,9 @@ The Summarizer API is available starting in **Chrome and Edge 138**. It requires
 <<<<<<< HEAD
 
 =======
->>>>>>> 4cfe05b (edit ImageUpload)
+
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 ### Hardware & Software Requirements
 
 - **OS**: Windows 10/11, macOS 13+, Linux, or ChromeOS (Chromebook Plus).
@@ -22,10 +24,12 @@ The Summarizer API is available starting in **Chrome and Edge 138**. It requires
 ### Model Download and Availability
 
 <<<<<<< HEAD
-Check if the model is ready, needs downloading, or is unavailable. 
-=======
 Check if the model is ready, needs downloading, or is unavailable.
->>>>>>> 4cfe05b (edit ImageUpload)
+=======
+
+Check if the model is ready, needs downloading, or is unavailable.
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 **Mandatory Options Passing:** You must pass the identical configuration options object to both `Summarizer.availability(options)` and `Summarizer.create(options)`. Do NOT use the deprecated `window.ai.summarizer` API surface.
 
@@ -209,7 +213,8 @@ Recommended options:
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 1. **Remote API Fallback**: Direct the distillation request to a server endpoint or remote API (such as the Vertex AI Gemini API) so that users still get summaries.
 2. **Graceful Degradation**: Visually disable the summarization controls in the UI, or hide the button while displaying a friendly message (e.g., `"Local summarization is currently unsupported in this browser"`). Do not allow interaction to trigger generic unhandled runtime exceptions.
 3. **Polyfill Fallback**: You can use community-maintained polyfills like `built-in-ai-task-apis-polyfills` or `prompt-api-polyfill` to emulate the API surface using remote services with models in the cloud or on-device inference with local models.

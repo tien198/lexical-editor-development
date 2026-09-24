@@ -1,13 +1,16 @@
 # Soft Edge Content Fade
 
 ## Overview
+
 <<<<<<< HEAD
 To apply a transparency gradient to the edges of a container (e.g., to indicate more content is available to scroll or to fade out text), use CSS Masking with a linear gradient. This approach is superior to using a semi-transparent overlay because it actually fades the content itself, allowing the background to show through naturally without interfering with text selection or pointer events.
 
 ## Implementation
+
 To implement a soft edge fade:
 
 ### Fading the bottom edge of a container
+
 =======
 
 To apply a transparency gradient to the edges of a container (e.g., to indicate more content is available to scroll or to fade out text), use CSS Masking with a linear gradient. This approach is superior to using a semi-transparent overlay because it actually fades the content itself, allowing the background to show through naturally without interfering with text selection or pointer events.
@@ -18,18 +21,18 @@ To implement a soft edge fade:
 
 ### Fading the bottom edge of a container
 
->>>>>>> 4cfe05b (edit ImageUpload)
-This is useful for indicating that there is more content below in a scrollable area.
+> > > > > > > 4cfe05b (edit ImageUpload)
+> > > > > > > This is useful for indicating that there is more content below in a scrollable area.
 
 ```css
 .container {
   /* Enable scrolling */
   overflow-y: auto;
 <<<<<<< HEAD
-  
+
   /* MANDATORY: Use vendor prefix for wider support in older browsers */
   -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
-  
+
 =======
 
   /* MANDATORY: Use vendor prefix for wider support in older browsers */
@@ -42,11 +45,12 @@ This is useful for indicating that there is more content below in a scrollable a
 ```
 
 ### Fading both top and bottom edges
+
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
-You can use a single gradient with multiple color stops to fade both edges.
+> > > > > > > 4cfe05b (edit ImageUpload)
+> > > > > > > You can use a single gradient with multiple color stops to fade both edges.
 
 ```css
 .dual-fade-container {
@@ -74,18 +78,20 @@ You can use a single gradient with multiple color stops to fade both edges.
 ```
 
 ## Fallback strategies
+
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
-Baseline status for Masks: Widely available. It's been Baseline since 2023-12-07.
-Supported by: Chrome 120 (Dec 2023), Edge 120 (Dec 2023), Firefox 53 (Apr 2017), and Safari 15.4 (Mar 2022).
+> > > > > > > 4cfe05b (edit ImageUpload)
+> > > > > > > Baseline status for Masks: Widely available. It's been Baseline since 2023-12-07.
+> > > > > > > Supported by: Chrome 120 (Dec 2023), Edge 120 (Dec 2023), Firefox 53 (Apr 2017), and Safari 15.4 (Mar 2022).
 
 If a browser does not support `mask-image` or the prefixed version:
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 - The content will not fade and will display with sharp edges.
 - Ensure the interface is still functional and content is readable without the fade (progressive enhancement).
 - You can use a semi-transparent overlay as a fallback, but be aware it requires knowing the background color and may interfere with text selection unless `pointer-events: none` is used.
@@ -97,7 +103,7 @@ If a browser does not support `mask-image` or the prefixed version:
   .container {
     position: relative;
   }
-  
+
 =======
 @supports (not (mask-image: linear-gradient(to bottom, black, transparent))) and
   (not (-webkit-mask-image: linear-gradient(to bottom, black, transparent))) {

@@ -15,9 +15,7 @@ The first step is to create a trigger button that opens the overlay container us
 
 ```html
 <<<<<<< HEAD
-<button popovertarget="action-panel">
-  Open Actions
-</button>
+<button popovertarget="action-panel">Open Actions</button>
 =======
 <button popovertarget="action-panel">Open Actions</button>
 >>>>>>> 4cfe05b (edit ImageUpload)
@@ -28,10 +26,12 @@ The first step is to create a trigger button that opens the overlay container us
 ```
 
 <<<<<<< HEAD
-This creates an *implicit* anchor association between the button and the panel, so that the panel can be positioned relative to the button.
-=======
 This creates an _implicit_ anchor association between the button and the panel, so that the panel can be positioned relative to the button.
->>>>>>> 4cfe05b (edit ImageUpload)
+=======
+
+This creates an _implicit_ anchor association between the button and the panel, so that the panel can be positioned relative to the button.
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 ### 2. Positioning with `position-area`
 
@@ -39,13 +39,13 @@ Instead of manual `top`/`left` offsets, use `position-area` to place the target 
 
 ```css
 .panel {
-  /* 
-     Position the panel below the anchor (block-end), 
+  /*
+     Position the panel below the anchor (block-end),
      aligned to the start of the anchor and spanning to its end (span-inline-end).
   */
   position-area: block-end span-inline-end;
 <<<<<<< HEAD
-  
+
 =======
 
 >>>>>>> 4cfe05b (edit ImageUpload)
@@ -101,14 +101,14 @@ Without a bundler, import from a CDN inside a `<script type="module">`:
 
 ```html
 <script type="module">
-<<<<<<< HEAD
-  if (!("popover" in HTMLElement.prototype)) {
-    import("https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js");
-=======
-  if (!('popover' in HTMLElement.prototype)) {
-    import('https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js')
->>>>>>> 4cfe05b (edit ImageUpload)
-  }
+  <<<<<<< HEAD
+    if (!("popover" in HTMLElement.prototype)) {
+      import("https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js");
+  =======
+    if (!('popover' in HTMLElement.prototype)) {
+      import('https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js')
+  >>>>>>> 4cfe05b (edit ImageUpload)
+    }
 </script>
 ```
 
@@ -127,22 +127,24 @@ Anchor positioning is not natively supported by any major browser yet.
 To support browsers without anchor positioning, you must set a reasonable position. By default popovers are centered in the middle of the screen, which may work for your use case.
 
 <<<<<<< HEAD
-For some use cases, you may be able to use the `@oddbird/css-anchor-positioning` polyfill, which adds support for some anchor positioning use cases. It does not support implicit anchors, so you MUST add anchor names to the trigger. Additionally, `position-area` is not supported on popovers by the polyfill, so you MUST use `anchor()` on the desired insets. 
-=======
 For some use cases, you may be able to use the `@oddbird/css-anchor-positioning` polyfill, which adds support for some anchor positioning use cases. It does not support implicit anchors, so you MUST add anchor names to the trigger. Additionally, `position-area` is not supported on popovers by the polyfill, so you MUST use `anchor()` on the desired insets.
->>>>>>> 4cfe05b (edit ImageUpload)
+=======
+
+For some use cases, you may be able to use the `@oddbird/css-anchor-positioning` polyfill, which adds support for some anchor positioning use cases. It does not support implicit anchors, so you MUST add anchor names to the trigger. Additionally, `position-area` is not supported on popovers by the polyfill, so you MUST use `anchor()` on the desired insets.
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 ```html
 <!-- MANDATORY: Conditionally install the anchor positioning polyfill -->
 <script type="module">
-<<<<<<< HEAD
-  if (!("anchorName" in document.documentElement.style)) {
-    await import("https://unpkg.com/@oddbird/css-anchor-positioning");
-=======
-  if (!('anchorName' in document.documentElement.style)) {
-    await import('https://unpkg.com/@oddbird/css-anchor-positioning')
->>>>>>> 4cfe05b (edit ImageUpload)
-  }
+  <<<<<<< HEAD
+    if (!("anchorName" in document.documentElement.style)) {
+      await import("https://unpkg.com/@oddbird/css-anchor-positioning");
+  =======
+    if (!('anchorName' in document.documentElement.style)) {
+      await import('https://unpkg.com/@oddbird/css-anchor-positioning')
+  >>>>>>> 4cfe05b (edit ImageUpload)
+    }
 </script>
 ```
 
@@ -159,6 +161,9 @@ For some use cases, you may be able to use the `@oddbird/css-anchor-positioning`
 }
 <<<<<<< HEAD
 ```
+
 =======
+
 ```
 >>>>>>> 4cfe05b (edit ImageUpload)
+```

@@ -1,18 +1,20 @@
 # Style Parent with :has()
 
 ## The Problem
+
 <<<<<<< HEAD
-Often, an error state requires styling elements *outside* the input itself—for example, changing the color of a parent `fieldset` border, highlighting the `<label>`, or showing a global error icon in the card header. Historically, this required JavaScript to toggle classes on parent elements.
+Often, an error state requires styling elements _outside_ the input itself—for example, changing the color of a parent `fieldset` border, highlighting the `<label>`, or showing a global error icon in the card header. Historically, this required JavaScript to toggle classes on parent elements.
 
 ## The Solution
+
 =======
 
 Often, an error state requires styling elements _outside_ the input itself—for example, changing the color of a parent `fieldset` border, highlighting the `<label>`, or showing a global error icon in the card header. Historically, this required JavaScript to toggle classes on parent elements.
 
 ## The Solution
 
->>>>>>> 4cfe05b (edit ImageUpload)
-By combining `:has()` with `:user-invalid`, we can declaratively style any ancestor based on the validity state of a specific descendant. This keeps all presentation logic in CSS.
+> > > > > > > 4cfe05b (edit ImageUpload)
+> > > > > > > By combining `:has()` with `:user-invalid`, we can declaratively style any ancestor based on the validity state of a specific descendant. This keeps all presentation logic in CSS.
 
 ### Implementation Strategy
 
@@ -23,10 +25,12 @@ By combining `:has()` with `:user-invalid`, we can declaratively style any ances
 ## Implementation Guide
 
 ### 1. HTML Structure
+
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 ```html
 <form>
   <div class="card-section">
@@ -37,21 +41,23 @@ By combining `:has()` with `:user-invalid`, we can declaratively style any ances
 
     <div class="field">
       <label for="username">Username</label>
-<<<<<<< HEAD
-      <input type="text" id="username" required>
-=======
+      <<<<<<< HEAD
       <input type="text" id="username" required />
->>>>>>> 4cfe05b (edit ImageUpload)
+      =======
+      <input type="text" id="username" required />
+      >>>>>>> 4cfe05b (edit ImageUpload)
     </div>
   </div>
 </form>
 ```
 
 ### 2. CSS
+
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 ```css
 /* Default State */
 .card-section {
@@ -84,11 +90,12 @@ Baseline status for :user-valid and :user-invalid: Widely available. It's been B
 Supported by: Chrome 119 (Oct 2023), Edge 119 (Nov 2023), Firefox 88 (Apr 2021), and Safari 16.5 (May 2023).
 
 ### CSS for Fallback
+
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
-We use a class `.has-error` on the parent to mimic the `:has()` behavior.
+> > > > > > > 4cfe05b (edit ImageUpload)
+> > > > > > > We use a class `.has-error` on the parent to mimic the `:has()` behavior.
 
 ```css
 /* Native */

@@ -5,7 +5,9 @@ The **Translator API** allows developers to perform client-side text translation
 <<<<<<< HEAD
 
 =======
->>>>>>> 4cfe05b (edit ImageUpload)
+
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 ## Prerequisites & Requirements
 
 ### API Surface & Global Scope
@@ -44,7 +46,8 @@ To run Gemini Nano and associated models, the system needs:
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 - `'available'`: The language pair model is already downloaded on the device and ready for immediate translation.
 - `'downloadable'`: The language pair is supported, but the model needs to be downloaded. A user gesture is required to initiate `Translator.create()`.
 - `'downloading'`: The language pack is currently in the process of downloading. Calling `Translator.create()` with a user gesture attaches to the download.
@@ -231,15 +234,17 @@ if ('Translator' in self) {
 ```
 
 <<<<<<< HEAD
-If the `Translator` API is unsupported or availability checks return `'unavailable'`, you must gracefully fall back. 
+If the `Translator` API is unsupported or availability checks return `'unavailable'`, you must gracefully fall back.
 
 Recommended options:
 =======
+
 If the `Translator` API is unsupported or availability checks return `'unavailable'`, you must gracefully fall back.
 
 Recommended options:
 
->>>>>>> 4cfe05b (edit ImageUpload)
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 1. **Remote API Fallback**: Redirect the translation request to a server endpoint or cloud remote API (such as the Vertex AI Gemini API) to deliver translation functionality.
 2. **Graceful Degradation**: Visually disable translation control elements or buttons while showing an end-user friendly note (e.g., `"Client-side translation is currently unsupported in this browser"`). Do not allow unhandled exceptions.
 3. **Polyfill Fallback**: You can use community-maintained polyfills like `built-in-ai-task-apis-polyfills` or `prompt-api-polyfill` to emulate the API surface using remote services.

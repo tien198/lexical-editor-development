@@ -7,11 +7,12 @@ The `Temporal` API provides dedicated types for these partial concepts: `Tempora
 ## Implementation Examples
 
 ### Monthly Expirations (Credit Cards, Billing Cycles)
+
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
-Use `Temporal.PlainYearMonth` to represent a year and a month.
+> > > > > > > 4cfe05b (edit ImageUpload)
+> > > > > > > Use `Temporal.PlainYearMonth` to represent a year and a month.
 
 ```javascript
 // Create a PlainYearMonth from values
@@ -59,11 +60,12 @@ if (duration.sign < 0) {
 ```
 
 ### Annual Recurring Dates (Birthdays, Renewals)
+
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
-Use `Temporal.PlainMonthDay` to represent a month and a day without a year.
+> > > > > > > 4cfe05b (edit ImageUpload)
+> > > > > > > Use `Temporal.PlainMonthDay` to represent a month and a day without a year.
 
 ```javascript
 // Create a PlainMonthDay for an annual event
@@ -81,11 +83,12 @@ const birthdayThisYear = birthday.toPlainDate({ year: today.year });
 ```
 
 ### Wall-Clock Time (Alarms, Store Hours)
+
 =======
 const birthday = Temporal.PlainMonthDay.from({
-  month: 10,
-  day: 31,
-  calendar: 'iso8601',
+month: 10,
+day: 31,
+calendar: 'iso8601',
 })
 
 // Check if it matches today's date components
@@ -95,7 +98,8 @@ const isBirthdayToday = birthday.equals(today.toPlainMonthDay())
 // To perform arithmetic (like days until next occurrence), convert to a full PlainDate
 // by providing a specific year.
 const birthdayThisYear = birthday.toPlainDate({ year: today.year })
-```
+
+````
 
 ### Wall-Clock Time (Alarms, Store Hours)
 
@@ -121,7 +125,7 @@ const snoozedTime = alarmTime.add({ minutes: 10 })
 console.log(`Original alarm: ${alarmTime.toString()}`)
 console.log(`Snoozed alarm: ${snoozedTime.toString()}`)
 >>>>>>> 4cfe05b (edit ImageUpload)
-```
+````
 
 ## Strategic Implementation & Best Practices
 

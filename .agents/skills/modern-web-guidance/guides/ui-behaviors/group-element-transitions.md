@@ -23,12 +23,12 @@ To apply shared styles, also assign a `view-transition-class`.
 ```
 
 2. **Define the shared transition logic**
-<<<<<<< HEAD
-   
+   <<<<<<< HEAD
+
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
-Use the `::view-transition-group()` pseudo-element with the class selector to apply styles to all members of that group.
+> > > > > > > 4cfe05b (edit ImageUpload)
+> > > > > > > Use the `::view-transition-group()` pseudo-element with the class selector to apply styles to all members of that group.
 
 ```css
 /* Targets any view transition group that has the 'list-item' class */
@@ -108,10 +108,12 @@ View transitions work by overlaying snapshots of the DOM elements, and then tran
 ```
 
 <<<<<<< HEAD
-In addition, by default, the `:root` element has a view transition named `root`, which enables default full-page transitions. If there are no changes to the root element, this will be a transition between two identical snapshots, which are not interactive. Because we are only transitioning specific elements, and not the entire screen, we can disable the `root` transition. 
-=======
 In addition, by default, the `:root` element has a view transition named `root`, which enables default full-page transitions. If there are no changes to the root element, this will be a transition between two identical snapshots, which are not interactive. Because we are only transitioning specific elements, and not the entire screen, we can disable the `root` transition.
->>>>>>> 4cfe05b (edit ImageUpload)
+=======
+
+In addition, by default, the `:root` element has a view transition named `root`, which enables default full-page transitions. If there are no changes to the root element, this will be a transition between two identical snapshots, which are not interactive. Because we are only transitioning specific elements, and not the entire screen, we can disable the `root` transition.
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 ```css
 :root {

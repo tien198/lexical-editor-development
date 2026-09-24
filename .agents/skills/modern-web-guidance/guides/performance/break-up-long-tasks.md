@@ -16,7 +16,7 @@ async function processLargeArray(items) {
   for (const item of items) {
     // Process the item
     processItem(item);
-    
+
 =======
   let deadline = performance.now() + 50 // 50ms budget
 
@@ -60,7 +60,7 @@ async function processLargeArrayWithFallback(items) {
 
   for (const item of items) {
     processItem(item);
-    
+
 =======
   let deadline = performance.now() + 50
 

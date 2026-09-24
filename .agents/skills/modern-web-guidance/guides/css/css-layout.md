@@ -35,11 +35,11 @@ Walk the decision tree top-to-bottom and stop at the first match. Note that layo
 - Use the `place-*` shorthands (`place-content`, `place-items`, `place-self`) to align across both axes in one declaration.
 - Reach for intrinsic sizing (`min-content`, `max-content`, `fit-content()`) and flexible tracks (`fr`, `minmax()`) before fixed `width`/`height` — fewer media queries, more resilient layouts.
 - Do NOT use `overflow: hidden` to mask layout issues — fix them at the source.
-<<<<<<< HEAD
-For example certain replaced elements like `<canvas>`, `<img>`, `<svg>`, `<video>`, `<iframe>` use `display: inline` by default, which can add a gap in certain layouts. Instead of clipping the gap with `overflow`, remove it by applying a block display-outside value (e.g. `display: block`, `grid`, `flex` etc).
+  <<<<<<< HEAD
+  For example certain replaced elements like `<canvas>`, `<img>`, `<svg>`, `<video>`, `<iframe>` use `display: inline` by default, which can add a gap in certain layouts. Instead of clipping the gap with `overflow`, remove it by applying a block display-outside value (e.g. `display: block`, `grid`, `flex` etc).
 - Use `aspect-ratio` to reserve space for media and prevent layout shift before assets load.
 
-```css
+````css
 .sidebar       { inline-size: max-content; }    /* Size to longest unbreakable token. */
 .main-content  { inline-size: fit-content; }    /* Grow to available space, no further. */
 .media         { aspect-ratio: 16 / 9; inline-size: 100%; block-size: auto; }
@@ -66,7 +66,7 @@ body.centered {
   min-block-size: 100dvb;
 }
 >>>>>>> 4cfe05b (edit ImageUpload)
-```
+````
 
 > For `calc-size()` and constraint-aware intrinsic sizing, see `calculate-with-intrinsic-sizes` (via `npx -y modern-web-guidance@latest retrieve "calculate-with-intrinsic-sizes"`).
 
@@ -160,11 +160,13 @@ Two-dimensional layout — define rows AND columns explicitly, or let the engine
 - Don't expect `auto-fit`/`auto-fill` track size to come from item content — it comes from the `repeat()` size argument.
 - Don't use `grid-auto-flow: dense` on interactive content. It packs items efficiently but reorders them visually, breaking DOM-order keyboard tab flow.
 - Don't apply subgrid to both axes when the child count is variable. Extras land in the last track; use `grid-auto-rows`/`grid-auto-columns` for the implicit axis instead.
-<<<<<<< HEAD
-- Don't confuse `justify-items`/`align-items` (aligns item content *within its track*) with `justify-content`/`align-content` (aligns the grid tracks *within the container*). Using the wrong one silently has no effect.
-=======
+  <<<<<<< HEAD
 - Don't confuse `justify-items`/`align-items` (aligns item content _within its track_) with `justify-content`/`align-content` (aligns the grid tracks _within the container_). Using the wrong one silently has no effect.
->>>>>>> 4cfe05b (edit ImageUpload)
+  \=======
+- Don't confuse `justify-items`/`align-items` (aligns item content _within its track_) with `justify-content`/`align-content` (aligns the grid tracks _within the container_). Using the wrong one silently has no effect.
+
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 - Don't use `repeat(auto-fit/auto-fill, ...)` without a definite `inline-size` on the container — inside `display: inline-grid` or an unsized flex item, the container has no width to divide, making track counts unpredictable.
 
 ### 3.1 Code example: grid and subgrid
@@ -305,11 +307,12 @@ Manage layout shifts, scrollbars, and clipping predictably.
 - Use `scrollbar-gutter: stable` to reserve space for scrollbars and prevent layout shifts when content grows.
 - Use `overscroll-behavior: contain` (or `none`) on scrollable containers to stop scroll chains from bubbling into the parent or document.
 - Use the `-webkit-line-clamp` + `display: -webkit-box` + `-webkit-box-orient: vertical` triad for multi-line truncation — despite the prefix, this pattern is fully specified and not deprecated. Declare the unprefixed `line-clamp` shorthand alongside it; browsers that don't yet support it ignore the property harmlessly.
-<<<<<<< HEAD
-**Do not:**
-=======
+  <<<<<<< HEAD
   **Do not:**
->>>>>>> 4cfe05b (edit ImageUpload)
+  \=======
+  **Do not:**
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 - Don't use `overflow: scroll` when `auto` will do — `scroll` forces scrollbars even when there's nothing to scroll.
 - Don't reach for `overflow: hidden` when you only want to clip — `hidden` establishes a scroll container that can be programmatically scrolled.
@@ -369,11 +372,7 @@ The spec is in development. The currently agreed-upon name is "grid lanes" (e.g.
 - Don't ship `grid-template-rows: masonry` as a hard requirement until your Baseline target catches up.
 
 ```css
-<<<<<<< HEAD
-.gallery       { columns: 3 200px; column-gap: 1rem; }
-.gallery > *   { break-inside: avoid; margin-block-end: 1rem; }
-=======
-.gallery {
+<<<<<<< HEAD .gallery {
   columns: 3 200px;
   column-gap: 1rem;
 }
@@ -381,9 +380,15 @@ The spec is in development. The currently agreed-upon name is "grid lanes" (e.g.
   break-inside: avoid;
   margin-block-end: 1rem;
 }
->>>>>>> 4cfe05b (edit ImageUpload)
-
-@supports (grid-template-rows: masonry) {
+======= .gallery {
+  columns: 3 200px;
+  column-gap: 1rem;
+}
+.gallery > * {
+  break-inside: avoid;
+  margin-block-end: 1rem;
+}
+>>>>>>>4cfe05b (edit ImageUpload) @supports (grid-template-rows: masonry) {
   .gallery {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));

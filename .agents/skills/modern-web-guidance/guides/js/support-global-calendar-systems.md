@@ -39,7 +39,7 @@ const isoDate = Temporal.Now.plainDateISO();
 
 // 3. Convert to Hebrew calendar if supported
 const calendarId = 'hebrew';
-const targetDate = isCalendarSupported(calendarId) 
+const targetDate = isCalendarSupported(calendarId)
   ? isoDate.withCalendar(calendarId)
   : isoDate; // Fallback to ISO if not supported
 
@@ -138,7 +138,7 @@ async function getTemporal() {
 <<<<<<< HEAD
     return Temporal;
   }
-  
+
   try {
     // Load polyfill dynamically from CDN
     const module = await import('https://esm.sh/@js-temporal/polyfill');

@@ -9,14 +9,16 @@ Style queries let **both sides stay decoupled**: the featured surfaces never nam
 ## When to use this guide
 
 <<<<<<< HEAD
-This guide covers *behavioral* changes: a component deciding **what to render, how to arrange itself, or which variant to present** in response to its context — hiding or showing a badge, switching layout direction, or swapping a button variant.
-
-If instead you need *token-level* changes — density modes, themes, or other higher-order tokens that uniformly shift values like padding and color across many components — see `design-token-reactivity` (via `npx -y modern-web-guidance@latest retrieve "design-token-reactivity"`).
-=======
 This guide covers _behavioral_ changes: a component deciding **what to render, how to arrange itself, or which variant to present** in response to its context — hiding or showing a badge, switching layout direction, or swapping a button variant.
 
 If instead you need _token-level_ changes — density modes, themes, or other higher-order tokens that uniformly shift values like padding and color across many components — see `design-token-reactivity` (via `npx -y modern-web-guidance@latest retrieve "design-token-reactivity"`).
->>>>>>> 4cfe05b (edit ImageUpload)
+=======
+
+This guide covers _behavioral_ changes: a component deciding **what to render, how to arrange itself, or which variant to present** in response to its context — hiding or showing a badge, switching layout direction, or swapping a button variant.
+
+If instead you need _token-level_ changes — density modes, themes, or other higher-order tokens that uniformly shift values like padding and color across many components — see `design-token-reactivity` (via `npx -y modern-web-guidance@latest retrieve "design-token-reactivity"`).
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 ## Choosing the right tool
 
@@ -31,11 +33,12 @@ Reach for a style query when **both sides of a contextual relationship may chang
 1. Define a semantic context flag using a CSS custom property on a container.
 2. **DO NOT** set `container-type` for style queries; they query inherited custom properties on the nearest ancestor and don't require an explicit containment context.
 3. **MANDATORY**: Use `@container style(--property: value)` to apply conditional styles to descendant elements. Style queries cannot match the element the property is set on — only its descendants.
-<<<<<<< HEAD
-4. **DO** prefer style queries over descendant selectors when the relationship must stay extensible or cross component/shadow DOM boundaries (see *Choosing the right tool* above) — but keep descendant selectors for fixed, one-off relationships where the indirection buys nothing.
-=======
+   <<<<<<< HEAD
 4. **DO** prefer style queries over descendant selectors when the relationship must stay extensible or cross component/shadow DOM boundaries (see _Choosing the right tool_ above) — but keep descendant selectors for fixed, one-off relationships where the indirection buys nothing.
->>>>>>> 4cfe05b (edit ImageUpload)
+   \=======
+5. **DO** prefer style queries over descendant selectors when the relationship must stay extensible or cross component/shadow DOM boundaries (see _Choosing the right tool_ above) — but keep descendant selectors for fixed, one-off relationships where the indirection buys nothing.
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 ## Implementation Example
 

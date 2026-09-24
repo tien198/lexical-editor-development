@@ -197,7 +197,9 @@ if (
   // Use fallback strategy
 }
 ```
+
 <<<<<<< HEAD
 
 =======
->>>>>>> 4cfe05b (edit ImageUpload)
+
+> > > > > > > 4cfe05b (edit ImageUpload)

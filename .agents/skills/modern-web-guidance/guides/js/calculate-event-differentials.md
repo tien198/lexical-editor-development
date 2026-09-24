@@ -87,18 +87,20 @@ if (isExpired) {
 ## Strategic Implementation & Best Practices
 
 <<<<<<< HEAD
--   **DO** use `Temporal.ZonedDateTime` for calculations involving real-world events that occur in specific time zones (like subscription renewals or event scheduling).
--   **DO** use `largestUnit` to specify the largest unit you want in the result (e.g., `'year'` or `'month'`). If you omit it, it defaults to `'auto'` which might not always sum up to years/months as expected for human-readable durations.
--   **DO** use `.since()` when calculating time elapsed *since* a past event (e.g., `now.since(start)`), and `.until()` for time remaining *until* a future event (e.g., `now.until(end)`).
--   **DO NOT** modify instances directly; `Temporal` objects are **immutable**. Operations like `add()`, `subtract()`, or `with()` return a *new* instance.
--   **DO** use `Temporal.ZonedDateTime.compare` to check if one time point is after another. It returns `1` if the first is after the second, `-1` if before, and `0` if equal.
-=======
+
 - **DO** use `Temporal.ZonedDateTime` for calculations involving real-world events that occur in specific time zones (like subscription renewals or event scheduling).
 - **DO** use `largestUnit` to specify the largest unit you want in the result (e.g., `'year'` or `'month'`). If you omit it, it defaults to `'auto'` which might not always sum up to years/months as expected for human-readable durations.
 - **DO** use `.since()` when calculating time elapsed _since_ a past event (e.g., `now.since(start)`), and `.until()` for time remaining _until_ a future event (e.g., `now.until(end)`).
 - **DO NOT** modify instances directly; `Temporal` objects are **immutable**. Operations like `add()`, `subtract()`, or `with()` return a _new_ instance.
 - **DO** use `Temporal.ZonedDateTime.compare` to check if one time point is after another. It returns `1` if the first is after the second, `-1` if before, and `0` if equal.
->>>>>>> 4cfe05b (edit ImageUpload)
+  \=======
+- **DO** use `Temporal.ZonedDateTime` for calculations involving real-world events that occur in specific time zones (like subscription renewals or event scheduling).
+- **DO** use `largestUnit` to specify the largest unit you want in the result (e.g., `'year'` or `'month'`). If you omit it, it defaults to `'auto'` which might not always sum up to years/months as expected for human-readable durations.
+- **DO** use `.since()` when calculating time elapsed _since_ a past event (e.g., `now.since(start)`), and `.until()` for time remaining _until_ a future event (e.g., `now.until(end)`).
+- **DO NOT** modify instances directly; `Temporal` objects are **immutable**. Operations like `add()`, `subtract()`, or `with()` return a _new_ instance.
+- **DO** use `Temporal.ZonedDateTime.compare` to check if one time point is after another. It returns `1` if the first is after the second, `-1` if before, and `0` if equal.
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 ## Fallback Strategy
 
@@ -126,16 +128,19 @@ Note that the polyfill does not automatically assign the `Temporal` object to th
   }
 })();
 ```
+
 =======
 ;(async () => {
-  if (typeof Temporal === 'undefined') {
-    // Load the polyfill conditionally
-    const module = await import('https://esm.sh/@js-temporal/polyfill')
-    globalThis.Temporal = module.Temporal
-    // Extend Date.prototype if needed
-    Date.prototype.toTemporalInstant = module.toTemporalInstant
-    initializeApp()
-  }
+if (typeof Temporal === 'undefined') {
+// Load the polyfill conditionally
+const module = await import('https://esm.sh/@js-temporal/polyfill')
+globalThis.Temporal = module.Temporal
+// Extend Date.prototype if needed
+Date.prototype.toTemporalInstant = module.toTemporalInstant
+initializeApp()
+}
 })()
+
 ```
 >>>>>>> 4cfe05b (edit ImageUpload)
+```

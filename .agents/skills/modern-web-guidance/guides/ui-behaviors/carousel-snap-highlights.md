@@ -7,11 +7,12 @@ Scroll-state container queries allow you to style elements based on their curren
 To highlight snapped items, you must establish a scroll-snap container, define the snap targets as scroll-state containers, and then query that state to style descendants.
 
 #### 1. Establish the scroll snap container
+
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
-The parent container must have `scroll-snap-type` enabled.
+> > > > > > > 4cfe05b (edit ImageUpload)
+> > > > > > > The parent container must have `scroll-snap-type` enabled.
 
 ```html
 <div class="carousel">
@@ -34,18 +35,19 @@ The parent container must have `scroll-snap-type` enabled.
 ```
 
 #### 2. Define snap targets as scroll-state containers
+
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
-Each item in the carousel that should be tracked for snapping must be declared as a `scroll-state` container.
+> > > > > > > 4cfe05b (edit ImageUpload)
+> > > > > > > Each item in the carousel that should be tracked for snapping must be declared as a `scroll-state` container.
 
 ```css
 .carousel-item {
   /* Define where the item snaps within the container */
   scroll-snap-align: center;
 <<<<<<< HEAD
-  
+
 =======
 
 >>>>>>> 4cfe05b (edit ImageUpload)
@@ -57,10 +59,12 @@ Each item in the carousel that should be tracked for snapping must be declared a
 #### 3. Query the `snapped` state
 
 <<<<<<< HEAD
-Because container queries style **descendants**, you must apply the highlight styles to an element *inside* the snap target.  Because the scroll container is set to overflow on the x axis, use the `scroll-state(snapped: x)` query.
-=======
 Because container queries style **descendants**, you must apply the highlight styles to an element _inside_ the snap target. Because the scroll container is set to overflow on the x axis, use the `scroll-state(snapped: x)` query.
->>>>>>> 4cfe05b (edit ImageUpload)
+=======
+
+Because container queries style **descendants**, you must apply the highlight styles to an element _inside_ the snap target. Because the scroll container is set to overflow on the x axis, use the `scroll-state(snapped: x)` query.
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 **MANDATORY**: Wrap the styles in ` @media (prefers-reduced-motion: no-preference)` to only show the effect to users who have not requested reduced motion. Depending on your use case, you may retain portions of the effect, but in this case, the cards flash from white to blue in a way that may cause problems for some users, so we disable it completely.
 
@@ -102,16 +106,20 @@ The `snapped` descriptor can query specific axes: `x`, `y`, `inline`, `block`, o
 <<<<<<< HEAD
 
 =======
->>>>>>> 4cfe05b (edit ImageUpload)
+
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 ### Accessibility
 
 **AVOID**: using `scroll-state` with interactive elements.
 
 <<<<<<< HEAD
-Visual highlights for snapped items can improve the UX, but the snapped item is not exposed to the accessibility tree. The visual theme applied to a snapped item should not convey that the element is active or focused, and a keyboard focus ring should be highly visible and distinct from the `snapped` highlight. If the snapped item is interactive, you must use other standard accessibility practices to make it accessible.  
-=======
 Visual highlights for snapped items can improve the UX, but the snapped item is not exposed to the accessibility tree. The visual theme applied to a snapped item should not convey that the element is active or focused, and a keyboard focus ring should be highly visible and distinct from the `snapped` highlight. If the snapped item is interactive, you must use other standard accessibility practices to make it accessible.
->>>>>>> 4cfe05b (edit ImageUpload)
+=======
+
+Visual highlights for snapped items can improve the UX, but the snapped item is not exposed to the accessibility tree. The visual theme applied to a snapped item should not convey that the element is active or focused, and a keyboard focus ring should be highly visible and distinct from the `snapped` highlight. If the snapped item is interactive, you must use other standard accessibility practices to make it accessible.
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 Snapping occurs due to scrolling, which does not move keyboard focus. However, keyboard focus may cause the scroll container to move, causing a change in the snapped item, which may or may not be the focused item. This will likely be a source of confusion for users and is discouraged.
 
@@ -121,7 +129,9 @@ Snapping occurs due to scrolling, which does not move keyboard focus. However, k
 <<<<<<< HEAD
 
 =======
->>>>>>> 4cfe05b (edit ImageUpload)
+
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 ## Fallback strategies
 
 Container scroll-state queries has limited availability.
@@ -131,11 +141,12 @@ Unsupported in: Firefox and Safari.
 For browsers that do not support scroll-state queries, you should provide a functional base experience where all items are legible, even without the "active" highlight.
 
 #### Feature detection
+
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
-You can use `@supports` to provide enhancements only to supported browsers:
+> > > > > > > 4cfe05b (edit ImageUpload)
+> > > > > > > You can use `@supports` to provide enhancements only to supported browsers:
 
 ```css
 @supports (container-type: scroll-state) {
@@ -146,10 +157,12 @@ You can use `@supports` to provide enhancements only to supported browsers:
 #### JavaScript fallback
 
 <<<<<<< HEAD
-If the highlight is critical for the user experience, use `IntersectionObserver` to determine the snapped item. Adjust the observed area to a thin slice in the center of the carousel by providing a `rootMargin` with a negative inline value. For example, to consider an element to be intersecting if it is in the center 2% of the carousel, set the `rootMargin` to `"0px -49%"`.  
-=======
 If the highlight is critical for the user experience, use `IntersectionObserver` to determine the snapped item. Adjust the observed area to a thin slice in the center of the carousel by providing a `rootMargin` with a negative inline value. For example, to consider an element to be intersecting if it is in the center 2% of the carousel, set the `rootMargin` to `"0px -49%"`.
->>>>>>> 4cfe05b (edit ImageUpload)
+=======
+
+If the highlight is critical for the user experience, use `IntersectionObserver` to determine the snapped item. Adjust the observed area to a thin slice in the center of the carousel by providing a `rootMargin` with a negative inline value. For example, to consider an element to be intersecting if it is in the center 2% of the carousel, set the `rootMargin` to `"0px -49%"`.
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 ```javascript
 // Optional: detect support and apply a JS-based fallback

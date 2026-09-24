@@ -268,10 +268,12 @@ For the full detailed list of dos and don'ts, see https://developer.chrome.com/d
 #### Prepare the model at a reasonable time
 
 <<<<<<< HEAD
-*Applies to: all APIs, for example, Summarizer, Translator, and Writer.*
-=======
 _Applies to: all APIs, for example, Summarizer, Translator, and Writer._
->>>>>>> 4cfe05b (edit ImageUpload)
+=======
+
+_Applies to: all APIs, for example, Summarizer, Translator, and Writer._
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 **Do:** Initialize the session as soon as you've clearly established the user's intention to use the AI feature, for example, when a user navigates into a relevant AI tools surface, hovers over an AI workspace, or interacts with the feature's surrounding UI. Pre-warming the session allows the model to load into memory quietly in the background while the user is setting up their task, eliminating avoidable cold-start latency.
 Try to be one step ahead by starting the next most likely AI task as soon as you start rendering the current result, for example, if the feature is designed for iterative use.
@@ -284,10 +286,12 @@ Try to be one step ahead by starting the next most likely AI task as soon as you
 #### Set initial prompts during creation
 
 <<<<<<< HEAD
-*Applies to: Prompt API.*
-=======
 _Applies to: Prompt API._
->>>>>>> 4cfe05b (edit ImageUpload)
+=======
+
+_Applies to: Prompt API._
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 **Do:** Provide system instructions during session initialization to improve the
 speed of the first prompt.
@@ -299,10 +303,12 @@ process those instructions at the last moment.
 #### Clone sessions for repetitive tasks
 
 <<<<<<< HEAD
-*Applies to: Prompt API.*
-=======
 _Applies to: Prompt API._
->>>>>>> 4cfe05b (edit ImageUpload)
+=======
+
+_Applies to: Prompt API._
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 For the Prompt API, each session [tracks the context of the
 conversation](https://developer.chrome.com/docs/ai/prompt-api?content_ref=each+session+keeps+track+of+the+context+of+the+conversation+previous+interactions+are+taken+into+account+for+future+interactions+until+the+session+s+context+window+is+full),
@@ -324,10 +330,12 @@ only what you need.
 #### Destroy unused sessions
 
 <<<<<<< HEAD
-*Applies to: All APIs.*
-=======
 _Applies to: All APIs._
->>>>>>> 4cfe05b (edit ImageUpload)
+=======
+
+_Applies to: All APIs._
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 **Do:** Explicitly call [`destroy()`](https://developer.chrome.com/docs/ai/prompt-api#terminate_a_session) on
 sessions that you no longer need, to free up memory when a feature
@@ -342,12 +350,14 @@ frees up memory more quickly.
 #### Render streaming responses safely and efficiently
 
 <<<<<<< HEAD
-*Applies to: All APIs with streaming support (Prompt, Summarizer, Writer,
-Rewriter, and Translator).*
-=======
 _Applies to: All APIs with streaming support (Prompt, Summarizer, Writer,
 Rewriter, and Translator)._
->>>>>>> 4cfe05b (edit ImageUpload)
+=======
+
+_Applies to: All APIs with streaming support (Prompt, Summarizer, Writer,
+Rewriter, and Translator)._
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 **Do:** Treat all LLM output as untrusted content. Sanitize the full combined
 output, not just chunks, because malicious code could be split across updates.
@@ -363,10 +373,12 @@ injection.
 #### Optimize input for speed
 
 <<<<<<< HEAD
-*Applies to: All APIs.*
-=======
 _Applies to: All APIs._
->>>>>>> 4cfe05b (edit ImageUpload)
+=======
+
+_Applies to: All APIs._
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 **Do:** Only pass to the model what's strictly needed. Strip everything that's
 irrelevant to the task at hand. For large datasets, provide a short overview and
@@ -379,10 +391,12 @@ can make the AI feature seem broken on many devices.
 #### Use structured output for predictable results
 
 <<<<<<< HEAD
-*Applies to: Prompt API.*
-=======
 _Applies to: Prompt API._
->>>>>>> 4cfe05b (edit ImageUpload)
+=======
+
+_Applies to: Prompt API._
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 **Do:** When you need the model to return data in a specific format, use
 [structured
@@ -397,12 +411,14 @@ alone. Models might include conversational filler that breaks your parser.
 #### Decouple generation from length constraints
 
 <<<<<<< HEAD
-*Applies to: Prompt API, as it's the only API that supports [structured output
-schemas](https://developer.chrome.com/docs/ai/structured-output-for-prompt-api).*
-=======
 _Applies to: Prompt API, as it's the only API that supports [structured output
 schemas](https://developer.chrome.com/docs/ai/structured-output-for-prompt-api)._
->>>>>>> 4cfe05b (edit ImageUpload)
+=======
+
+_Applies to: Prompt API, as it's the only API that supports [structured output
+schemas](https://developer.chrome.com/docs/ai/structured-output-for-prompt-api)._
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 **Do:** Let the model generate its response naturally, and then use client-side
 logic to truncate the text to fit your UI.
@@ -416,10 +432,12 @@ resulting in nonsensical output.
 #### Keep the user informed
 
 <<<<<<< HEAD
-*Applies to: All APIs.*
-=======
 _Applies to: All APIs._
->>>>>>> 4cfe05b (edit ImageUpload)
+=======
+
+_Applies to: All APIs._
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 **Do:** Depending on the complexity and expected duration of the task, use animations, visual cues, and progress indicators to keep the user informed. The
 optimal approach depends on your use case and the expected length of the API
@@ -434,10 +452,12 @@ output. Some ideas:
 #### Align with the user's mental model of time and work
 
 <<<<<<< HEAD
-*Applies to: All APIs.*
-=======
 _Applies to: All APIs._
->>>>>>> 4cfe05b (edit ImageUpload)
+=======
+
+_Applies to: All APIs._
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 **Do:** Consider an artificial delay of one or two seconds if a response is
 nearly instant. Paradoxically, users might find results more trustworthy when
@@ -449,10 +469,12 @@ of the task. Use animations to signal that an AI process has occurred.
 #### Allow users to quickly navigate and undo AI edits
 
 <<<<<<< HEAD
-*Applies to: All APIs.*
-=======
 _Applies to: All APIs._
->>>>>>> 4cfe05b (edit ImageUpload)
+=======
+
+_Applies to: All APIs._
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 **Do:** Equip your UI with a stepper or navigation history that lets users
 explore different results confidently, and let them quickly undo AI edits. This
@@ -464,10 +486,12 @@ liked without a way to go back, revert, or compare versions.
 #### Empower user control and overrides
 
 <<<<<<< HEAD
-*Applies to: All APIs.*
-=======
 _Applies to: All APIs._
->>>>>>> 4cfe05b (edit ImageUpload)
+=======
+
+_Applies to: All APIs._
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 **Do:** Make the user the final editor of all generated content. Provide intuitive overrides so the user maintains full ownership for the final output. The APIs may produce incorrect results.
 
@@ -476,10 +500,12 @@ _Applies to: All APIs._
 #### Cache results for repeated tasks
 
 <<<<<<< HEAD
-*Applies to: All APIs.*
-=======
 _Applies to: All APIs._
->>>>>>> 4cfe05b (edit ImageUpload)
+=======
+
+_Applies to: All APIs._
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 **Do:** Implement a local result cache (for example, using `sessionStorage` or
 `IndexedDB`) for repeated inputs or queries. Normalize the input by trimming
@@ -511,9 +537,12 @@ if ('LanguageModel' in self) {
 If the Prompt API is unsupported or availability checks return 'unavailable', you must gracefully fall back:
 
 <<<<<<< HEAD
-* Remote API Fallback: Redirect the detection request to a server endpoint or a cloud API (such as the Vertex AI Gemini API).
-* Local API Fallback: Redirect the detection request to a local endpoint, for example, using Transformers.js. 
-=======
+
 - Remote API Fallback: Redirect the detection request to a server endpoint or a cloud API (such as the Vertex AI Gemini API).
 - Local API Fallback: Redirect the detection request to a local endpoint, for example, using Transformers.js.
->>>>>>> 4cfe05b (edit ImageUpload)
+  \=======
+
+* Remote API Fallback: Redirect the detection request to a server endpoint or a cloud API (such as the Vertex AI Gemini API).
+* Local API Fallback: Redirect the detection request to a local endpoint, for example, using Transformers.js.
+
+> > > > > > > 4cfe05b (edit ImageUpload)

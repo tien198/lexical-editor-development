@@ -12,14 +12,16 @@ To create a scroll progress indicator, you need two things:
 Here’s how you can achieve this:
 
 <<<<<<< HEAD
--   First, create an HTML element that will serve as your progress bar. This element can be styled to your liking.
--   Next, in your CSS, define a `@keyframes` animation that scales the progress bar. A common approach is to scale the element from `scaleX(0)` to `scaleX(1)`.
--   Finally, apply this animation to your progress bar element and set its `animation-timeline` to a scroll-timeline. This tells the browser to drive the animation's progress based on the scroll position of the nearest ancestor scroller.
-=======
+
 - First, create an HTML element that will serve as your progress bar. This element can be styled to your liking.
 - Next, in your CSS, define a `@keyframes` animation that scales the progress bar. A common approach is to scale the element from `scaleX(0)` to `scaleX(1)`.
 - Finally, apply this animation to your progress bar element and set its `animation-timeline` to a scroll-timeline. This tells the browser to drive the animation's progress based on the scroll position of the nearest ancestor scroller.
->>>>>>> 4cfe05b (edit ImageUpload)
+  \=======
+- First, create an HTML element that will serve as your progress bar. This element can be styled to your liking.
+- Next, in your CSS, define a `@keyframes` animation that scales the progress bar. A common approach is to scale the element from `scaleX(0)` to `scaleX(1)`.
+- Finally, apply this animation to your progress bar element and set its `animation-timeline` to a scroll-timeline. This tells the browser to drive the animation's progress based on the scroll position of the nearest ancestor scroller.
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 ## Example code
 
@@ -126,11 +128,12 @@ When using scroll-driven animations, it's important to follow a few best practic
 - **DO** remove purely decorative elements from assistive technology reading flows: Apply `aria-hidden="true"` to purely visual scroll indicators to ensure screen readers do not encounter empty, unnamed nodes.
 - **DO** respect user preferences: Some users prefer to have less motion on the web. Use the `prefers-reduced-motion` media query to disable or reduce your animations for these users.
 - **DO** try to animate only performant CSS properties: For the smoothest animations, stick to animating properties that can be handled by the browser's compositor thread, such as `transform` and `opacity`. Animating other properties like `width` or `height` can lead to performance issues.
-<<<<<<< HEAD
-- **DO** use the correct declaration order: When using the `animation` shorthand property, declare `animation-timeline` *after* it to prevent the shorthand from resetting the timeline.
-=======
+  <<<<<<< HEAD
 - **DO** use the correct declaration order: When using the `animation` shorthand property, declare `animation-timeline` _after_ it to prevent the shorthand from resetting the timeline.
->>>>>>> 4cfe05b (edit ImageUpload)
+  \=======
+- **DO** use the correct declaration order: When using the `animation` shorthand property, declare `animation-timeline` _after_ it to prevent the shorthand from resetting the timeline.
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 When using the `scroll()` function to create a scroll-driven animation:
 
@@ -160,29 +163,29 @@ For this use-case specifically, the following script applies the fallback for br
 
 ```html
 <script>
-  if (!CSS.supports('animation-timeline', 'scroll()')) {
-<<<<<<< HEAD
-    const progress = document.querySelector('#progress');
+    if (!CSS.supports('animation-timeline', 'scroll()')) {
+  <<<<<<< HEAD
+      const progress = document.querySelector('#progress');
 
-    window.addEventListener('scroll', () => {
-      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-      const scrolled = window.scrollY;
-      const progressPercentage = (scrolled / scrollable);
+      window.addEventListener('scroll', () => {
+        const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+        const scrolled = window.scrollY;
+        const progressPercentage = (scrolled / scrollable);
 
-      progress.style.transform = `scaleX(${progressPercentage})`;
-    });
-=======
-    const progress = document.querySelector('#progress')
+        progress.style.transform = `scaleX(${progressPercentage})`;
+      });
+  =======
+      const progress = document.querySelector('#progress')
 
-    window.addEventListener('scroll', () => {
-      const scrollable =
-        document.documentElement.scrollHeight - window.innerHeight
-      const scrolled = window.scrollY
-      const progressPercentage = scrolled / scrollable
+      window.addEventListener('scroll', () => {
+        const scrollable =
+          document.documentElement.scrollHeight - window.innerHeight
+        const scrolled = window.scrollY
+        const progressPercentage = scrolled / scrollable
 
-      progress.style.transform = `scaleX(${progressPercentage})`
-    })
->>>>>>> 4cfe05b (edit ImageUpload)
-  }
+        progress.style.transform = `scaleX(${progressPercentage})`
+      })
+  >>>>>>> 4cfe05b (edit ImageUpload)
+    }
 </script>
 ```

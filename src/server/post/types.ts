@@ -13,14 +13,9 @@ export type Post = {
   status?: 'draft' | 'published'
   createdAt: string
   updatedAt: string
-  meta?: PostMeta[]
-}
-
-export type PostMeta = {
-  title?: string
-  name?: string
-  property?: string
-  content?: string
+  meta_title?: string
+  meta_description?: string
+  meta_image_id?: string
 }
 
 export type Media = {

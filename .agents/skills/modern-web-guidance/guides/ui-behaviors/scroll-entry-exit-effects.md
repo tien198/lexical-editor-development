@@ -10,12 +10,15 @@ To add entry and exit effects to an element, you need to combine a few CSS prope
 
     ```css
     @keyframes slide-in {
+    ```
+
 <<<<<<< HEAD
-      from { transform: translateX(-100%); }
-    }
-    @keyframes slide-out {
-      to { transform: translateX(100%); }
+from { transform: translateX(-100%); }
+}
+@keyframes slide-out {
+to { transform: translateX(100%); }
 =======
+
       from {
         transform: translateX(-100%);
       }
@@ -24,19 +27,23 @@ To add entry and exit effects to an element, you need to combine a few CSS prope
       to {
         transform: translateX(100%);
       }
->>>>>>> 4cfe05b (edit ImageUpload)
-    }
-    ```
+
+> > > > > > > 4cfe05b (edit ImageUpload)
+> > > > > > > }
+> > > > > > >
+> > > > > > > ```
+> > > > > > >
+> > > > > > > ```
 
 2.  **Attach the entry and exit keyframes to the element.** You can do this by defining multiple animations in the `animation` property.
 
-<<<<<<< HEAD
-    -   Give the entry animation an `animation-fill-mode` of `backwards` so that it applies its initial state before the animation starts.
-    -   Give the exit animation an `animation-fill-mode` of `forwards` so that it maintains its final state after the animation is complete.
+<<<<<<< HEAD - Give the entry animation an `animation-fill-mode` of `backwards` so that it applies its initial state before the animation starts. - Give the exit animation an `animation-fill-mode` of `forwards` so that it maintains its final state after the animation is complete.
 =======
+
     - Give the entry animation an `animation-fill-mode` of `backwards` so that it applies its initial state before the animation starts.
     - Give the exit animation an `animation-fill-mode` of `forwards` so that it maintains its final state after the animation is complete.
->>>>>>> 4cfe05b (edit ImageUpload)
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
     ```css
     .animated-element {
@@ -46,7 +53,7 @@ To add entry and exit effects to an element, you need to combine a few CSS prope
     }
     ```
 
-3.  **Create a View Timeline and link it to the animations.** A View Timeline is a type of timeline that is linked to the visibility of an element in the viewport. You can create one using the `view()` function and then apply it to your animations using the `animation-timeline` property.
+3. **Create a View Timeline and link it to the animations.** A View Timeline is a type of timeline that is linked to the visibility of an element in the viewport. You can create one using the `view()` function and then apply it to your animations using the `animation-timeline` property.
 
     ```css
     .animated-element {
@@ -56,15 +63,15 @@ To add entry and exit effects to an element, you need to combine a few CSS prope
 
     By default, `view()` tracks the element on the `block` axis. If you need to track it on the `inline` axis, you can use `view(inline)`.
 
-4.  **Limit the animations to the `entry` and `exit` ranges.** The `animation-range` property allows you to specify which part of the timeline an animation should run on.
+4. **Limit the animations to the `entry` and `exit` ranges.** The `animation-range` property allows you to specify which part of the timeline an animation should run on.
 
-<<<<<<< HEAD
-    -   The `entry` range covers the time from when the element first enters the viewport until it is fully visible.
-    -   The `exit` range covers the time from when the element starts to leave the viewport until it is completely hidden.
+<<<<<<< HEAD - The `entry` range covers the time from when the element first enters the viewport until it is fully visible. - The `exit` range covers the time from when the element starts to leave the viewport until it is completely hidden.
 =======
+
     - The `entry` range covers the time from when the element first enters the viewport until it is fully visible.
     - The `exit` range covers the time from when the element starts to leave the viewport until it is completely hidden.
->>>>>>> 4cfe05b (edit ImageUpload)
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
     ```css
     .animated-element {
@@ -141,11 +148,12 @@ When using scroll-driven animations, it's important to follow a few best practic
   - If the animation is only considered to be decorative, opt for Progressive Enhancement and **DO NOT** provide a fallback.
 - **DO** respect user preferences: Some users prefer to have less motion on the web. Use the `prefers-reduced-motion` media query to disable or reduce your animations for these users.
 - **DO** try to animate only performant CSS properties: For the smoothest animations, stick to animating properties that can be handled by the browser's compositor thread, such as `transform` and `opacity`. Animating other properties like `width` or `height` can lead to performance issues.
-<<<<<<< HEAD
-- **DO** use the correct declaration order: When using the `animation` shorthand property, declare `animation-timeline` *after* it to prevent the shorthand from resetting the timeline.
-=======
+  <<<<<<< HEAD
 - **DO** use the correct declaration order: When using the `animation` shorthand property, declare `animation-timeline` _after_ it to prevent the shorthand from resetting the timeline.
->>>>>>> 4cfe05b (edit ImageUpload)
+  \=======
+- **DO** use the correct declaration order: When using the `animation` shorthand property, declare `animation-timeline` _after_ it to prevent the shorthand from resetting the timeline.
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 When using the `view()` function to create a scroll-driven animation:
 
@@ -176,42 +184,42 @@ For this use-case specifically, the following script applies the fallback for br
 
 ```html
 <script>
-<<<<<<< HEAD
-  if (!CSS.supports('(animation-timeline: view()) and (animation-range: entry)')) {
-=======
-  if (
-    !CSS.supports('(animation-timeline: view()) and (animation-range: entry)')
-  ) {
->>>>>>> 4cfe05b (edit ImageUpload)
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          // This matches the effect as defined in the CSS example above.
-          // Customize this further if needed.
-<<<<<<< HEAD
-          entry.target.style.scale = 0.5 + entry.intersectionRatio * 0.5;
-=======
-          entry.target.style.scale = 0.5 + entry.intersectionRatio * 0.5
->>>>>>> 4cfe05b (edit ImageUpload)
+  <<<<<<< HEAD
+    if (!CSS.supports('(animation-timeline: view()) and (animation-range: entry)')) {
+  =======
+    if (
+      !CSS.supports('(animation-timeline: view()) and (animation-range: entry)')
+    ) {
+  >>>>>>> 4cfe05b (edit ImageUpload)
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            // This matches the effect as defined in the CSS example above.
+            // Customize this further if needed.
+  <<<<<<< HEAD
+            entry.target.style.scale = 0.5 + entry.intersectionRatio * 0.5;
+  =======
+            entry.target.style.scale = 0.5 + entry.intersectionRatio * 0.5
+  >>>>>>> 4cfe05b (edit ImageUpload)
+          }
+        },
+        {
+          threshold: Array.from({ length: 101 }, (_, i) => i / 100),
+  <<<<<<< HEAD
         }
-      },
-      {
-        threshold: Array.from({ length: 101 }, (_, i) => i / 100),
-<<<<<<< HEAD
-      }
-    );
+      );
 
-    document.querySelectorAll('.scroller > *').forEach((el) => {
-      observer.observe(el);
-    });
-=======
-      },
-    )
+      document.querySelectorAll('.scroller > *').forEach((el) => {
+        observer.observe(el);
+      });
+  =======
+        },
+      )
 
-    document.querySelectorAll('.scroller > *').forEach((el) => {
-      observer.observe(el)
-    })
->>>>>>> 4cfe05b (edit ImageUpload)
-  }
+      document.querySelectorAll('.scroller > *').forEach((el) => {
+        observer.observe(el)
+      })
+  >>>>>>> 4cfe05b (edit ImageUpload)
+    }
 </script>
 ```

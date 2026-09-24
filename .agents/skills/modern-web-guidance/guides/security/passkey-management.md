@@ -79,17 +79,7 @@ Render a dedicated settings panel allowing users to easily audit and manage thei
 1.  **Display saved list**: Fetch list from your endpoint and render individual credential rows. If the response is empty, render a helpful empty-state message (e.g., "No passkeys found").
 2.  **Map AAGUID Metadata**: For each passkey, lookup its `aaguid` property against your local registry to render its provider details. See [Determine the passkey provider from AAGUID](#aaguid) section for more details.
 3.  **Per-Item UI Requirements**: Every row inside the list container MUST render:
-<<<<<<< HEAD
-    *   **Provider Icon**: AAGUID-derived image or data URI.
-    *   **Provider/Custom Name**: AAGUID-derived name or user-renamed string.
-    *   **Registration Date**: The database-persisted raw epoch timestamp `registeredAt` formatted to a human-readable date for client display.
-    *   **Last Used Date**: The database-persisted raw epoch timestamp `lastUsedAt` formatted to a human-readable date (if present) for client display.
-    *   **Rename Button**: Triggers a rename text input modal.
-    *   **Delete Button**: Triggers deletion.
-4.  **Conditional "Create Passkey" Button**:
-    *  Offer a prominent "Create passkey" registration trigger button on the management page. Before rendering this UI element, the page MUST feature-detect capabilities using `PublicKeyCredential.getClientCapabilities()` to verify platform authenticator is supported. If passkeys are unsupported, hide this button and gracefully encourage standard MFA enrollments instead.
-    *  Allow registering a security key by omitting `authenticatorSelection.authenticatorAttachment` on `navigator.credentials.create()` call.
-=======
+    <<<<<<< HEAD
     - **Provider Icon**: AAGUID-derived image or data URI.
     - **Provider/Custom Name**: AAGUID-derived name or user-renamed string.
     - **Registration Date**: The database-persisted raw epoch timestamp `registeredAt` formatted to a human-readable date for client display.
@@ -99,22 +89,34 @@ Render a dedicated settings panel allowing users to easily audit and manage thei
 4.  **Conditional "Create Passkey" Button**:
     - Offer a prominent "Create passkey" registration trigger button on the management page. Before rendering this UI element, the page MUST feature-detect capabilities using `PublicKeyCredential.getClientCapabilities()` to verify platform authenticator is supported. If passkeys are unsupported, hide this button and gracefully encourage standard MFA enrollments instead.
     - Allow registering a security key by omitting `authenticatorSelection.authenticatorAttachment` on `navigator.credentials.create()` call.
->>>>>>> 4cfe05b (edit ImageUpload)
+      \=======
+    * **Provider Icon**: AAGUID-derived image or data URI.
+    * **Provider/Custom Name**: AAGUID-derived name or user-renamed string.
+    * **Registration Date**: The database-persisted raw epoch timestamp `registeredAt` formatted to a human-readable date for client display.
+    * **Last Used Date**: The database-persisted raw epoch timestamp `lastUsedAt` formatted to a human-readable date (if present) for client display.
+    * **Rename Button**: Triggers a rename text input modal.
+    * **Delete Button**: Triggers deletion.
+5.  **Conditional "Create Passkey" Button**:
+    - Offer a prominent "Create passkey" registration trigger button on the management page. Before rendering this UI element, the page MUST feature-detect capabilities using `PublicKeyCredential.getClientCapabilities()` to verify platform authenticator is supported. If passkeys are unsupported, hide this button and gracefully encourage standard MFA enrollments instead.
+    - Allow registering a security key by omitting `authenticatorSelection.authenticatorAttachment` on `navigator.credentials.create()` call.
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 ## Signal API Synchronization
 
 The Signal API lets the application communicate credential states to password managers, keeping the user's synced vaults and your backend database in lockstep.
 
 <<<<<<< HEAD
-*   **Parameter Encoding Rule**:
-    *  All `userId` and credential ID parameters passed to Signal API methods (`signalAllAcceptedCredentials`, `signalCurrentUserDetails`) MUST be **Base64URL-encoded strings**.
-*   **Initiating Page Load Sync**:
-    *  The application MUST invoke `signalAllAcceptedCredentials()` automatically in a `DOMContentLoaded` page load event listener.
-*   **Management Updates Sync**:
-    *  The application MUST invoke `signalAllAcceptedCredentials()` immediately within your delete credential click handler post-fetch.
-    *  The application MUST invoke `signalCurrentUserDetails()` immediately within your username or display name rename click handler post-fetch.
 
-```javascript
+- **Parameter Encoding Rule**:
+  - All `userId` and credential ID parameters passed to Signal API methods (`signalAllAcceptedCredentials`, `signalCurrentUserDetails`) MUST be **Base64URL-encoded strings**.
+- **Initiating Page Load Sync**:
+  - The application MUST invoke `signalAllAcceptedCredentials()` automatically in a `DOMContentLoaded` page load event listener.
+- **Management Updates Sync**:
+  - The application MUST invoke `signalAllAcceptedCredentials()` immediately within your delete credential click handler post-fetch.
+  - The application MUST invoke `signalCurrentUserDetails()` immediately within your username or display name rename click handler post-fetch.
+
+````javascript
 // Client-side management synchronization ES module
 import { listFetch, renameFetch, deleteFetch } from './api.js';
 
@@ -124,7 +126,7 @@ const base64UrlUserId = "M2YPl-KGnA8";
 async function syncAcceptedCredentials(currentCredentialsList) {
   try {
     const credentialIds = currentCredentialsList.map(c => c.id); // Map of Base64URL credential ID strings
-    
+
     await PublicKeyCredential.signalAllAcceptedCredentials({
       rpId, // RP ID must match the one defined on the server
       userId: base64UrlUserId, // User ID Base64URL-encoded string
@@ -167,7 +169,7 @@ async function loadManagementPanel() {
 <<<<<<< HEAD
   const response = await listFetch();
   const list = await response.json();
-  
+
   renderUI(list);
   // Sync on page load
   await syncAcceptedCredentials(list);
@@ -178,7 +180,7 @@ async function performDelete(credentialId) {
   if (response.ok) {
     const updatedResponse = await listFetch();
     const updatedList = await updatedResponse.json();
-    
+
     renderUI(updatedList);
     // Sync after deletion
     await syncAcceptedCredentials(updatedList);
@@ -233,7 +235,7 @@ async function performRename(rpId, userId, updatedName, updatedDisplayName) {
     }
   }
 }
-```
+````
 
 ## Determine the passkey provider from AAGUID {: #aaguid }
 
@@ -309,18 +311,20 @@ Supported by: Chrome 133 (Feb 2025), Edge 133 (Feb 2025), Firefox 135 (Feb 2025)
 
 Always install 'webauthn-polyfills' and import it in the context.
 <<<<<<< HEAD
-Consider as long as  `PublicKeyCredential` is supported, `PublicKeyCredential.getClientCapabilities` is also supported. 
+Consider as long as `PublicKeyCredential` is supported, `PublicKeyCredential.getClientCapabilities` is also supported.
 
-```js 
-import 'webauthn-polyfills';
-``` 
+```js
+import 'webauthn-polyfills'
+```
+
 =======
 Consider as long as `PublicKeyCredential` is supported, `PublicKeyCredential.getClientCapabilities` is also supported.
 
 ```js
 import 'webauthn-polyfills'
 ```
->>>>>>> 4cfe05b (edit ImageUpload)
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 ### Signal API Synchronization Fallback
 
@@ -328,15 +332,16 @@ Web authentication signal methods has limited availability.
 Supported by: Chrome 132 (Jan 2025), Edge 132 (Jan 2025), and Safari 26 (Sep 2025).
 Unsupported in: Firefox.
 <<<<<<< HEAD
-If the browser does not support `PublicKeyCredential.parseRequestOptionsFromJSON`, use the 'webauthn-polyfills': 
-  
-```html 
-<script type="module"> 
-  if (!PublicKeyCredential.parseRequestOptionsFromJSON) { 
-     await import('https://unpkg.com/webauthn-polyfills'); 
-   } 
- </script> 
- ``` 
+If the browser does not support `PublicKeyCredential.parseRequestOptionsFromJSON`, use the 'webauthn-polyfills':
+
+```html
+<script type="module">
+  if (!PublicKeyCredential.parseRequestOptionsFromJSON) {
+    await import('https://unpkg.com/webauthn-polyfills')
+  }
+</script>
+```
+
 =======
 If the browser does not support `PublicKeyCredential.parseRequestOptionsFromJSON`, use the 'webauthn-polyfills':
 
@@ -347,6 +352,7 @@ If the browser does not support `PublicKeyCredential.parseRequestOptionsFromJSON
   }
 </script>
 ```
->>>>>>> 4cfe05b (edit ImageUpload)
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 This will also add support for `PublicKeyCredential.prototype.toJSON`.

@@ -12,6 +12,9 @@ export const getPostByIdServerFn = createServerFn({
     return { id: data.id }
   })
   .handler(async ({ data }) => {
+    // Simulated 2-second network delay to test SSR streaming
+    await new Promise((resolve) => setTimeout(resolve, 2000))
+
     const post = POSTS.find((p) => String(p.id) === data.id)
 
     if (!post) {

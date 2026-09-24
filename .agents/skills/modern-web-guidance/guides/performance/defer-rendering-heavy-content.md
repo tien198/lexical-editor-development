@@ -7,18 +7,20 @@ To optimize rendering, you can utilize the CSS `content-visibility` property and
 ## When to use which
 
 <<<<<<< HEAD
-| Scenario / Example | Feature Applied | Performance Benefit |
-| :--- | :--- | :--- |
-| **1. Below the fold** (Delay initial load) | **`content-visibility: auto`** | Browser automatically offloads layout/paint workload until the container scrolls close to view, keeping standard page load speed frictionless. |
-| **2. Toggle State** (Fast view switching) | **`content-visibility: hidden`** | Skips layout calculations for hidden divs but preserves style containment state, allowing for instantaneous toggling without structural shifts (superior to `display: none`). |
-| **3. Searchable & Deferred** (Collapsible disclosures) | **`hidden="until-found"`** | For detailed instructions on combining rendering performance with find-in-page search accessibility, see `search-hidden-content` (via `npx -y modern-web-guidance@latest retrieve "search-hidden-content"`). |
-=======
+
 | Scenario / Example                                     | Feature Applied                  | Performance Benefit                                                                                                                                                                                          |
 | :----------------------------------------------------- | :------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **1. Below the fold** (Delay initial load)             | **`content-visibility: auto`**   | Browser automatically offloads layout/paint workload until the container scrolls close to view, keeping standard page load speed frictionless.                                                               |
 | **2. Toggle State** (Fast view switching)              | **`content-visibility: hidden`** | Skips layout calculations for hidden divs but preserves style containment state, allowing for instantaneous toggling without structural shifts (superior to `display: none`).                                |
 | **3. Searchable & Deferred** (Collapsible disclosures) | **`hidden="until-found"`**       | For detailed instructions on combining rendering performance with find-in-page search accessibility, see `search-hidden-content` (via `npx -y modern-web-guidance@latest retrieve "search-hidden-content"`). |
->>>>>>> 4cfe05b (edit ImageUpload)
+| =======                                                |
+| Scenario / Example                                     | Feature Applied                  | Performance Benefit                                                                                                                                                                                          |
+| :----------------------------------------------------- | :------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **1. Below the fold** (Delay initial load)             | **`content-visibility: auto`**   | Browser automatically offloads layout/paint workload until the container scrolls close to view, keeping standard page load speed frictionless.                                                               |
+| **2. Toggle State** (Fast view switching)              | **`content-visibility: hidden`** | Skips layout calculations for hidden divs but preserves style containment state, allowing for instantaneous toggling without structural shifts (superior to `display: none`).                                |
+| **3. Searchable & Deferred** (Collapsible disclosures) | **`hidden="until-found"`**       | For detailed instructions on combining rendering performance with find-in-page search accessibility, see `search-hidden-content` (via `npx -y modern-web-guidance@latest retrieve "search-hidden-content"`). |
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 ## How to implement `content-visibility: auto`
 
@@ -28,7 +30,8 @@ To optimize rendering, you can utilize the CSS `content-visibility` property and
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 - **DO** target large, self-contained layout blocks that are strictly **below the initial fold** (e.g., card items in an infinite feed, trailing comments, or bottom-heavy layout sections).
 - **DO NOT** apply this property to elements within the initial, above-the-fold viewport. Doing so forces the browser to evaluate visibility boundaries before rendering, which paradoxically delays critical page load performance.
 - **DO** target elements with deep or complex internal DOM structures to maximize rendering cost savings.
@@ -53,7 +56,7 @@ The `contain-intrinsic-size` CSS shorthand property acts as a placeholder dimens
   /* MANDATORY: Skips rendering calculations when off-screen */
   content-visibility: auto;
 <<<<<<< HEAD
-  
+
 =======
 
 >>>>>>> 4cfe05b (edit ImageUpload)
@@ -67,7 +70,7 @@ The `contain-intrinsic-size` CSS shorthand property acts as a placeholder dimens
       CSS <length> value.
    */
 <<<<<<< HEAD
-  contain-intrinsic-size: auto none auto 150px; 
+  contain-intrinsic-size: auto none auto 150px;
 =======
   contain-intrinsic-size: auto none auto 150px;
 >>>>>>> 4cfe05b (edit ImageUpload)

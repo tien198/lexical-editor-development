@@ -121,8 +121,8 @@ MANDATORY: Define the complexity rule using a Regex Lookahead pattern in the `pa
 ```css
 /* DO: State the default styling as neutral */
 <<<<<<< HEAD
-.rules-list { 
-  color: #5f6368; 
+.rules-list {
+  color: #5f6368;
 =======
 .rules-list {
   color: #5f6368;
@@ -323,21 +323,22 @@ UserInvalidFallback.init(form)
 ## Other Considerations
 
 1.  **Accessibility**:
-<<<<<<< HEAD
-    *   MANDATORY: Use `aria-describedby` to link the rules list to the input.
-    *   DO NOT: Hide rules lists entirely until the input is valid; users need to know what to type!
-2.  **Pattern Attribute Limits**: MANDATORY: The `pattern` attribute performs a full match (implied `^...$`). Ensure your password regex accounts for the entire string.
-3.  **Validation Strictness**: DO note that the browser's default `type="email"` validation is quite permissive (e.g., `user@localserver` might pass). If you need stricter validation, you may need to use a more robust validation library or a custom validation function alongside `type="email"`.
-4.  **Focus Management**: MANDATORY: If a user submits the form with an invalid field, the browser will automatically focus the first invalid field. Your `:user-invalid` styles will apply immediately because a submission attempt counts as an interaction.
-5. **Consistent ARIA Experience**: Native `:user-invalid` does not automatically sync with ARIA attributes. Add the following JavaScript to keep `aria-invalid` in sync with the visual state:
-=======
+    <<<<<<< HEAD
     - MANDATORY: Use `aria-describedby` to link the rules list to the input.
     - DO NOT: Hide rules lists entirely until the input is valid; users need to know what to type!
 2.  **Pattern Attribute Limits**: MANDATORY: The `pattern` attribute performs a full match (implied `^...$`). Ensure your password regex accounts for the entire string.
 3.  **Validation Strictness**: DO note that the browser's default `type="email"` validation is quite permissive (e.g., `user@localserver` might pass). If you need stricter validation, you may need to use a more robust validation library or a custom validation function alongside `type="email"`.
 4.  **Focus Management**: MANDATORY: If a user submits the form with an invalid field, the browser will automatically focus the first invalid field. Your `:user-invalid` styles will apply immediately because a submission attempt counts as an interaction.
 5.  **Consistent ARIA Experience**: Native `:user-invalid` does not automatically sync with ARIA attributes. Add the following JavaScript to keep `aria-invalid` in sync with the visual state:
->>>>>>> 4cfe05b (edit ImageUpload)
+    \=======
+    - MANDATORY: Use `aria-describedby` to link the rules list to the input.
+    - DO NOT: Hide rules lists entirely until the input is valid; users need to know what to type!
+6.  **Pattern Attribute Limits**: MANDATORY: The `pattern` attribute performs a full match (implied `^...$`). Ensure your password regex accounts for the entire string.
+7.  **Validation Strictness**: DO note that the browser's default `type="email"` validation is quite permissive (e.g., `user@localserver` might pass). If you need stricter validation, you may need to use a more robust validation library or a custom validation function alongside `type="email"`.
+8.  **Focus Management**: MANDATORY: If a user submits the form with an invalid field, the browser will automatically focus the first invalid field. Your `:user-invalid` styles will apply immediately because a submission attempt counts as an interaction.
+9.  **Consistent ARIA Experience**: Native `:user-invalid` does not automatically sync with ARIA attributes. Add the following JavaScript to keep `aria-invalid` in sync with the visual state:
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 ```javascript
 // Sync aria-invalid with the CSS :user-invalid state

@@ -21,16 +21,8 @@ These core themes should guide your approach to privacy in web development:
 Reducing the amount of data collected and strictly limiting its use is the most effective way to protect user privacy.
 
 #### DOs:
-<<<<<<< HEAD
-*   **DO** collect data at the lowest granularity necessary. If you only need to know if a user is in a certain age bracket (e.g., 18-34), ask for the bracket, not the exact date of birth.
-*   **DO** provide guest checkout options for e-commerce to avoid forced account creation, which reduces data collection and cart abandonment.
-*   **DO** delete data as soon as the purpose for its collection has been fulfilled.
-*   **DO** use techniques like "fuzzing" or adding noise to data (Differential Privacy) when gathering aggregate statistics.
 
-#### DON'Ts:
-*   **DON'T** collect data speculatively "just in case" it might be useful in the future.
-*   **DON'T** reuse data collected for one purpose (e.g., security verification) for another (e.g., marketing) without explicit user consent.
-=======
+<<<<<<< HEAD
 
 - **DO** collect data at the lowest granularity necessary. If you only need to know if a user is in a certain age bracket (e.g., 18-34), ask for the bracket, not the exact date of birth.
 - **DO** provide guest checkout options for e-commerce to avoid forced account creation, which reduces data collection and cart abandonment.
@@ -41,7 +33,19 @@ Reducing the amount of data collected and strictly limiting its use is the most 
 
 - **DON'T** collect data speculatively "just in case" it might be useful in the future.
 - **DON'T** reuse data collected for one purpose (e.g., security verification) for another (e.g., marketing) without explicit user consent.
->>>>>>> 4cfe05b (edit ImageUpload)
+  \=======
+
+* **DO** collect data at the lowest granularity necessary. If you only need to know if a user is in a certain age bracket (e.g., 18-34), ask for the bracket, not the exact date of birth.
+* **DO** provide guest checkout options for e-commerce to avoid forced account creation, which reduces data collection and cart abandonment.
+* **DO** delete data as soon as the purpose for its collection has been fulfilled.
+* **DO** use techniques like "fuzzing" or adding noise to data (Differential Privacy) when gathering aggregate statistics.
+
+#### DON'Ts:
+
+- **DON'T** collect data speculatively "just in case" it might be useful in the future.
+- **DON'T** reuse data collected for one purpose (e.g., security verification) for another (e.g., marketing) without explicit user consent.
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 #### Code Examples:
 
@@ -50,7 +54,8 @@ Instead of asking for exact age:
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 ```html
 <label for="age-bracket">Age Bracket:</label>
 <select id="age-bracket" name="age-bracket">
@@ -65,17 +70,8 @@ Instead of asking for exact age:
 Build trust by being open about your data practices and providing easy ways for users to control their data.
 
 #### DOs:
-<<<<<<< HEAD
-*   **DO** provide inline explanations for why data is requested. Place the explanation directly next to the input field.
-*   **DO** provide a clear reason and context *before* requesting powerful browser permissions (e.g., camera, location).
-*   **DO** consider using the **Page Embedded Permission Control (PEPC)** `<permission>` element, if supported, to make permission requests declarative, user-initiated, and act as data mediators.
-*   **DO** use the `Clear-Site-Data` header when a user logs out to ensure no lingering data remains in the browser.
-*   **DO** make it as easy to opt-out or delete an account as it was to sign up.
 
-#### DON'Ts:
-*   **DON'T** bury data collection explanations in long, complex privacy policies.
-*   **DON'T** use deceptive patterns (dark patterns) to trick users into giving consent.
-=======
+<<<<<<< HEAD
 
 - **DO** provide inline explanations for why data is requested. Place the explanation directly next to the input field.
 - **DO** provide a clear reason and context _before_ requesting powerful browser permissions (e.g., camera, location).
@@ -87,45 +83,60 @@ Build trust by being open about your data practices and providing easy ways for 
 
 - **DON'T** bury data collection explanations in long, complex privacy policies.
 - **DON'T** use deceptive patterns (dark patterns) to trick users into giving consent.
->>>>>>> 4cfe05b (edit ImageUpload)
+  \=======
+
+* **DO** provide inline explanations for why data is requested. Place the explanation directly next to the input field.
+* **DO** provide a clear reason and context _before_ requesting powerful browser permissions (e.g., camera, location).
+* **DO** consider using the **Page Embedded Permission Control (PEPC)** `<permission>` element, if supported, to make permission requests declarative, user-initiated, and act as data mediators.
+* **DO** use the `Clear-Site-Data` header when a user logs out to ensure no lingering data remains in the browser.
+* **DO** make it as easy to opt-out or delete an account as it was to sign up.
+
+#### DON'Ts:
+
+- **DON'T** bury data collection explanations in long, complex privacy policies.
+- **DON'T** use deceptive patterns (dark patterns) to trick users into giving consent.
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 #### Code Examples:
 
 **Inline Transparency (HTML)**
 <<<<<<< HEAD
-```html
-<div>
-  <label for="phone">Phone Number (Optional)</label>
-  <input id="phone" type="tel" name="phone">
-  <a href="#phone-help">Why do we ask for this?</a>
-  <aside id="phone-help">
-    We only use your phone number to send two-factor authentication codes for account security.
-=======
 
-```html
+````html
 <div>
   <label for="phone">Phone Number (Optional)</label>
   <input id="phone" type="tel" name="phone" />
   <a href="#phone-help">Why do we ask for this?</a>
   <aside id="phone-help">
     We only use your phone number to send two-factor authentication codes for
-    account security.
->>>>>>> 4cfe05b (edit ImageUpload)
+    account security. ======= ```html
+    <div>
+      <label for="phone">Phone Number (Optional)</label>
+      <input id="phone" type="tel" name="phone" />
+      <a href="#phone-help">Why do we ask for this?</a>
+      <aside id="phone-help">
+        We only use your phone number to send two-factor authentication codes
+        for account security. >>>>>>> 4cfe05b (edit ImageUpload)
+      </aside>
+    </div>
   </aside>
 </div>
-```
+````
 
 **Clear-Site-Data on Logout (HTTP Response)**
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 ```http
 HTTP/1.1 200 OK
 Clear-Site-Data: "*"
 ```
+
 <<<<<<< HEAD
-*Note: If clearing the cache, avoid sending this on the main navigation page to prevent blocking UI rendering on slow devices; trigger it via a subresource.*
+_Note: If clearing the cache, avoid sending this on the main navigation page to prevent blocking UI rendering on slow devices; trigger it via a subresource._
 
 **Page Embedded Permission Control (HTML)**
 =======
@@ -134,7 +145,8 @@ _Note: If clearing the cache, avoid sending this on the main navigation page to 
 
 **Page Embedded Permission Control (HTML)**
 
->>>>>>> 4cfe05b (edit ImageUpload)
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 ```html
 <!-- Declarative permission element with fallback -->
 <permission type="geolocation" onpromptdismiss="updateMap()">
@@ -146,22 +158,25 @@ _Note: If clearing the cache, avoid sending this on the main navigation page to 
 ```
 
 ### 3. Security and Data Handling for Privacy
+
 <<<<<<< HEAD
- 
+
 Privacy relies on a foundation of secure coding. Vulnerabilities in the application or insecure storage directly lead to privacy violations.
- 
+
 #### DOs:
-*   **DO** scrub Personally Identifiable Information (PII) from application logs. Use automated masking for emails, tokens, and IDs.
-*   **DO** use `HttpOnly` flags for cookies storing session identifiers to prevent other scripts from accessing them.
-*   **DO** implement rate limiting on sensitive endpoints (e.g., user search or profile views) to prevent bulk data scraping.
-*   **DO** use **CHIPS (Cookies Having Independent Partitioned State)** by appending the `Partitioned` attribute for 1:1 embeds that do not share state across top-level sites.
- 
+
+- **DO** scrub Personally Identifiable Information (PII) from application logs. Use automated masking for emails, tokens, and IDs.
+- **DO** use `HttpOnly` flags for cookies storing session identifiers to prevent other scripts from accessing them.
+- **DO** implement rate limiting on sensitive endpoints (e.g., user search or profile views) to prevent bulk data scraping.
+- **DO** use **CHIPS (Cookies Having Independent Partitioned State)** by appending the `Partitioned` attribute for 1:1 embeds that do not share state across top-level sites.
+
 #### DON'Ts:
-*   **DON'T** store sensitive tokens or PII in `localStorage`, as it is accessible by any embedded script.
-*   **DON'T** rely on unpartitioned `SameSite=None` cookies.
- 
+
+- **DON'T** store sensitive tokens or PII in `localStorage`, as it is accessible by any embedded script.
+- **DON'T** rely on unpartitioned `SameSite=None` cookies.
+
 #### Code Examples:
- 
+
 **Secure Session Cookie (HTTP)**
 =======
 
@@ -183,7 +198,8 @@ Privacy relies on a foundation of secure coding. Vulnerabilities in the applicat
 
 **Secure Session Cookie (HTTP)**
 
->>>>>>> 4cfe05b (edit ImageUpload)
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 ```http
 Set-Cookie: session_id=xyz123; Secure; HttpOnly; SameSite=Lax
 ```
@@ -192,7 +208,8 @@ Set-Cookie: session_id=xyz123; Secure; HttpOnly; SameSite=Lax
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 ```http
 Set-Cookie: theme_pref=dark; SameSite=None; Secure; Path=/; Partitioned; HttpOnly
 ```
@@ -202,17 +219,8 @@ Set-Cookie: theme_pref=dark; SameSite=None; Secure; Path=/; Partitioned; HttpOnl
 Third-party scripts and resources are a common source of privacy leaks. You are responsible for the third parties you bring into your application.
 
 #### DOs:
-<<<<<<< HEAD
-*   **DO** conduct regular technical audits of network requests using DevTools or HAR files to identify what data third parties are collecting.
-*   **DO** use the **Façade Pattern** for heavy embeds (like YouTube or TikTok). Display a static thumbnail and load the interactive iframe only after the user clicks.
-*   **DO** use privacy-preserving options for embeds when available (e.g., `youtube-nocookie.com`).
-*   **DO** replace heavy social sharing SDKs with simple, static HTML links that do not track users.
-*   **DO** use the **Federated Credential Management API (FedCM)** to mediate "Sign-In" flows natively, preventing IdP tracking of Relying Parties prior to user consent.
 
-#### DON'Ts:
-*   **DON'T** assume a third party is privacy-safe just because it is popular.
-*   **DON'T** load third-party scripts on pages where sensitive data (like checkout or health info) is handled unless strictly necessary.
-=======
+<<<<<<< HEAD
 
 - **DO** conduct regular technical audits of network requests using DevTools or HAR files to identify what data third parties are collecting.
 - **DO** use the **Façade Pattern** for heavy embeds (like YouTube or TikTok). Display a static thumbnail and load the interactive iframe only after the user clicks.
@@ -224,47 +232,49 @@ Third-party scripts and resources are a common source of privacy leaks. You are 
 
 - **DON'T** assume a third party is privacy-safe just because it is popular.
 - **DON'T** load third-party scripts on pages where sensitive data (like checkout or health info) is handled unless strictly necessary.
->>>>>>> 4cfe05b (edit ImageUpload)
+  \=======
+
+* **DO** conduct regular technical audits of network requests using DevTools or HAR files to identify what data third parties are collecting.
+* **DO** use the **Façade Pattern** for heavy embeds (like YouTube or TikTok). Display a static thumbnail and load the interactive iframe only after the user clicks.
+* **DO** use privacy-preserving options for embeds when available (e.g., `youtube-nocookie.com`).
+* **DO** replace heavy social sharing SDKs with simple, static HTML links that do not track users.
+* **DO** use the **Federated Credential Management API (FedCM)** to mediate "Sign-In" flows natively, preventing IdP tracking of Relying Parties prior to user consent.
+
+#### DON'Ts:
+
+- **DON'T** assume a third party is privacy-safe just because it is popular.
+- **DON'T** load third-party scripts on pages where sensitive data (like checkout or health info) is handled unless strictly necessary.
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 #### Code Examples:
 
 **Privacy-Preserving Social Sharing (HTML)**
 <<<<<<< HEAD
-```html
-<!-- No JS SDK required -->
-<a href="https://x.com/intent/tweet?text=Check%20this%20out&url=https%3A%2F%2Fexample.com" 
-   rel="noopener" target="_blank">
-   Share on X
-=======
 
-```html
+````html
 <!-- No JS SDK required -->
 <a
   href="https://x.com/intent/tweet?text=Check%20this%20out&url=https%3A%2F%2Fexample.com"
   rel="noopener"
   target="_blank"
 >
-  Share on X
->>>>>>> 4cfe05b (edit ImageUpload)
-</a>
-```
+  Share on X ======= ```html
+  <!-- No JS SDK required -->
+  <a
+    href="https://x.com/intent/tweet?text=Check%20this%20out&url=https%3A%2F%2Fexample.com"
+    rel="noopener"
+    target="_blank"
+  >
+    Share on X >>>>>>> 4cfe05b (edit ImageUpload)
+  </a></a
+>
+````
 
 **Video Façade Pattern (HTML/JS)**
 <<<<<<< HEAD
-```html
-<div id="video-container" data-video-id="abc123">
-  <img src="https://img.youtube.com/vi/abc123/maxresdefault.jpg" alt="Play Video" id="play-btn">
-</div>
 
-<script>
-document.getElementById('play-btn').addEventListener('click', function() {
-  const container = document.getElementById('video-container');
-  const videoId = container.dataset.videoId;
-  container.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1" allowfullscreen></iframe>`;
-});
-=======
-
-```html
+````html
 <div id="video-container" data-video-id="abc123">
   <img
     src="https://img.youtube.com/vi/abc123/maxresdefault.jpg"
@@ -274,20 +284,38 @@ document.getElementById('play-btn').addEventListener('click', function() {
 </div>
 
 <script>
-  document.getElementById('play-btn').addEventListener('click', function () {
-    const container = document.getElementById('video-container')
-    const videoId = container.dataset.videoId
-    container.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1" allowfullscreen></iframe>`
-  })
->>>>>>> 4cfe05b (edit ImageUpload)
+  document.getElementById('play-btn').addEventListener('click', function() {
+    const container = document.getElementById('video-container');
+    const videoId = container.dataset.videoId;
+    container.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1" allowfullscreen></iframe>`;
+  });
+  =======
+
+  ```html
+  <div id="video-container" data-video-id="abc123">
+    <img
+      src="https://img.youtube.com/vi/abc123/maxresdefault.jpg"
+      alt="Play Video"
+      id="play-btn"
+    />
+  </div>
+
+  <script>
+    document.getElementById('play-btn').addEventListener('click', function () {
+      const container = document.getElementById('video-container')
+      const videoId = container.dataset.videoId
+      container.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1" allowfullscreen></iframe>`
+    })
+  >>>>>>> 4cfe05b (edit ImageUpload)
 </script>
-```
+````
 
 **FedCM Sign-In (JavaScript)**
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 ```javascript
 try {
   const credential = await navigator.credentials.get({
@@ -323,14 +351,17 @@ try {
 Use standard HTTP headers to instruct the browser to enforce privacy boundaries.
 
 #### DOs:
+
 <<<<<<< HEAD
-*   **DO** use `Permissions-Policy` to disable powerful features (like camera, microphone, geolocation) by default, enabling them only where required.
-*   **DO** set a strict `Referrer-Policy` to prevent leaking sensitive URL parameters to third parties.
-=======
 
 - **DO** use `Permissions-Policy` to disable powerful features (like camera, microphone, geolocation) by default, enabling them only where required.
 - **DO** set a strict `Referrer-Policy` to prevent leaking sensitive URL parameters to third parties.
->>>>>>> 4cfe05b (edit ImageUpload)
+  \=======
+
+* **DO** use `Permissions-Policy` to disable powerful features (like camera, microphone, geolocation) by default, enabling them only where required.
+* **DO** set a strict `Referrer-Policy` to prevent leaking sensitive URL parameters to third parties.
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 #### Code Examples:
 
@@ -338,7 +369,8 @@ Use standard HTTP headers to instruct the browser to enforce privacy boundaries.
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 ```http
 Referrer-Policy: strict-origin-when-cross-origin
 ```
@@ -348,7 +380,8 @@ Disables powerful features for all origins by default.
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 ```http
 Permissions-Policy: geolocation=(), camera=(), microphone=(), accelerometer=()
 ```
@@ -358,14 +391,8 @@ Permissions-Policy: geolocation=(), camera=(), microphone=(), accelerometer=()
 Avoid techniques that attempt to uniquely identify users covertly based on their device configuration. Fingerprinting takes away user control because it relies on unchanging characteristics and happens invisibly, preventing users from opting out or clearing their identifier.
 
 #### DOs:
-<<<<<<< HEAD
-*   **DO** use **Feature Detection** instead of User-Agent sniffing to determine if a browser supports a capability.
-*   **DO** use **User-Agent Client Hints** (UA-CH) if supported by the browser, when specific device targeting is required.
 
-#### DON'Ts:
-*   **DON'T** use canvas rendering, font lists, or audio/video device enumerations to build a device fingerprint.
-*   **DON'T** rely on the full granularity of the traditional `navigator.userAgent` string.
-=======
+<<<<<<< HEAD
 
 - **DO** use **Feature Detection** instead of User-Agent sniffing to determine if a browser supports a capability.
 - **DO** use **User-Agent Client Hints** (UA-CH) if supported by the browser, when specific device targeting is required.
@@ -374,7 +401,17 @@ Avoid techniques that attempt to uniquely identify users covertly based on their
 
 - **DON'T** use canvas rendering, font lists, or audio/video device enumerations to build a device fingerprint.
 - **DON'T** rely on the full granularity of the traditional `navigator.userAgent` string.
->>>>>>> 4cfe05b (edit ImageUpload)
+  \=======
+
+* **DO** use **Feature Detection** instead of User-Agent sniffing to determine if a browser supports a capability.
+* **DO** use **User-Agent Client Hints** (UA-CH) if supported by the browser, when specific device targeting is required.
+
+#### DON'Ts:
+
+- **DON'T** use canvas rendering, font lists, or audio/video device enumerations to build a device fingerprint.
+- **DON'T** rely on the full granularity of the traditional `navigator.userAgent` string.
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 #### Code Examples:
 
@@ -382,7 +419,8 @@ Avoid techniques that attempt to uniquely identify users covertly based on their
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 ```javascript
 // GOOD: Check if the API exists
 if ('IntersectionObserver' in window) {
@@ -397,7 +435,8 @@ if ('IntersectionObserver' in window) {
 
 **User-Agent Client Hints (JavaScript)**
 <<<<<<< HEAD
-```javascript
+
+````javascript
 if (navigator.userAgentData) {
   navigator.userAgentData.getHighEntropyValues(["platformVersion", "architecture"])
     .then(ua => {
@@ -414,22 +453,15 @@ if (navigator.userAgentData) {
     })
 >>>>>>> 4cfe05b (edit ImageUpload)
 }
-```
+````
 
 ### 7. Data Rights and User Control
 
 Empower users to exercise their rights over their personal data.
 
 #### DOs:
-<<<<<<< HEAD
-*   **DO** provide clear mechanisms for users to **access** all data you have collected about them.
-*   **DO** implement automated or easy manual flows for **data deletion** (erasure).
-*   **DO** allow users to correct inaccurate information associated with their identity.
 
-#### DON'Ts:
-*   **DON'T** make the deletion process difficult or require users to contact support if sign-up was automated.
-*   **DON'T** retaliate against users who exercise their data rights by denying access to non-dependent services.
-=======
+<<<<<<< HEAD
 
 - **DO** provide clear mechanisms for users to **access** all data you have collected about them.
 - **DO** implement automated or easy manual flows for **data deletion** (erasure).
@@ -439,4 +471,15 @@ Empower users to exercise their rights over their personal data.
 
 - **DON'T** make the deletion process difficult or require users to contact support if sign-up was automated.
 - **DON'T** retaliate against users who exercise their data rights by denying access to non-dependent services.
->>>>>>> 4cfe05b (edit ImageUpload)
+  \=======
+
+* **DO** provide clear mechanisms for users to **access** all data you have collected about them.
+* **DO** implement automated or easy manual flows for **data deletion** (erasure).
+* **DO** allow users to correct inaccurate information associated with their identity.
+
+#### DON'Ts:
+
+- **DON'T** make the deletion process difficult or require users to contact support if sign-up was automated.
+- **DON'T** retaliate against users who exercise their data rights by denying access to non-dependent services.
+
+> > > > > > > 4cfe05b (edit ImageUpload)

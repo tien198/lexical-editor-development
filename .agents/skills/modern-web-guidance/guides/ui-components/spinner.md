@@ -13,7 +13,9 @@ See `progress-ring` (via `npx -y modern-web-guidance@latest retrieve "progress-r
 <<<<<<< HEAD
 
 =======
->>>>>>> 4cfe05b (edit ImageUpload)
+
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 ## Implementation
 
 ### 1. Markup
@@ -27,11 +29,12 @@ Use the native `<progress>` element as both the semantic source of truth and the
 ### 2. Styles
 
 #### Hiding Native UI
+
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
-To style the `<progress>` element as a spinner, first hide the default browser styling for indeterminate progress bars.
+> > > > > > > 4cfe05b (edit ImageUpload)
+> > > > > > > To style the `<progress>` element as a spinner, first hide the default browser styling for indeterminate progress bars.
 
 ```css
 /* Hide native bars */
@@ -54,11 +57,12 @@ progress.loading-spinner:indeterminate::slider-fill {
 ```
 
 #### Spinner Ring and Trail
+
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
-The spinner uses a `conic-gradient` to create a visual trail.
+> > > > > > > 4cfe05b (edit ImageUpload)
+> > > > > > > The spinner uses a `conic-gradient` to create a visual trail.
 
 ```css
 @property --arc-start {
@@ -200,6 +204,9 @@ For browsers that don't yet support `background-clip: border-area`, fall back to
 }
 <<<<<<< HEAD
 ```
+
 =======
+
 ```
 >>>>>>> 4cfe05b (edit ImageUpload)
+```

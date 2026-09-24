@@ -9,14 +9,22 @@ Here’s how to create a basic parallax effect:
 1.  **Create a wrapper element:** This element simply groups all the layers of the parallax effect together. It is not the scrollable element, so its overflow should be clipped. Also give it a `height` that matches the height of one of the layers of the parallax effect.
 
     ```html
-<<<<<<< HEAD
-    <div class="wrapper">
-      …
-    </div>
-=======
-    <div class="wrapper">…</div>
->>>>>>> 4cfe05b (edit ImageUpload)
+
     ```
+
+<<<<<<< HEAD
+<div class="wrapper">
+…
+</div>
+=======
+
+    <div class="wrapper">…</div>
+
+> > > > > > > 4cfe05b (edit ImageUpload)
+> > > > > > >
+> > > > > > > ```
+> > > > > > >
+> > > > > > > ```
 
     ```css
     .wrapper {
@@ -25,7 +33,7 @@ Here’s how to create a basic parallax effect:
     }
     ```
 
-2.  **Declare the layers:** Inside the wrapper, add the individual layers that will move at different speeds.
+2. **Declare the layers:** Inside the wrapper, add the individual layers that will move at different speeds.
 
     ```html
     <div class="wrapper">
@@ -36,7 +44,7 @@ Here’s how to create a basic parallax effect:
     </div>
     ```
 
-3.  **Add a translate animation:** Define a CSS animation that changes the `transform` property of the layers. For a parallax effect, you'll typically use `translateY` to move the layers vertically.
+3. **Add a translate animation:** Define a CSS animation that changes the `transform` property of the layers. For a parallax effect, you'll typically use `translateY` to move the layers vertically.
 
     ```css
     @keyframes parallax {
@@ -46,7 +54,7 @@ Here’s how to create a basic parallax effect:
     }
     ```
 
-4.  **Set up the `view-timeline`:** To link the animation to the scroll position, create a `view-timeline` on the wrapper element and then apply it to the layers.
+4. **Set up the `view-timeline`:** To link the animation to the scroll position, create a `view-timeline` on the wrapper element and then apply it to the layers.
 
     ```css
     .wrapper {
@@ -59,8 +67,7 @@ Here’s how to create a basic parallax effect:
     }
     ```
 
-<<<<<<< HEAD
-5.  **Stagger the animations:** To make the layers move at different speeds, you can use one of two main approaches: **staggering in the keyframes**, or **staggering the `animation-range`**. 
+<<<<<<< HEAD 5. **Stagger the animations:** To make the layers move at different speeds, you can use one of two main approaches: **staggering in the keyframes**, or **staggering the `animation-range`**.
 
     Both of these approaches can use hardcoded values, or can use the `sibling-index()`/`sibling-count()` implementation. The hardcoded values are easiest and also useful when having only a limited amount of layers. The `sibling-index()`/`sibling-count()` implementation is handy when you have many layers.
 
@@ -107,8 +114,8 @@ Here’s how to create a basic parallax effect:
           animation-range: entry 25% exit calc(100% / sibling-count() * sibling-index());
         }
         ```
-=======
-5.  **Stagger the animations:** To make the layers move at different speeds, you can use one of two main approaches: **staggering in the keyframes**, or **staggering the `animation-range`**.
+
+======= 5. **Stagger the animations:** To make the layers move at different speeds, you can use one of two main approaches: **staggering in the keyframes**, or **staggering the `animation-range`**.
 
     Both of these approaches can use hardcoded values, or can use the `sibling-index()`/`sibling-count()` implementation. The hardcoded values are easiest and also useful when having only a limited amount of layers. The `sibling-index()`/`sibling-count()` implementation is handy when you have many layers.
 
@@ -168,7 +175,8 @@ Here’s how to create a basic parallax effect:
           calc(100% / sibling-count() * sibling-index());
       }
       ```
->>>>>>> 4cfe05b (edit ImageUpload)
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 ## Example code
 
@@ -231,11 +239,12 @@ When using scroll-driven animations, it's important to follow a few best practic
   - If the animation is only considered to be decorative, opt for Progressive Enhancement and **DO NOT** provide a fallback.
 - **DO** respect user preferences: Some users prefer to have less motion on the web. Use the `prefers-reduced-motion` media query to disable or reduce your animations for these users.
 - **DO** try to animate only performant CSS properties: For the smoothest animations, stick to animating properties that can be handled by the browser's compositor thread, such as `transform` and `opacity`. Animating other properties like `width` or `height` can lead to performance issues.
-<<<<<<< HEAD
-- **DO** use the correct declaration order: When using the `animation` shorthand property, declare `animation-timeline` and `animation-range` *after* it to prevent the shorthand from resetting the timeline.
-=======
+  <<<<<<< HEAD
 - **DO** use the correct declaration order: When using the `animation` shorthand property, declare `animation-timeline` and `animation-range` _after_ it to prevent the shorthand from resetting the timeline.
->>>>>>> 4cfe05b (edit ImageUpload)
+  \=======
+- **DO** use the correct declaration order: When using the `animation` shorthand property, declare `animation-timeline` and `animation-range` _after_ it to prevent the shorthand from resetting the timeline.
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 As for setting the `animation-range`:
 
@@ -245,7 +254,9 @@ As for setting the `animation-range`:
 <<<<<<< HEAD
 
 =======
->>>>>>> 4cfe05b (edit ImageUpload)
+
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 ## Browser support and fallback strategies
 
 Scroll-driven animations has limited availability.
@@ -288,7 +299,7 @@ if (!CSS.supports('(animation-timeline: view()) and (animation-range: entry)')) 
 
     if (scrollY >= wrapperTop - windowHeight && scrollY <= wrapperTop + wrapperHeight) {
       const scrollPercent = (scrollY - (wrapperTop - windowHeight)) / (wrapperHeight + windowHeight);
-      
+
       layers.forEach((layer, index) => {
         // This matches the effect as defined in the CSS example above.
         // Customize this further if needed.

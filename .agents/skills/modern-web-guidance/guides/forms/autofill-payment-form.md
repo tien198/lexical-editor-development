@@ -13,12 +13,14 @@ Outlined below are the most important guidelines for building successful payment
 Make the most of the elements and attributes built for creating forms:
 
 <<<<<<< HEAD
--   `<form>`, `<input>`, `<label>`, and `<button>`
--   `type`, `autocomplete`, and `inputmode`
-=======
+
 - `<form>`, `<input>`, `<label>`, and `<button>`
 - `type`, `autocomplete`, and `inputmode`
->>>>>>> 4cfe05b (edit ImageUpload)
+  \=======
+- `<form>`, `<input>`, `<label>`, and `<button>`
+- `type`, `autocomplete`, and `inputmode`
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 These enable built-in browser functionality, improve accessibility, and add meaning to markup.
 
@@ -35,8 +37,8 @@ Always use `type="email"` for email addresses and `type="tel"` for phone numbers
 ```html
 <!-- type="email"/"tel" gives mobile users the right keyboard and enables built-in validation -->
 <<<<<<< HEAD
-<input type="email" id="email" name="email" autocomplete="email" required>
-<input type="tel" id="phone" name="phone" autocomplete="tel">
+<input type="email" id="email" name="email" autocomplete="email" required />
+<input type="tel" id="phone" name="phone" autocomplete="tel" />
 =======
 <input type="email" id="email" name="email" autocomplete="email" required />
 <input type="tel" id="phone" name="phone" autocomplete="tel" />
@@ -90,12 +92,27 @@ Make sure to add appropriate `autocomplete` values in payment card forms. Withou
 <!-- inputmode="numeric" gives a numeric keyboard without the increment/decrement spinner -->
 <!-- DO NOT use type="number" — it adds increment/decrement controls and strips leading zeros -->
 <<<<<<< HEAD
-<input id="cc-number" name="cc-number" type="text" autocomplete="cc-number"
-       inputmode="numeric" maxlength="19" pattern="[\d ]{13,19}" required>
+<input
+  id="cc-number"
+  name="cc-number"
+  type="text"
+  autocomplete="cc-number"
+  inputmode="numeric"
+  maxlength="19"
+  pattern="[\d ]{13,19}"
+  required
+/>
 
 <!-- cc-name autofills with the name exactly as it appears on the card; Unicode pattern allows international names -->
-<input id="cc-name" name="cc-name" type="text" autocomplete="cc-name"
-       maxlength="50" pattern="[\p{L} \-\.]+" required>
+<input
+  id="cc-name"
+  name="cc-name"
+  type="text"
+  autocomplete="cc-name"
+  maxlength="50"
+  pattern="[\p{L} \-\.]+"
+  required
+/>
 =======
 <input
   id="cc-number"
@@ -124,12 +141,27 @@ Make sure to add appropriate `autocomplete` values in payment card forms. Withou
 <!-- MANDATORY: Place format hints above the input so autocomplete popovers or virtual keyboards do not obscure them during editing -->
 <span id="exp-hint" class="hint">Format: MM/YY</span>
 <<<<<<< HEAD
-<input id="cc-exp" name="cc-exp" type="text" autocomplete="cc-exp"
-       aria-describedby="exp-hint" maxlength="5" required>
+<input
+  id="cc-exp"
+  name="cc-exp"
+  type="text"
+  autocomplete="cc-exp"
+  aria-describedby="exp-hint"
+  maxlength="5"
+  required
+/>
 
 <!-- cc-csc autofills the security code; DO NOT use type="password" here -->
-<input id="cc-csc" name="cc-csc" type="text" autocomplete="cc-csc"
-       inputmode="numeric" maxlength="4" pattern="[0-9]{3,4}" required>
+<input
+  id="cc-csc"
+  name="cc-csc"
+  type="text"
+  autocomplete="cc-csc"
+  inputmode="numeric"
+  maxlength="4"
+  pattern="[0-9]{3,4}"
+  required
+/>
 =======
 <input
   id="cc-exp"

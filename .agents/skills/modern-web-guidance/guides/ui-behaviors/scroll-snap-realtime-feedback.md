@@ -1,20 +1,23 @@
 # Scroll Snap Real-Time Feedback
 
 ## Overview
+
 <<<<<<< HEAD
-Users expect immediate visual feedback when interacting with UI elements like carousels or galleries. Traditional scroll snap only provides feedback *after* the scroll gesture completes and the element settles. By using Scroll Snap Events, specifically `scrollsnapchanging`, you can provide real-time feedback during the scroll gesture, highlighting the pending snap target before the user releases their touch or mouse.
+Users expect immediate visual feedback when interacting with UI elements like carousels or galleries. Traditional scroll snap only provides feedback _after_ the scroll gesture completes and the element settles. By using Scroll Snap Events, specifically `scrollsnapchanging`, you can provide real-time feedback during the scroll gesture, highlighting the pending snap target before the user releases their touch or mouse.
 =======
 
 Users expect immediate visual feedback when interacting with UI elements like carousels or galleries. Traditional scroll snap only provides feedback _after_ the scroll gesture completes and the element settles. By using Scroll Snap Events, specifically `scrollsnapchanging`, you can provide real-time feedback during the scroll gesture, highlighting the pending snap target before the user releases their touch or mouse.
->>>>>>> 4cfe05b (edit ImageUpload)
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 ## Implementation
 
 ### 1. Listen for `scrollsnapchanging`
+
 <<<<<<< HEAD
 Attach an event listener for `scrollsnapchanging` to the scroll container. This event fires when the browser determines a new snap target is likely to be selected.
 
-```javascript
+````javascript
 const container = document.querySelector('#gallery');
 const thumbnails = document.querySelectorAll('.thumbnail');
 const items = document.querySelectorAll('.gallery-item');
@@ -54,16 +57,17 @@ container.addEventListener('scrollsnapchanging', (event) => {
   thumbnails[index].classList.add('pending')
 })
 >>>>>>> 4cfe05b (edit ImageUpload)
-```
+````
 
 This example uses `snapTargetInline` because the gallery scrolls horizontally. If your scroll container scrolls vertically, use `snapTargetBlock` instead.
 
 ### 2. Listen for `scrollsnapchange`
+
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
-To finalize the state when the scroll gesture completes and the element actually snaps, listen for the `scrollsnapchange` event. This is required to establish the final active state.
+> > > > > > > 4cfe05b (edit ImageUpload)
+> > > > > > > To finalize the state when the scroll gesture completes and the element actually snaps, listen for the `scrollsnapchange` event. This is required to establish the final active state.
 
 ```javascript
 container.addEventListener('scrollsnapchange', (event) => {
@@ -85,10 +89,11 @@ container.addEventListener('scrollsnapchange', (event) => {
 ```
 
 ### 3. Sync initial state
+
 When the page loads, the scroll position might be restored by the browser (e.g., via history traversal or an anchor link). Neither `scrollsnapchange` nor `scroll` events will fire automatically. Run a one-off geometric check to sync the UI with the initial scroll position.
 
 ```javascript
-// Note: For item.offsetLeft to be relative to the container, 
+// Note: For item.offsetLeft to be relative to the container,
 =======
   const snappedTarget = event.snapTargetInline
   const index = [...items].indexOf(snappedTarget)
@@ -185,13 +190,14 @@ if (document.readyState === 'complete') {
 ```
 
 ### Fallback strategies
+
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
-Scroll snap events has limited availability.
-Supported by: Chrome 129 (Sep 2024) and Edge 129 (Sep 2024).
-Unsupported in: Firefox and Safari.
+> > > > > > > 4cfe05b (edit ImageUpload)
+> > > > > > > Scroll snap events has limited availability.
+> > > > > > > Supported by: Chrome 129 (Sep 2024) and Edge 129 (Sep 2024).
+> > > > > > > Unsupported in: Firefox and Safari.
 
 Baseline status for Scroll snap: Widely available. It's been Baseline since 2020-01-15.
 Supported by: Chrome 69 (Sep 2018), Edge 79 (Jan 2020), Firefox 68 (Jul 2019), and Safari 11 (Sep 2017).

@@ -852,11 +852,13 @@ updateFromHistoryState(history.state, 'instant')
 - **DO** respect `prefers-reduced-motion`: declare `scroll-behavior: smooth` only inside `@media (prefers-reduced-motion: no-preference)` and call `scrollTo` / `scrollBy` with `behavior: 'auto'` (not `'smooth'`) so the OS-level preference takes effect without per-call JS branching. Hard-coding `behavior: 'smooth'` bypasses the user's setting.
 - **DO** render real `<a href>` elements as drill-down triggers, not `<button onclick>` or `<div>`. Real anchors get URL preview on hover, shareability, middle-click, screen-reader role, and SEO for free.
 - **DO** include an explicit back button in every drill-down view. The swipe gesture only works on touch — keyboard, pointer, and desktop users need a visible affordance.
-<<<<<<< HEAD
-- **DO NOT** call `history.pushState` from the `popstate` handler — that pushes *new* entries while the user is trying to go back and breaks the browser back button.
-=======
+  <<<<<<< HEAD
 - **DO NOT** call `history.pushState` from the `popstate` handler — that pushes _new_ entries while the user is trying to go back and breaks the browser back button.
->>>>>>> 4cfe05b (edit ImageUpload)
+  \=======
+- **DO NOT** call `history.pushState` from the `popstate` handler — that pushes _new_ entries while the user is trying to go back and breaks the browser back button.
+
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 - **DO NOT** drive the parallax with a `scroll` event listener when scroll-driven animations are available. The CSS path runs on the compositor; a JS scroll listener runs on the main thread and will visibly drop frames during the gesture.
 - **DO NOT** mutate views you removed from the DOM after a swipe-back. Treat `entriesByDepth` as the canonical record: a pruned entry has `view: null` and is rebuilt on demand in `updateFromHistoryState`.
 

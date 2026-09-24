@@ -73,39 +73,39 @@ If the experiment logic is lightweight enough to inline, use an inline module sc
     and blocking="render" ensures rendering waits for execution.
   -->
   <script type="module" blocking="render">
-    // Fetch the experiment configuration from your testing platform.
-<<<<<<< HEAD
-    const config = await fetch('/api/experiment?id=homepage-cta')
-      .then(res => res.json());
+        // Fetch the experiment configuration from your testing platform.
+    <<<<<<< HEAD
+        const config = await fetch('/api/experiment?id=homepage-cta')
+          .then(res => res.json());
 
-    // Apply the variant by setting a data attribute on <html>.
-    // CSS rules keyed to this attribute will style the variant.
-    document.documentElement.dataset.variant = config.variant;
-=======
-    const config = await fetch('/api/experiment?id=homepage-cta').then((res) =>
-      res.json(),
-    )
+        // Apply the variant by setting a data attribute on <html>.
+        // CSS rules keyed to this attribute will style the variant.
+        document.documentElement.dataset.variant = config.variant;
+    =======
+        const config = await fetch('/api/experiment?id=homepage-cta').then((res) =>
+          res.json(),
+        )
 
-    // Apply the variant by setting a data attribute on <html>.
-    // CSS rules keyed to this attribute will style the variant.
-    document.documentElement.dataset.variant = config.variant
->>>>>>> 4cfe05b (edit ImageUpload)
+        // Apply the variant by setting a data attribute on <html>.
+        // CSS rules keyed to this attribute will style the variant.
+        document.documentElement.dataset.variant = config.variant
+    >>>>>>> 4cfe05b (edit ImageUpload)
   </script>
 
   <style>
-    /* Default styles (control group) */
-    .cta-button {
-      background-color: blue;
-    }
+        /* Default styles (control group) */
+        .cta-button {
+          background-color: blue;
+        }
 
-    /* Variant B styles, activated by the data attribute */
-<<<<<<< HEAD
-    [data-variant="b"] .cta-button {
-=======
-    [data-variant='b'] .cta-button {
->>>>>>> 4cfe05b (edit ImageUpload)
-      background-color: green;
-    }
+        /* Variant B styles, activated by the data attribute */
+    <<<<<<< HEAD
+        [data-variant="b"] .cta-button {
+    =======
+        [data-variant='b'] .cta-button {
+    >>>>>>> 4cfe05b (edit ImageUpload)
+          background-color: green;
+        }
   </style>
 </head>
 ```
@@ -143,29 +143,29 @@ DO: Use a lightweight anti-flicker snippet as a fallback only when `blocking="re
   ></script>
 
   <script>
-    // DO: Only apply the anti-flicker fallback in browsers
-    // that do not support blocking="render".
-    if (!Object.hasOwn(HTMLScriptElement.prototype, 'blocking')) {
-      // Hide the page until the experiment script runs.
-<<<<<<< HEAD
-      document.documentElement.classList.add('ab-loading');
-=======
-      document.documentElement.classList.add('ab-loading')
->>>>>>> 4cfe05b (edit ImageUpload)
+        // DO: Only apply the anti-flicker fallback in browsers
+        // that do not support blocking="render".
+        if (!Object.hasOwn(HTMLScriptElement.prototype, 'blocking')) {
+          // Hide the page until the experiment script runs.
+    <<<<<<< HEAD
+          document.documentElement.classList.add('ab-loading');
+    =======
+          document.documentElement.classList.add('ab-loading')
+    >>>>>>> 4cfe05b (edit ImageUpload)
 
-      // DO: Set a timeout to reveal the page if the experiment
-      // script takes too long. This prevents an indefinitely
-      // blank page on slow connections. Adjust the timeout
-      // to match your experiment SDK's expected load time.
-      setTimeout(() => {
-<<<<<<< HEAD
-        document.documentElement.classList.remove('ab-loading');
-      }, 4000);
-=======
-        document.documentElement.classList.remove('ab-loading')
-      }, 4000)
->>>>>>> 4cfe05b (edit ImageUpload)
-    }
+          // DO: Set a timeout to reveal the page if the experiment
+          // script takes too long. This prevents an indefinitely
+          // blank page on slow connections. Adjust the timeout
+          // to match your experiment SDK's expected load time.
+          setTimeout(() => {
+    <<<<<<< HEAD
+            document.documentElement.classList.remove('ab-loading');
+          }, 4000);
+    =======
+            document.documentElement.classList.remove('ab-loading')
+          }, 4000)
+    >>>>>>> 4cfe05b (edit ImageUpload)
+        }
   </script>
 
   <style>

@@ -116,8 +116,14 @@ MANDATORY: Add the `required` attribute to both email and password fields. Moder
 
 ```html
 <<<<<<< HEAD
-<input type="email" id="email" name="email" autocomplete="username" required>
-<input type="password" id="password" name="password" autocomplete="current-password" required>
+<input type="email" id="email" name="email" autocomplete="username" required />
+<input
+  type="password"
+  id="password"
+  name="password"
+  autocomplete="current-password"
+  required
+/>
 =======
 <input type="email" id="email" name="email" autocomplete="username" required />
 <input

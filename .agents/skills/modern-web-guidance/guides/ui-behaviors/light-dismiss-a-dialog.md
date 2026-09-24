@@ -16,11 +16,12 @@ To enable light-dismiss:
 - `none`: Only developer mechanisms can close the dialog.
 
 ### Styling the Backdrop
+
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
-When a dialog is opened as a modal using `showModal()`, the browser generates a `::backdrop` pseudo-element. This backdrop covers the entire viewport and sits directly behind the dialog.
+> > > > > > > 4cfe05b (edit ImageUpload)
+> > > > > > > When a dialog is opened as a modal using `showModal()`, the browser generates a `::backdrop` pseudo-element. This backdrop covers the entire viewport and sits directly behind the dialog.
 
 ```css
 /* Style the backdrop to indicate the dialog is modal */
@@ -43,7 +44,9 @@ dialog::backdrop {
 </dialog>
 
 <<<<<<< HEAD
-<button onclick="document.getElementById('myDialog').showModal()">Open Dialog</button>
+<button onclick="document.getElementById('myDialog').showModal()">
+  Open Dialog
+</button>
 =======
 <button onclick="document.getElementById('myDialog').showModal()">
   Open Dialog
@@ -57,11 +60,12 @@ dialog::backdrop {
 - **MANDATORY**: Always open modal dialogs with `showModal()`. This ensures the dialog is in the top layer, focus is trapped, and the `Esc` key is handled.
 - **DO**: Use `aria-labelledby` or `aria-label` to provide an accessible name for the dialog.
 - **DO NOT**: Use `closedby` for non-modal dialogs (opened with `show()`), as they do not have a backdrop and won't trigger light-dismiss.
-<<<<<<< HEAD
-- **DO NOT**: Use the `click` event for critical logic that should happen *before* closing; instead, listen for the `close` or `cancel` events.
-=======
+  <<<<<<< HEAD
 - **DO NOT**: Use the `click` event for critical logic that should happen _before_ closing; instead, listen for the `close` or `cancel` events.
->>>>>>> 4cfe05b (edit ImageUpload)
+  \=======
+- **DO NOT**: Use the `click` event for critical logic that should happen _before_ closing; instead, listen for the `close` or `cancel` events.
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 ## Fallback strategies
 

@@ -34,11 +34,13 @@ fetch('/api/analytics', {
 ## Best practices
 
 - **DO** use `priority: 'low'` for analytics, beacons, or telemetry data that isn't required for the current view.
-<<<<<<< HEAD
-- **DO** use `priority: 'low'` for "prefetching" data that the user *might* need later, ensuring it doesn't slow down what they need *now*.
-=======
+  <<<<<<< HEAD
 - **DO** use `priority: 'low'` for "prefetching" data that the user _might_ need later, ensuring it doesn't slow down what they need _now_.
->>>>>>> 4cfe05b (edit ImageUpload)
+  \=======
+- **DO** use `priority: 'low'` for "prefetching" data that the user _might_ need later, ensuring it doesn't slow down what they need _now_.
+
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 - **DO NOT** use `priority: 'low'` for fetches that are critical to the user experience.
 - **DO NOT** use the deprecated `importance` key in the fetch options object. The correct key is `priority`.
 

@@ -1,22 +1,26 @@
 # Accessible Error Announcement
 
 ## The Problem
+
 <<<<<<< HEAD
-Standard HTML5 validation provides visual feedback (via `:invalid` or `:user-invalid`), but it doesn't automatically synchronize with accessibility attributes like `aria-invalid`. 
+Standard HTML5 validation provides visual feedback (via `:invalid` or `:user-invalid`), but it doesn't automatically synchronize with accessibility attributes like `aria-invalid`.
 =======
 
 Standard HTML5 validation provides visual feedback (via `:invalid` or `:user-invalid`), but it doesn't automatically synchronize with accessibility attributes like `aria-invalid`.
->>>>>>> 4cfe05b (edit ImageUpload)
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 If you use standard `:invalid` styling, screen readers might announce "Invalid entry" the moment a user tabs into a required field that is currently empty. This creates a disruptive experience for users using assistive technologies, as the error is announced before interaction has occurred.
 
 ## The Solution
+
 <<<<<<< HEAD
-We want the *programmatic* state (`aria-invalid="true"`) to be applied **at the exact same moment** the *visual* state (`:user-invalid`) applies. Since `:user-invalid` relies on the browser's internal "user-interacted" flag, we can use JavaScript to check that this selector matches during standard interaction events.
+We want the _programmatic_ state (`aria-invalid="true"`) to be applied **at the exact same moment** the _visual_ state (`:user-invalid`) applies. Since `:user-invalid` relies on the browser's internal "user-interacted" flag, we can use JavaScript to check that this selector matches during standard interaction events.
 =======
 
 We want the _programmatic_ state (`aria-invalid="true"`) to be applied **at the exact same moment** the _visual_ state (`:user-invalid`) applies. Since `:user-invalid` relies on the browser's internal "user-interacted" flag, we can use JavaScript to check that this selector matches during standard interaction events.
->>>>>>> 4cfe05b (edit ImageUpload)
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 See [MDN aria-invalid](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-invalid) for more details.
 
@@ -29,26 +33,22 @@ See [MDN aria-invalid](https://developer.mozilla.org/en-US/docs/Web/Accessibilit
 ## Implementation Guide
 
 ### 1. HTML Structure
+
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
-Link your input to its error message using `aria-errormessage` (or `aria-describedby` for broader support).
+> > > > > > > 4cfe05b (edit ImageUpload)
+> > > > > > > Link your input to its error message using `aria-errormessage` (or `aria-describedby` for broader support).
 
 ```html
 <form>
   <div class="field">
     <label for="email">Email</label>
-<<<<<<< HEAD
-    <input 
-      type="email" 
-      id="email" 
-      required 
-      aria-errormessage="email-error"
-    >
-=======
+    <<<<<<< HEAD
     <input type="email" id="email" required aria-errormessage="email-error" />
->>>>>>> 4cfe05b (edit ImageUpload)
+    =======
+    <input type="email" id="email" required aria-errormessage="email-error" />
+    >>>>>>> 4cfe05b (edit ImageUpload)
     <span id="email-error" class="error-msg">
       Please enter a valid email address.
     </span>
@@ -57,11 +57,12 @@ Link your input to its error message using `aria-errormessage` (or `aria-describ
 ```
 
 ### 2. CSS
+
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
-Control the visibility of the error message using the native pseudo-class `:user-invalid`.
+> > > > > > > 4cfe05b (edit ImageUpload)
+> > > > > > > Control the visibility of the error message using the native pseudo-class `:user-invalid`.
 
 ```css
 .error-msg {
@@ -81,11 +82,12 @@ input:user-invalid {
 ```
 
 ### 3. JavaScript
+
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
-Since there is no "UserInvalidChanged" event, hook into standard form events to check the state.
+> > > > > > > 4cfe05b (edit ImageUpload)
+> > > > > > > Since there is no "UserInvalidChanged" event, hook into standard form events to check the state.
 
 ```javascript
 const updateAriaState = (event) => {
@@ -95,7 +97,7 @@ const updateAriaState = (event) => {
 
   // Check if the browser currently considers this input "user-invalid"
   const isUserInvalid = input.matches(':user-invalid');
-  
+
   if (isUserInvalid) {
     input.setAttribute('aria-invalid', 'true');
   } else {
@@ -108,7 +110,7 @@ const updateAriaState = (event) => {
 document.addEventListener('blur', updateAriaState, true);
 document.addEventListener('focus', updateAriaState, true);
 
-// Also update on input if we've already shown the error, 
+// Also update on input if we've already shown the error,
 // so the error clears immediately when fixed.
 document.addEventListener('input', (event) => {
   const input = event.target;
@@ -160,6 +162,7 @@ Baseline status for :user-valid and :user-invalid: Widely available. It's been B
 Supported by: Chrome 119 (Oct 2023), Edge 119 (Nov 2023), Firefox 88 (Apr 2021), and Safari 16.5 (May 2023).
 
 ### Feature Detection
+
 <<<<<<< HEAD
 You can check for support in CSS and JavaScript.
 
@@ -170,7 +173,8 @@ You can check for support in CSS and JavaScript.
 
 **JavaScript Check:**
 
->>>>>>> 4cfe05b (edit ImageUpload)
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 ```javascript
 if (!CSS.supports('selector(:user-invalid)')) {
   // Fallback logic here
@@ -178,11 +182,12 @@ if (!CSS.supports('selector(:user-invalid)')) {
 ```
 
 ### CSS for Fallback
+
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
-To ensure your fallback logic is visually indistinguishable from the native behavior, you must apply your error styles to both the pseudo-class and your fallback class.
+> > > > > > > 4cfe05b (edit ImageUpload)
+> > > > > > > To ensure your fallback logic is visually indistinguishable from the native behavior, you must apply your error styles to both the pseudo-class and your fallback class.
 
 ```css
 /* Apply error styles to both native selector and fallback class */
@@ -200,11 +205,12 @@ input.user-invalid-fallback ~ .error-msg {
 ```
 
 ### Fallback Logic
+
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
-If `:user-invalid` is missing manually track the interaction state using a `WeakMap`.
+> > > > > > > 4cfe05b (edit ImageUpload)
+> > > > > > > If `:user-invalid` is missing manually track the interaction state using a `WeakMap`.
 
 ```javascript
 const UserInvalidFallback = (() => {
@@ -348,17 +354,19 @@ UserInvalidFallback.init()
 ## Other Considerations
 
 <<<<<<< HEAD
-1.  **`aria-live` vs. `aria-errormessage`**: 
-    *   `aria-errormessage` connects the input to the text, but screen readers might not announce it immediately upon appearance (only when focusing the input).
-    *   If you need *immediate* announcement when the error appears (e.g., on blur), consider adding `role="alert"` or `aria-live="polite"` to the error message container, but test thoroughly to avoid "double announcement" when the user focuses the field to fix it.
 
-2.  **Internationalization**:
-    *   Ensure the text content of your error message (`#email-error`) is translated. The logic remains the same.
-=======
 1.  **`aria-live` vs. `aria-errormessage`**:
     - `aria-errormessage` connects the input to the text, but screen readers might not announce it immediately upon appearance (only when focusing the input).
     - If you need _immediate_ announcement when the error appears (e.g., on blur), consider adding `role="alert"` or `aria-live="polite"` to the error message container, but test thoroughly to avoid "double announcement" when the user focuses the field to fix it.
 
 2.  **Internationalization**:
     - Ensure the text content of your error message (`#email-error`) is translated. The logic remains the same.
->>>>>>> 4cfe05b (edit ImageUpload)
+      \=======
+3.  **`aria-live` vs. `aria-errormessage`**:
+    - `aria-errormessage` connects the input to the text, but screen readers might not announce it immediately upon appearance (only when focusing the input).
+    - If you need _immediate_ announcement when the error appears (e.g., on blur), consider adding `role="alert"` or `aria-live="polite"` to the error message container, but test thoroughly to avoid "double announcement" when the user focuses the field to fix it.
+
+4.  **Internationalization**:
+    - Ensure the text content of your error message (`#email-error`) is translated. The logic remains the same.
+
+> > > > > > > 4cfe05b (edit ImageUpload)

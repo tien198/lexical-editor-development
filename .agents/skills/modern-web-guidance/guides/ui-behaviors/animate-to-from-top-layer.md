@@ -15,10 +15,12 @@ When an element moves in or out of the top layer, it must transition the `overla
 ### 3. Entry Animations with `@starting-style`
 
 <<<<<<< HEAD
-Use the `@starting-style` at-rule to define the styles an element should transition *from* when it is first rendered or its `display` changes from `none`.
-=======
 Use the `@starting-style` at-rule to define the styles an element should transition _from_ when it is first rendered or its `display` changes from `none`.
->>>>>>> 4cfe05b (edit ImageUpload)
+=======
+
+Use the `@starting-style` at-rule to define the styles an element should transition _from_ when it is first rendered or its `display` changes from `none`.
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 ### 4. Animating the Backdrop
 
@@ -161,14 +163,14 @@ Without a bundler, import from a CDN inside a `<script type="module">`:
 
 ```html
 <script type="module">
-<<<<<<< HEAD
-  if (!("popover" in HTMLElement.prototype)) {
-    import("https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js");
-=======
-  if (!('popover' in HTMLElement.prototype)) {
-    import('https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js')
->>>>>>> 4cfe05b (edit ImageUpload)
-  }
+  <<<<<<< HEAD
+    if (!("popover" in HTMLElement.prototype)) {
+      import("https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js");
+  =======
+    if (!('popover' in HTMLElement.prototype)) {
+      import('https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js')
+  >>>>>>> 4cfe05b (edit ImageUpload)
+    }
 </script>
 ```
 

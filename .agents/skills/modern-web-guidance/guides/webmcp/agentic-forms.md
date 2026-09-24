@@ -5,35 +5,28 @@ The Declarative API transforms standard HTML `<form>` elements into WebMCP tools
 ## Form Attributes
 
 <<<<<<< HEAD
-*   `toolname`: Unique name for the tool.
-*   `tooldescription`: Purpose of the tool.
-*   `toolautosubmit`: (Optional) If present, the agent can submit the form without waiting for user interaction. 
-*   `toolparamdescription`: (Optional) Provides a way to define a property description within the JSON Schema.
-    *   **Resolution Order**: The browser uses `toolparamdescription` if present. In its absence, it uses the `textContent` of the associated `<label>` (skipping labelable descendants). If no label exists, it falls back to the `aria-description`.
-    *   **Grouping (Fieldsets)**: To attach a description to a group of related elements (like `<input type="radio">` buttons), place `toolparamdescription` on the nearest parent `<fieldset>` element so it applies to the parameter group as a whole.
-=======
+
 - `toolname`: Unique name for the tool.
 - `tooldescription`: Purpose of the tool.
 - `toolautosubmit`: (Optional) If present, the agent can submit the form without waiting for user interaction.
 - `toolparamdescription`: (Optional) Provides a way to define a property description within the JSON Schema.
   - **Resolution Order**: The browser uses `toolparamdescription` if present. In its absence, it uses the `textContent` of the associated `<label>` (skipping labelable descendants). If no label exists, it falls back to the `aria-description`.
   - **Grouping (Fieldsets)**: To attach a description to a group of related elements (like `<input type="radio">` buttons), place `toolparamdescription` on the nearest parent `<fieldset>` element so it applies to the parameter group as a whole.
->>>>>>> 4cfe05b (edit ImageUpload)
+    \=======
+
+* `toolname`: Unique name for the tool.
+* `tooldescription`: Purpose of the tool.
+* `toolautosubmit`: (Optional) If present, the agent can submit the form without waiting for user interaction.
+* `toolparamdescription`: (Optional) Provides a way to define a property description within the JSON Schema.
+  - **Resolution Order**: The browser uses `toolparamdescription` if present. In its absence, it uses the `textContent` of the associated `<label>` (skipping labelable descendants). If no label exists, it falls back to the `aria-description`.
+  - **Grouping (Fieldsets)**: To attach a description to a group of related elements (like `<input type="radio">` buttons), place `toolparamdescription` on the nearest parent `<fieldset>` element so it applies to the parameter group as a whole.
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 ### Example
 
 ```html
 <<<<<<< HEAD
-<form toolname="search-cars" 
-      tooldescription="Perform a car make/model search" 
-      toolautosubmit>
-  <label for="make">Vehicle Make</label>
-  <input type="text" id="make" name="make" required>
-  
-  <label for="model">Vehicle Model</label>
-  <input type="text" id="model" name="model" toolparamdescription="e.g., 330i, F-150" required>
-  
-=======
 <form
   toolname="search-cars"
   tooldescription="Perform a car make/model search"
@@ -51,8 +44,27 @@ The Declarative API transforms standard HTML `<form>` elements into WebMCP tools
     required
   />
 
->>>>>>> 4cfe05b (edit ImageUpload)
-  <button type="submit">Search</button>
+  =======
+  <form
+    toolname="search-cars"
+    tooldescription="Perform a car make/model search"
+    toolautosubmit
+  >
+    <label for="make">Vehicle Make</label>
+    <input type="text" id="make" name="make" required />
+
+    <label for="model">Vehicle Model</label>
+    <input
+      type="text"
+      id="model"
+      name="model"
+      toolparamdescription="e.g., 330i, F-150"
+      required
+    />
+
+    >>>>>>> 4cfe05b (edit ImageUpload)
+    <button type="submit">Search</button>
+  </form>
 </form>
 ```
 
@@ -141,12 +153,15 @@ window.addEventListener('toolcancel', ({ toolName }) => {
 Use pseudo-classes to highlight forms when an agent interacts with them:
 
 <<<<<<< HEAD
-*   `:tool-form-active`: Applied to the `<form>` element actively used by the agent.
-*   `:tool-submit-active`: Applied to the submit button when the browser pauses for user review (if `toolautosubmit` is omitted).
-=======
+
 - `:tool-form-active`: Applied to the `<form>` element actively used by the agent.
 - `:tool-submit-active`: Applied to the submit button when the browser pauses for user review (if `toolautosubmit` is omitted).
->>>>>>> 4cfe05b (edit ImageUpload)
+  \=======
+
+* `:tool-form-active`: Applied to the `<form>` element actively used by the agent.
+* `:tool-submit-active`: Applied to the submit button when the browser pauses for user review (if `toolautosubmit` is omitted).
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 ```css
 form:tool-form-active {
@@ -165,20 +180,7 @@ button:tool-submit-active {
 The Declarative API is best for self-contained, standard forms. It is a poor choice in these scenarios:
 
 <<<<<<< HEAD
-* **Highly Dependent Fields**: Forms where inputs change options or visibility based on other inputs. The synthesized schema cannot express these dependencies well.
-* **Custom UI Components**: Forms relying on non-standard inputs (e.g., canvas, rich text editors) that don't auto-serialize values.
-* **Multi-Step Wizards**: Complex workflows requiring multiple form submissions. The Imperative API or standard DOM interaction is better suited here.
 
-## When to use toolautosubmit
-* **Read-Only Operations & Queries**: Searches, filters, fetching details, or checking status (e.g., a car model search, searching a directory, checking stock availability).
-* **Low-Risk, Reversible Actions**: Form actions that can easily be undone or refined by the user manually (e.g., adding items to a cart, applying a coupon code, saving a draft, or setting temporary layout options).
-
-## When to omit toolautosubmit
-* **Destructive or Irreversible Actions**: Deleting records, resetting system configurations, or clearing databases.
-* **Financial & Transactional Actions**: Submitting a checkout form, transferring funds, authorizing subscription payments, or final order placements.
-* **High-Impact User Communication**: Submitting a final job application, sending emails/messages to other real users, or publishing public-facing content.
-* **Sensitive Account Settings**: Changing passwords, modifying user roles/permissions, or updating billing/profile info.
-=======
 - **Highly Dependent Fields**: Forms where inputs change options or visibility based on other inputs. The synthesized schema cannot express these dependencies well.
 - **Custom UI Components**: Forms relying on non-standard inputs (e.g., canvas, rich text editors) that don't auto-serialize values.
 - **Multi-Step Wizards**: Complex workflows requiring multiple form submissions. The Imperative API or standard DOM interaction is better suited here.
@@ -194,7 +196,25 @@ The Declarative API is best for self-contained, standard forms. It is a poor cho
 - **Financial & Transactional Actions**: Submitting a checkout form, transferring funds, authorizing subscription payments, or final order placements.
 - **High-Impact User Communication**: Submitting a final job application, sending emails/messages to other real users, or publishing public-facing content.
 - **Sensitive Account Settings**: Changing passwords, modifying user roles/permissions, or updating billing/profile info.
->>>>>>> 4cfe05b (edit ImageUpload)
+  \=======
+
+* **Highly Dependent Fields**: Forms where inputs change options or visibility based on other inputs. The synthesized schema cannot express these dependencies well.
+* **Custom UI Components**: Forms relying on non-standard inputs (e.g., canvas, rich text editors) that don't auto-serialize values.
+* **Multi-Step Wizards**: Complex workflows requiring multiple form submissions. The Imperative API or standard DOM interaction is better suited here.
+
+## When to use toolautosubmit
+
+- **Read-Only Operations & Queries**: Searches, filters, fetching details, or checking status (e.g., a car model search, searching a directory, checking stock availability).
+- **Low-Risk, Reversible Actions**: Form actions that can easily be undone or refined by the user manually (e.g., adding items to a cart, applying a coupon code, saving a draft, or setting temporary layout options).
+
+## When to omit toolautosubmit
+
+- **Destructive or Irreversible Actions**: Deleting records, resetting system configurations, or clearing databases.
+- **Financial & Transactional Actions**: Submitting a checkout form, transferring funds, authorizing subscription payments, or final order placements.
+- **High-Impact User Communication**: Submitting a final job application, sending emails/messages to other real users, or publishing public-facing content.
+- **Sensitive Account Settings**: Changing passwords, modifying user roles/permissions, or updating billing/profile info.
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 ## Fallback strategies
 

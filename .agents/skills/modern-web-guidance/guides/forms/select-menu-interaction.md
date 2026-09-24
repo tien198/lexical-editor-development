@@ -1,18 +1,20 @@
 # Select Menu Interaction
 
 ## The Problem
+
 <<<<<<< HEAD
 For mandatory dropdowns (e.g., "Choose a Country"), standard validation flags the field as invalid immediately if the default option has an empty value. This can create visual noise. We want to show the error only if the user opens the menu and closes it without choosing an option, or attempts to submit the form.
 
 ## The Solution
+
 =======
 
 For mandatory dropdowns (e.g., "Choose a Country"), standard validation flags the field as invalid immediately if the default option has an empty value. This can create visual noise. We want to show the error only if the user opens the menu and closes it without choosing an option, or attempts to submit the form.
 
 ## The Solution
 
->>>>>>> 4cfe05b (edit ImageUpload)
-The `:user-invalid` pseudo-class works seamlessly with `<select>` elements. It respects the user's interaction flow: simply loading the page or focusing/blurring without making a change doesn't count as an interaction, so the field stays neutral until they actively attempt a selection.
+> > > > > > > 4cfe05b (edit ImageUpload)
+> > > > > > > The `:user-invalid` pseudo-class works seamlessly with `<select>` elements. It respects the user's interaction flow: simply loading the page or focusing/blurring without making a change doesn't count as an interaction, so the field stays neutral until they actively attempt a selection.
 
 ### Implementation Strategy
 
@@ -23,11 +25,12 @@ The `:user-invalid` pseudo-class works seamlessly with `<select>` elements. It r
 ## Implementation Guide
 
 ### 1. HTML Structure
+
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
-The "placeholder" option is key here.
+> > > > > > > 4cfe05b (edit ImageUpload)
+> > > > > > > The "placeholder" option is key here.
 
 ```html
 <form>
@@ -44,22 +47,22 @@ The "placeholder" option is key here.
       <option value="ca">Canada</option>
       <option value="uk">United Kingdom</option>
     </select>
-<<<<<<< HEAD
-    <div id="country-error" class="error-msg">
-      Please select a country.
-    </div>
-=======
+    <<<<<<< HEAD
     <div id="country-error" class="error-msg">Please select a country.</div>
->>>>>>> 4cfe05b (edit ImageUpload)
+    =======
+    <div id="country-error" class="error-msg">Please select a country.</div>
+    >>>>>>> 4cfe05b (edit ImageUpload)
   </div>
 </form>
 ```
 
 ### 2. CSS
+
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 ```css
 .error-msg {
   display: none;

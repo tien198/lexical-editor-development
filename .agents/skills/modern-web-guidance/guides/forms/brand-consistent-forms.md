@@ -36,39 +36,37 @@ body {
 <form>
   <!-- Checkbox -->
   <label for="subscribe">
-<<<<<<< HEAD
-    <input type="checkbox" id="subscribe" checked>
-=======
+    <<<<<<< HEAD
     <input type="checkbox" id="subscribe" checked />
->>>>>>> 4cfe05b (edit ImageUpload)
-    Subscribe to newsletter
+    =======
+    <input type="checkbox" id="subscribe" checked />
+    >>>>>>> 4cfe05b (edit ImageUpload) Subscribe to newsletter
   </label>
 
   <!-- Radio Buttons -->
   <label for="plan-monthly">
-<<<<<<< HEAD
-    <input type="radio" id="plan-monthly" name="plan" value="monthly">
-    Monthly
-  </label>
-  <label for="plan-yearly">
-    <input type="radio" id="plan-yearly" name="plan" value="yearly" checked>
-=======
+    <<<<<<< HEAD
     <input type="radio" id="plan-monthly" name="plan" value="monthly" />
     Monthly
   </label>
   <label for="plan-yearly">
     <input type="radio" id="plan-yearly" name="plan" value="yearly" checked />
->>>>>>> 4cfe05b (edit ImageUpload)
-    Yearly
+    =======
+    <input type="radio" id="plan-monthly" name="plan" value="monthly" />
+    Monthly
+  </label>
+  <label for="plan-yearly">
+    <input type="radio" id="plan-yearly" name="plan" value="yearly" checked />
+    >>>>>>> 4cfe05b (edit ImageUpload) Yearly
   </label>
 
   <!-- Range Slider -->
   <label for="volume">Volume:</label>
-<<<<<<< HEAD
-  <input type="range" id="volume" min="0" max="100" value="70">
-=======
+  <<<<<<< HEAD
   <input type="range" id="volume" min="0" max="100" value="70" />
->>>>>>> 4cfe05b (edit ImageUpload)
+  =======
+  <input type="range" id="volume" min="0" max="100" value="70" />
+  >>>>>>> 4cfe05b (edit ImageUpload)
 
   <!-- Progress Bar -->
   <label for="file">Upload Progress:</label>
@@ -96,16 +94,11 @@ For browsers that do not support `accent-color`, the form controls fall back to 
 You MUST use the `@supports not` rule to apply custom fallback styles only when `accent-color` is not supported. This ensures you leverage the simplicity of `accent-color` for modern browsers while guaranteeing a consistent branded experience for older ones.
 
 #### 1. HTML Structure
+
 <<<<<<< HEAD
 Ensure your labels wrap the text in a `<span>` to allow for sibling selectors in CSS:
-```html
-<label for="subscribe-fallback">
-  <input type="checkbox" id="subscribe-fallback" class="visually-hidden" checked>
-=======
 
-Ensure your labels wrap the text in a `<span>` to allow for sibling selectors in CSS:
-
-```html
+````html
 <label for="subscribe-fallback">
   <input
     type="checkbox"
@@ -113,19 +106,32 @@ Ensure your labels wrap the text in a `<span>` to allow for sibling selectors in
     class="visually-hidden"
     checked
   />
->>>>>>> 4cfe05b (edit ImageUpload)
-  <span>Subscribe to newsletter</span>
-</label>
-```
+  ======= Ensure your labels wrap the text in a `<span
+    >` to allow for sibling selectors in CSS: ```html
+    <label for="subscribe-fallback">
+      <input
+        type="checkbox"
+        id="subscribe-fallback"
+        class="visually-hidden"
+        checked
+      />
+      >>>>>>> 4cfe05b (edit ImageUpload)
+      <span>Subscribe to newsletter</span>
+    </label></span
+  ></label
+>
+````
 
 #### 2. CSS Fallback
+
 <<<<<<< HEAD
 Apply custom styles within a `@supports not` block:
 =======
 
 Apply custom styles within a `@supports not` block:
 
->>>>>>> 4cfe05b (edit ImageUpload)
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 ```css
 /* Fallback for older browsers without accent-color */
 @supports not (accent-color: var(--brand-color)) {
@@ -328,8 +334,9 @@ Apply custom styles within a `@supports not` block:
 To make the progress fill move with the thumb on a range slider in Webkit browsers (without `accent-color`), you can use a CSS variable and a small amount of JavaScript.
 
 1. **Update CSS**: Use a CSS variable for the gradient stop:
-<<<<<<< HEAD
-```css
+   <<<<<<< HEAD
+
+````css
 input[type="range"]::-webkit-slider-runnable-track {
   background: linear-gradient(to right, var(--brand-color) var(--progress, 0%), #ccc var(--progress, 0%));
 =======
@@ -343,11 +350,12 @@ input[type='range']::-webkit-slider-runnable-track {
   );
 >>>>>>> 4cfe05b (edit ImageUpload)
 }
-```
+````
 
 2. **Add JavaScript**: Update the variable on the `input` event:
-<<<<<<< HEAD
-```javascript
+   <<<<<<< HEAD
+
+````javascript
 if (!CSS.supports('accent-color')) {
   const slider = document.getElementById('volume');
   slider.addEventListener('input', (e) => {
@@ -363,4 +371,4 @@ if (!CSS.supports('accent-color')) {
   })
 >>>>>>> 4cfe05b (edit ImageUpload)
 }
-```
+````

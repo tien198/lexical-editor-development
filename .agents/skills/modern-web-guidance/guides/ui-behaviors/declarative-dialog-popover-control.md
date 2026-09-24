@@ -12,9 +12,7 @@ Popovers can be toggled open and closed using a single button.
 <!-- MANDATORY: The commandfor attribute links the invoker to the ID of the target element so the browser knows what to control. -->
 <!-- MANDATORY: The command attribute specifies the action to perform. Use 'toggle-popover' to handle both open and close states automatically. -->
 <<<<<<< HEAD
-<button commandfor="my-popover" command="toggle-popover">
-  Toggle Popover
-</button>
+<button commandfor="my-popover" command="toggle-popover">Toggle Popover</button>
 =======
 <button commandfor="my-popover" command="toggle-popover">Toggle Popover</button>
 >>>>>>> 4cfe05b (edit ImageUpload)
@@ -58,13 +56,11 @@ Unlike popovers, modal dialogs typically use separate buttons for opening and cl
   <p>Are you sure you want to proceed?</p>
 
   <!-- MANDATORY: Use command="close" to dismiss the dialog safely. -->
-<<<<<<< HEAD
-  <button commandfor="confirm-dialog" command="close">
-    Cancel
-  </button>
-=======
+  <<<<<<< HEAD
   <button commandfor="confirm-dialog" command="close">Cancel</button>
->>>>>>> 4cfe05b (edit ImageUpload)
+  =======
+  <button commandfor="confirm-dialog" command="close">Cancel</button>
+  >>>>>>> 4cfe05b (edit ImageUpload)
 </dialog>
 ```
 
@@ -100,15 +96,15 @@ For projects without a bundler, dynamically import the polyfill directly from a 
 
 ```html
 <script type="module">
-  // MANDATORY: Feature detect 'commandForElement' on HTMLButtonElement.prototype.
-  // Conditionally load the invokers-polyfill from a CDN only in browsers lacking native support.
-  if (!('commandForElement' in HTMLButtonElement.prototype)) {
-<<<<<<< HEAD
-    import('https://esm.run/invokers-polyfill');
-=======
-    import('https://esm.run/invokers-polyfill')
->>>>>>> 4cfe05b (edit ImageUpload)
-  }
+    // MANDATORY: Feature detect 'commandForElement' on HTMLButtonElement.prototype.
+    // Conditionally load the invokers-polyfill from a CDN only in browsers lacking native support.
+    if (!('commandForElement' in HTMLButtonElement.prototype)) {
+  <<<<<<< HEAD
+      import('https://esm.run/invokers-polyfill');
+  =======
+      import('https://esm.run/invokers-polyfill')
+  >>>>>>> 4cfe05b (edit ImageUpload)
+    }
 </script>
 ```
 
@@ -152,7 +148,7 @@ document.getElementById('action-target').addEventListener('command', (event) => 
 
   if (command === '--spin') {
     const isSpun = target.classList.toggle('is-spun');
-    
+
     // Polyfill tip: Manually update ARIA to match the new state
     source?.setAttribute('aria-pressed', isSpun);
   }
@@ -232,8 +228,8 @@ if (!globalThis.CommandEvent) {
     const command = button.getAttribute('command');
 
     if (target && command) {
-      target.dispatchEvent(new CommandEvent('command', { 
-        command, 
+      target.dispatchEvent(new CommandEvent('command', {
+        command,
         source: button,
       }));
     }
@@ -311,14 +307,14 @@ Without a bundler, import from a CDN inside a `<script type="module">`:
 
 ```html
 <script type="module">
-<<<<<<< HEAD
-  if (!("popover" in HTMLElement.prototype)) {
-    import("https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js");
-=======
-  if (!('popover' in HTMLElement.prototype)) {
-    import('https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js')
->>>>>>> 4cfe05b (edit ImageUpload)
-  }
+  <<<<<<< HEAD
+    if (!("popover" in HTMLElement.prototype)) {
+      import("https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js");
+  =======
+    if (!('popover' in HTMLElement.prototype)) {
+      import('https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js')
+  >>>>>>> 4cfe05b (edit ImageUpload)
+    }
 </script>
 ```
 

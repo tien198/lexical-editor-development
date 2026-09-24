@@ -93,18 +93,20 @@ Supported by: Chrome 133 (Feb 2025) and Edge 133 (Feb 2025).
 Unsupported in: Firefox and Safari.
 
 ### Basic Fallback
+
 <<<<<<< HEAD
 If the feature is not supported, the indicators will remain invisible. Since these are hints and not critical for functionality, it is acceptable to omit them in unsupported browsers.
 
 ### Advanced Fallback (Intersection Observer)
+
 =======
 
 If the feature is not supported, the indicators will remain invisible. Since these are hints and not critical for functionality, it is acceptable to omit them in unsupported browsers.
 
 ### Advanced Fallback (Intersection Observer)
 
->>>>>>> 4cfe05b (edit ImageUpload)
-If the hints are required, use an `IntersectionObserver` to toggle classes when sentinel elements at the top and bottom of the scroller move in and out of the scrollport.
+> > > > > > > 4cfe05b (edit ImageUpload)
+> > > > > > > If the hints are required, use an `IntersectionObserver` to toggle classes when sentinel elements at the top and bottom of the scroller move in and out of the scrollport.
 
 ```html
 <!-- Sentinel elements placed at the ends of the scroller -->

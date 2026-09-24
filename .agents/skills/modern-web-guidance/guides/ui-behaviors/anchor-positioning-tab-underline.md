@@ -108,9 +108,12 @@ ul li.active {
   }
 }
 ```
+
 =======
-    border-bottom: 0.25lh var(--primary) solid;
-  }
+border-bottom: 0.25lh var(--primary) solid;
 }
+}
+
 ```
 >>>>>>> 4cfe05b (edit ImageUpload)
+```

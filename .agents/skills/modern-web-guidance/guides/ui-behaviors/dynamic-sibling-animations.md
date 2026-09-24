@@ -17,7 +17,7 @@ Use the `sibling-index()` property on the `animation-delay` property so that the
 }
 ```
 
-**MANDATORY:** Respect user preferences by disabling the animation for users who prefer reduced motion. 
+**MANDATORY:** Respect user preferences by disabling the animation for users who prefer reduced motion.
 
 ```css
 @media (prefers-reduced-motion: reduce){
@@ -30,7 +30,7 @@ Use the `sibling-index()` property on the `animation-delay` property so that the
 
 ```css
 @media (prefers-reduced-motion: reduce) {
->>>>>>> 4cfe05b (edit ImageUpload)
+  >>>>>>> 4cfe05b (edit ImageUpload)
   /* Disable animation for users who prefer reduced motion. */
   #stagger-list > .item {
     animation: none;

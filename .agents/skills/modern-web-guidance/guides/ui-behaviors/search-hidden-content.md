@@ -75,17 +75,21 @@ When handling custom mutually exclusive regions controlled by external buttons, 
 ```html
 <div class="custom-accordion">
   <div class="controls">
-<<<<<<< HEAD
-    <button aria-expanded="true" aria-controls="panel-1" id="btn-1">Section 1</button>
-    <button aria-expanded="false" aria-controls="panel-2" id="btn-2">Section 2</button>
-=======
+    <<<<<<< HEAD
     <button aria-expanded="true" aria-controls="panel-1" id="btn-1">
       Section 1
     </button>
     <button aria-expanded="false" aria-controls="panel-2" id="btn-2">
       Section 2
     </button>
->>>>>>> 4cfe05b (edit ImageUpload)
+    =======
+    <button aria-expanded="true" aria-controls="panel-1" id="btn-1">
+      Section 1
+    </button>
+    <button aria-expanded="false" aria-controls="panel-2" id="btn-2">
+      Section 2
+    </button>
+    >>>>>>> 4cfe05b (edit ImageUpload)
   </div>
 
   <div id="panel-1" class="panel">

@@ -11,7 +11,7 @@ MANDATORY: To help prevent a "flash of un-themed content" (FOUC), place a `<meta
 ```html
 <!-- MANDATORY: Declare support for both light and dark themes -->
 <<<<<<< HEAD
-<meta name="color-scheme" content="light dark">
+<meta name="color-scheme" content="light dark" />
 =======
 <meta name="color-scheme" content="light dark" />
 >>>>>>> 4cfe05b (edit ImageUpload)
@@ -76,7 +76,9 @@ For example, use a slightly dimmer light theme when the system setting is `dark`
 <<<<<<< HEAD
 
 =======
->>>>>>> 4cfe05b (edit ImageUpload)
+
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 ## Fine-grained browser UI customization
 
 Setting `color-scheme` already adapts browser UI to the used color scheme, but this will use OS defaults and/or system colors that may not perfectly align with the website design.
@@ -123,7 +125,8 @@ Most browser UI exposes pseudo-elements to fully customize its appearance, such 
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 - `::placeholder`
 - `::spelling-error`
 - `::grammar-error`
@@ -145,7 +148,8 @@ If a user-facing toggle to override it is desired, it should:
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 - Update the `<meta name="color-scheme">` element to reflect the chosen theme (`light dark` for system default, `light` for light, and `dark` for dark).
 - If branching is desired for non-color values, set a class on `<html>` to match the theme preference and use descendant selectors. While `:root:has(> head > meta[name="color-scheme"][content="dark"])` would technically work, it is slower and confers no benefit, since we are already using JS to update the `<meta>` element.
 - Persist user choice in `localStorage`.
@@ -155,24 +159,24 @@ If a user-facing toggle to override it is desired, it should:
 
 ```html
 <<<<<<< HEAD
-<meta name="color-scheme" content="light dark">
-<script>
-{
-  const colorScheme = localStorage.getItem("color-scheme");
-  if (colorScheme) {
-    document.querySelector('meta[name="color-scheme"]').content = colorScheme;
-  }
-}
-=======
 <meta name="color-scheme" content="light dark" />
 <script>
   {
-    const colorScheme = localStorage.getItem('color-scheme')
+    const colorScheme = localStorage.getItem("color-scheme");
     if (colorScheme) {
-      document.querySelector('meta[name="color-scheme"]').content = colorScheme
+      document.querySelector('meta[name="color-scheme"]').content = colorScheme;
     }
   }
->>>>>>> 4cfe05b (edit ImageUpload)
+  =======
+  <meta name="color-scheme" content="light dark" />
+  <script>
+    {
+      const colorScheme = localStorage.getItem('color-scheme')
+      if (colorScheme) {
+        document.querySelector('meta[name="color-scheme"]').content = colorScheme
+      }
+    }
+  >>>>>>> 4cfe05b (edit ImageUpload)
 </script>
 ```
 
@@ -180,12 +184,13 @@ If a user-facing toggle to override it is desired, it should:
 
 Use a two-state control:
 <<<<<<< HEAD
+
 1. System setting.
 2. The opposite (e.g. light when the system setting is dark, and dark when the system setting is light). Selecting this setting must pin that exact color scheme, not a dynamically computed "opposite of system setting" value. Example scenario:
-    1. The OS is set to light mode.
-    2. The user selects the opposite setting for this website (dark).
-    3. The user changes their system setting to dark.
-    4. The website should remain dark.
+   1. The OS is set to light mode.
+   2. The user selects the opposite setting for this website (dark).
+   3. The user changes their system setting to dark.
+   4. The website should remain dark.
 
 **DON'T** expose all three states (system, light, dark). While the rationale is plausible — "Follow system (currently dark)" is a distinct user intent from "Always dark" — it provides suboptimal UX:
 =======
@@ -199,7 +204,8 @@ Use a two-state control:
 
 **DON'T** expose all three states (system, light, dark). While the rationale is plausible — "Follow system (currently dark)" is a distinct user intent from "Always dark" — it provides suboptimal UX:
 
->>>>>>> 4cfe05b (edit ImageUpload)
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 - Users cannot meaningfully express intent for problems they don't currently have. A manual toggle is a temporary comfort adjustment ("it's too bright right now"), not a long-term preference ("make sure this never changes").
 - Two of the three options always produce the same visual result, violating the principle of feedback.
 

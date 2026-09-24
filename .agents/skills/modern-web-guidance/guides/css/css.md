@@ -37,11 +37,13 @@ These guidelines provide a high-density reference for writing maintainable, perf
 
 Be allergic to knowledge duplication. Prefer variables over repetition, but whenever possible, prefer built-in conventions such as:
 =======
+
 ## 1. Foundations
 
 Be allergic to knowledge duplication. Prefer variables over repetition, but whenever possible, prefer built-in conventions such as:
 
->>>>>>> 4cfe05b (edit ImageUpload)
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 - `currentColor` instead of defining a variable and setting `color` to it
 - The `inherit` keyword instead of defining a variable on the parent and using it on the same property across parent and child.
 - `em` units instead of `font-size: var(--size)`
@@ -64,7 +66,8 @@ Examples:
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 - When specifying a transition on a child that should match the parent's `transition-*` properties, instead of repeating the transition properties on the child, use `transition: inherit` (reduce duplication, improve maintainability)
 - Use `initial` to reset a property to its initial value instead of specifying the value explicitly (clearer expression of intent)
 
@@ -197,7 +200,8 @@ Prefer `@scope` over nesting when proximity should matter more than pure specifi
 
 For example this will not work as expected:
 <<<<<<< HEAD
-```css
+
+````css
 .dark .invert { color-scheme: light }
 .light .invert { color-scheme: dark }
 =======
@@ -210,7 +214,7 @@ For example this will not work as expected:
   color-scheme: dark;
 }
 >>>>>>> 4cfe05b (edit ImageUpload)
-```
+````
 
 If `.invert` is nested within _both_ `.dark` and `.light`, it will always resolve to dark mode as both rules have the same specificity.
 Using `@scope` fixes this:
@@ -262,7 +266,8 @@ Typically these are organized in tiers, with each tier building upon the previou
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 1. Tier 1: Literal design tokens (e.g. `--color-blue-10`, `--color-gray-90`, `--font-sans-serif`, `--size-xl` etc)
 2. Tier 2: Semantic design tokens (e.g. `--color-accent`, `--color-neutral`, `--font-body`, `--font-heading` etc)
 3. Tier 3: General UI design tokens (e.g. `--ui-border`, `--surface-bg-subtle` etc)
@@ -275,11 +280,13 @@ Check for any existing conventions around naming and levels before inventing you
 
 - Use `color-scheme: light dark` on `:root` to enable dark mode support that automatically adapts to the system setting. You can also specify `color-scheme` on individual elements to force a different value for that subtree (`light`/`dark` or `light dark` for the system default)
 - Use `light-dark()` to provide alternatives that automatically resolve based on the element's `color-scheme`.
-<<<<<<< HEAD
-Typically this happens in Tier 2 or Tier 3 tokens.
-=======
+  <<<<<<< HEAD
   Typically this happens in Tier 2 or Tier 3 tokens.
->>>>>>> 4cfe05b (edit ImageUpload)
+  \=======
+  Typically this happens in Tier 2 or Tier 3 tokens.
+
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 - IMPORTANT: When using `light-dark()` on an inherited `<color>` property, it will resolve to a specific color based on that element's `color-scheme` and inherit as that resolved color, not as a `light-dark()` value. It will NOT adapt to any descendant-specific `color-scheme` overrides. To keep `light-dark()` color tokens dynamic resolve them as late as possible by only passing them around as unregistered custom properties and avoid relying on inherited color values across `color-scheme` boundaries.
 
 See `dark-mode` (via `npx -y modern-web-guidance@latest retrieve "dark-mode"`) for tips & best practices on supporting dark mode switching and `component-specific-light-dark-theme` (via `npx -y modern-web-guidance@latest retrieve "component-specific-light-dark-theme"`) for more on applying different `color-scheme` modes than the page-wide setting on certain elements.
@@ -295,7 +302,9 @@ In Forced Colors Mode (High Contrast on Windows), the browser overrides author c
 <<<<<<< HEAD
 
 =======
->>>>>>> 4cfe05b (edit ImageUpload)
+
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 ### Generating tints
 
 Before generating tints dynamically, check if you can use an existing, predefined, design token. This allows much more designer control and ensures consistency.
@@ -304,7 +313,8 @@ If you need to generate lighter or darker colors dynamically:
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 - **DO NOT** just adjust the lightness channel in `oklch`/`oklab` or `lch`/`lab`, e.g. `oklab(from var(--primary) 0.9 a b)`. While that is theoretically the correct way, browsers do not yet implement gamut mapping, so the resulting color is unpredictable.
 - You can use `color-mix()` to mix with white or black (preferably in `oklab`). This keeps the color safely in gamut, but tends to over-desaturate colors and produce washed out tints and shades.
 - You MAY combine lightness adjustment with any of the other methods (e.g. `color-mix(in oklab, oklch(from var(--primary) 0.9 c h), white 30%)`) for a balance between the two, but avoid going above 30% for the lightness adjustment.
@@ -318,7 +328,8 @@ Before re-creating browser UI (form controls, scrollbars, selections, error mess
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 1. the browser UI cannot be customized enough for your needs, even with modern CSS,
 2. the desired customization is sufficiently critical to justify the tradeoffs of re-creating built-in UI — most notably losing accessible semantics, keyboard handling, IME, and AT integration that the native UI provides for free.
 
@@ -326,7 +337,8 @@ Example customizations that are possible:
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 - Use `::selection` to customize highlighted text colors.
 - **DON'T** apply `user-select: none` to content text — breaks copy-paste, translation tools, and AT "read from here" gestures. Limit it to chrome (drag handles, toolbars, redundant button labels).
 - Use `accent-color` to apply the page's accent color to any browser-generated UI.
@@ -349,10 +361,11 @@ For most styling purposes (e.g. colors, borders, backgrounds, typography, etc) t
 - To select one among many options presented in a dropdown: Use a `<select>` + `appearance: base-select` + `::picker(select)`. For more info see `branded-select-styling` (via `npx -y modern-web-guidance@latest retrieve "branded-select-styling"`)
 - Selecting one or more among multiple options laid out inline in the page: Use a `<input type=checkbox>` or `<input type=radio>` inside a `<label>` for each option. Style via `label:has(:checked)`.
 - Style checkboxes, radios and switches via `appearance: none` + generated content (`::before`/`::after`) or background images to draw the checked state.
-<<<<<<< HEAD
-=======
+  <<<<<<< HEAD
+  \=======
 
->>>>>>> 4cfe05b (edit ImageUpload)
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 <!-- Customizable select listbox version currently buggy + this has much better browser support -->
 
 #### Non-textual `<input>`s (buttons, sliders, file inputs etc.)
@@ -383,11 +396,12 @@ For most styling purposes (e.g. colors, borders, backgrounds, typography, etc) t
 - Use `text-wrap: balance` for balanced headlines and headline-like content (e.g. `<th>`)
 - Use `text-wrap: pretty` for long-form body text (paragraphs, blockquotes, etc.)
 - Use `text-wrap: balance` or `text-wrap: pretty` deliberately, **DO NOT** apply it on `*` as it does have a performance cost.
-<<<<<<< HEAD
-- Avoid `text-wrap: balance` on elements with a visible box (backgrounds, borders, shadows, etc) as it does not change the container's width, it only affects how text wraps *within* that width. This can leave empty space at the end of the container, which is usually undesirable.
-=======
+  <<<<<<< HEAD
 - Avoid `text-wrap: balance` on elements with a visible box (backgrounds, borders, shadows, etc) as it does not change the container's width, it only affects how text wraps _within_ that width. This can leave empty space at the end of the container, which is usually undesirable.
->>>>>>> 4cfe05b (edit ImageUpload)
+  \=======
+- Avoid `text-wrap: balance` on elements with a visible box (backgrounds, borders, shadows, etc) as it does not change the container's width, it only affects how text wraps _within_ that width. This can leave empty space at the end of the container, which is usually undesirable.
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 ## 8. Visual effects
 
@@ -413,15 +427,17 @@ For most styling purposes (e.g. colors, borders, backgrounds, typography, etc) t
 
 Use `in oklch` or `in oklab` to explicitly specify the interpolation color space for gradients or `color-mix()`.
 <<<<<<< HEAD
-- `in oklch` preserves chroma better, but can more easily get out of device gamut, especially for bigger differences between colors
-- `in oklab` stays in gamut more easily (assuming in-gamut endpoints) but can create washed out desaturated colors in the middle, especially when interpolating between opposite hues.
-- *DON'T* use `in srgb` unless you have a specific reason to do so (e.g. you are building a color picker that needs to interpolate in srgb).
-=======
 
 - `in oklch` preserves chroma better, but can more easily get out of device gamut, especially for bigger differences between colors
 - `in oklab` stays in gamut more easily (assuming in-gamut endpoints) but can create washed out desaturated colors in the middle, especially when interpolating between opposite hues.
 - _DON'T_ use `in srgb` unless you have a specific reason to do so (e.g. you are building a color picker that needs to interpolate in srgb).
->>>>>>> 4cfe05b (edit ImageUpload)
+  \=======
+
+- `in oklch` preserves chroma better, but can more easily get out of device gamut, especially for bigger differences between colors
+- `in oklab` stays in gamut more easily (assuming in-gamut endpoints) but can create washed out desaturated colors in the middle, especially when interpolating between opposite hues.
+- _DON'T_ use `in srgb` unless you have a specific reason to do so (e.g. you are building a color picker that needs to interpolate in srgb).
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 #### Fallback
 
@@ -644,14 +660,16 @@ HTML:
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 ```html
 <button class="save">Save</button>
 ```
 
 CSS:
 <<<<<<< HEAD
-```css
+
+````css
 button.save::before {
   content: url(cloud.svg) / "Save";
 =======
@@ -661,6 +679,6 @@ button.save::before {
   content: url(cloud.svg) / 'Save';
 >>>>>>> 4cfe05b (edit ImageUpload)
 }
-```
+````
 
 A screen reader would read it out as "Save save".

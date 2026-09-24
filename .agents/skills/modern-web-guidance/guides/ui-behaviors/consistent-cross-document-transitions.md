@@ -50,19 +50,19 @@ If a non-blocking script in the `<head>` must run before the transition animates
   <!--
     DO: Mark layout-critical scripts with blocking="render".
   -->
-<<<<<<< HEAD
-  <script type=module blocking="render">
-    // Example: apply a stored theme before the page renders,
-    // so the transition snapshot reflects the correct theme.
-    document.documentElement.dataset.theme =
-      localStorage.getItem('theme') || 'light';
-=======
+  <<<<<<< HEAD
   <script type="module" blocking="render">
-    // Example: apply a stored theme before the page renders,
-    // so the transition snapshot reflects the correct theme.
-    document.documentElement.dataset.theme =
-      localStorage.getItem('theme') || 'light'
->>>>>>> 4cfe05b (edit ImageUpload)
+        // Example: apply a stored theme before the page renders,
+        // so the transition snapshot reflects the correct theme.
+        document.documentElement.dataset.theme =
+          localStorage.getItem('theme') || 'light';
+    =======
+      <script type="module" blocking="render">
+        // Example: apply a stored theme before the page renders,
+        // so the transition snapshot reflects the correct theme.
+        document.documentElement.dataset.theme =
+          localStorage.getItem('theme') || 'light'
+    >>>>>>> 4cfe05b (edit ImageUpload)
   </script>
 </head>
 ```
@@ -81,11 +81,11 @@ Even when no individual elements have a `view-transition-name`, the default `roo
 
 ```html
 <head>
-<<<<<<< HEAD
-  <link rel="stylesheet" href="/css/styles.css">
-=======
+  <<<<<<< HEAD
   <link rel="stylesheet" href="/css/styles.css" />
->>>>>>> 4cfe05b (edit ImageUpload)
+  =======
+  <link rel="stylesheet" href="/css/styles.css" />
+  >>>>>>> 4cfe05b (edit ImageUpload)
 
   <!--
     DO: Block rendering until the main content area is parsed,
@@ -93,11 +93,11 @@ Even when no individual elements have a `view-transition-name`, the default `roo
     snapshot the page before visible content exists in the DOM,
     causing the cross-fade to reveal a blank or partial page.
   -->
-<<<<<<< HEAD
-  <link rel="expect" href="#main-content" blocking="render">
-=======
+  <<<<<<< HEAD
   <link rel="expect" href="#main-content" blocking="render" />
->>>>>>> 4cfe05b (edit ImageUpload)
+  =======
+  <link rel="expect" href="#main-content" blocking="render" />
+  >>>>>>> 4cfe05b (edit ImageUpload)
 </head>
 <body>
   <header>...</header>
@@ -116,11 +116,11 @@ When elements on both pages share a `view-transition-name`, the browser morphs t
 
 ```html
 <head>
-<<<<<<< HEAD
-  <link rel="stylesheet" href="/css/styles.css">
-=======
+  <<<<<<< HEAD
   <link rel="stylesheet" href="/css/styles.css" />
->>>>>>> 4cfe05b (edit ImageUpload)
+  =======
+  <link rel="stylesheet" href="/css/styles.css" />
+  >>>>>>> 4cfe05b (edit ImageUpload)
 
   <!--
     DO: Block rendering until the element participating in the
@@ -128,11 +128,11 @@ When elements on both pages share a `view-transition-name`, the browser morphs t
     may start the transition before #hero exists, causing the
     morph to degrade to a fade-out/fade-in.
   -->
-<<<<<<< HEAD
-  <link rel="expect" href="#hero" blocking="render">
-=======
+  <<<<<<< HEAD
   <link rel="expect" href="#hero" blocking="render" />
->>>>>>> 4cfe05b (edit ImageUpload)
+  =======
+  <link rel="expect" href="#hero" blocking="render" />
+  >>>>>>> 4cfe05b (edit ImageUpload)
 
   <!--
     When multiple blocking="render" resources are present,
@@ -146,15 +146,19 @@ When elements on both pages share a `view-transition-name`, the browser morphs t
   <header>...</header>
   <section id="hero">
     <h1 style="view-transition-name: page-title">Product Name</h1>
-<<<<<<< HEAD
-    <img style="view-transition-name: hero-image" src="/img/product.webp" alt="Product">
-=======
+    <<<<<<< HEAD
     <img
       style="view-transition-name: hero-image"
       src="/img/product.webp"
       alt="Product"
     />
->>>>>>> 4cfe05b (edit ImageUpload)
+    =======
+    <img
+      style="view-transition-name: hero-image"
+      src="/img/product.webp"
+      alt="Product"
+    />
+    >>>>>>> 4cfe05b (edit ImageUpload)
   </section>
 </body>
 ```

@@ -1,10 +1,12 @@
 # Required Field Feedback
 
 ## The Problem
+
 <<<<<<< HEAD
 Marking required fields with an error state immediately upon page load can be confusing. Ideally, a required field should only look "invalid" if the user has attempted to fill it out and failed.
 
 ## The Solution
+
 The `:user-invalid` pseudo-class solves this perfectly. For a required field, it will not match on page load. It will only match if:
 =======
 
@@ -14,7 +16,8 @@ Marking required fields with an error state immediately upon page load can be co
 
 The `:user-invalid` pseudo-class solves this perfectly. For a required field, it will not match on page load. It will only match if:
 
->>>>>>> 4cfe05b (edit ImageUpload)
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 1.  The user interacts with the field (e.g., types a character and deletes it) and then leaves it (blur), leaving it empty.
 2.  The user attempts to submit the form while the field is empty.
 
@@ -27,10 +30,12 @@ The `:user-invalid` pseudo-class solves this perfectly. For a required field, it
 ## Implementation Guide
 
 ### 1. HTML Structure
+
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 ```html
 <form id="feedback-form">
   <div class="field">
@@ -55,10 +60,12 @@ The `:user-invalid` pseudo-class solves this perfectly. For a required field, it
 ```
 
 ### 2. CSS
+
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 ```css
 .error-msg {
   display: none;
@@ -326,10 +333,13 @@ UserInvalidFallback.init(form)
 ## Other Considerations
 
 <<<<<<< HEAD
-1.  **Asterisks**: It is still best practice to indicate required fields visually (e.g., with an asterisk `*`) in the label, so users know what to expect *before* they interact.
-=======
+
 1.  **Asterisks**: It is still best practice to indicate required fields visually (e.g., with an asterisk `*`) in the label, so users know what to expect _before_ they interact.
->>>>>>> 4cfe05b (edit ImageUpload)
+    \=======
+1.  **Asterisks**: It is still best practice to indicate required fields visually (e.g., with an asterisk `*`) in the label, so users know what to expect _before_ they interact.
+
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 2.  **Submit Buttons**: Unlike `disabled` buttons, keep your submit button enabled. If the user clicks it, the browser will automatically trigger `:user-invalid` on all empty required fields and focus the first one. This is excellent for accessibility and UX.
 3.  **Accessibility**: Native `:user-invalid` does not automatically sync with ARIA attributes. Add the following JavaScript to keep `aria-invalid` in sync with the visual state:
 

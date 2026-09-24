@@ -5,11 +5,12 @@ The HTML-in-Canvas API allows rendering real DOM directly inside a canvas elemen
 ## How to implement
 
 ### WebGL and WebGPU
+
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
-When using WebGL or WebGPU, follow these steps:
+> > > > > > > 4cfe05b (edit ImageUpload)
+> > > > > > > When using WebGL or WebGPU, follow these steps:
 
 1. Check if HTML-in-Canvas is supported in the browser:
 
@@ -266,8 +267,9 @@ if ('requestPaint' in HTMLCanvasElement.prototype) {
 2. Create a custom geometry and material for the HTML content.
 
 3. Pass the DOM element into THREE.HTMLTexture:
-<<<<<<< HEAD
-```js
+   <<<<<<< HEAD
+
+````js
   material.map = new THREE.HTMLTexture(element);
   mesh = new THREE.Mesh( geometry, material );
   scene.add( mesh );
@@ -278,7 +280,7 @@ material.map = new THREE.HTMLTexture(element)
 mesh = new THREE.Mesh(geometry, material)
 scene.add(mesh)
 >>>>>>> 4cfe05b (edit ImageUpload)
-```
+````
 
 ## Example code
 
@@ -293,100 +295,100 @@ scene.add(mesh)
 </canvas>
 
 <script>
-<<<<<<< HEAD
-  const canvas = document.getElementById("canvas");
-  const gl = canvas.getContext("webgl");
-  const uiElement = document.getElementById("ui-element");
+  <<<<<<< HEAD
+    const canvas = document.getElementById("canvas");
+    const gl = canvas.getContext("webgl");
+    const uiElement = document.getElementById("ui-element");
 
-  // Setup WebGL texture...
-  const texture = gl.createTexture();
-  gl.bindTexture(gl.TEXTURE_2D, texture);
-=======
-  const canvas = document.getElementById('canvas')
-  const gl = canvas.getContext('webgl')
-  const uiElement = document.getElementById('ui-element')
+    // Setup WebGL texture...
+    const texture = gl.createTexture();
+    gl.bindTexture(gl.TEXTURE_2D, texture);
+  =======
+    const canvas = document.getElementById('canvas')
+    const gl = canvas.getContext('webgl')
+    const uiElement = document.getElementById('ui-element')
 
-  // Setup WebGL texture...
-  const texture = gl.createTexture()
-  gl.bindTexture(gl.TEXTURE_2D, texture)
->>>>>>> 4cfe05b (edit ImageUpload)
+    // Setup WebGL texture...
+    const texture = gl.createTexture()
+    gl.bindTexture(gl.TEXTURE_2D, texture)
+  >>>>>>> 4cfe05b (edit ImageUpload)
 
-  canvas.onpaint = () => {
-    // 1. Update texture with HTML content
-    if (gl.texElementImage2D) {
-      try {
-<<<<<<< HEAD
-        gl.texElementImage2D(gl.TEXTURE_2D, gl.RGBA8, uiElement);
-      } catch (err) {
-        console.error('texElementImage2D copy failed:', err);
-=======
-        gl.texElementImage2D(gl.TEXTURE_2D, gl.RGBA8, uiElement)
-      } catch (err) {
-        console.error('texElementImage2D copy failed:', err)
->>>>>>> 4cfe05b (edit ImageUpload)
+    canvas.onpaint = () => {
+      // 1. Update texture with HTML content
+      if (gl.texElementImage2D) {
+        try {
+  <<<<<<< HEAD
+          gl.texElementImage2D(gl.TEXTURE_2D, gl.RGBA8, uiElement);
+        } catch (err) {
+          console.error('texElementImage2D copy failed:', err);
+  =======
+          gl.texElementImage2D(gl.TEXTURE_2D, gl.RGBA8, uiElement)
+        } catch (err) {
+          console.error('texElementImage2D copy failed:', err)
+  >>>>>>> 4cfe05b (edit ImageUpload)
+        }
+      }
+
+      // ... Render your 3D scene here, calculating htmlElementMVP matrix ...
+
+      // 2. Sync DOM position with 3D scene
+      if (canvas.getElementTransform) {
+  <<<<<<< HEAD
+        const mvpDOM = new DOMMatrix(Array.from(htmlElementMVP));
+
+        // Recalculate the DPR compensation mapping
+        const dprX = canvas.width / canvas.clientWidth;
+        const dprY = canvas.height / canvas.clientHeight;
+        const gridWidth = uiElement.offsetWidth * dprX;
+        const gridHeight = uiElement.offsetHeight * dprY;
+
+        const cssToUnitSpace = new DOMMatrix()
+          .scale(1 / gridWidth, -1 / gridHeight, 1 / gridHeight)
+          .translate(-gridWidth / 2, -gridHeight / 2);
+
+        const clipToCanvasViewport = new DOMMatrix()
+          .translate(canvas.width / 2, canvas.height / 2)
+          .scale(canvas.width / 2, -canvas.height / 2, canvas.height / 2);
+
+        const screenSpaceTransform = clipToCanvasViewport
+          .multiply(mvpDOM)
+          .multiply(cssToUnitSpace);
+  =======
+        const mvpDOM = new DOMMatrix(Array.from(htmlElementMVP))
+
+        // Recalculate the DPR compensation mapping
+        const dprX = canvas.width / canvas.clientWidth
+        const dprY = canvas.height / canvas.clientHeight
+        const gridWidth = uiElement.offsetWidth * dprX
+        const gridHeight = uiElement.offsetHeight * dprY
+
+        const cssToUnitSpace = new DOMMatrix()
+          .scale(1 / gridWidth, -1 / gridHeight, 1 / gridHeight)
+          .translate(-gridWidth / 2, -gridHeight / 2)
+
+        const clipToCanvasViewport = new DOMMatrix()
+          .translate(canvas.width / 2, canvas.height / 2)
+          .scale(canvas.width / 2, -canvas.height / 2, canvas.height / 2)
+
+        const screenSpaceTransform = clipToCanvasViewport
+          .multiply(mvpDOM)
+          .multiply(cssToUnitSpace)
+  >>>>>>> 4cfe05b (edit ImageUpload)
+
+        const computedTransform = canvas.getElementTransform(
+          uiElement,
+          screenSpaceTransform,
+  <<<<<<< HEAD
+        );
+        uiElement.style.transform = computedTransform.toString();
+      }
+    };
+  =======
+        )
+        uiElement.style.transform = computedTransform.toString()
       }
     }
-
-    // ... Render your 3D scene here, calculating htmlElementMVP matrix ...
-
-    // 2. Sync DOM position with 3D scene
-    if (canvas.getElementTransform) {
-<<<<<<< HEAD
-      const mvpDOM = new DOMMatrix(Array.from(htmlElementMVP));
-
-      // Recalculate the DPR compensation mapping
-      const dprX = canvas.width / canvas.clientWidth;
-      const dprY = canvas.height / canvas.clientHeight;
-      const gridWidth = uiElement.offsetWidth * dprX;
-      const gridHeight = uiElement.offsetHeight * dprY;
-
-      const cssToUnitSpace = new DOMMatrix()
-        .scale(1 / gridWidth, -1 / gridHeight, 1 / gridHeight)
-        .translate(-gridWidth / 2, -gridHeight / 2);
-
-      const clipToCanvasViewport = new DOMMatrix()
-        .translate(canvas.width / 2, canvas.height / 2)
-        .scale(canvas.width / 2, -canvas.height / 2, canvas.height / 2);
-
-      const screenSpaceTransform = clipToCanvasViewport
-        .multiply(mvpDOM)
-        .multiply(cssToUnitSpace);
-=======
-      const mvpDOM = new DOMMatrix(Array.from(htmlElementMVP))
-
-      // Recalculate the DPR compensation mapping
-      const dprX = canvas.width / canvas.clientWidth
-      const dprY = canvas.height / canvas.clientHeight
-      const gridWidth = uiElement.offsetWidth * dprX
-      const gridHeight = uiElement.offsetHeight * dprY
-
-      const cssToUnitSpace = new DOMMatrix()
-        .scale(1 / gridWidth, -1 / gridHeight, 1 / gridHeight)
-        .translate(-gridWidth / 2, -gridHeight / 2)
-
-      const clipToCanvasViewport = new DOMMatrix()
-        .translate(canvas.width / 2, canvas.height / 2)
-        .scale(canvas.width / 2, -canvas.height / 2, canvas.height / 2)
-
-      const screenSpaceTransform = clipToCanvasViewport
-        .multiply(mvpDOM)
-        .multiply(cssToUnitSpace)
->>>>>>> 4cfe05b (edit ImageUpload)
-
-      const computedTransform = canvas.getElementTransform(
-        uiElement,
-        screenSpaceTransform,
-<<<<<<< HEAD
-      );
-      uiElement.style.transform = computedTransform.toString();
-    }
-  };
-=======
-      )
-      uiElement.style.transform = computedTransform.toString()
-    }
-  }
->>>>>>> 4cfe05b (edit ImageUpload)
+  >>>>>>> 4cfe05b (edit ImageUpload)
 </script>
 ```
 
@@ -400,105 +402,105 @@ scene.add(mesh)
 </canvas>
 
 <script>
-<<<<<<< HEAD
-  const canvas = document.getElementById("canvas");
-  const context = canvas.getContext("webgpu");
-  const uiElement = document.getElementById("ui-element");
-=======
-  const canvas = document.getElementById('canvas')
-  const context = canvas.getContext('webgpu')
-  const uiElement = document.getElementById('ui-element')
->>>>>>> 4cfe05b (edit ImageUpload)
+  <<<<<<< HEAD
+    const canvas = document.getElementById("canvas");
+    const context = canvas.getContext("webgpu");
+    const uiElement = document.getElementById("ui-element");
+  =======
+    const canvas = document.getElementById('canvas')
+    const context = canvas.getContext('webgpu')
+    const uiElement = document.getElementById('ui-element')
+  >>>>>>> 4cfe05b (edit ImageUpload)
 
-  // Setup WebGPU...
-  // const device = ...
-  // const targetTexture = ...
+    // Setup WebGPU...
+    // const device = ...
+    // const targetTexture = ...
 
-  canvas.onpaint = () => {
-    // 1. Copy HTML content to texture
-    if (device.queue.copyElementImageToTexture) {
-      try {
-<<<<<<< HEAD
-        const sourceDict = { source: uiElement };
-=======
-        const sourceDict = { source: uiElement }
->>>>>>> 4cfe05b (edit ImageUpload)
-        const destDict = {
-          destination: { texture: targetTexture },
-          width: width,
-          height: height,
-<<<<<<< HEAD
-        };
-        device.queue.copyElementImageToTexture(sourceDict, destDict);
-      } catch (err) {
-        console.error('copyElementImageToTexture copy failed:', err);
-=======
+    canvas.onpaint = () => {
+      // 1. Copy HTML content to texture
+      if (device.queue.copyElementImageToTexture) {
+        try {
+  <<<<<<< HEAD
+          const sourceDict = { source: uiElement };
+  =======
+          const sourceDict = { source: uiElement }
+  >>>>>>> 4cfe05b (edit ImageUpload)
+          const destDict = {
+            destination: { texture: targetTexture },
+            width: width,
+            height: height,
+  <<<<<<< HEAD
+          };
+          device.queue.copyElementImageToTexture(sourceDict, destDict);
+        } catch (err) {
+          console.error('copyElementImageToTexture copy failed:', err);
+  =======
+          }
+          device.queue.copyElementImageToTexture(sourceDict, destDict)
+        } catch (err) {
+          console.error('copyElementImageToTexture copy failed:', err)
+  >>>>>>> 4cfe05b (edit ImageUpload)
         }
-        device.queue.copyElementImageToTexture(sourceDict, destDict)
-      } catch (err) {
-        console.error('copyElementImageToTexture copy failed:', err)
->>>>>>> 4cfe05b (edit ImageUpload)
+      }
+
+      // 2. Sync DOM position (same matrix math as WebGL)
+      if (canvas.getElementTransform) {
+  <<<<<<< HEAD
+        const mvpDOM = new DOMMatrix(Array.from(htmlElementMVP));
+
+        // Recalculate the DPR compensation mapping
+        const dprX = canvas.width / canvas.clientWidth;
+        const dprY = canvas.height / canvas.clientHeight;
+        const gridWidth = uiElement.offsetWidth * dprX;
+        const gridHeight = uiElement.offsetHeight * dprY;
+
+        const cssToUnitSpace = new DOMMatrix()
+          .scale(1 / gridWidth, -1 / gridHeight, 1 / gridHeight) // Retain Z scale
+          .translate(-gridWidth / 2, -gridHeight / 2);
+
+        const clipToCanvasViewport = new DOMMatrix()
+          .translate(canvas.width / 2, canvas.height / 2)
+          .scale(canvas.width / 2, -canvas.height / 2, canvas.height / 2); // Retain Z scale
+
+        const screenSpaceTransform = clipToCanvasViewport
+          .multiply(mvpDOM)
+          .multiply(cssToUnitSpace);
+  =======
+        const mvpDOM = new DOMMatrix(Array.from(htmlElementMVP))
+
+        // Recalculate the DPR compensation mapping
+        const dprX = canvas.width / canvas.clientWidth
+        const dprY = canvas.height / canvas.clientHeight
+        const gridWidth = uiElement.offsetWidth * dprX
+        const gridHeight = uiElement.offsetHeight * dprY
+
+        const cssToUnitSpace = new DOMMatrix()
+          .scale(1 / gridWidth, -1 / gridHeight, 1 / gridHeight) // Retain Z scale
+          .translate(-gridWidth / 2, -gridHeight / 2)
+
+        const clipToCanvasViewport = new DOMMatrix()
+          .translate(canvas.width / 2, canvas.height / 2)
+          .scale(canvas.width / 2, -canvas.height / 2, canvas.height / 2) // Retain Z scale
+
+        const screenSpaceTransform = clipToCanvasViewport
+          .multiply(mvpDOM)
+          .multiply(cssToUnitSpace)
+  >>>>>>> 4cfe05b (edit ImageUpload)
+
+        const computedTransform = canvas.getElementTransform(
+          uiElement,
+          screenSpaceTransform,
+  <<<<<<< HEAD
+        );
+        uiElement.style.transform = computedTransform.toString();
+      }
+    };
+  =======
+        )
+        uiElement.style.transform = computedTransform.toString()
       }
     }
-
-    // 2. Sync DOM position (same matrix math as WebGL)
-    if (canvas.getElementTransform) {
-<<<<<<< HEAD
-      const mvpDOM = new DOMMatrix(Array.from(htmlElementMVP));
-
-      // Recalculate the DPR compensation mapping
-      const dprX = canvas.width / canvas.clientWidth;
-      const dprY = canvas.height / canvas.clientHeight;
-      const gridWidth = uiElement.offsetWidth * dprX;
-      const gridHeight = uiElement.offsetHeight * dprY;
-
-      const cssToUnitSpace = new DOMMatrix()
-        .scale(1 / gridWidth, -1 / gridHeight, 1 / gridHeight) // Retain Z scale
-        .translate(-gridWidth / 2, -gridHeight / 2);
-
-      const clipToCanvasViewport = new DOMMatrix()
-        .translate(canvas.width / 2, canvas.height / 2)
-        .scale(canvas.width / 2, -canvas.height / 2, canvas.height / 2); // Retain Z scale
-
-      const screenSpaceTransform = clipToCanvasViewport
-        .multiply(mvpDOM)
-        .multiply(cssToUnitSpace);
-=======
-      const mvpDOM = new DOMMatrix(Array.from(htmlElementMVP))
-
-      // Recalculate the DPR compensation mapping
-      const dprX = canvas.width / canvas.clientWidth
-      const dprY = canvas.height / canvas.clientHeight
-      const gridWidth = uiElement.offsetWidth * dprX
-      const gridHeight = uiElement.offsetHeight * dprY
-
-      const cssToUnitSpace = new DOMMatrix()
-        .scale(1 / gridWidth, -1 / gridHeight, 1 / gridHeight) // Retain Z scale
-        .translate(-gridWidth / 2, -gridHeight / 2)
-
-      const clipToCanvasViewport = new DOMMatrix()
-        .translate(canvas.width / 2, canvas.height / 2)
-        .scale(canvas.width / 2, -canvas.height / 2, canvas.height / 2) // Retain Z scale
-
-      const screenSpaceTransform = clipToCanvasViewport
-        .multiply(mvpDOM)
-        .multiply(cssToUnitSpace)
->>>>>>> 4cfe05b (edit ImageUpload)
-
-      const computedTransform = canvas.getElementTransform(
-        uiElement,
-        screenSpaceTransform,
-<<<<<<< HEAD
-      );
-      uiElement.style.transform = computedTransform.toString();
-    }
-  };
-=======
-      )
-      uiElement.style.transform = computedTransform.toString()
-    }
-  }
->>>>>>> 4cfe05b (edit ImageUpload)
+  >>>>>>> 4cfe05b (edit ImageUpload)
 </script>
 ```
 

@@ -10,7 +10,9 @@ An interest relationship is created by setting the `interestfor` attribute on a 
 <!-- MANDATORY: interest relationships must be established with the `interestfor` attribute on a button or a link -->
 <button interestfor="interestingElement" data-effect="A">Some effect</button>
 <<<<<<< HEAD
-<button interestfor="interestingElement" data-effect="B">Some other effect</button>
+<button interestfor="interestingElement" data-effect="B">
+  Some other effect
+</button>
 =======
 <button interestfor="interestingElement" data-effect="B">
   Some other effect
@@ -82,16 +84,16 @@ Interest invokers must be conditionally polyfilled using the `interestfor` polyf
 
 ```html
 <script type="module">
-<<<<<<< HEAD
-  if(!HTMLButtonElement.prototype.hasOwnProperty("interestForElement")){
-    // CDN link only used for example, prefer bundling.
-    await import("https://unpkg.com/interestfor@latest");
-=======
-  if (!HTMLButtonElement.prototype.hasOwnProperty('interestForElement')) {
-    // CDN link only used for example, prefer bundling.
-    await import('https://unpkg.com/interestfor@latest')
->>>>>>> 4cfe05b (edit ImageUpload)
-  }
+  <<<<<<< HEAD
+    if(!HTMLButtonElement.prototype.hasOwnProperty("interestForElement")){
+      // CDN link only used for example, prefer bundling.
+      await import("https://unpkg.com/interestfor@latest");
+  =======
+    if (!HTMLButtonElement.prototype.hasOwnProperty('interestForElement')) {
+      // CDN link only used for example, prefer bundling.
+      await import('https://unpkg.com/interestfor@latest')
+  >>>>>>> 4cfe05b (edit ImageUpload)
+    }
 </script>
 ```
 
@@ -118,6 +120,9 @@ When using the polyfill the CSS API changes slightly for the `:interest-source` 
 }
 <<<<<<< HEAD
 ```
+
 =======
+
 ```
 >>>>>>> 4cfe05b (edit ImageUpload)
+```

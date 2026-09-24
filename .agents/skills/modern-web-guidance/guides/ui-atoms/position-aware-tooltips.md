@@ -7,10 +7,12 @@ When building tooltips or popovers with CSS Anchor Positioning, the browser can 
 ## The problem
 
 <<<<<<< HEAD
-Imagine a tooltip that appears above its anchor by default. It has a "down" arrow at the bottom. If the user scrolls and the tooltip flips to appear *below* the anchor, the arrow is now pointing the wrong way and is on the wrong side of the tooltip.
-=======
 Imagine a tooltip that appears above its anchor by default. It has a "down" arrow at the bottom. If the user scrolls and the tooltip flips to appear _below_ the anchor, the arrow is now pointing the wrong way and is on the wrong side of the tooltip.
->>>>>>> 4cfe05b (edit ImageUpload)
+=======
+
+Imagine a tooltip that appears above its anchor by default. It has a "down" arrow at the bottom. If the user scrolls and the tooltip flips to appear _below_ the anchor, the arrow is now pointing the wrong way and is on the wrong side of the tooltip.
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 ## The solution: Anchored Container Queries
 
@@ -22,7 +24,9 @@ Use the Popover API to create a tooltip. This creates an implicit anchor connect
 
 ```html
 <<<<<<< HEAD
-<button popovertarget="tooltip" id="anchor" aria-describedby="tooltip">anchor</button>
+<button popovertarget="tooltip" id="anchor" aria-describedby="tooltip">
+  anchor
+</button>
 =======
 <button popovertarget="tooltip" id="anchor" aria-describedby="tooltip">
   anchor
@@ -105,7 +109,7 @@ If you need to change properties on the container itself (like `margin` or `back
 
 <<<<<<< HEAD
 
-```css
+````css
 @container anchored(fallback: flip-block) {
   .tooltip-content {
     border-radius: 0 0 .5rem .5rem;
@@ -118,7 +122,7 @@ If you need to change properties on the container itself (like `margin` or `back
     margin-block-start: 0.25rem;
   }
 }
-```
+````
 
 ## Best practices
 
@@ -128,7 +132,9 @@ If you need to change properties on the container itself (like `margin` or `back
 <<<<<<< HEAD
 
 =======
->>>>>>> 4cfe05b (edit ImageUpload)
+
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 ## Fallback strategies
 
 Anchor position container queries has limited availability.
@@ -176,14 +182,14 @@ Without a bundler, import from a CDN inside a `<script type="module">`:
 
 ```html
 <script type="module">
-<<<<<<< HEAD
-  if (!("popover" in HTMLElement.prototype)) {
-    import("https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js");
-=======
-  if (!('popover' in HTMLElement.prototype)) {
-    import('https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js')
->>>>>>> 4cfe05b (edit ImageUpload)
-  }
+  <<<<<<< HEAD
+    if (!("popover" in HTMLElement.prototype)) {
+      import("https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js");
+  =======
+    if (!('popover' in HTMLElement.prototype)) {
+      import('https://unpkg.com/@oddbird/popover-polyfill@latest/dist/popover.min.js')
+  >>>>>>> 4cfe05b (edit ImageUpload)
+    }
 </script>
 ```
 
@@ -200,5 +206,7 @@ Alternatively, for a legacy fallback without a polyfill, use `position: fixed` a
 <<<<<<< HEAD
 Browsers without support for the Popover API also do not support anchor positioning, so the tooltip will appear in the center of the screen.
 =======
+
 Browsers without support for the Popover API also do not support anchor positioning, so the tooltip will appear in the center of the screen.
->>>>>>> 4cfe05b (edit ImageUpload)
+
+> > > > > > > 4cfe05b (edit ImageUpload)

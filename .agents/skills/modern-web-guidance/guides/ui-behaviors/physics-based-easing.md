@@ -5,11 +5,13 @@ Traditional CSS easing functions like `ease-in` or `cubic-bezier()` are limited 
 ### Implementation Steps
 
 1.  **Generate the curve stops:**
-<<<<<<< HEAD
-    Manually plotting dozens of points for a spring or bounce is impractical. Use a timing function from an external library, or use a  tool to convert an existing JavaScript easing function or an SVG path into the `linear()` syntax. Optional: store these timing functions as CSS custom properties for reuse throughout your site.
-=======
+    <<<<<<< HEAD
     Manually plotting dozens of points for a spring or bounce is impractical. Use a timing function from an external library, or use a tool to convert an existing JavaScript easing function or an SVG path into the `linear()` syntax. Optional: store these timing functions as CSS custom properties for reuse throughout your site.
->>>>>>> 4cfe05b (edit ImageUpload)
+    \=======
+    Manually plotting dozens of points for a spring or bounce is impractical. Use a timing function from an external library, or use a tool to convert an existing JavaScript easing function or an SVG path into the `linear()` syntax. Optional: store these timing functions as CSS custom properties for reuse throughout your site.
+
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 2.  **Define the timing function:**
     Apply the generated stops to the `transition-timing-function` or `animation-timing-function` property, or through the `transition` or `animation` shorthands.
 3.  **Adjust the duration:**
@@ -82,10 +84,12 @@ This example shows how to use a custom `linear()` function to create a spring ef
   scale: 1.2;
 }
 ```
+
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 ### Example: Bounce Easing
 
 This example shows how to use a custom `linear()` function to create a bounce effect.
@@ -130,16 +134,19 @@ This example shows how to use a custom `linear()` function to create a bounce ef
 ### Key Considerations
 
 <<<<<<< HEAD
-*   **Performance:** For the smoothest physics-based animations, apply `linear()` to properties that run on a separate thread, such as `transform` and `opacity`.
-*   **Precision vs. Payload:** While more stops result in a smoother curve, they also increase the size of your CSS. Most generators allow you to "simplify" the curve to find the optimal balance between smoothness and code size.
-*   **Avoid Opacity for Bounces:** Applying bounce easings to `opacity` can cause visually jarring flickering if the value overshoots below 0 or above 1.
-*   **Accessibility:** Complex physics-based animations can be distracting or cause motion sensitivity for some users. Always respect user preferences by reducing or disabling these animations.
-=======
+
 - **Performance:** For the smoothest physics-based animations, apply `linear()` to properties that run on a separate thread, such as `transform` and `opacity`.
 - **Precision vs. Payload:** While more stops result in a smoother curve, they also increase the size of your CSS. Most generators allow you to "simplify" the curve to find the optimal balance between smoothness and code size.
 - **Avoid Opacity for Bounces:** Applying bounce easings to `opacity` can cause visually jarring flickering if the value overshoots below 0 or above 1.
 - **Accessibility:** Complex physics-based animations can be distracting or cause motion sensitivity for some users. Always respect user preferences by reducing or disabling these animations.
->>>>>>> 4cfe05b (edit ImageUpload)
+  \=======
+
+* **Performance:** For the smoothest physics-based animations, apply `linear()` to properties that run on a separate thread, such as `transform` and `opacity`.
+* **Precision vs. Payload:** While more stops result in a smoother curve, they also increase the size of your CSS. Most generators allow you to "simplify" the curve to find the optimal balance between smoothness and code size.
+* **Avoid Opacity for Bounces:** Applying bounce easings to `opacity` can cause visually jarring flickering if the value overshoots below 0 or above 1.
+* **Accessibility:** Complex physics-based animations can be distracting or cause motion sensitivity for some users. Always respect user preferences by reducing or disabling these animations.
+
+> > > > > > > 4cfe05b (edit ImageUpload)
 
 ```css
 @media (prefers-reduced-motion: reduce) {
@@ -155,18 +162,19 @@ Baseline status for linear() easing: Widely available. It's been Baseline since 
 Supported by: Chrome 113 (May 2023), Edge 113 (May 2023), Firefox 112 (Apr 2023), and Safari 17.2 (Dec 2023).
 
 #### CSS Fallback
+
 <<<<<<< HEAD
 =======
 
->>>>>>> 4cfe05b (edit ImageUpload)
-For browsers that do not support `linear()`, provide a standard easing function as a fallback. The browser will ignore the `linear()` value if it doesn't recognize it, falling back to the previous valid declaration.
+> > > > > > > 4cfe05b (edit ImageUpload)
+> > > > > > > For browsers that do not support `linear()`, provide a standard easing function as a fallback. The browser will ignore the `linear()` value if it doesn't recognize it, falling back to the previous valid declaration.
 
 ```css
 .element {
   /* Fallback for older browsers (standard smooth exit) */
   transition: transform 0.8s ease-out;
 <<<<<<< HEAD
-  
+
 =======
 
 >>>>>>> 4cfe05b (edit ImageUpload)
@@ -192,7 +200,7 @@ const supportsLinearEasing =
 >>>>>>> 4cfe05b (edit ImageUpload)
 
 if (!supportsLinearEasing) {
-  /* 
+  /*
      Example using Motion (motion.dev) for a spring fallback.
      This should only be initialized if native CSS support is missing.
   */

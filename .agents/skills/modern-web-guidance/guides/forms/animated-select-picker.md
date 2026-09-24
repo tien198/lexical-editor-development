@@ -11,11 +11,13 @@ To implement an animated select picker:
 1. **Opt-in to customization:** Apply `appearance: base-select` to both the `<select>` element and the `::picker(select)` pseudo-element.
 2. **Enable auto-sizing transitions (Optional):** Define `interpolate-size: allow-keywords` (usually on `:root`) to allow the browser to transition between discrete metric values like `height: auto` and `height: 0`.
 3. **Animate the top-layer container:** Apply standard entry/exit styles to `::picker(select)`. To make sure the opacity transition works when moving between `display: none` and `display: block`, you must use `transition-behavior: allow-discrete` (often written inline as `transition: display 0.3s allow-discrete`).
-<<<<<<< HEAD
-4. **Hook into the opening state with `@starting-style`:** Use `@starting-style` to define the baseline styles the browser should compute *before* the transition begins. For example, if you want it to fade in, set the opacity to `0` inside the `@starting-style` block.
-=======
+   <<<<<<< HEAD
 4. **Hook into the opening state with `@starting-style`:** Use `@starting-style` to define the baseline styles the browser should compute _before_ the transition begins. For example, if you want it to fade in, set the opacity to `0` inside the `@starting-style` block.
->>>>>>> 4cfe05b (edit ImageUpload)
+   \=======
+5. **Hook into the opening state with `@starting-style`:** Use `@starting-style` to define the baseline styles the browser should compute _before_ the transition begins. For example, if you want it to fade in, set the opacity to `0` inside the `@starting-style` block.
+
+> > > > > > > 4cfe05b (edit ImageUpload)
+
 5. **Rotate the icon:** Use pseudo-element focus or active selectors like `:open::picker-icon` to apply transitions (such as rotation or translation) to the arrow indicator.
 
 ## Example Code: Smooth Select Scale and Fade
@@ -201,7 +203,7 @@ For browsers that do not yet support `appearance: base-select`, the `<select>` e
 
 <<<<<<< HEAD
 
-```javascript
+````javascript
 document.addEventListener("DOMContentLoaded", () => {
   // Check if browser supports base-select value
   if (!CSS.supports("appearance", "base-select")) {
@@ -217,4 +219,4 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 })
 >>>>>>> 4cfe05b (edit ImageUpload)
-```
+````
