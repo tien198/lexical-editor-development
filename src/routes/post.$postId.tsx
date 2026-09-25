@@ -122,7 +122,7 @@ function EditorPage() {
               <main id="workspace">
                 <ClientOnly fallback={<EditorFallback />}>
                   <Suspense fallback={<EditorFallback />}>
-                    <EditorWorkspace />
+                    <EditorWorkspace postId={post.id.toString()} />
                   </Suspense>
                 </ClientOnly>
               </main>

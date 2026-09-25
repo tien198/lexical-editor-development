@@ -1,4 +1,3 @@
-import { DEFAULT_SETTINGS, STARTER_BLOCKS } from '../core/-editor-data'
 import { EDITOR_TYPOGRAPHY } from '../core/-editor-typography'
 import {
   Card,
@@ -6,8 +5,9 @@ import {
   CardDescription,
   CardHeader,
 } from '@/components/ui/card'
+import { Skeleton } from '@/components/ui/skeleton'
 
-/** Meaningful HTML is available before the browser editor hydrates. */
+/** Loading skeleton shown before the browser editor hydrates. */
 export function EditorFallback() {
   return (
     <Card>
@@ -17,23 +17,32 @@ export function EditorFallback() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <article className={`${EDITOR_TYPOGRAPHY.content} break-words`}>
-          <h2 className={EDITOR_TYPOGRAPHY.title}>{DEFAULT_SETTINGS.title}</h2>
-          {STARTER_BLOCKS.map((block, index) =>
-            block.type === 'h2' ? (
-              <h3 key={index} className={EDITOR_TYPOGRAPHY.heading.h2}>
-                {block.text}
-              </h3>
-            ) : block.type === 'quote' ? (
-              <blockquote key={index} className={EDITOR_TYPOGRAPHY.quote}>
-                {block.text}
-              </blockquote>
-            ) : (
-              <p key={index} className={EDITOR_TYPOGRAPHY.paragraph}>
-                {block.text}
-              </p>
-            ),
-          )}
+        <article className={`${EDITOR_TYPOGRAPHY.content} space-y-6`}>
+          {/* Title Skeleton */}
+          <Skeleton className="h-12 w-3/4" />
+
+          <div className="space-y-3">
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-5/6" />
+          </div>
+
+          <Skeleton className="h-8 w-1/2 mt-8" />
+
+          <div className="space-y-3">
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-4/5" />
+          </div>
+
+          <Skeleton className="h-24 w-full" />
+
+          <Skeleton className="h-8 w-1/3 mt-8" />
+
+          <div className="space-y-3">
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-5/6" />
+            <Skeleton className="h-4 w-4/5" />
+          </div>
         </article>
       </CardContent>
     </Card>

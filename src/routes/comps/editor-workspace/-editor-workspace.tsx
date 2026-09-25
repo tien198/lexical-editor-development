@@ -1,6 +1,12 @@
-import { useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Clock3 } from 'lucide-react'
-import { useDraft } from './document/-use-draft'
+import { useAppDispatch, useAppSelector } from '@/app/hooks'
+import {
+  setPostId,
+  setSettings,
+  setSnapshot,
+  loadDraftData,
+} from '@/features/editor/editorSlice'
 import { RichTextEditor } from './lexical/-rich-text-editor'
 import { SeoPanel } from './seo/-seo-panel'
 import { StatusBar } from './layout/-status-bar'
@@ -10,19 +16,122 @@ import { PostMetadata } from './layout/-post-metadata'
 import { ImageUpload } from '#/components/image-upload'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { Alert, AlertDescription } from '@/components/ui/alert'
+import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Kbd } from '@/components/ui/kbd'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { createEditor  } from 'lexical'
+import type {EditorState} from 'lexical';
+import { EDITOR_NODES } from './core/-editor-config'
 
-export default function EditorWorkspace() {
-  const { settings, setSettings, snapshot, setSnapshot, initialState, error } =
-    useDraft()
+export default function EditorWorkspace({ postId }: { postId: string }) {
+  const dispatch = useAppDispatch()
+  const settings = useAppSelector((state) => state.editor.settings)
+  const snapshot = useAppSelector((state) => state.editor.snapshot)
+  const error = useAppSelector((state) => state.editor.error)
+  const isLoaded = useAppSelector((state) => state.editor.isLoaded)
+
   const [preview, setPreview] = useState(false)
+  const [lexicalInitialState, setLexicalInitialState] =
+    useState<EditorState | null>(null)
+  const [editorKey, setEditorKey] = useState(0)
+  const [hasDraft, setHasDraft] = useState(false)
+
+  const storageKey = `draft-editor:v1:${postId}`
+
+  useEffect(() => {
+    dispatch(setPostId(postId))
+  }, [dispatch, postId])
+
+  useEffect(() => {
+    if (!isLoaded) {
+      const raw = localStorage.getItem(storageKey)
+      if (raw) {
+        setHasDraft(true)
+      }
+    }
+  }, [isLoaded, storageKey])
+
+  const handleRestoreDraft = () => {
+    if (
+      !window.confirm(
+        'Current content will be overwritten by the saved draft. Are you sure?',
+      )
+    ) {
+      return
+    }
+    try {
+      const raw = localStorage.getItem(storageKey)
+      if (!raw) return
+
+      const value = JSON.parse(raw)
+      if (
+        value?.version !== 1 ||
+        typeof value.editor !== 'string' ||
+        !value.settings
+      ) {
+        throw new Error('Invalid draft')
+      }
+
+      const editor = createEditor({
+        nodes: EDITOR_NODES,
+        onError: (err) => {
+          throw err
+        },
+      })
+      const parsedEditorState = editor.parseEditorState(value.editor)
+      if (parsedEditorState.isEmpty()) throw new Error('Empty editor state')
+
+      setLexicalInitialState(parsedEditorState)
+      setEditorKey((k) => k + 1)
+      setHasDraft(false)
+
+      dispatch(
+        loadDraftData({
+          settings: {
+            title: value.settings.title,
+            description: value.settings.description,
+            canonicalUrl: value.settings.canonicalUrl,
+            keyword: value.settings.keyword,
+            heroImage: value.settings.heroImage ?? null,
+          },
+          snapshot: null,
+          error: '',
+        }),
+      )
+    } catch {
+      dispatch(
+        loadDraftData({
+          settings: settings,
+          snapshot: null,
+          error:
+            'Your saved draft could not be opened. It has been kept untouched. Export this session to keep your changes.',
+        }),
+      )
+    }
+  }
+
+  const handleDismissDraft = () => {
+    setHasDraft(false)
+    dispatch(
+      loadDraftData({
+        settings,
+        snapshot,
+        error: '',
+      }),
+    )
+  }
+
   const heroImage = settings.heroImage ?? null
   const setHeroImage = (url: string | null) =>
-    setSettings((prev) => ({ ...prev, heroImage: url }))
+    dispatch(setSettings({ heroImage: url }))
   const words = snapshot?.words ?? 0
+
+  const handleSnapshotChange = useMemo(
+    () => (newSnapshot: any) => dispatch(setSnapshot(newSnapshot)),
+    [dispatch],
+  )
 
   return (
     <TooltipProvider delay={350}>
@@ -38,6 +147,21 @@ export default function EditorWorkspace() {
           onTogglePreview={() => setPreview((prev) => !prev)}
         />
       </div>
+
+      {hasDraft && (
+        <div className="bg-accent/50 border-b border-border px-[var(--admin-gutter)] py-3 flex items-center justify-between">
+          <p className="text-sm">A saved draft was found on this device.</p>
+          <div className="flex gap-2">
+            <Button variant="ghost" size="sm" onClick={handleDismissDraft}>
+              Dismiss
+            </Button>
+            <Button size="sm" onClick={handleRestoreDraft}>
+              Restore Draft
+            </Button>
+          </div>
+        </div>
+      )}
+
       {error && (
         <div className="absolute top-0 right-0 left-0 z-50 p-4">
           <div className="mx-auto max-w-2xl">
@@ -65,10 +189,7 @@ export default function EditorWorkspace() {
               value={settings.title}
               placeholder="Untitled document"
               onChange={(event) =>
-                setSettings((previous) => ({
-                  ...previous,
-                  title: event.target.value,
-                }))
+                dispatch(setSettings({ title: event.target.value }))
               }
             />
           </div>
@@ -82,7 +203,6 @@ export default function EditorWorkspace() {
               <TabsTrigger value="meta">Meta</TabsTrigger>
               <TabsTrigger value="seo">SEO</TabsTrigger>
             </TabsList>
-            {/* Keep Lexical mounted so switching tabs preserves selection and undo history. */}
             <TabsContent
               value="content"
               keepMounted
@@ -91,8 +211,9 @@ export default function EditorWorkspace() {
               <ImageUpload value={heroImage} onChange={setHeroImage} />
               <section aria-label="Article editor">
                 <RichTextEditor
-                  initialState={initialState}
-                  onChange={setSnapshot}
+                  key={editorKey}
+                  initialState={lexicalInitialState}
+                  onChange={handleSnapshotChange}
                 />
                 <div
                   className={
@@ -155,7 +276,7 @@ export default function EditorWorkspace() {
             >
               <SeoPanel
                 settings={settings}
-                onChange={setSettings}
+                onChange={(s) => dispatch(setSettings(s))}
                 snapshot={snapshot}
               />
             </TabsContent>
